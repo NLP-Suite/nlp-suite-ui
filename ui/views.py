@@ -30,3 +30,39 @@ def g_n2(_: HttpRequest):
 def g_n3(_: HttpRequest):
     template = loader.get_template('../templates/g_n3.html')
     return HttpResponse(template.render())
+
+def g_n4(_: HttpRequest):
+    template = loader.get_template('../templates/g_n4.html')
+    return HttpResponse(template.render())
+
+def g_n5(_: HttpRequest):
+    template = loader.get_template('../templates/g_n5.html')
+    return HttpResponse(template.render())
+
+def g_n6(_: HttpRequest):
+    template = loader.get_template('../templates/g_n6.html')
+    return HttpResponse(template.render())
+
+def g_n7(_: HttpRequest):
+    template = loader.get_template('../templates/g_n7.html')
+    return HttpResponse(template.render())
+
+def g_n8(_: HttpRequest):
+    template = loader.get_template('../templates/g_n8.html')
+    return HttpResponse(template.render())
+
+def g_n9(_: HttpRequest):
+    template = loader.get_template('../templates/g_n9.html')
+    return HttpResponse(template.render())
+
+def g_n10(_: HttpRequest):
+    template = loader.get_template('../templates/g_n10.html')
+    return HttpResponse(template.render())
+
+def g_n11(_: HttpRequest):
+    template = loader.get_template('../templates/g_n11.html')
+    return HttpResponse(template.render())
+
+def g_n12(_: HttpRequest):
+    template = loader.get_template('../templates/g_n12.html')
+    return HttpResponse(template.render())

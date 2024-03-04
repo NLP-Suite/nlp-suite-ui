@@ -26,4 +26,13 @@ urlpatterns = [
     path('g_n1', views.g_n1, name='index'),
     path('g_n2', views.g_n2, name='index'),
     path('g_n3', views.g_n3, name='index'),
+    path('g_n4', views.g_n4, name='index'),
+    path('g_n5', views.g_n5, name='index'),
+    path('g_n6', views.g_n6, name='index'),
+    path('g_n7', views.g_n7, name='index'),
+    path('g_n8', views.g_n8, name='index'),
+    path('g_n9', views.g_n9, name='index'),
+    path('g_n10', views.g_n10, name='index'),
+    path('g_n11', views.g_n11, name='index'),
+    path('g_n12', views.g_n12, name='index'),
 ]
