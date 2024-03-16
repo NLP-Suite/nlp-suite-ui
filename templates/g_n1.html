@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="padding: 20px;">
+        <h1>Sentiment Analysis</h1>
+        <hr style="width: 968px; border: 1px; border-top: 1px solid #E3E8EC;">
+        <div class="button-container">
+            <a href="/set_up">
+                <button>Setup INPUT/OUTPUT configuration</button>
+            </a >
+            <select class="content">
+                <option value="default_io">Default I/O configuration</option>
+                <option value="gui_io">GUI-specific I/O configuration</option>
+            </select>
+            <div>
+                <label>
+                    <input type="checkbox" id="calculateMean" name="calculateMean" checked>
+                    Calculate sentence mean
+                </label>
+                <label>
+                    <input type="checkbox" id="calculateMean" name="calculateMedian" checked>
+                    Calculate sentence median
+                </label>
+            </div>
+            <div>
+                <label for="algorithm">Select sentiment analysis algorithm:</label>
+                    <select id="algorithm" name="algorithm">
+                        <optgroup label="Neural network approaches:">
+                            <option value="bert_english">BERT (English model)</option>
+                            <option value="bert_multilingual">BERT (Multilingual model)</option>
+                            <option value="spacy">spaCy</option>
+                            <option value="stanford_corenlp">Stanford CoreNLP</option>
+                            <option value="stanza">Stanza</option>
+                        </optgroup>
+                        <optgroup label="Dictionary approaches:">
+                            <option value="anew">ANEW</option>
+                            <option value="hedonometer">hedonometer</option>
+                            <option value="sentiwordnet">SentiWordNet</option>
+                            <option value="vader">VADER</option>
+                        </optgroup>
+                    </select>
+            </div>
+            <div>
+            <label>
+                <input type="checkbox" name="fluctuateDocument" value="document">
+                Do sentiments fluctuate across a document (Sentiment scores by sentence index)
+            </label>
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" name="fluctuateDocuments" value="documents">
+                    Do sentiments fluctuate across documents (Open 'Shape of stories' GUI)
+                </label>
+            </div>
+            <div>            
+                <a href="/all_options_gui">
+                <button>Sentiments/emotions (ALL options GUI)</button>
+                </a >
+            </div>
+            <div>            
+                <label>
+                    <input type="checkbox" id="openOutputFiles" name="openOutputFiles" checked>
+                    Open output files
+                </label>
+                <select>
+                    <option value="excel">Excel</option>
+                    <option value="no_charts">No charts</option>
+                    <option value="python_plotly_dynamic">Python Plotly (dynamic)</option>
+                    <option value="python_plotly_static">Python Plotly (static)</option>
+                </select>
+
+                <select name="chartType" id="chartType">
+                    <optgroup label="Excel & Python options">
+                        <option value="bar_chart">Bar chart</option>
+                        <option value="line_chart">Line chart</option>
+                        <option value="pie_chart">Pie chart</option>
+                    </optgroup>
+                    <optgroup label="Open GUI">
+                        <option value="bubble_radar_scatter">Bubble, Radar, Scatter plots (Open GUI)</option>
+                        <option value="boxplot">Boxplot (Open GUI)</option>
+                        <option value="colormap">Colormap (Open GUI)</option>
+                        <option value="comparative_bar_charts">Comparative bar charts (Open GUI)</option>
+                        <option value="geographic_maps">Geographic maps (Open GUI)</option>
+                        <option value="gephi">Gephi (Open GUI)</option>
+                        <option value="sankey_flowchart">Sankey flowchart (Open GUI)</option>
+                        <option value="sunburst_chart">Sunburst chart (Open GUI)</option>
+                        <option value="time_mapper">Time mapper (Open GUI)</option>
+                        <option value="treemap_chart">Treemap chart (Open GUI)</option>
+                        <option value="wordcloud">Wordcloud (Open GUI)</option>
+                    </optgroup>
+                </select>
+                <select name="transformation" id="transformation">
+                    <option value="no_transformation">No transformation</option>
+                    <option value="ln">Ln</option>
+                    <option value="log">Log</option>
+                    <option value="square_root">Square root</option>
+                    <option value="z_score">Z score</option>
+                </select>
+                <select id="dataTools" name="dataTools">
+                    <option value="data_sampling">Data/corpus sampling</option>
+                    <option value="data_manipulation">Data manipulation</option>
+                    <option value="data_statistics">Data statistics</option>
+                    <option value="data_visualization_1">Data visualization 1</option>
+                    <option value="data_visualization_2">Data visualization 2</option>
+                </select>
+            </div>
+            <div>
+                <select name="videoOptions" id="videoOptions">
+                    <option value="" selected disabled>Watch Video</option>
+                    <option value="no_videos">No videos available</option>
+                </select>
+                <select name="tipsFiles" id="tipsFiles">
+                    <option value="" selected disabled>Show TIPS file</option>
+                    <option value="emotions_sentiments">The world of emotions and sentiments</option>
+                    <option value="sentiment_analysis">Sentiment Analysis</option>
+                    <option value="excel_smoothing">Excel smoothing data series</option>
+                    <option value="csv_problems_solutions">csv files - Problems & solutions</option>
+                    <option value="statistical_measures">Statistical measures</option>
+                    <option value="bert_introduction">BERT: A brief introduction</option>
+                    <option value="bert_sentiment_analysis">BERT: Sentiment analysis</option>
+                </select>
+                <select name="reminders" id="reminders">
+                    <option value="" selected disabled>Open Reminder</option>
+                    <option value="nlp_reminders">NLP Suite reminders</option>
+                    <option value="io_configurations">Input/Output configurations</option>
+                    <option value="csv_files">csv files</option>
+                    <option value="excel_charts">Excel Charts</option>
+                    <option value="nlp_setup">NLP setup options</option>
+                    <option value="stanford_requirements">Stanford CoreNLP Sentiment Analysis system requirements</option>
+                    <option value="vader_requirements">VADER Sentiment Analysis system requirements</option>
+                    <option value="vader_mean_median">VADER Mean/Median</option>
+                    <option value="sentiwordnet">SentiWordNet</option>
+                </select>
+                <select name="setupOptions" id="setupOptions">
+                    <option value="" selected disabled>Setup</option>
+                    <option value="preferences">Setup preferences</option>
+                    <option value="nlp_package">Setup NLP package (parsers & annotators) and corpus language</option>
+                    <option value="external_software">Setup external software</option>
+                </select>
+                
+            </div>
+            <div>
+                <div class="button-container">
+                    <button type="button" onclick="runFunction()">Run</button>
+                    <button type="button" onclick="closeFunction()">Close</button>
+                </div>
+                
+                <script>
+                    function runFunction() {
+                       //TODO: run action
+                        alert('Run button clicked!');
+                    }
+                
+                    function closeFunction() {
+                        //TODO: close action
+                        alert('Close button clicked!');
+                    }
+                </script>
+            </div>
+        </div>      
+    </div>
+{% endblock %}
+
