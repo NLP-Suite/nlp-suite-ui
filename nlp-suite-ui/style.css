@@ -1,0 +1,25 @@
+.dropdown {
+    display: inline-block;
+}
+.dropdown button {
+    cursor: pointer;
+    color: black;
+}
+.dropdown a {
+    display: block;
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown .content {
+    position: absolute;
+    display: none;
+    box-shadow: 2px 2px 5px rgb(0, 0, 0);
+    width: 200px;
+}
+.dropdown:hover .content {
+    display: block;
+}
+.button-container {
+    display: flex;
+  }
