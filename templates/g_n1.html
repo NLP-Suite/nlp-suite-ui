@@ -4,6 +4,48 @@
     <div style="padding: 20px;">
         <h1>Sentiment Analysis</h1>
         <hr style="width: 968px; border: 1px; border-top: 1px solid #E3E8EC;">
+        <div>
+            <div>
+                INPUT FILE:
+                <input type="text" id="input-file-display" value="No input file selected" readonly size="50">
+                <button onclick="document.getElementById('inputFile').click()">Open INPUT files</button>
+                <input type="file" id="inputFile" style="display:none;" onchange="updateDisplayField(this.files, 'input-file-display', false)">
+            </div>
+            <div>
+                INPUT Directory:
+                <input type="text" id="input-dir-display" value="No input directory selected" readonly size="50">
+                <button onclick="document.getElementById('inputDir').click()">Open INPUT directory</button>
+                <input type="file" id="inputDir" style="display:none;" webkitdirectory directory multiple onchange="updateDisplayField(this.files, 'input-dir-display', true)">
+            </div>
+            <div>
+                OUTPUT Directory:
+                <input type="text" id="output-dir-display" value="No output directory selected" readonly size="50">
+                <button onclick="document.getElementById('outputDir').click()">Open OUTPUT directory</button>
+                <input type="file" id="outputDir" style="display:none;" webkitdirectory directory multiple onchange="updateDisplayField(this.files, 'output-dir-display', true)">
+            </div>
+            <div>
+                CSV Config File:
+                <input type="text" id="csv-config-display" value="No CSV config file selected" readonly size="50">
+                <button onclick="document.getElementById('csvFile').click()">Open CSV config file</button>
+                <input type="file" id="csvFile" style="display:none;" accept=".csv" onchange="updateDisplayField(this.files, 'csv-config-display', false)">
+            </div>
+        </div>
+    
+        <script>
+            function updateDisplayField(files, displayFieldId, isDirectory) {
+                var displayField = document.getElementById(displayFieldId);
+                if (files.length > 0) {
+                    if (isDirectory) {
+                        displayField.value = "Directory selected";
+                    } else {
+                        displayField.value = files[0].name;
+                    }
+                } else {
+                    displayField.value = isDirectory ? "No directory selected" : "No file selected";
+                }
+            }
+        </script>
+        </div>
         <div class="button-container">
             <a href="/set_up">
                 <button>Setup INPUT/OUTPUT configuration</button>
