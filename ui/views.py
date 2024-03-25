@@ -45,3 +45,7 @@ def all_options_gui(_: HttpRequest):
 def SOV(_: HttpRequest):
     template = loader.get_template('../templates/SOV.html')
     return HttpResponse(template.render())
+
+def shape_of_stories(_: HttpRequest):
+    template = loader.get_template('../templates/shape_of_stories.html')
+    return HttpResponse(template.render())
