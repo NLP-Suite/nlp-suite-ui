@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h1>Sentiment Analysis</h1>
+    <form method="post">
+        {% csrf_token %}
+
+        <div>
+            Input Directory:
+            <input type="text" value="~/nlp-suite/input" disabled readonly>
+        </div>
+        <div>
+            Output Directory:
+            <input type="text" value="~/nlp-suite/output" disabled readonly>
+        </div>
+        <div class="button-container">
+            <div>
+                <label>
+                    <input type="checkbox" id="calculateMean" name="calculateMean" checked>
+                    Calculate sentence mean
+                </label>
+                <label>
+                    <input type="checkbox" id="calculateMean" name="calculateMedian" checked>
+                    Calculate sentence median
+                </label>
+            </div>
+            <div>
+                <label for="algorithm">Select sentiment analysis algorithm:</label>
+                <select id="algorithm" name="algorithm">
+                    <optgroup label="Neural network approaches:">
+                        <option value="bert_english">BERT (English model)</option>
+                        <option value="bert_multilingual">BERT (Multilingual model)</option>
+                        <option value="spacy">spaCy</option>
+                        <option value="stanford_corenlp">Stanford CoreNLP</option>
+                        <option value="stanza">Stanza</option>
+                    </optgroup>
+                    <optgroup label="Dictionary approaches:">
+                        <option value="anew">ANEW</option>
+                        <option value="hedonometer">hedonometer</option>
+                        <option value="sentiwordnet">SentiWordNet</option>
+                        <option value="vader">VADER</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" name="fluctuateDocument" value="document">
+                    Do sentiments fluctuate across a document (Sentiment scores by sentence index)
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input disabled type="checkbox" name="fluctuateDocuments" value="documents">
+                    (Coming soon!) Do sentiments fluctuate across documents (Open 'Shape of stories' GUI)
+                </label>
+            </div>
+            <div>
+                <select name="transformation" id="transformation">
+                    <option value="no_transformation">No transformation</option>
+                    <option value="ln">Ln</option>
+                    <option value="log">Log</option>
+                    <option value="square_root">Square root</option>
+                    <option value="z_score">Z score</option>
+                </select>
+                <select id="dataTools" name="dataTools">
+                    <option value="data_sampling">Data/corpus sampling</option>
+                    <option value="data_manipulation">Data manipulation</option>
+                    <option value="data_statistics">Data statistics</option>
+                    <option value="data_visualization_1">Data visualization 1</option>
+                    <option value="data_visualization_2">Data visualization 2</option>
+                </select>
+            </div>
+            <div>
+                <div class="button-container">
+                    <button type="submit">Run</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </div>
+    </form>
+</div>
+
+{% endblock %}

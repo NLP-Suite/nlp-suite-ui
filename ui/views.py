@@ -1,14 +1,12 @@
-from django.http import HttpRequest, HttpResponse
-from django.template import loader
+import requests
 
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.template import loader
+from django.shortcuts import render
+from django.contrib import messages
 
 def index(_: HttpRequest):
     template = loader.get_template('../templates/index.html')
-    return HttpResponse(template.render())
-
-
-def contact(_: HttpRequest):
-    template = loader.get_template('../templates/contact.html')
     return HttpResponse(template.render())
 
 def home(_: HttpRequest):
@@ -19,53 +17,22 @@ def install(_: HttpRequest):
     template = loader.get_template('../templates/install.html')
     return HttpResponse(template.render())
 
-def g_n1(_: HttpRequest):
-    template = loader.get_template('../templates/g_n1.html')
+def contact(_: HttpRequest):
+    template = loader.get_template('../templates/contact.html')
     return HttpResponse(template.render())
 
-def g_n2(_: HttpRequest):
-    template = loader.get_template('../templates/g_n2.html')
+def status(_: HttpRequest):
+    template = loader.get_template('../templates/status.html')
     return HttpResponse(template.render())
 
-def g_n3(_: HttpRequest):
-    template = loader.get_template('../templates/g_n3.html')
-    return HttpResponse(template.render())
-
-def g_n4(_: HttpRequest):
-    template = loader.get_template('../templates/g_n4.html')
-    return HttpResponse(template.render())
-
-def g_n5(_: HttpRequest):
-    template = loader.get_template('../templates/g_n5.html')
-    return HttpResponse(template.render())
-
-def g_n6(_: HttpRequest):
-    template = loader.get_template('../templates/g_n6.html')
-    return HttpResponse(template.render())
-
-def g_n7(_: HttpRequest):
-    template = loader.get_template('../templates/g_n7.html')
-    return HttpResponse(template.render())
-
-def g_n8(_: HttpRequest):
-    template = loader.get_template('../templates/g_n8.html')
-    return HttpResponse(template.render())
-
-def g_n9(_: HttpRequest):
-    template = loader.get_template('../templates/g_n9.html')
-    return HttpResponse(template.render())
-
-def g_n10(_: HttpRequest):
-    template = loader.get_template('../templates/g_n10.html')
-    return HttpResponse(template.render())
-
-def g_n11(_: HttpRequest):
-    template = loader.get_template('../templates/g_n11.html')
-    return HttpResponse(template.render())
-
-def g_n12(_: HttpRequest):
-    template = loader.get_template('../templates/g_n12.html')
-    return HttpResponse(template.render())
+def sentiment_analysis(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post("http://localhost:3000/sentiment_analysis", data=request.body, headers=request.headers)
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, 'sentiment_analysis.html')
 
 def set_up(_: HttpRequest):
     template = loader.get_template('../templates/set_up.html')
