@@ -41,3 +41,7 @@ def set_up(_: HttpRequest):
 def all_options_gui(_: HttpRequest):
     template = loader.get_template('../templates/all_options_gui.html')
     return HttpResponse(template.render())
+
+def SOV(_: HttpRequest):
+    template = loader.get_template('../templates/SOV.html')
+    return HttpResponse(template.render())

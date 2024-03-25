@@ -26,5 +26,6 @@ urlpatterns = [
     path('status', views.status, name="status"),
 
     path('sentiment_analysis', views.sentiment_analysis, name='sentiment_analysis'),
+    path('SOV', views.SOV, name='SOV'),
 ]
 

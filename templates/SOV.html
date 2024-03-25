@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h1>SVO(Subject-Verb-Object) extractor & visualization</h1>
+
+        <div>
+            Input Directory:
+            <input type="text" value="~/nlp-suite/input" disabled readonly>
+        </div>
+        <div>
+            Output Directory:
+            <input type="text" value="~/nlp-suite/output" disabled readonly>
+        </div>
+        <div class="button-container">
+            <div>
+                <div>
+                <label>
+                    <input type="checkbox" id="coreferenceResolution" name="coreferenceResolution" checked>
+                    Coreference Resolution, PRONMINAL (via Stanford CoreNLP - Neural Network)
+                </label>
+                <div>
+                <div>
+                <label>
+                    <input type="checkbox" id="manualCoreference" name="manualCoreference" checked>
+                    Manually edit coreferenced document
+                </label>
+                <div>
+            </div>
+            <div>
+                <label for="algorithm">SVO package:</label>
+                
+                <select id="package-selection" name="package">
+                    <option value="spaCy">spaCy</option>
+                    <option value="stanfordCoreNLP" selected>Stanford CoreNLP</option>
+                    <option value="stanza">Stanza</option>
+                    <option value="openIE">OpenIE (via Stanford CoreNLP)</option>
+                </select>
+                <div>
+                    <div>
+                        Upload csv file containing SUBJECT filters:
+                        <input type="text" value="~/nlp-suite/input" disabled readonly>
+                    </div>
+                <label><input type="checkbox" id="lemmatizeS" name="svo-options" value="LemmatizeS" checked>Lemmatize</label>
+                <label><input type="checkbox" id="filterS" name="svo-options" value="FilterS" checked>Filter</label>
+                </div>
+
+                <div>
+                    <div>
+                        Upload csv file containing VERB filters:
+                        <input type="text" value="~/nlp-suite/input" disabled readonly>
+                    </div>
+                <label><input type="checkbox" id="lemmatizeV" name="svo-options" value="LemmatizeV" checked>Lemmatize</label>
+                <label><input type="checkbox" id="filterV" name="svo-options" value="FilterV" checked>Filter</label>
+                </div>
+
+                <div>
+                    <div>
+                        Upload csv file containing OBJECT filters:
+                        <input type="text" value="~/nlp-suite/input" disabled readonly>
+                    </div>
+                <label><input type="checkbox" id="lemmatizeO" name="svo-options" value="LemmatizeO" checked>Lemmatize</label>
+                <label><input type="checkbox" id="filterO" name="svo-options" value="FilterO" checked>Filter</label>
+                </div>
+                <label><input type="checkbox" id="SOgender" name="so-gender" value="SOgender" checked>S & O gender</label>
+                <label><input type="checkbox" id="SOquote" name="so-quote" value="SOquote" checked>S & O quote/speaker</label>
+                <div>
+                    <label>
+                        <input type="checkbox" name="visualization-option" value="network-graphs" checked>
+                        Visualize SVO relations in network graphs (via Gephi & Sankey)
+                      </label>
+                      <br>
+                      <label>
+                        <input type="checkbox" name="visualization-option" value="wordcloud" checked>
+                        Visualize SVO relations in wordcloud
+                      </label>
+                      <br>
+                      <label>
+                        <input type="checkbox" name="visualization-option" value="google-earth-maps" checked>
+                        Visualize Where (via Google Earth Pro & Google Maps)
+                      </label>
+                </div>
+
+            </div>
+            
+            
+            <div>
+                <select name="transformation" id="transformation">
+                    <option value="no_transformation">No transformation</option>
+                    <option value="ln">Ln</option>
+                    <option value="log">Log</option>
+                    <option value="square_root">Square root</option>
+                    <option value="z_score">Z score</option>
+                </select>
+                <select id="dataTools" name="dataTools">
+                    <option value="data_sampling">Data/corpus sampling</option>
+                    <option value="data_manipulation">Data manipulation</option>
+                    <option value="data_statistics">Data statistics</option>
+                    <option value="data_visualization_1">Data visualization 1</option>
+                    <option value="data_visualization_2">Data visualization 2</option>
+                </select>
+            </div>
+            <div>
+                <div class="button-container">
+                    <button type="submit">Run</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </div>
+    </form>
+</div>
+
+{% endblock %}
