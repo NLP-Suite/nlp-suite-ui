@@ -12,12 +12,12 @@
         
         <div class="form-row">
             <label for="inputDirectory">Input Directory:</label>
-            <input type="text" id="inputDirectory" value="~/nlp-suite/input" disabled readonly>
+            <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
         </div>
 
         <div class="form-row">
             <label for="outputDirectory">Output Directory:</label>
-            <input type="text" id="outputDirectory" value="~/nlp-suite/output" disabled readonly>
+            <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
         </div>
 
         <div class="form-row">
@@ -35,17 +35,17 @@
             <label for="algorithm">Select sentiment analysis algorithm:</label>
             <select id="algorithm" name="algorithm">
                 <optgroup label="Neural network approaches:">
-                    <option value="bert_english">BERT (English model)</option>
-                    <option value="bert_multilingual">BERT (Multilingual model)</option>
-                    <option value="spacy">spaCy</option>
-                    <option value="stanford_corenlp">Stanford CoreNLP</option>
-                    <option value="stanza">Stanza</option>
+                    <option value="BERT English">BERT (English model)</option>
+                    <option value="BERT Multilingual">BERT (Multilingual model)</option>
+                    <option value="spaCy">spaCy</option>
+                    <option value="Stanford CoreNLP">Stanford CoreNLP</option>
+                    <option value="Stanza">Stanza</option>
                 </optgroup>
                 <optgroup label="Dictionary approaches:">
-                    <option value="anew">ANEW</option>
-                    <option value="hedonometer">hedonometer</option>
-                    <option value="sentiwordnet">SentiWordNet</option>
-                    <option value="vader">VADER</option>
+                    <option value="ANEW">ANEW</option>
+                    <option value="hedonometer">Hedonometer</option>
+                    <option value="SentiWordNet">SentiWordNet</option>
+                    <option value="VADER">VADER</option>
                 </optgroup>
             </select>
         </div>
@@ -68,10 +68,10 @@
             <label for="transformation">Transformation:</label>
             <select id="transformation" name="transformation">
                 <option value="no_transformation">No transformation</option>
-                <option value="ln">Ln</option>
-                <option value="log">Log</option>
-                <option value="square_root">Square root</option>
-                <option value="z_score">Z score</option>
+                <option value="Ln">Ln</option>
+                <option value="Log">Log</option>
+                <option value="Square">Square root</option>
+                <option value="Z score">Z score</option>
             </select>
             <label for="dataTools">Data Tools:</label>
             <select id="dataTools" name="dataTools">

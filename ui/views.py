@@ -27,11 +27,13 @@ def status(_: HttpRequest):
 
 def sentiment_analysis(request: HttpRequest):
     if request.method == "POST":
+        print(request.body)
         response = requests.post("http://localhost:3000/sentiment_analysis", data=request.body, headers=request.headers)
         if response.ok:
             return HttpResponseRedirect("/status")
         else:
             messages.add_message(request, messages.ERROR, response.content.decode())
+            print(response.content.decode())
     return render(request, 'sentiment_analysis.html')
 
 def set_up(_: HttpRequest):
