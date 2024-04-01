@@ -49,3 +49,7 @@ def SOV(_: HttpRequest):
 def shape_of_stories(_: HttpRequest):
     template = loader.get_template('../templates/shape_of_stories.html')
     return HttpResponse(template.render())
+
+def style_analysis(_: HttpRequest):
+    template = loader.get_template('../templates/style_analysis.html')
+    return HttpResponse(template.render())

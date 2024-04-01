@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h1>Style analysis(ALL options GUI)</h1>
+
+        <div>
+            Input Directory:
+            <input type="text" value="~/nlp-suite/input" disabled readonly>
+        </div>
+        <div>
+            Output Directory:
+            <input type="text" value="~/nlp-suite/output" disabled readonly>
+        </div>
+        <div class="button-container">
+            <div>
+                <div>
+                <label>
+                    <input type="checkbox" id="style-analysis" name="style-analysis" checked>
+                    GUIs available for style analysis
+                </label>
+                
+                    <select id="tools" name="tools">
+                      <option value="spell-check">Spelling/grammar checker</option>
+                      <option value="corpus-stats">Corpus statistics</option>
+                      <option value="ngrams">N-grams & Co-Occurrences</option>
+                      <option value="nominalization">Nominalization</option>
+                      <option value="conll">CoNLL table analyzer</option>
+                      <option value="wordnet">WordNet</option>
+                    </select>
+                  
+                <div>
+
+                <div>
+                <label>
+                   <input type="checkbox" id="complexity-analysis" name="complexity-analysis">
+                    Complexity/readability analysis
+                </label>
+                <select id="analysis-dropdown" name="analysis-dropdown">
+                    <option value="*">*</option>
+                    <option value="sentence-complexity">Sentence complexity</option>
+                    <option value="text-readability">Text readability</option>
+                  </select>
+                <div>
+                <div>
+                <label>    
+                    <input type="checkbox" id="vocabulary-analysis" name="vocabulary-analysis" checked>
+                    Vocabulary analysis
+                </label>
+                <select id="voc-options" name="voc-options">
+                    <option value="*">*</option>
+                    <option value="unigrams">Vocabulary (via unigrams) - List of all words/tokens in input document(s)</option>
+                    <option value="hapax-legomena-once">Vocabulary (via Hapax legomena, once-occurring words)</option>
+                    <option value="hapax-legomena-unigrams">Vocabulary (via Hapax legomena, once-occurring unigrams)</option>
+                    <option value="multilanguage-lemmatizer">Vocabulary (via Stanza multilanguage lemmatizer) - List of all words/tokens in input document(s)</option>
+                    <option value="nltk-unusual-words">Vocabulary (via NLTK unusual words)</option>
+                    <option value="vocabulary-richness">Vocabulary richness (word type/token ratio or Yule’s K)</option>
+                    <option value="abstract-concrete">Abstract/concrete vocabulary</option>
+                    <option value="objectivity-subjectivity">Objectivity/subjectivity (via spaCy)</option>
+                    <option value="punctuation-as-figures-of-pathos">Punctuation as figures of pathos(?!)</option>
+                    <option value="word-length">Word length</option>
+                    <option value="vowel-words">Vowel words</option>
+                    <option value="words-with-capital-initial">Words with capital initial (proper nouns)</option>
+                    <option value="language-detection">Language detection</option>
+                    <option value="repetition-words-in-first-k-and-last-k">Repetition: Words in first K and last K sentences</option>
+                    <option value="repetition-last-k-words">Repetition: Last K words of a sentence/First K words of next sentence</option>
+                    <option value="repetition-accross-sentences">Repetition across sentences (special ngrams)</option>
+                    
+                  </select>
+
+                </div>    
+                <div>
+                    <label>
+                        <input type="checkbox" id="gender-guesser" name="gender-guesser">
+                        Who wrote the text - Gender guesser
+                    </label>
+                </div>  
+                <div>
+                    <label>
+                      <input type="checkbox" id="open-output-files" name="open-output-files" checked>
+                      Open output files
+                    </label>
+                  </div>  
+            </div>
+            
+
+            <div class="form-row">
+                <label for="transformation">Transformation:</label>
+                <select id="transformation" name="transformation">
+                    <option value="no_transformation">No transformation</option>
+                    <option value="ln">Ln</option>
+                    <option value="log">Log</option>
+                    <option value="square_root">Square root</option>
+                    <option value="z_score">Z score</option>
+                </select>
+                <label for="dataTools">Data Tools:</label>
+                <select id="dataTools" name="dataTools">
+                    <option value="data_sampling">Data/corpus sampling</option>
+                    <option value="data_manipulation">Data manipulation</option>
+                    <option value="data_statistics">Data statistics</option>
+                    <option value="data_visualization_1">Data visualization 1</option>
+                    <option value="data_visualization_2">Data visualization 2</option>
+                </select>
+            </div>
+            
+            <div class="buttons-section">
+                <button type="reset" class="reset-button">Reset</button>
+                <button type="submit" class="run-button">Run</button>
+            </div>
+        </form>
+    </form>
+</div>
+
+<script>
+    
+    function toggleToolDropdown() {
+      var checkbox = document.getElementById('style-analysis');
+      var dropdown = document.getElementById('tools');
+      dropdown.disabled = !checkbox.checked;
+    }
+    function toggleAnalysisDropdown() {
+        var checkbox = document.getElementById('complexity-analysis');
+        var dropdown = document.getElementById('analysis-dropdown');
+        dropdown.disabled = !checkbox.checked;
+      }
+    function toggleVocDropdown() {
+        var checkbox = document.getElementById('vocabulary-analysis');
+        var dropdown = document.getElementById('voc-options');
+        dropdown.disabled = !checkbox.checked;
+      }
+      
+
+      
+    document.getElementById('complexity-analysis').addEventListener('change', toggleAnalysisDropdown);  
+    document.getElementById('style-analysis').addEventListener('change', toggleToolDropdown);
+    document.getElementById('vocabulary-analysis').addEventListener('change', toggleVocDropdown);
+  
+    toggleToolDropdown();
+    toggleAnalysisDropdown();
+    toggleVocDropdown();
+  </script>
+
+{% endblock %}
