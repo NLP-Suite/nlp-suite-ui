@@ -39,7 +39,7 @@ def sentiment_analysis(request: HttpRequest):
     if request.method == "POST":
         print(request.body)
         response = requests.post(
-            "http://0.0.0.0:3000/sentiment_analysis",
+            "http://172.16.0.11:3000/sentiment_analysis",
             data=request.body,
             headers=request.headers,
         )
