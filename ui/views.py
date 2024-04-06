@@ -74,3 +74,7 @@ def shape_of_stories(_: HttpRequest):
 def style_analysis(_: HttpRequest):
     template = loader.get_template("../templates/style_analysis.html")
     return HttpResponse(template.render())
+
+def topic_modeling(_: HttpRequest):
+    template = loader.get_template("../templates/topic_modeling.html")
+    return HttpResponse(template.render())
