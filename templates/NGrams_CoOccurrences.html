@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="NGram-CoOcc-container">
+    <h1>N-Grams and Word Co-Occurrences</h1>
+    <form method="post" class="ngram-CoOcc-form">
+        {% csrf_token %}
+        
+        <div class="form-row">
+            <label for="inputDirectory">Input Directory:</label>
+            <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+        </div>
+
+        <div class="form-row">
+            <label for="outputDirectory">Output Directory:</label>
+            <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+        </div>
+
+        <div class="form-row">
+            <label> 
+                <input type="checkbox" id="guis_avail" name="guis_available">
+                Guis available for more analyses 
+            </label>
+            <select id="gui-options" name="gui-options">
+                <option value="word-searches">Word searches</option>
+                <option value="conll-table_analyzer">CoNLL table analyzer</option>
+                <option value="corpus-stat">Corpus statistics</option>
+                <option value="style-analysis">Style analysis</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="compute-ngrams" name="compute-ngrams">
+                Compute N-Grams 
+            </label>
+            <select id="n-gram_options" name="n-gram_options">
+                <option value="character">Character</option>
+                <option value="word">Word</option> 
+            </select>
+        </div>
+        <div class="form-row">
+            <label>
+                N-grams
+            </label>
+            <select id="ngram-number" name="ngram-number">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>
+                Options
+            </label>
+            <select id="ngram-options" name="ngram-options">
+                <option value=""></option>
+                <option value="hapax-legomena-1">Hapax legomena (once-occurring words)</option>
+                <option value="hapax-legomena-uni">Hapax legomena (once-occurring unigrams)</option>
+                <option value="lemmatize">Lemmatize</option>
+                <option value="normalize-ngram">Normalize N-grams</option>
+                <option value="exclude-punct">Exclude punctuation (word N-grams only)</option>
+                <option value="exclude-articles">Exclude articles (word N-grams only)</option>
+                <option value="exclude-determiners">Exclude determiners (word N-grams only)</option>
+                <option value="exclude-all">Exclude ALL stopwords (word N-grams only)</option>
+                <option value="repetition-of-words">Repetition of words (last K words of a sentence/first N words of next sentence)</option>
+                <option value="repition-across-sentences">Repetition of words across sentences (special ngrams)</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label>
+                Search word(s)
+                &nbsp;
+                <input type="text" id="search-words" size="50">
+            </label>
+            <label>
+                -K
+                <input type="text" id="search-words--K" size="3">
+            </label>
+            <label>
+                +K
+                <input type="text" id="search-words-+K" size="3">
+            </label>
+        </div>
+        <div class="form-row">
+            <label>
+                Search options
+            </label>
+            <select id="search-options-dropdown" name="search-options-dropdown">
+                <option value="case-sensitive">Case sensitive (default)</option>
+                <option value="case-insensitive">Case insensitive</option> 
+                <option value="exact-match">Exact match</option>
+                <option value="partial-match">Partial Match</option>
+                <option value="normalize-results">Normalize results</option>
+                <option value="scale-results">Scale results</option>
+                <option value="lemmatize-words">Lemmatize words</option>
+            </select>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" name="search-options-+" value="+">
+            <input type="button" name="search-options-reset" value="Reset">
+            <input type="button" name="search-options-show" value="Show">
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" id="search-ngram-csv" name="search-ngram-csv">
+                Search N-grams csv file
+            </label>
+            &nbsp;&nbsp;
+            <input type="button" id = "search-ngram-csv-file"  name="search-ngram-csv-file">
+        </div>
+        
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="n-grams-viewer" name="n-grams-viewer">
+                N-Grams VIEWER
+            </label>
+            <label>
+                <input type="checkbox" id="co-occurences-viewer" name="co-occurences-viewer">
+                Co-Occurrences VIEWER
+            </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>
+                <input type="checkbox" id="co-occurence-within-sen" name="co-occurence-within-sen">
+                Co-Occurrence within sentence (Default: within document)
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="date-options" name="date-options">
+                Date options
+            </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label id="date-option-label">
+                Date option OFF
+            </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>
+                Aggregate by
+            </label>
+            <select id="aggregate-dropdown" name="aggregate-dropdown">
+                <option value="year"> year</option>
+                <option value="group-of-years">group of years</option>
+                <option value="quarter"> quarter</option>
+                <option value="month">month</option>
+            </select>
+            <div class="form-row">
+                <label for="transformation">Transformation:</label>
+                <select id="transformation" name="transformation">
+                    <option value="no_transformation">No transformation</option>
+                    <option value="Ln">Ln</option>
+                    <option value="Log">Log</option>
+                    <option value="Square">Square root</option>
+                    <option value="Z score">Z score</option>
+                </select>
+                <label for="dataTools">Data Tools:</label>
+                <select id="dataTools" name="dataTools">
+                    <option value="data_sampling">Data/corpus sampling</option>
+                    <option value="data_manipulation">Data manipulation</option>
+                    <option value="data_statistics">Data statistics</option>
+                    <option value="data_visualization_1">Data visualization 1</option>
+                    <option value="data_visualization_2">Data visualization 2</option>
+                </select>
+            </div>
+            
+            <div class="buttons-section">
+                <button type="reset" class="reset-button">Reset</button>
+                <button type="submit" class="run-button">Run</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function guiCheckBox() {
+        var guiCheckbox = document.getElementById("guis_avail");
+        var ngramCheckbox = document.getElementById("compute-ngrams");
+        var ngramViewerCheckbox = document.getElementById("n-grams-viewer");
+        var coOccurCheckbox = document.getElementById("co-occurences-viewer");
+        var searchNgramCsv = document.getElementById("search-ngram-csv");
+        var nGramFile = document.getElementById("search-ngram-csv-file");
+        var searchOptions = document.getElementById("");
+
+
+        if (guiCheckbox.checked) {
+            ngramCheckbox.disabled = true;
+            ngramViewerCheckbox.disabled = true;
+            coOccurCheckbox.disabled = true;
+            searchNgramCsv.disabled = true;
+            nGramFile.disbaled = true;  
+            searchOptions.disabled = true; 
+        } else {
+            ngramCheckbox.disabled = false;
+            ngramViewerCheckbox.disabled = false;
+            coOccurCheckbox.disabled = false;
+            searchNgramCsv = false; 
+            nGramFile.disabled = false; 
+            searchOptions.disabled = false; 
+        }
+    } 
+
+        function toggleGuiDropdown() {
+            var checkbox = document.getElementById("guis_avail");
+            var dropdown = document.getElementById("gui-options");
+            dropdown.disabled = !checkbox.checked;
+        }
+    
+        function toggleNGramDropdown() {
+            var checkbox = document.getElementById("compute-ngrams");
+            var dropdown = document.getElementById("n-gram_options");
+            dropdown.disabled = !checkbox.checked; 
+        }
+    
+        function toggleCoOccurrenceOptions() {
+            var coOccurCheckbox = document.getElementById("co-occurences-viewer");
+            var coOccurWithinSenCheckbox = document.getElementById("co-occurence-within-sen");
+            var searchOptDropdown = document.getElementById("search-options-dropdown");
+            var dateOptions = document.getElementById("date-options");
+            var aggregateDropdown = document.getElementById("aggregate-dropdown");
+            var dateLabel = document.getElementById("date-option-label")
+    
+            if (coOccurCheckbox.checked) {
+                coOccurWithinSenCheckbox.disabled = false;
+                searchOptDropdown.disabled = false;
+                dateOptions.disabled = false; 
+                aggregateDropdown.disabled = !dateOptions.checked; // Toggle the aggregateDropdown based on the status of dateOptions
+            } else {
+                coOccurWithinSenCheckbox.disabled = true;
+                searchOptDropdown.disabled = true; 
+                dateOptions.disabled = true;
+                aggregateDropdown.disabled = true; 
+            }
+
+            if(dateOptions.checked) {
+                dateLabel.innerText = "Date option ON";
+            } else {
+                dateLabel.innerText = "Date option OFF";
+            }
+        }
+
+        document.getElementById("guis_avail").addEventListener("change", guiCheckBox);
+        guiCheckBox(); 
+        document.getElementById("guis_avail").addEventListener("change", toggleGuiDropdown);
+        toggleGuiDropdown(); 
+        document.getElementById("compute-ngrams").addEventListener("change", toggleNGramDropdown);
+        toggleNGramDropdown(); 
+        document.getElementById("co-occurences-viewer").addEventListener("change", toggleCoOccurrenceOptions);
+        toggleCoOccurrenceOptions();
+        document.getElementById("date-options").addEventListener("change", toggleCoOccurrenceOptions);
+        
+    </script>
+    
+{% endblock %}
