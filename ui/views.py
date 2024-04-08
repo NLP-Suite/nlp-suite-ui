@@ -1,3 +1,5 @@
+import os
+
 import requests
 from django.contrib import messages
 from django.http import (
@@ -8,6 +10,8 @@ from django.http import (
 )
 from django.shortcuts import render
 from django.template import loader
+
+AGENT_SERVER_URL = os.getenv("AGENT_SERVER_URL", "http://172.16.0.11:3000")
 
 
 def index(_: HttpRequest):
@@ -39,7 +43,7 @@ def sentiment_analysis(request: HttpRequest):
     if request.method == "POST":
         print(request.body)
         response = requests.post(
-            "http://172.16.0.11:3000/sentiment_analysis",
+            f"{AGENT_SERVER_URL}/sentiment_analysis",
             data=request.body,
             headers=request.headers,
         )
