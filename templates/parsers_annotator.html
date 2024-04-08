@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
+<div class="sentiment-analysis-container">
     <h1>Parsers & annotator (BERT, CoreNLP, spaCy, Stanza)</h1>
 
-        <div>
-            Input Directory:
-            <input type="text" value="~/nlp-suite/input" disabled readonly>
-        </div>
-        <div>
-            Output Directory:
-            <input type="text" value="~/nlp-suite/output" disabled readonly>
-        </div>
+    <div class = "form-row">
+        <label for="inputDirectory" class = "numberInput">Input Directory:</label>
+        <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+    </div>
+    <div class = "form-row">
+        <label for="outputDirectory">Output Directory:</label>
+        <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+    </div>
         <div class="button-container">
             <div>
                 <div>
+                    <div class = "form-row">
                 <label>
                     <input type="checkbox" id="pre-processing" name="pre-processing" checked>
                     GUIs available for pre-processing
@@ -24,10 +25,12 @@
                     <option value="file-checking-cleaning">File checking & cleaning (Open GUI)</option>
                     <option value="coreference-resolution">Coreference resolution (Open GUI)</option>
                   </select>
+                </div>
                   
                 <div>
 
                 <div>
+                    <div class = "form-row">
                 <label>
                    <input type="checkbox" id="parsers" name="parsers">
                     Parsers for Standard CoreNLP
@@ -36,8 +39,10 @@
                     <option value="neural-network">Neural Network</option>
                     <option value="probabilistic">Probabilistic Context Free Grammar (PCFG)</option>
                   </select>
+                </div>
                 <div>
-                <div>
+                    <div class = "form-row">
+                    
                     <label>
                         <input type="checkbox" id="conll-table-analyzer" name="conll-table-analyzer">
                         CoNLL table analyzer
@@ -45,7 +50,7 @@
                       <span>Do NOT open CoNLL table analyzer GUI</span>
 
                 </div>    
-                <div>
+                <div class = "form-row">
                     <label>
                         <input type="checkbox" id="annotator" name="annotator">
                         Annotators
