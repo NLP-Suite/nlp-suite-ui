@@ -41,7 +41,6 @@ def status(_: HttpRequest):
 
 def sentiment_analysis(request: HttpRequest):
     if request.method == "POST":
-        print(request.body)
         response = requests.post(
             f"{AGENT_SERVER_URL}/sentiment_analysis",
             data=request.body,
@@ -51,7 +50,6 @@ def sentiment_analysis(request: HttpRequest):
             return HttpResponseRedirect("/status")
         else:
             messages.add_message(request, messages.ERROR, response.content.decode())
-            print(response.content.decode())
     return render(request, "sentiment_analysis.html")
 
 
@@ -79,14 +77,18 @@ def style_analysis(_: HttpRequest):
     template = loader.get_template("../templates/style_analysis.html")
     return HttpResponse(template.render())
 
+
 def topic_modeling(_: HttpRequest):
     template = loader.get_template("../templates/topic_modeling.html")
     return HttpResponse(template.render())
 
+
 def nGram_CoOccurrences(_: HttpRequest):
     template = loader.get_template("../templates/N-Grams_CoOccurrences.html")
-    return HttpResponse(template.render()) 
+    return HttpResponse(template.render())
+
 
 def parsers_annotator(_: HttpRequest):
     template = loader.get_template("../templates/parsers_annotator.html")
     return HttpResponse(template.render())
+
