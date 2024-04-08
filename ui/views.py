@@ -78,3 +78,7 @@ def style_analysis(_: HttpRequest):
 def topic_modeling(_: HttpRequest):
     template = loader.get_template("../templates/topic_modeling.html")
     return HttpResponse(template.render())
+
+def parsers_annotator(_: HttpRequest):
+    template = loader.get_template("../templates/parsers_annotator.html")
+    return HttpResponse(template.render())
