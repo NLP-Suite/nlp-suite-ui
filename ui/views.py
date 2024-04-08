@@ -79,9 +79,10 @@ def topic_modeling(_: HttpRequest):
     template = loader.get_template("../templates/topic_modeling.html")
     return HttpResponse(template.render())
 
-def nGram_CoOccurences(_: HttpRequest):
-    template = loader.get_template("../templates/NGrams_CoOccurences.html")
-    
+def nGram_CoOccurrences(_: HttpRequest):
+    template = loader.get_template("../templates/N-Grams_CoOccurrences.html")
+    return HttpResponse(template.render()) 
+
 def parsers_annotator(_: HttpRequest):
     template = loader.get_template("../templates/parsers_annotator.html")
     return HttpResponse(template.render())
