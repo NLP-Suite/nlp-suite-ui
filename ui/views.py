@@ -92,3 +92,6 @@ def parsers_annotator(_: HttpRequest):
     template = loader.get_template("../templates/parsers_annotator.html")
     return HttpResponse(template.render())
 
+def wordclouds(_: HttpRequest):
+    template = loader.get_template("../templates/wordclouds.html")
+    return HttpResponse(template.render())

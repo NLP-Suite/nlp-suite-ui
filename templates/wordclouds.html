@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="sentiment-analysis-container">
+<h1>Wordclouds</h1>
+<form method="post" class="wordclouds-form">
+    {% csrf_token %}
+    
+    <div class = "form-row">
+        <label for="inputDirectory" class = "numberInput">Input Directory:</label>
+        <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+    </div>
+    <div class = "form-row">
+        <label for="outputDirectory">Output Directory:</label>
+        <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+    </div>
+    <div class = "form-row">
+        <label for="wordcloud-service">Select the wordcloud service you wish to use (txt file(s)/CoNLL table)</label>
+        <select id="wordcloud-service" name="wordcloud-service">
+            <option value="python-wordcloud">Python WordCloud</option>
+            <option value="tagcrowd">TagCrowd</option>
+            <option value="tagul">Tagul</option>
+            <option value="Tagxedo">Tagxedo</option>
+            <option value="wordclouds-service">Wordclouds</option>
+            <option value="wordle">Wordle</option>
+        </select>
+    </div>
+    <div class = "form-row">
+        <label>
+            <input type="checkbox" id="horizontal" name="horizontal">
+            Horizontal (visualize words horizontally)
+        </label>
+        &nbsp;&nbsp;&nbsp;
+        <label for="font"> Font:</label>
+        <select id="font" name="font">
+            <option value="default">Default</option>
+            <option value="arial-unicode">Arial Unicode</option>
+        </select>
+    </div>
+    <div class = "form-row">
+        <label for="maxNumberOfWords"> Max no. of words</label>
+            <input type = "number" id="maxNumberOfWords" name = "maxNumberOfWords" value = 100 min = 1>
+    </div>
+    <div class = "form-row">
+        <label>
+            <input type="checkbox" id="stopwords" name="stopwords" checked>
+            Stopwords
+        </label>
+        <label>
+            <input type="checkbox" id="lemmas" name="lemmas" checked>
+            Lemmas
+        </label>
+        <label>
+            <input type="checkbox" id="punctuation" name="punctuation" checked>
+            Punctuation
+        </label>
+        <label>
+            <input type="checkbox" id="lowercase" name="lowercase" checked>
+            Lowercase
+        </label>
+        <label>
+            <input type="checkbox" id="collocation" name="collocation" checked>
+            Collocation
+        </label>
+        <label>
+            <input type="checkbox" id="differentColorsByPOS" name="differentColorsByPOS">
+            Different colors by POS tags
+        </label>
+    </div>
+    <div class = "form-row">
+        <label>
+            <input type="checkbox" id="prepareImage" name="prepareImage">
+            Prepare image
+        </label>
+    </div>
+    <div class = "form-row">
+        <label>
+            <input type="checkbox" id="usePNGFile" name="usePNGFile">
+            Use PNG file
+        </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <label for="PNGinput">Input PNG file</label>
+        <input type="text" name="PNGinput" id="PNGinput" value="~/nlp-suite/foofoo.png"/>
+        <label>
+            <input type="checkbox" id="imageContour" name="imageContour">
+            Use image contour only
+        </label>
+    </div>
+    <div class = "form-row">
+        <label>
+            <input type="checkbox" id="useColorsForCsvColumns" name="useColorsForCsvColumns">
+            Use different colors for difference cvs columns (csv file)
+        </label>
+    </div>
+    <div class = "form-row">
+        <label for="csvField">Choose csv Field</label>
+        <input type="text" name="csvField" value=""/>
+        <label for="rgbColorCode">RGB color code</label>
+        <input type="text" name="rgbColorCode" value=""/>
+        <input type="button" name="search-options-+" value="+">
+        <input type="button" name="search-options-reset" value="Reset">
+        <input type="button" name="search-options-show" value="Show">
+    </div>
+    <div class = "form-row">
+        <label>
+            <input type="checkbox" id="intermediateWordcloudFiles" name="intermediateWordcloudFiles" checked>
+            Do NOT produce intermediate word cloud files when processing all txt files in a directory
+        </label>
+    </div>
+    <div class = "form-row">
+        <label for="transformation">Transformation:</label>
+        <select id="transformation" name="transformation">
+            <option value="no_transformation">No transformation</option>
+            <option value="Ln">Ln</option>
+            <option value="Log">Log</option>
+            <option value="Square">Square root</option>
+            <option value="Z score">Z score</option>
+        </select>
+        <label for="dataTools">Data Tools:</label>
+        <select id="dataTools" name="dataTools">
+            <option value="data_sampling">Data/corpus sampling</option>
+            <option value="data_manipulation">Data manipulation</option>
+            <option value="data_statistics">Data statistics</option>
+            <option value="data_visualization_1">Data visualization 1</option>
+            <option value="data_visualization_2">Data visualization 2</option>
+        </select>
+    </div>
+    
+    <div class="buttons-section">
+        <button type="reset" class="reset-button">Reset</button>
+        <button type="submit" class="run-button">Run</button>
+    </div>
+</form>
+</div>
+{% endblock %}

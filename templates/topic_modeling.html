@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
+<div class="sentiment-analysis-container">
 <h1>Topic Modeling</h1>
 <form method="post" class="topic-modeling-form">
     {% csrf_token %}
@@ -32,31 +32,31 @@
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="topicModelingMALLET" name="topicModelingMALLET" checked>
+            <input type="checkbox" id="topicModelingMALLET" name="topicModelingMALLET" >
             Topic Modeling (via MALLET)
         </label>
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="optimizeTopicIntervals" name="optimizeTopicIntervals" checked>
+            <input type="checkbox" id="optimizeTopicIntervals" name="optimizeTopicIntervals" >
             Optimize Topic Intervals
         </label>
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="topicModelingGensim" name="topicModelingGensim" checked>
+            <input type="checkbox" id="topicModelingGensim" name="topicModelingGensim" >
             Topic Modeling (via GENSIM)
         </label>
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="removeStopwords" name="removeStopwords" checked>
+            <input type="checkbox" id="removeStopwords" name="removeStopwords" >
             Remove Stopwords
         </label>
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="lemmatizeWords" name="lemmatizeWords" checked>
+            <input type="checkbox" id="lemmatizeWords" name="lemmatizeWords" >
             Lemmatize Words (Nouns, verbs, adverbs, adjectives)
         </label>
     </div>

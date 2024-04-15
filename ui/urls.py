@@ -32,5 +32,6 @@ urlpatterns = [
     path('topic_modeling', views.topic_modeling, name='topic_modeling'),
     path('N-Grams_Co-Occurrences', views.nGram_CoOccurrences, name='N-Grams_Co-Occurrences'),
     path('parsers_annotator', views.parsers_annotator, name='parsers_annotator'),
+    path('wordclouds', views.wordclouds, name='wordclouds'),
 ]
 
