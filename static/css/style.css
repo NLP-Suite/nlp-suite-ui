@@ -1,4 +1,7 @@
 /* Base styles for consistency */
+
+/* NOTE: To make edits to the styles, do NOT use this file; intstead use the other style.css file */
+
 * {
   box-sizing: border-box;
   font-family: Arial, sans-serif;

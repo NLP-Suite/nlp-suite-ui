@@ -95,11 +95,18 @@
     <div class = "form-row">
         <label for="csvField">Choose csv Field</label>
         <input type="text" name="csvField" value=""/>
-        <label for="rgbColorCode">RGB color code</label>
-        <input type="text" name="rgbColorCode" value=""/>
-        <input type="button" name="search-options-+" value="+">
-        <input type="button" name="search-options-reset" value="Reset">
-        <input type="button" name="search-options-show" value="Show">
+            <div class = "color-picker-container">
+                <label for="colorPicker">Choose Color</label>
+                <input type = "color" id = "colorPicker" name = "colorPicker" class = "color-picker" value = "#000000">
+                <input type = "hidden" id = "colorIndex" name = "colorIndex" value = "0">
+            </div>
+        <script>
+            document.getElementById('colorPicker').addEventListener('input', function(event) {
+                const color = event.target.value;
+                const colorIndex = parseInt(color.substring(1), 16);
+                document.getElementById('colorIndex').value = colorIndex;
+              });
+        </script>
     </div>
     <div class = "form-row">
         <label>

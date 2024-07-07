@@ -1,4 +1,7 @@
 /* Base styles for consistency */
+
+/* NOTE: To make edits to the styles, use this file */
+
 * {
   box-sizing: border-box;
   font-family: Arial, sans-serif;
@@ -43,6 +46,17 @@ body {
   margin-right: 5px;
 }
 
+.color-picker-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.color-display {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+}
 .buttons-section {
   display: flex;
   justify-content: space-between;
