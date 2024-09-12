@@ -4,4 +4,32 @@
     <div style="padding: 20px;">
         <h1>Install page</h1>
     </div>
+    <div class="form-row" style="margin-top: 10px;">
+        <!-- Dropdown for TIPS files -->
+        <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
+    <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
+        <option value="" disabled selected>Select an option</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_NLP%20Suite%20Package%20description.pdf">NLP Suite: Package description</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Anaconda%20NLP%20environment%20pip.pdf">pip install & Anaconda environments</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Text%20encoding%20(utf-8).pdf">Text encoding (utf-8)</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20Enabling%20macros.pdf">Excel – Enabling Macros</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files – Problems & solutions</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Setup%20INPUT-OUTPUT%20options.pdf">Setup Input/Output configuration for your corpus</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Setup%20external%20software.pdf">Setup external software (e.g., MALLET)</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20NLP%20approach.pdf">Things to do with words: NLP approach</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_English%20Language%20Benchmarks.pdf">English Language Benchmarks</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_NLP%20Suite%20General%20tools.pdf">NLP Suite: General tools</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_NLP%20Suite%20Tools%20of%20linguistic%20analysis.pdf">NLP Suite: Tools of linguistic analysis</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_NLP%20Basic%20language.pdf">NLP basic language</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Overall%20view.pdf">Things to do with words: Overall view</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Content%20analysis.pdf">Things to do with words: Content analysis</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Frame%20analysis.pdf">Things to do with words: Frame analysis</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Narrative%20analysis.pdf">Things to do with words: Narrative analysis</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Rhetorical%20analysis%20Arguments.pdf">Things to do with words: Rhetoric (Arguments)</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Rhetorical%20analysis%20Tropes%20and%20Figures.pdf">Things to do with words: Rhetoric (Tropes & Figures)</option>
+        <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Style%20analysis.pdf">Style analysis</option>
+        </select>
+    </div>
+    
 {% endblock %}
