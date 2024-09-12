@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="sentiment-analysis-container">
+<h1>Word2Vec</h1>
+<form method="post" class="topic-modeling-form">
+    {% csrf_token %}
+    
+    <div class = "form-row">
+        <label for="inputDirectory" class = "numberInput">Input Directory:</label>
+        <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+    </div>
+    <div class = "form-row">
+        <label for="outputDirectory">Output Directory:</label>
+        <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+    </div>
+    <div class = "form-row">
+        <label>
+            <input type="checkbox" id="removeStopwords" name="removeStopwords" checked>
+            Remove stopwords & punctuation
+        </label>
+
+        <label>
+            <input type="checkbox" id="lemmatize" name="lemmatize" checked>
+            Lemmatize
+        </label>
+    </div>
+    <div class="form-row">
+        <label for="visualizationOption">Select visualization option</label>
+        <input type="button" id="plotWordVectorsButton" value="Plot word vectors">
+        <input type="button" id="dimensionButton" value="2D">
+    </div>
+    <div class="form-row">
+        <label>
+            <input type="checkbox" id="wordSenseInduction" name="wordSenseInduction">
+            Word sense induction (via BERT (English language model))
+        </label>
+    </div>
+    <div class="form-row">
+        <label for="keywordsWSI">Keywords (WSI)</label>
+        <input type="button" id="selectDictionaryFile" value="Select dictionary file">
+        <input type="text" id="keywordInput" name="keywordInput">
+    </div>
+    
+    <div class="form-row" style="display: flex; align-items: center;">
+        <label for="range4"></label>
+        <input type="range" id="range4" name="range4" min="1" max="10" value="4" oninput="document.getElementById('range4Value').innerHTML = this.value" style="margin-right: 10px;">
+        <span id="range4Value" style="margin-right: 20px;">4</span>
+    
+        <label for="range6"></label>
+        <input type="range" id="range6" name="range6" min="1" max="10" value="6" oninput="document.getElementById('range6Value').innerHTML = this.value" style="margin-right: 10px;">
+        <span id="range6Value" style="margin-right: 30px;">6</span> <!-- Increased margin -->
+    
+        <label for="ngrams" style="margin-right: 10px;">N-grams</label>
+        <input type="button" id="ngramsButton" value="1-grams" style="margin-right: 30px;">
+    
+        <label for="range10"></label>
+        <input type="range" id="range10" name="range10" min="1" max="10" value="10" oninput="document.getElementById('range10Value').innerHTML = this.value" style="margin-right: 10px;">
+        <span id="range10Value">10</span>
+    </div>
+    
+    
+    <div class="form-row">
+        <label>
+            <input type="checkbox" id="wordEmbeddingsBERT" name="wordEmbeddingsBERT">
+            Word embeddings (via BERT (English language model))
+        </label>
+
+        <label>
+            <input type="checkbox" id="word2VecGensim" name="word2VecGensim">
+            Word2Vec (via Gensim)
+        </label>
+    </div>
+    <div class="form-row">
+        <label for="trainingModelArchitecture">Training model architecture</label>
+        <input type="button" id="trainingModelButton" value="Skip-Gram">
+    </div>
+
+    <div class="form-row" style="display: flex; align-items: center;">
+        <label for="vectorSize" style="margin-right: 10px;">Vector size</label>
+        <input type="number" id="vectorSize" name="vectorSize" value="100" style="margin-right: 20px;">
+    
+        <label for="windowSize" style="margin-right: 10px;">Window size</label>
+        <input type="number" id="windowSize" name="windowSize" value="5" style="margin-right: 20px;">
+    
+        <label for="minCount" style="margin-right: 10px;">Minimum count</label>
+        <input type="number" id="minCount" name="minCount" value="5">
+    </div>
+    <div class="form-row" style="display: flex; align-items: center;">
+        <label>
+            <input type="checkbox" id="computeWordDistances" name="computeWordDistances" checked>
+            Compute word distances
+        </label>
+    
+        <label for="topWords" style="margin-left: 20px; margin-right: 10px;">
+            Number of top words for Euclidean distance & cosine similarity combinations
+        </label>
+        <input type="number" id="topWords" name="topWords" value="200">
+    </div>
+    <div class="form-row">
+        <label for="keywords" style="margin-right: 10px;">Keywords</label>
+        <input type="text" id="keywords" name="keywords" style="width: 100%;">
+    </div>
+    
+    <div class = "form-row">
+        <label for="transformation">Transformation:</label>
+        <select id="transformation" name="transformation">
+            <option value="no_transformation">No transformation</option>
+            <option value="Ln">Ln</option>
+            <option value="Log">Log</option>
+            <option value="Square">Square root</option>
+            <option value="Z score">Z score</option>
+        </select>
+        <label for="dataTools">Data Tools:</label>
+        <select id="dataTools" name="dataTools">
+            <option value="data_sampling">Data/corpus sampling</option>
+            <option value="data_manipulation">Data manipulation</option>
+            <option value="data_statistics">Data statistics</option>
+            <option value="data_visualization_1">Data visualization 1</option>
+            <option value="data_visualization_2">Data visualization 2</option>
+        </select>
+    </div>
+    
+    <div class="buttons-section">
+        <button type="reset" class="reset-button">Reset</button>
+        <button type="submit" class="run-button">Run</button>
+    </div>
+</form>
+</div>
+{% endblock %}
