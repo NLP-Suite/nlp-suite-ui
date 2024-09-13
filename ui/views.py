@@ -99,3 +99,7 @@ def wordclouds(_: HttpRequest):
 def word2vec(_: HttpRequest):
     template = loader.get_template("../templates/word2vec.html")
     return HttpResponse(template.render())
+
+def filesearchword(_: HttpRequest):
+    template = loader.get_template("../templates/filesearchword.html")
+    return HttpResponse(template.render())

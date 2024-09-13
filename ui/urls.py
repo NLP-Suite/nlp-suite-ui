@@ -34,5 +34,6 @@ urlpatterns = [
     path('parsers_annotator', views.parsers_annotator, name='parsers_annotator'),
     path('wordclouds', views.wordclouds, name='wordclouds'),
     path('word2vec', views.word2vec, name='word2vec'),
+    path('filesearchword', views.filesearchword, name='filesearchword'),
 ]
 
