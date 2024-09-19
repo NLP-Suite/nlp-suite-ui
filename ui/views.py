@@ -52,7 +52,6 @@ def sentiment_analysis(request: HttpRequest):
             messages.add_message(request, messages.ERROR, response.content.decode())
     return render(request, "sentiment_analysis.html")
 
-
 def set_up(_: HttpRequest):
     template = loader.get_template("../templates/set_up.html")
     return HttpResponse(template.render())
@@ -77,11 +76,18 @@ def style_analysis(_: HttpRequest):
     template = loader.get_template("../templates/style_analysis.html")
     return HttpResponse(template.render())
 
-
-def topic_modeling(_: HttpRequest):
-    template = loader.get_template("../templates/topic_modeling.html")
-    return HttpResponse(template.render())
-
+def topic_modeling(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/topic_modeling",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "topic_modeling.html")
 
 def nGram_CoOccurrences(_: HttpRequest):
     template = loader.get_template("../templates/N-Grams_CoOccurrences.html")
