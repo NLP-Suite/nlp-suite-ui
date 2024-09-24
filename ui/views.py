@@ -109,3 +109,7 @@ def word2vec(_: HttpRequest):
 def filesearchword(_: HttpRequest):
     template = loader.get_template("../templates/filesearchword.html")
     return HttpResponse(template.render())
+
+def visual1(_: HttpRequest):
+    template = loader.get_template("../templates/visual1.html")
+    return HttpResponse(template.render())

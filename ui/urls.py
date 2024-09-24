@@ -35,5 +35,6 @@ urlpatterns = [
     path('wordclouds', views.wordclouds, name='wordclouds'),
     path('word2vec', views.word2vec, name='word2vec'),
     path('filesearchword', views.filesearchword, name='filesearchword'),
+    path('visual1', views.visual1, name='visual1'),
 ]
 
