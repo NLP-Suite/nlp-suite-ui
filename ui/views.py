@@ -117,3 +117,7 @@ def visual1(_: HttpRequest):
 def visual2(_: HttpRequest):
     template = loader.get_template("../templates/visual2.html")
     return HttpResponse(template.render())
+
+def gis(_: HttpRequest):
+    template = loader.get_template("../templates/gis.html")
+    return HttpResponse(template.render())
