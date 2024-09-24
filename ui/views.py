@@ -113,3 +113,7 @@ def filesearchword(_: HttpRequest):
 def visual1(_: HttpRequest):
     template = loader.get_template("../templates/visual1.html")
     return HttpResponse(template.render())
+
+def visual2(_: HttpRequest):
+    template = loader.get_template("../templates/visual2.html")
+    return HttpResponse(template.render())

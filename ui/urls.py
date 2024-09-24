@@ -36,5 +36,6 @@ urlpatterns = [
     path('word2vec', views.word2vec, name='word2vec'),
     path('filesearchword', views.filesearchword, name='filesearchword'),
     path('visual1', views.visual1, name='visual1'),
+    path('visual2', views.visual2, name='visual2'),
 ]
 

@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="sentiment-analysis-container">
+<h1>Data Visualization 2</h1>
+<form method="post" class="topic-modeling-form">
+    {% csrf_token %}
+    
+    <div class = "form-row">
+        <label for="inputDirectory" class = "numberInput">Input Directory:</label>
+        <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+    </div>
+    <div class = "form-row">
+        <label for="outputDirectory">Output Directory:</label>
+        <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+    </div>
+    <div class = "form-row">
+        <label>
+            <input type="checkbox" id="gui_analysis" name="gui_analysis">
+            GUIs available for more analyses
+        </label>
+        <button type="button" id="button"> </button>
+    </div>
+    <div class = "form-row">
+        <label for="csv_file_y_axis">csv file field for visualization (Y-axis)</label>
+        <button type="button" id="button"> </button>
+    </div>
+
+    <div class="form-row">
+        <label for="visualization_options">Visualization options</label>
+        <button type="button" id="excel_plotly_button" name="excel_plotly_button">Excel/Plotly charts</button>
+        
+    </div>
+    <div class="form-row">
+        <label style="color: red; font-weight: bold;" for="excel_plotly">Excel/Plotly</label>
+        <br>
+        <label for="x_axis">X-axis</label>
+        <input type="file" id="x_axis" name="x_axis">
+        <br>
+        <label for="additional_y_axis">Additional Y-axis</label>
+        <input type="file" id="additional_y_axis" name="additional_y_axis">
+        <br>
+        <button type="button" id="add_button">+</button>
+        <button type="reset" id="reset_button">Reset</button>
+        <button type="button" id="show_button">Show</button>
+
+
+    </div>
+    <div class="form-row">
+        <label style="color: red; font-weight: bold;" for="boxplot">Boxplot</label>
+        <br>
+        <label for="data_field">Data</label>
+        <input type="file" id="data_field" name="data_field" style="width: 120px; padding: 4px;">
+        <br>
+        <label>
+            <input type="checkbox" id="split_data" name="split_data">
+            Split data by category
+        </label>
+        <br>
+        <label for="csv_file1">csv file field</label>
+        <input type="file" id="csv_file1" name="csv_file1" style="width: 120px; padding: 4px;">
+        <br>
+        <label for="csv_file2">csv file field</label>
+        <input type="file" id="csv_file2" name="csv_file2" style="width: 120px; padding: 4px;">
+
+
+    </div>
+    
+    <div class="form-row" style="display: flex; align-items: center;">
+        <label style="color: red; font-weight: bold;" for="bubble_chart">Bubble chart</label>
+        <br>
+        <label for="x_axis">X-axis</label>
+        <input type="file" id="x_axis" name="x_axis" style="width: 120px; padding: 4px;">
+        <br>
+        <label for="category">Category</label>
+        <button type="button" id="button"> </button>
+        
+    </div>
+    
+    
+    <div class="form-row">
+        <label style="color: red; font-weight: bold; margin-right: 10px;" for="bar_charts">Bar charts</label>
+        <button type="button" id="add_button" style="margin-right: 10px;">+</button>
+        <button type="reset" id="reset_button" style="margin-right: 20px;">Reset</button>
+        <label for="csv_file" style="margin-right: 10px;">Select csv file</label>
+        <input type="file" id="csv_file" name="csv_file" style="width: 140px; padding: 4px;">
+
+    </div>
+    <div class="form-row">
+        <label style="color: red; font-weight: bold; margin-right: 10px;" for="time_mapper">Time mapper</label>
+        <br>
+        <label for="date_format" style="margin-right: 10px;">Date format</label>
+        <button type="button" id="date_format_button" style="margin-right: 20px;">mm-dd-yyyy</button>
+        <br>
+        <label for="timeline" style="margin-right: 10px;">Timeline</label>
+        <button type="button" id="timeline_button" style="margin-right: 20px;">Daily</button>
+        <br>
+        <label>
+            <input type="checkbox" id="cumulative" name="cumulative" style="margin-right: 10px;">
+            Cumulative
+        </label>
+
+
+    </div>
+
+    
+    <div class = "form-row">
+        <label for="transformation">Transformation:</label>
+        <select id="transformation" name="transformation">
+            <option value="no_transformation">No transformation</option>
+            <option value="Ln">Ln</option>
+            <option value="Log">Log</option>
+            <option value="Square">Square root</option>
+            <option value="Z score">Z score</option>
+        </select>
+        <label for="dataTools">Data Tools:</label>
+        <select id="dataTools" name="dataTools">
+            <option value="data_sampling">Data/corpus sampling</option>
+            <option value="data_manipulation">Data manipulation</option>
+            <option value="data_statistics">Data statistics</option>
+            <option value="data_visualization_1">Data visualization 1</option>
+            <option value="data_visualization_2">Data visualization 2</option>
+        </select>
+    </div>
+    
+    <div class="buttons-section">
+        <button type="reset" class="reset-button">Reset</button>
+        <button type="submit" class="run-button">Run</button>
+    </div>
+</form>
+</div>
+{% endblock %}
