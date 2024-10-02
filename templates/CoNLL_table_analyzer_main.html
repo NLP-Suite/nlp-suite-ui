@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="sentiment-analysis-container">
+    <h1>CoNLL Table Analyzer Main</h1>
+    {% csrf_token %}
+    
+    <form method="post" class="CoNLL-table-analyzer-form"></form>
+        <div class="form-row">
+            <label for="inputDirectory">Input Directory:</label>
+            <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+        </div> 
+
+        <div class="form-row">
+            <label for="outputDirectory">Output Directory:</label>
+            <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+        </div>
+
+        <div class="form-row">
+            <label> 
+                <input type="checkbox" id="guis_avail" name="guis_available">
+                Guis available for more analyses 
+            </label>
+            <select id="gui-options" name="gui-options">
+                <option value="ngrams-searches-viewers">Ngrams searches & Viewers</option>
+                <option value="word-searches">Word Searches</option>
+                <option value="wordnet-searches">Wordnet Searches</option>
+                <option value="data-manipulation-gui">Data manipultation GUI for more options on querying the CoNLL table</option>
+                <option value="corpus-statistics">Corpus statistics</option>
+                <option value="style-analysis">Style Analysis</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="clause-noun-verb-function" name="clause-noun-verb-function">
+                Clause, noun, verb, function word 
+            </label>
+            <select id="clause-noun-verb-function_options" name="clause-noun-verb-function_options">
+                <option value="*">*</option>
+                <option value="clause-analysis">Clause Analysis</option> 
+                <option value="noun-analysis">Noun Analysis</option> 
+                <option value="verb-analysis">Verb Analysis</option> 
+                <option value="function-words-jump/stop-analysis">Function(junk/stop) Words Analysis</option> 
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="wordnet-classification-noun-verb" name="wordnet-classification-noun-verb">
+                Wordnet Classification of Nouns & Verbs
+            </label>
+        </div> 
+
+        <div class="form-row"> 
+            <label> 
+                Search word(s) 
+                &nbsp;
+                <input type="text" id="search-token-word" size="50">
+            </label> 
+        </div> 
+        
+        <div class="form-row">
+            <label>
+                coNLL search field <!-- Not sure what the form button menas -->
+                &nbsp;
+                <select id="conll-search-field" name="conll-search-field">
+                    <option value="form">FORM</option>
+                    <option value="lemma">LEMMA</option> 
+                </select>
+            </label>
+        </div>
+        
+        <div class="form-row"> 
+            <label>
+                <input type="checkbox" id="before-after-k-word" name="before-after-k-word">
+                Before-After K word 
+                &nbsp;&nbsp;&nbsp; 
+            </label> 
+
+            <label>
+                Before K-words
+                <input type="number" id="beforer-k-word" name="before-k-word">
+                &nbsp;&nbsp;&nbsp; 
+            </label> 
+
+            <label>
+                After K-words
+                <input type="number" id="after-k-word" name="after-k-word">
+            </label> 
+        </div> 
+
+        <div class="form-row">
+            <label>
+                Searched Token 
+                &nbsp;&nbsp;&nbsp; 
+                POSTAG 
+                &nbsp;
+                <select id="postag" name="postag">
+                    <option value="testing1">Testing 1</option>
+                    <option value="testing2">Testing 2</option> 
+                </select>
+            </label>
+
+            <label>
+                &nbsp;&nbsp;&nbsp; 
+                DEPREL
+                &nbsp;
+                <select id="deprel" name="deprel">
+                    <option value="testing1">Testing 1</option>
+                    <option value="testing2">Testing 2</option> 
+                </select>
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label>
+                Co-occuring Token 
+                &nbsp;&nbsp;&nbsp; 
+                POSTAG 
+                &nbsp;
+                <select id="postag-b" name="postag-b">
+                    <option value="testing1">Testing 1</option>
+                    <option value="testing2">Testing 2</option> 
+                </select>
+            </label>
+
+            <label>
+                &nbsp;&nbsp;&nbsp; 
+                DEPREL
+                &nbsp;
+                <select id="deprel-b" name="deprel-b">
+                    <option value="testing1">Testing 1</option>
+                    <option value="testin2">Testing 2</option> 
+                </select>
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label> 
+                <input type="checkbox" id="repetition-finder" name="repetition-finder">
+                Begin-End K sentences analyzer(repetition finder) 
+            </label> 
+            <label> 
+                Begin K-sentences
+                <input type="number" id="begin-k-sentences" size="50">
+                &nbsp;
+            </label> 
+            <label> 
+                End K-sentences
+                <input type="number" id="end-k-sentences" size="50">
+                &nbsp;
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label> 
+                <input type="checkbox" id="compute-sentence-table" name="compute-sentence-table">
+                Compute sentence Table
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="open-output-files" name="open-output-files"> 
+                Open output files 
+            </label> 
+
+            <select id="excel" name="excel"> 
+                <option value="no-charts">No Charts</option>
+                <option value="excel">Excel</option>
+                <option value="python-plotly-dynamic">Python Plotly Dynamic</option>
+                <option value="python-plotly-static">Python Plotly Static</option>
+            </select> 
+
+            <label> 
+                <input type="checkbox" id="python-opengui-barchart" name="python-opengui-barchart">
+                Python & Excel / Open GUI Bar chart
+            </label> 
+
+            <select id="bar-chart-python-gui" name="bar-chart-python-gui">
+                <option value="excel">No Charts</option>
+                <option value="excel">Excel</option>
+                <option value="python-plotly-dynamic">Python Plotly Dynamic</option>
+                <option value="python-plotly-static">Python Plotly Static</option>
+                <option value="bubble-radar-scatterplot"> Bubble, Radar, Scatter Plots </option>
+                <option value="boxplot">Box Plot</option>
+                <option value="colormap"> Colormap </option>
+                <option value="compartive-bar-chart"> Comparative Bar Chart </option>
+                <option value="geographic-map"> Geographic Map </option>
+                <option value="gephi"> Gephi </option>
+                <option value="sanky-flowchart"> Sanky Flowchart </option>
+                <option value="sunburst-chart"> Sunburst Chart </option>
+                <option value="time-mapper"> Time Mapper </option>
+                <option value="tree-map-chart"> Tree Map Chart </option>
+                <option value="wordcloud"> Wordcloud </option>
+            </select> 
+        </div>
+
+        <div class="form-row">
+            <label for="transformation">Transformation:</label>
+            <select id="transformation" name="transformation">
+                <option value="no_transformation">No transformation</option>
+                <option value="Ln">Ln</option>
+                <option value="Log">Log</option>
+                <option value="Square">Square root</option>
+                <option value="Z score">Z score</option>
+            </select>
+            <label for="dataTools">Data Tools:</label>
+            <select id="dataTools" name="dataTools">
+                <option value="data_sampling">Data/corpus sampling</option>
+                <option value="data_manipulation">Data manipulation</option>
+                <option value="data_statistics">Data statistics</option>
+                <option value="data_visualization_1">Data visualization 1</option>
+                <option value="data_visualization_2">Data visualization 2</option>
+            </select>
+            <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
+                <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20(word%20%26%20character).pdf">N-Grams (word & character)</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20Google%20Ngram%20Viewer.pdf">Google Ngram Viewer</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20and%20Word%20Co-Occurrence%20VIEWER.pdf">NLP Ngram and Word Co-Occurrence VIEWER</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Style%20analysis.pdf" >Style analysis</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_English%20Language%20Benchmarks.pdf" >English Language Benchmarks</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Overall%20view.pdf" >Things to do with words: Overall view</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20smoothing%20data%20series.pdf">Excel smoothing data series</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
+
+                </select>
+        </div>
+
+        <div class="buttons-section">
+            <button type="reset" class="reset-button">Reset</button>
+            <button type="submit" class="run-button">Run</button>
+        </div>
+    </div>
+        
+</div>
+{% endblock %}
