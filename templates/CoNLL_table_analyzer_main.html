@@ -6,7 +6,7 @@
     {% csrf_token %}
     
     <form method="post" class="CoNLL-table-analyzer-form"></form>
-        <div class="form-row">
+        <div class="form-row"> 
             <label for="inputDirectory">Input Directory:</label>
             <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
         </div> 
@@ -14,14 +14,14 @@
         <div class="form-row">
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
-        </div>
+        </div> 
 
         <div class="form-row">
             <label> 
                 <input type="checkbox" id="guis_avail" name="guis_available">
                 Guis available for more analyses 
             </label>
-            <select id="gui-options" name="gui-options">
+            <select id="gui-options" name="gui-options" disabled>
                 <option value="ngrams-searches-viewers">Ngrams searches & Viewers</option>
                 <option value="word-searches">Word Searches</option>
                 <option value="wordnet-searches">Wordnet Searches</option>
@@ -33,10 +33,10 @@
 
         <div class="form-row">
             <label>
-                <input type="checkbox" id="clause-noun-verb-function" name="clause-noun-verb-function">
+                <input type="checkbox" id="clause-noun-verb-function" name="clause-noun-verb-function" >
                 Clause, noun, verb, function word 
             </label>
-            <select id="clause-noun-verb-function_options" name="clause-noun-verb-function_options">
+            <select id="clause-noun-verb-function_options" name="clause-noun-verb-function_options" disabled>
                 <option value="*">*</option>
                 <option value="clause-analysis">Clause Analysis</option> 
                 <option value="noun-analysis">Noun Analysis</option> 
@@ -54,39 +54,39 @@
 
         <div class="form-row"> 
             <label> 
-                Search word(s) 
+                Search Token/Word(s) 
                 &nbsp;
-                <input type="text" id="search-token-word" size="50">
+                <input type="text" id="search-token-word" size="50" disabled>
             </label> 
         </div> 
         
         <div class="form-row">
             <label>
-                coNLL search field <!-- Not sure what the form button menas -->
+                CoNLL search field 
                 &nbsp;
-                <select id="conll-search-field" name="conll-search-field">
+                <select id="conll-search-field" name="conll-search-field" disabled>
                     <option value="form">FORM</option>
                     <option value="lemma">LEMMA</option> 
                 </select>
             </label>
         </div>
         
-        <div class="form-row"> 
+        <div class="form-row"> <!-- Completely disabled in GUI, should I abandon this row? -->
             <label>
-                <input type="checkbox" id="before-after-k-word" name="before-after-k-word">
+                <input type="checkbox" id="before-after-k-word" name="before-after-k-word" disabled>
                 Before-After K word 
                 &nbsp;&nbsp;&nbsp; 
             </label> 
 
             <label>
                 Before K-words
-                <input type="number" id="beforer-k-word" name="before-k-word">
+                <input type="number" id="beforer-k-word" name="before-k-word" disabled>
                 &nbsp;&nbsp;&nbsp; 
             </label> 
 
             <label>
                 After K-words
-                <input type="number" id="after-k-word" name="after-k-word">
+                <input type="number" id="after-k-word" name="after-k-word" disabled>
             </label> 
         </div> 
 
@@ -96,7 +96,7 @@
                 &nbsp;&nbsp;&nbsp; 
                 POSTAG 
                 &nbsp;
-                <select id="postag" name="postag">
+                <select id="postag" name="postag" disabled>
                     <option value="testing1">Testing 1</option>
                     <option value="testing2">Testing 2</option> 
                 </select>
@@ -106,7 +106,7 @@
                 &nbsp;&nbsp;&nbsp; 
                 DEPREL
                 &nbsp;
-                <select id="deprel" name="deprel">
+                <select id="deprel" name="deprel" disabled>
                     <option value="testing1">Testing 1</option>
                     <option value="testing2">Testing 2</option> 
                 </select>
@@ -119,17 +119,17 @@
                 &nbsp;&nbsp;&nbsp; 
                 POSTAG 
                 &nbsp;
-                <select id="postag-b" name="postag-b">
+                <select id="postag-b" name="postag-b" disabled>
                     <option value="testing1">Testing 1</option>
                     <option value="testing2">Testing 2</option> 
                 </select>
-            </label>
+            </label> 
 
             <label>
                 &nbsp;&nbsp;&nbsp; 
                 DEPREL
                 &nbsp;
-                <select id="deprel-b" name="deprel-b">
+                <select id="deprel-b" name="deprel-b" disabled>
                     <option value="testing1">Testing 1</option>
                     <option value="testin2">Testing 2</option> 
                 </select>
@@ -143,19 +143,19 @@
             </label> 
             <label> 
                 Begin K-sentences
-                <input type="number" id="begin-k-sentences" size="50">
+                <input type="number" id="begin-k-sentences" size="50" disabled>
                 &nbsp;
             </label> 
             <label> 
                 End K-sentences
-                <input type="number" id="end-k-sentences" size="50">
+                <input type="number" id="end-k-sentences" size="50" disabled>
                 &nbsp;
             </label>
         </div>
 
         <div class="form-row">
             <label> 
-                <input type="checkbox" id="compute-sentence-table" name="compute-sentence-table">
+                <input type="checkbox" id="compute-sentence-table" name="compute-sentence-table" >
                 Compute sentence Table
             </label>
         </div>
@@ -163,7 +163,7 @@
         <div class="form-row">
             <label>
                 <input type="checkbox" id="open-output-files" name="open-output-files"> 
-                Open output files 
+                Do NOT open output files 
             </label> 
 
             <select id="excel" name="excel"> 
@@ -234,7 +234,34 @@
             <button type="reset" class="reset-button">Reset</button>
             <button type="submit" class="run-button">Run</button>
         </div>
-    </div>
+
+    <script>
+        function guiCheckBox() {
+            var guiCheckBox = document.getElementById("guis_avail");
+
+            var guiOptions = document.getElementById("gui-options"); 
+            var functionCheckBox = document.getElementById("clause-noun-verb-function");
+            var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+            
+            if(guiCheckBox.checked) {
+                guiOptions.disabled = false;
+                functionCheckBox.disabled = true;
+                wordnetCheckBox.disabled = true;
+                repfinderCheckBox.disabled = true;
+                sentComputeTabCheckBox.disabled = true;
+            } else {
+                guiOptions.disabled = true;
+                functionCheckBox.disabled = false;
+                wordnetCheckBox.disabled = false;
+                repfinderCheckBox.disabled = false;
+                sentComputeTabCheckBox.disabled = false;
+            }
+        }
+
+        document.getElementById("guis_avail").addEventListener("change", guiCheckBox);
+    </script>
         
 </div>
 {% endblock %}
