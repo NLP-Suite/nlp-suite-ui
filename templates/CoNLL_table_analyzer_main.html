@@ -1,0 +1,428 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="sentiment-analysis-container">
+    <h1>CoNLL Table Analyzer Main</h1>
+    {% csrf_token %}
+    
+    <form method="post" class="CoNLL-table-analyzer-form"></form>
+        <div class="form-row"> 
+            <label for="inputDirectory">Input Directory:</label>
+            <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+        </div> 
+
+        <div class="form-row">
+            <label for="outputDirectory">Output Directory:</label>
+            <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+        </div> 
+
+        <div class="form-row">
+            <label> 
+                <input type="checkbox" id="guis_avail" name="guis_available">
+                Guis available for more analyses 
+            </label>
+            <select id="gui-options" name="gui-options" disabled>
+                <option value="ngrams-searches-viewers">Ngrams searches & Viewers</option>
+                <option value="word-searches">Word Searches</option>
+                <option value="wordnet-searches">Wordnet Searches</option>
+                <option value="data-manipulation-gui">Data manipultation GUI for more options on querying the CoNLL table</option>
+                <option value="corpus-statistics">Corpus statistics</option>
+                <option value="style-analysis">Style Analysis</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="clause-noun-verb-function" name="clause-noun-verb-function" >
+                Clause, noun, verb, function word 
+            </label>
+            <select id="clause-noun-verb-function_options" name="clause-noun-verb-function_options" disabled>
+                <option value="*">*</option>
+                <option value="clause-analysis">Clause Analysis</option> 
+                <option value="noun-analysis">Noun Analysis</option> 
+                <option value="verb-analysis">Verb Analysis</option> 
+                <option value="function-words-jump/stop-analysis">Function(junk/stop) Words Analysis</option> 
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="wordnet-classification-noun-verb" name="wordnet-classification-noun-verb"> <!-- When clicked everything's disabled, do we really need this button? -->
+                Wordnet Classification of Nouns & Verbs
+            </label>
+        </div> 
+
+        <div class="form-row"> 
+            <label> 
+                <input type="checkbox" id="search-token-word-checkbox" name="clause-noun-verb-function" >
+                Search Token/Word(s) 
+                &nbsp;
+                <input type="text" id="search-token-word-text" size="50" disabled>
+            </label> 
+        </div> 
+        
+        <div class="form-row">
+            <label>
+                CoNLL search field 
+                &nbsp;
+                <select id="conll-search-field" name="conll-search-field" disabled>
+                    <option value="form">FORM</option>
+                    <option value="lemma">LEMMA</option> 
+                </select>
+            </label>
+        </div>
+        
+        <div class="form-row"> <!-- Completely disabled in GUI, should I abandon this row? -->
+            <label>
+                <input type="checkbox" id="before-after-k-word" name="before-after-k-word" disabled>
+                Before-After K word 
+                &nbsp;&nbsp;&nbsp; 
+            </label> 
+
+            <label>
+                Before K-words
+                <input type="number" id="beforer-k-word" name="before-k-word" disabled>
+                &nbsp;&nbsp;&nbsp; 
+            </label> 
+
+            <label>
+                After K-words
+                <input type="number" id="after-k-word" name="after-k-word" disabled>
+            </label> 
+        </div> 
+
+        <div class="form-row">
+            <label>
+                Searched Token 
+                &nbsp;&nbsp;&nbsp; 
+                POSTAG 
+                &nbsp;
+                <select id="postag" name="postag" disabled>
+                    <option value="testing1">Testing 1</option>
+                    <option value="testing2">Testing 2</option> 
+                </select>
+            </label>
+
+            <label>
+                &nbsp;&nbsp;&nbsp; 
+                DEPREL
+                &nbsp;
+                <select id="deprel" name="deprel" disabled>
+                    <option value="testing1">Testing 1</option>
+                    <option value="testing2">Testing 2</option> 
+                </select>
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label>
+                Co-occuring Token 
+                &nbsp;&nbsp;&nbsp; 
+                POSTAG 
+                &nbsp;
+                <select id="postag-b" name="postag-b" disabled>
+                    <option value="testing1">Testing 1</option>
+                    <option value="testing2">Testing 2</option> 
+                </select>
+            </label> 
+
+            <label>
+                &nbsp;&nbsp;&nbsp; 
+                DEPREL
+                &nbsp;
+                <select id="deprel-b" name="deprel-b" disabled>
+                    <option value="testing1">Testing 1</option>
+                    <option value="testin2">Testing 2</option> 
+                </select>
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label> 
+                <input type="checkbox" id="repetition-finder" name="repetition-finder">
+                Begin-End K sentences analyzer(repetition finder) 
+            </label> 
+            <label> 
+                Begin K-sentences
+                <input type="number" id="begin-k-sentences" size="50" disabled>
+                &nbsp;
+            </label> 
+            <label> 
+                End K-sentences
+                <input type="number" id="end-k-sentences" size="50" disabled>
+                &nbsp;
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label> 
+                <input type="checkbox" id="compute-sentence-table" name="compute-sentence-table" >
+                Compute sentence Table
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="open-output-files" name="open-output-files"> 
+                Do NOT open output files 
+            </label> 
+
+            <select id="excel" name="excel"> 
+                <option value="no-charts">No Charts</option>
+                <option value="excel">Excel</option>
+                <option value="python-plotly-dynamic">Python Plotly Dynamic</option>
+                <option value="python-plotly-static">Python Plotly Static</option>
+            </select> 
+
+            <label> 
+                <input type="checkbox" id="python-opengui-barchart" name="python-opengui-barchart">
+                Python & Excel / Open GUI Bar chart
+            </label> 
+
+            <select id="bar-chart-python-gui" name="bar-chart-python-gui">
+                <option value="excel">No Charts</option>
+                <option value="excel">Excel</option>
+                <option value="python-plotly-dynamic">Python Plotly Dynamic</option>
+                <option value="python-plotly-static">Python Plotly Static</option>
+                <option value="bubble-radar-scatterplot"> Bubble, Radar, Scatter Plots </option>
+                <option value="boxplot">Box Plot</option>
+                <option value="colormap"> Colormap </option>
+                <option value="compartive-bar-chart"> Comparative Bar Chart </option>
+                <option value="geographic-map"> Geographic Map </option>
+                <option value="gephi"> Gephi </option>
+                <option value="sanky-flowchart"> Sanky Flowchart </option>
+                <option value="sunburst-chart"> Sunburst Chart </option>
+                <option value="time-mapper"> Time Mapper </option>
+                <option value="tree-map-chart"> Tree Map Chart </option>
+                <option value="wordcloud"> Wordcloud </option>
+            </select> 
+        </div>
+
+        <div class="form-row">
+            <label for="transformation">Transformation:</label>
+            <select id="transformation" name="transformation">
+                <option value="no_transformation">No transformation</option>
+                <option value="Ln">Ln</option>
+                <option value="Log">Log</option>
+                <option value="Square">Square root</option>
+                <option value="Z score">Z score</option>
+            </select>
+            <label for="dataTools">Data Tools:</label>
+            <select id="dataTools" name="dataTools">
+                <option value="data_sampling">Data/corpus sampling</option>
+                <option value="data_manipulation">Data manipulation</option>
+                <option value="data_statistics">Data statistics</option>
+                <option value="data_visualization_1">Data visualization 1</option>
+                <option value="data_visualization_2">Data visualization 2</option>
+            </select>
+            <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
+                <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20(word%20%26%20character).pdf">N-Grams (word & character)</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20Google%20Ngram%20Viewer.pdf">Google Ngram Viewer</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20and%20Word%20Co-Occurrence%20VIEWER.pdf">NLP Ngram and Word Co-Occurrence VIEWER</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Style%20analysis.pdf" >Style analysis</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_English%20Language%20Benchmarks.pdf" >English Language Benchmarks</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Overall%20view.pdf" >Things to do with words: Overall view</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20smoothing%20data%20series.pdf">Excel smoothing data series</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
+
+                </select>
+        </div>
+
+        <div class="buttons-section">
+            <button type="reset" class="reset-button">Reset</button>
+            <button type="submit" class="run-button">Run</button>
+        </div>
+
+    <script>
+        function guiCheckBox() {
+            var guiCheckBox = document.getElementById("guis_avail");
+
+            var guiOptions = document.getElementById("gui-options"); 
+            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+            
+            if(guiCheckBox.checked) {
+                guiOptions.disabled = false;
+                functionWordCheckBox.disabled = true;
+                wordnetCheckBox.disabled = true;
+                searchWordCheckBox.disabled = true;
+                repfinderCheckBox.disabled = true;
+                sentComputeTabCheckBox.disabled = true;
+            } else {
+                guiOptions.disabled = true;
+                functionWordCheckBox.disabled = false;
+                wordnetCheckBox.disabled = false;
+                searchWordCheckBox.disabled = false;
+                repfinderCheckBox.disabled = false;
+                sentComputeTabCheckBox.disabled = false;
+            }
+        }
+
+        function functionWordCheckBox() {
+            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            
+            var functionWordOptions = document.getElementById("clause-noun-verb-function_options");
+            var guiCheckBox = document.getElementById("guis_avail");
+            var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+
+            if(functionWordCheckBox.checked) {
+                functionWordOptions.disabled = false;
+                guiCheckBox.disabled = true;
+                wordnetCheckBox.disabled = true;
+                searchWordCheckBox.disabled = true;
+                repfinderCheckBox.disabled = true;
+                sentComputeTabCheckBox.disabled = true;
+            } else {
+                functionWordOptions.disabled = true;
+                guiCheckBox.disabled = false;
+                wordnetCheckBox.disabled = false;
+                searchWordCheckBox.disabled = false;
+                repfinderCheckBox.disabled = false;
+                sentComputeTabCheckBox.disabled = false;
+            } 
+        } 
+
+        function wordnetCheckBox() {
+            var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+
+            var guiCheckBox = document.getElementById("guis_avail");
+            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+
+            if(wordnetCheckBox.checked) {
+                guiCheckBox.disabled = true;
+                functionWordCheckBox.disabled = true;
+                searchWordCheckBox.disabled = true;
+                repfinderCheckBox.disabled = true;
+                sentComputeTabCheckBox.disabled = true;
+            } else {
+                guiCheckBox.disabled = false;
+                functionWordCheckBox.disabled = false;
+                searchWordCheckBox.disabled = false;
+                repfinderCheckBox.disabled = false;
+                sentComputeTabCheckBox.disabled = false;
+            }
+        }
+
+        function searchWordCheckBox() {
+            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
+
+            var searchWordText = document.getElementById("search-token-word-text");
+            var guiCheckBox = document.getElementById("guis_avail");
+            var conllSearchField = document.getElementById("conll-search-field");
+            var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+            var postagOptions = document.getElementById("postag");
+            var deprelOptions = document.getElementById("deprel");
+            var postagBOptions = document.getElementById("postag-b");
+            var deprelBOptions = document.getElementById("deprel-b");
+
+            if(searchWordCheckBox.checked) { 
+                searchWordText.disabled = false;
+                conllSearchField.disabled = false;
+                guiCheckBox.disabled = true;
+                functionWordCheckBox.disabled = true;
+                wordnetCheckBox.disabled = true;
+                repfinderCheckBox.disabled = true;
+                sentComputeTabCheckBox.disabled = true;
+                postagOptions.disabled = false;
+                deprelOptions.disabled =  false;
+                postagBOptions.disabled = false;
+                deprelBOptions.disabled = false;
+            } else {
+                searchWordText.disabled = true;
+                conllSearchField.disabled = true;
+                postagOptions.disabled = true;
+                deprelOptions.disabled =  true;
+                postagBOptions.disabled = true;
+                deprelBOptions.disabled = true;
+                guiCheckBox.disabled = false;
+                functionWordCheckBox.disabled = false;
+                wordnetCheckBox.disabled = false;
+                repfinderCheckBox.disabled = false;
+                sentComputeTabCheckBox.disabled = false;
+            }
+        } 
+
+        function beginEndKSentenceCheckBox() {
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var beginKsentencesNum = document.getElementById("begin-k-sentences");
+            var endKsentencesNum = document.getElementById("end-k-sentences");
+
+            var guiCheckBox = document.getElementById("guis_avail");
+            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+
+            if(repfinderCheckBox.checked) {
+                beginKsentencesNum.disabled = false;
+                endKsentencesNum.disabled = false;
+
+                guiCheckBox.disabled = true;
+                functionWordCheckBox.disabled = true;
+                wordnetCheckBox.disabled = true;
+                searchWordCheckBox.disabled = true;
+                sentComputeTabCheckBox.disabled = true;
+            } else {
+                beginKsentencesNum.disabled = true;
+                endKsentencesNum.disabled = true;
+
+                guiCheckBox.disabled = false;
+                functionWordCheckBox.disabled = false;
+                wordnetCheckBox.disabled = false;
+                searchWordCheckBox.disabled = false;
+                sentComputeTabCheckBox.disabled = false;
+            }
+        } 
+
+        function sentComputeTabCheckBox() {
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table");
+            
+            var guiCheckBox = document.getElementById("guis_avail");
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+            
+            if(sentComputeTabCheckBox.checked) {
+                guiCheckBox.disabled = true;
+                repfinderCheckBox.disabled = true;
+                functionWordCheckBox.disabled = true;
+                wordnetCheckBox.disabled = true;
+                searchWordCheckBox.disabled = true;
+            } else {
+                guiCheckBox.disabled = false;
+                repfinderCheckBox.disabled = false;
+                functionWordCheckBox.disabled = false;
+                wordnetCheckBox.disabled = false;
+                searchWordCheckBox.disabled = false;
+            }
+
+        }
+
+        document.getElementById("guis_avail").addEventListener("change", guiCheckBox);
+        document.getElementById("clause-noun-verb-function").addEventListener("change", functionWordCheckBox);
+        document.getElementById("wordnet-classification-noun-verb").addEventListener("change", wordnetCheckBox);
+        document.getElementById("search-token-word-checkbox").addEventListener("change", searchWordCheckBox);
+        document.getElementById("repetition-finder").addEventListener("change", beginEndKSentenceCheckBox);
+        document.getElementById("compute-sentence-table").addEventListener("change", sentComputeTabCheckBox);
+    </script>
+        
+</div>
+{% endblock %}

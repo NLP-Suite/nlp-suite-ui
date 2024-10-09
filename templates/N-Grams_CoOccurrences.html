@@ -287,10 +287,10 @@
             } else {
                 dateLabel.innerText = "Date option OFF";
             }
-        }
+        } 
 
         document.getElementById("guis_avail").addEventListener("change", guiCheckBox);
-        guiCheckBox();
+        guiCheckBox(); // prolly unnecessary ?
         document.getElementById("guis_avail").addEventListener("change", toggleGuiDropdown);
         toggleGuiDropdown();
         document.getElementById("compute-ngrams").addEventListener("change", toggleNGramDropdown);

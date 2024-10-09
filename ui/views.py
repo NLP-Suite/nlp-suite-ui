@@ -93,6 +93,9 @@ def nGram_CoOccurrences(_: HttpRequest):
     template = loader.get_template("../templates/N-Grams_CoOccurrences.html")
     return HttpResponse(template.render())
 
+def coNLL_table_analyzer_main(_: HttpRequest):
+    template = loader.get_template("../templates/CoNLL_table_analyzer_main.html")
+    return HttpResponse(template.render())
 
 def parsers_annotator(_: HttpRequest):
     template = loader.get_template("../templates/parsers_annotator.html")
