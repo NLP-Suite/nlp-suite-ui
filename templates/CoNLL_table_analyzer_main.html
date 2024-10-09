@@ -47,16 +47,17 @@
 
         <div class="form-row">
             <label>
-                <input type="checkbox" id="wordnet-classification-noun-verb" name="wordnet-classification-noun-verb">
+                <input type="checkbox" id="wordnet-classification-noun-verb" name="wordnet-classification-noun-verb"> <!-- When clicked everything's disabled, do we really need this button? -->
                 Wordnet Classification of Nouns & Verbs
             </label>
         </div> 
 
         <div class="form-row"> 
             <label> 
+                <input type="checkbox" id="search-token-word-checkbox" name="clause-noun-verb-function" >
                 Search Token/Word(s) 
                 &nbsp;
-                <input type="text" id="search-token-word" size="50" disabled>
+                <input type="text" id="search-token-word-text" size="50" disabled>
             </label> 
         </div> 
         
@@ -240,27 +241,187 @@
             var guiCheckBox = document.getElementById("guis_avail");
 
             var guiOptions = document.getElementById("gui-options"); 
-            var functionCheckBox = document.getElementById("clause-noun-verb-function");
+            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
             var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
             var repfinderCheckBox = document.getElementById("repetition-finder"); 
             var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
             
             if(guiCheckBox.checked) {
                 guiOptions.disabled = false;
-                functionCheckBox.disabled = true;
+                functionWordCheckBox.disabled = true;
                 wordnetCheckBox.disabled = true;
+                searchWordCheckBox.disabled = true;
                 repfinderCheckBox.disabled = true;
                 sentComputeTabCheckBox.disabled = true;
             } else {
                 guiOptions.disabled = true;
-                functionCheckBox.disabled = false;
+                functionWordCheckBox.disabled = false;
                 wordnetCheckBox.disabled = false;
+                searchWordCheckBox.disabled = false;
                 repfinderCheckBox.disabled = false;
                 sentComputeTabCheckBox.disabled = false;
             }
         }
 
+        function functionWordCheckBox() {
+            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            
+            var functionWordOptions = document.getElementById("clause-noun-verb-function_options");
+            var guiCheckBox = document.getElementById("guis_avail");
+            var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+
+            if(functionWordCheckBox.checked) {
+                functionWordOptions.disabled = false;
+                guiCheckBox.disabled = true;
+                wordnetCheckBox.disabled = true;
+                searchWordCheckBox.disabled = true;
+                repfinderCheckBox.disabled = true;
+                sentComputeTabCheckBox.disabled = true;
+            } else {
+                functionWordOptions.disabled = true;
+                guiCheckBox.disabled = false;
+                wordnetCheckBox.disabled = false;
+                searchWordCheckBox.disabled = false;
+                repfinderCheckBox.disabled = false;
+                sentComputeTabCheckBox.disabled = false;
+            } 
+        } 
+
+        function wordnetCheckBox() {
+            var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+
+            var guiCheckBox = document.getElementById("guis_avail");
+            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+
+            if(wordnetCheckBox.checked) {
+                guiCheckBox.disabled = true;
+                functionWordCheckBox.disabled = true;
+                searchWordCheckBox.disabled = true;
+                repfinderCheckBox.disabled = true;
+                sentComputeTabCheckBox.disabled = true;
+            } else {
+                guiCheckBox.disabled = false;
+                functionWordCheckBox.disabled = false;
+                searchWordCheckBox.disabled = false;
+                repfinderCheckBox.disabled = false;
+                sentComputeTabCheckBox.disabled = false;
+            }
+        }
+
+        function searchWordCheckBox() {
+            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
+
+            var searchWordText = document.getElementById("search-token-word-text");
+            var guiCheckBox = document.getElementById("guis_avail");
+            var conllSearchField = document.getElementById("conll-search-field");
+            var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+            var postagOptions = document.getElementById("postag");
+            var deprelOptions = document.getElementById("deprel");
+            var postagBOptions = document.getElementById("postag-b");
+            var deprelBOptions = document.getElementById("deprel-b");
+
+            if(searchWordCheckBox.checked) { 
+                searchWordText.disabled = false;
+                conllSearchField.disabled = false;
+                guiCheckBox.disabled = true;
+                functionWordCheckBox.disabled = true;
+                wordnetCheckBox.disabled = true;
+                repfinderCheckBox.disabled = true;
+                sentComputeTabCheckBox.disabled = true;
+                postagOptions.disabled = false;
+                deprelOptions.disabled =  false;
+                postagBOptions.disabled = false;
+                deprelBOptions.disabled = false;
+            } else {
+                searchWordText.disabled = true;
+                conllSearchField.disabled = true;
+                postagOptions.disabled = true;
+                deprelOptions.disabled =  true;
+                postagBOptions.disabled = true;
+                deprelBOptions.disabled = true;
+                guiCheckBox.disabled = false;
+                functionWordCheckBox.disabled = false;
+                wordnetCheckBox.disabled = false;
+                repfinderCheckBox.disabled = false;
+                sentComputeTabCheckBox.disabled = false;
+            }
+        } 
+
+        function beginEndKSentenceCheckBox() {
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var beginKsentencesNum = document.getElementById("begin-k-sentences");
+            var endKsentencesNum = document.getElementById("end-k-sentences");
+
+            var guiCheckBox = document.getElementById("guis_avail");
+            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+
+            if(repfinderCheckBox.checked) {
+                beginKsentencesNum.disabled = false;
+                endKsentencesNum.disabled = false;
+
+                guiCheckBox.disabled = true;
+                functionWordCheckBox.disabled = true;
+                wordnetCheckBox.disabled = true;
+                searchWordCheckBox.disabled = true;
+                sentComputeTabCheckBox.disabled = true;
+            } else {
+                beginKsentencesNum.disabled = true;
+                endKsentencesNum.disabled = true;
+
+                guiCheckBox.disabled = false;
+                functionWordCheckBox.disabled = false;
+                wordnetCheckBox.disabled = false;
+                searchWordCheckBox.disabled = false;
+                sentComputeTabCheckBox.disabled = false;
+            }
+        } 
+
+        function sentComputeTabCheckBox() {
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table");
+            
+            var guiCheckBox = document.getElementById("guis_avail");
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
+            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
+            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+            
+            if(sentComputeTabCheckBox.checked) {
+                guiCheckBox.disabled = true;
+                repfinderCheckBox.disabled = true;
+                functionWordCheckBox.disabled = true;
+                wordnetCheckBox.disabled = true;
+                searchWordCheckBox.disabled = true;
+            } else {
+                guiCheckBox.disabled = false;
+                repfinderCheckBox.disabled = false;
+                functionWordCheckBox.disabled = false;
+                wordnetCheckBox.disabled = false;
+                searchWordCheckBox.disabled = false;
+            }
+
+        }
+
         document.getElementById("guis_avail").addEventListener("change", guiCheckBox);
+        document.getElementById("clause-noun-verb-function").addEventListener("change", functionWordCheckBox);
+        document.getElementById("wordnet-classification-noun-verb").addEventListener("change", wordnetCheckBox);
+        document.getElementById("search-token-word-checkbox").addEventListener("change", searchWordCheckBox);
+        document.getElementById("repetition-finder").addEventListener("change", beginEndKSentenceCheckBox);
+        document.getElementById("compute-sentence-table").addEventListener("change", sentComputeTabCheckBox);
     </script>
         
 </div>
