@@ -111,6 +111,11 @@ input[type="checkbox"]:checked::after {
   position: absolute;
   left: 3px;
   font-size: 10px;
+} 
+
+input[type="checkbox"]:disabled {
+  background-color: #c6c6c6;
+  border-color: #767676;
 }
 
 /* Adjustments for responsiveness */
