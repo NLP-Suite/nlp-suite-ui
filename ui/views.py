@@ -128,6 +128,14 @@ def word2vec(request: HttpRequest):
             messages.add_message(request, messages.ERROR, response.content.decode())
     return render(request, "word2vec.html")
 
+def wordnet(_: HttpRequest): 
+    template = loader.get_template("../templates/wordnet.html")
+    return HttpResponse(template.render())
+
+def wordnet(_: HttpRequest): 
+    template = loader.get_template("../templates/wordnet.html")
+    return HttpResponse(template.render())
+
 def filesearchword(_: HttpRequest):
     template = loader.get_template("../templates/filesearchword.html")
     return HttpResponse(template.render())
