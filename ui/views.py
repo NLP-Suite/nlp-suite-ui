@@ -97,9 +97,18 @@ def coNLL_table_analyzer_main(_: HttpRequest):
     template = loader.get_template("../templates/CoNLL_table_analyzer_main.html")
     return HttpResponse(template.render())
 
-def parsers_annotator(_: HttpRequest):
-    template = loader.get_template("../templates/parsers_annotator.html")
-    return HttpResponse(template.render())
+def parsers_annotators(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/parsers_annotators",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "parsers_annotators.html")
 
 def wordclouds(_: HttpRequest):
     template = loader.get_template("../templates/wordclouds.html")
