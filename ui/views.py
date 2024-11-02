@@ -132,10 +132,6 @@ def wordnet(_: HttpRequest):
     template = loader.get_template("../templates/wordnet.html")
     return HttpResponse(template.render())
 
-def wordnet(_: HttpRequest): 
-    template = loader.get_template("../templates/wordnet.html")
-    return HttpResponse(template.render())
-
 def filesearchword(_: HttpRequest):
     template = loader.get_template("../templates/filesearchword.html")
     return HttpResponse(template.render())
