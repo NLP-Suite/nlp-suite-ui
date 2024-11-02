@@ -114,9 +114,18 @@ def wordclouds(_: HttpRequest):
     template = loader.get_template("../templates/wordclouds.html")
     return HttpResponse(template.render())
 
-def word2vec(_: HttpRequest):
-    template = loader.get_template("../templates/word2vec.html")
-    return HttpResponse(template.render())
+def word2vec(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/word2vec",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "word2vec.html")
 
 def filesearchword(_: HttpRequest):
     template = loader.get_template("../templates/filesearchword.html")
