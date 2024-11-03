@@ -10,6 +10,7 @@ from django.http import (
 )
 from django.shortcuts import render
 from django.template import loader
+from django.http import FileResponse, Http404
 
 AGENT_SERVER_URL = os.getenv("AGENT_SERVER_URL", "http://172.16.0.11:3000")
 
@@ -142,3 +143,4 @@ def visual2(_: HttpRequest):
 def gis(_: HttpRequest):
     template = loader.get_template("../templates/gis.html")
     return HttpResponse(template.render())
+
