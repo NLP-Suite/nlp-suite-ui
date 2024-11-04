@@ -20,13 +20,11 @@
 
         <div class="form-row">
             <button onclick="openPDFPopup()">Tips File</button>
-        
-            <script type="module" src = "{% static 'tips_files/tips_files.js' %}">
-                import { sentiment_analysis } from "{% static 'tips_files/tips_files.js' %}";
-
+            
+            <script src = "{%static 'css/tips_files.js' %}"></script>
+            <script>
                 function openPDFPopup() {
-                    const base64PDF = sentiment_analysis(); // Call the function from the imported module
-                    
+                    const base64PDF = sentiment_analysis();
                     const pdfWindow = window.open('', 'pdfPopup', 'width=800,height=600');
                     pdfWindow.document.write(`
                         <html>
