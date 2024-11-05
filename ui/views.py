@@ -144,3 +144,6 @@ def gis(_: HttpRequest):
     template = loader.get_template("../templates/gis.html")
     return HttpResponse(template.render())
 
+def NER(_: HttpRequest):
+    template = loader.get_template("../templates/NER.html")
+    return HttpResponse(template.render())
