@@ -24,7 +24,7 @@
             <script src = "{%static 'css/tips_files.js' %}"></script>
             <script>
                 function openPDFPopup() {
-                    const base64PDF = sentiment_analysis();
+                    const base64PDF = sentiment_analysis_tips();
                     const pdfWindow = window.open('', 'pdfPopup', 'width=800,height=600');
                     pdfWindow.document.write(`
                         <html>

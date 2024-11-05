@@ -4,6 +4,7 @@
 {%load static %}
 <div class="sentiment-analysis-container">
     <h1>SVO(Subject-Verb-Object) extractor & visualization</h1>
+    {% csrf_token %}
 
     <div class = "form-row">
         <label for="inputDirectory" class = "numberInput">Input Directory:</label>
@@ -20,7 +21,7 @@
         <script src = "{%static 'css/tips_files.js' %}"></script>
         <script>
             function openPDFPopup() {
-                const base64PDF = svo();
+                const base64PDF = svo_tips();
                 const pdfWindow = window.open('', 'pdfPopup', 'width=800,height=600');
                 pdfWindow.document.write(`
                     <html>
