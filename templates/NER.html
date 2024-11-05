@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="sentiment-analysis-container">
-<h1>Name Entity Recognition</h1>
+<h1>NER (Name Entity Recognition) Annotator</h1>
 <form method="post" class="topic-modeling-form">
     {% csrf_token %}
     
@@ -14,15 +14,10 @@
         <label for="outputDirectory">Output Directory:</label>
         <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
     </div>
-   ]    
 
    <div class= "form-row">
         <button> Pre-processing tools (file checking & cleaning GUI)</button>
    </div>
-
-    <div class = "form-row">
-        <button onclick="alert('Button clicked!')">Click Me</button>
-    </div>
 
     <div class="form-row">
         <label for="ner_algorithm">NER packages</label>
