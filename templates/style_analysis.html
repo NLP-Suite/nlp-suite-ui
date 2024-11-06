@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{%load static %}
 <div class="sentiment-analysis-container">
     <h1>Style analysis(ALL options GUI)</h1>
-
+    {% csrf_token %}
     <div class = "form-row">
         <label for="inputDirectory" class = "numberInput">Input Directory:</label>
         <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
@@ -11,6 +12,25 @@
     <div class = "form-row">
         <label for="outputDirectory">Output Directory:</label>
         <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+    </div>
+    <div class="form-row">
+        <button onclick="openPDFPopup()">Tips File</button>
+        
+        <script src = "{%static 'css/tips_files.js' %}"></script>
+        <script>
+            function openPDFPopup() {
+                const base64PDF = style_analysis_tips();
+                const pdfWindow = window.open('', 'pdfPopup', 'width=800,height=600');
+                pdfWindow.document.write(`
+                    <html>
+                    <head><title>PDF Viewer</title></head>
+                    <body style="margin: 0; overflow: hidden;">
+                        <embed src="${base64PDF}" type="application/pdf" width="100%" height="100%">
+                    </body>
+                    </html>
+                `);
+            }
+        </script>
     </div>
         <div class="button-container">
             <div class = "form-row">

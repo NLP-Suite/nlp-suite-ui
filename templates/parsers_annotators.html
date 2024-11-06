@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 80%; margin: 20px auto; padding: 20px;">
+    <h1 style="text-align: left; font-size: 30px; margin-bottom: 20px;">Parsers & Annotators (BERT, CoreNLP, spaCy, Stanza)</h1>
+
+    <form method="POST" action="{% url 'parsers_annotators' %}">
+        {% csrf_token %}
+        <div class="form-row" style="margin-bottom: 20px;">
+            <label for="inputDirectory" class="numberInput">Input Directory:</label>
+            <input type="text" name="inputDir" value="~/nlp-suite/input" style="width: 100%; max-width: 400px; padding: 10px;" />
+        </div>
+        <div class="form-row" style="margin-bottom: 20px;">
+            <label for="outputDirectory">Output Directory:</label>
+            <input type="text" name="outputDir" value="~/nlp-suite/output" style="width: 100%; max-width: 400px; padding: 10px;" />
+        </div>
+
+        <!-- Pre-processing options -->
+        <div class="form-row" style="margin-bottom: 20px;">
+            <label>
+                <input type="checkbox" id="pre-processing" name="openOutputFiles">
+                GUIs available for pre-processing
+            </label>
+            <select id="text-processing-tools" name="chartPackage" style="width: 100%; max-width: 420px; padding: 10px;">
+                <option value="file-checking-cleaning">File checking & cleaning</option>
+                <option value="coreference-resolution">Coreference resolution</option>
+            </select>
+        </div>
+
+        <!-- Parsers and annotators options -->
+        <div class="form-row" style="margin-bottom: 20px;">
+            <label>
+                <input type="checkbox" id="parsers" name="parser_var">
+                Parsers for Standard CoreNLP
+            </label>
+            <select id="parsers-tool" name="parser_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
+                <option value="Neural Network">Neural Network</option>
+                <option value="PCFG (Probabilistic Context Free Grammar)">PCFG (Probabilistic Context Free Grammar)</option>
+            </select>
+        </div>
+
+        <!-- CoNLL Table Analyzer -->
+        <div class="form-row" style="margin-bottom: 20px;">
+            <label>
+                <input type="checkbox" id="conll-table-analyzer" name="CoNLL_table_analyzer_var">
+                CoNLL Table Analyzer
+            </label>
+        </div>
+
+        <!-- Annotators section -->
+        <div class="form-row" style="margin-bottom: 20px;">
+            <label>
+                <input type="checkbox" id="annotator" name="annotators_var">
+                Annotators
+            </label>
+            <select id="nlp-tools" name="annotators_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
+                <optgroup label="Fundamental NLP tools">
+                    <option value="Sentence splitter">Sentence splitter</option>
+                    <option value="Lemma annotator">Lemma annotator</option>
+                    <option value="POS annotator">POS annotator</option>
+                    <option value="NER">NER</option>
+                </optgroup>
+                <optgroup label="Special annotators">
+                    <option value="Coreference PRONOMINAL resolution">Coreference PRONOMINAL resolution</option>
+                    <option value="Sentiment analysis">Sentiment analysis</option>
+                    <option value="OpenIE - Relation triples extractor">OpenIE - Relation triples extractor</option>
+                    <option value="SVO extraction">SVO extraction</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <!-- Transformation options -->
+        <div class="form-row" style="margin-bottom: 20px;">
+            <label for="transformation">Transformation:</label>
+            <select id="transformation" name="dataTransformation" style="width: 100%; max-width: 420px; padding: 10px;">
+                <option value="no_transformation">No transformation</option>
+                <option value="ln">Ln</option>
+                <option value="log">Log</option>
+                <option value="square_root">Square root</option>
+                <option value="z_score">Z score</option>
+            </select>
+        </div>
+
+        <!-- Manual coreference resolution option -->
+        <div class="form-row" style="margin-bottom: 20px;">
+            <label for="manual-coref">
+                <input type="checkbox" id="manual-coref" name="manual_Coref">
+                Enable Manual Coreference Resolution
+            </label>
+        </div>
+
+        <!-- Single Quote Handling -->
+        <div class="form-row" style="margin-bottom: 20px;">
+            <label for="single-quote">
+                <input type="checkbox" id="single-quote" name="single_quote">
+                Single Quote Handling
+            </label>
+        </div>
+
+        <!-- TIPS Files Section -->
+        <div class="form-row" style="margin-bottom: 20px;">
+            <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
+            <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
+                <option value="" disabled selected>Select an option</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20memory%20issues.pdf" >Stanford CoreNLP memory issues</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20OpenIE.pdf" >Stanford CoreNLP OpenIE</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20parser.pdf" >Stanford CoreNLP parser</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20download%20install%20run.pdf" >Stanford CoreNLP download</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20performance%20and%20accuracy.pdf" >Stanford CoreNLP performance & accuracy</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20coreference%20resolution.pdf" >Stanford CoreNLP coreference resolution</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Text%20encoding.pdf" >utf-8 encoding</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20Enabling%20macros.pdf" >Excel - Enabling Macros</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20smoothing%20data%20series.pdf">Excel smoothing data series</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_English%20Language%20Benchmarks.pdf" >English Language Benchmarks</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Overall%20view.pdf" >Things to do with words: Overall view</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20supported%20languages.pdf" >Stanford CoreNLP supported languages</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20CoNLL%20table.pdf" >CoNLL table</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_CoreNLP_NER%20(Named%20Entity%20Recognition).pdf" >CoreNLP NER (Named Entity Recognition)</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_NER%20tags%20across%20packages.pdf" >NER tags across packages</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_POSTAG%20(Part%20of%20Speech%20Tags)%20Stanford%20CoreNLP.pdf" >POSTAG (Part of Speech Tags)</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_DEPREL%20(Dependency%20Relations)%20Stanford%20CoreNLP.pdf" >DEPREL (Stanford Dependency Relations)</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20gender%20annotator.pdf" >Stanford CoreNLP gender annotator</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20date%20extractor.pdf" >Stanford CoreNLP date extractor</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Sentiment%20analysis.pdf" >Sentiment analysis</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Noun%20analysis.pdf" >Noun Analysis</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Verb%20analysis.pdf" >Verb Analysis</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Function%20Words%20Analysis.pdf" >Function Words Analysis</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Clause%20analysis.pdf" >Clause analysis</option>
+            </select>
+        </div>
+
+        <!-- Form submission buttons -->
+        <div class="buttons-section" style="margin-top: 20px; text-align: center;">
+            <button type="reset" class="reset-button">Reset</button>
+            <button type="submit" class="run-button">Run</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

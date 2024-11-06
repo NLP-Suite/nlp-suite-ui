@@ -10,6 +10,7 @@ from django.http import (
 )
 from django.shortcuts import render
 from django.template import loader
+from django.http import FileResponse, Http404
 
 AGENT_SERVER_URL = os.getenv("AGENT_SERVER_URL", "http://172.16.0.11:3000")
 
@@ -97,17 +98,39 @@ def coNLL_table_analyzer_main(_: HttpRequest):
     template = loader.get_template("../templates/CoNLL_table_analyzer_main.html")
     return HttpResponse(template.render())
 
-def parsers_annotator(_: HttpRequest):
-    template = loader.get_template("../templates/parsers_annotator.html")
-    return HttpResponse(template.render())
+def parsers_annotators(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/parsers_annotators",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "parsers_annotators.html")
 
 def wordclouds(_: HttpRequest):
     template = loader.get_template("../templates/wordclouds.html")
     return HttpResponse(template.render())
 
-def word2vec(_: HttpRequest):
-    template = loader.get_template("../templates/word2vec.html")
-    return HttpResponse(template.render()) 
+def word2vec(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/word2vec",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "word2vec.html")
+
+def wordnet(_: HttpRequest): 
+    template = loader.get_template("../templates/wordnet.html")
+    return HttpResponse(template.render())
 
 def wordnet(_: HttpRequest): 
     template = loader.get_template("../templates/wordnet.html")
@@ -128,7 +151,10 @@ def visual2(_: HttpRequest):
 def gis(_: HttpRequest):
     template = loader.get_template("../templates/gis.html")
     return HttpResponse(template.render())
-
 def genderanalysis(_: HttpRequest): 
     template = loader.get_template("../templates/gender_analysis.html")
+    return HttpResponse(template.render())
+
+def NER(_: HttpRequest):
+    template = loader.get_template("../templates/NER.html")
     return HttpResponse(template.render())

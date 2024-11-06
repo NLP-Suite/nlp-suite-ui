@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{%load static %}
 <div class="sentiment-analysis-container">
     <h1>Shape of Stories</h1>
     <form method="post" class="ngram-CoOcc-form">
@@ -15,7 +16,26 @@
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
         </div>
-
+        
+        <div class="form-row">
+            <button onclick="openPDFPopup()">Tips File</button>
+            
+            <script src = "{%static 'css/tips_files.js' %}"></script>
+            <script>
+                function openPDFPopup() {
+                    const base64PDF = shape_of_stories_tips();
+                    const pdfWindow = window.open('', 'pdfPopup', 'width=800,height=600');
+                    pdfWindow.document.write(`
+                        <html>
+                        <head><title>PDF Viewer</title></head>
+                        <body style="margin: 0; overflow: hidden;">
+                            <embed src="${base64PDF}" type="application/pdf" width="100%" height="100%">
+                        </body>
+                        </html>
+                    `);
+                }
+            </script>
+        </div>
         <div class="form-row">
             <label>
                 <input type="checkbox" id="sentiment_analysis" name="sentiment_analysis" checked>

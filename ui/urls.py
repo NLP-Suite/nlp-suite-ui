@@ -32,14 +32,16 @@ urlpatterns = [
     path('topic_modeling', views.topic_modeling, name='topic_modeling'),
     path('N-Grams_Co-Occurrences', views.nGram_CoOccurrences, name='N-Grams_Co-Occurrences'),
     path('CoNLL_table_analyzer_main', views.coNLL_table_analyzer_main, name='CoNLL_table_analyzer_main'),
-    path('parsers_annotator', views.parsers_annotator, name='parsers_annotator'),
+    path('parsers_annotators', views.parsers_annotators, name='parsers_annotators'),
     path('wordclouds', views.wordclouds, name='wordclouds'),
     path('word2vec', views.word2vec, name='word2vec'),
+    path('wordnet', views.wordnet, name='wordnet'),
     path('wordnet', views.wordnet, name='wordnet'),
     path('filesearchword', views.filesearchword, name='filesearchword'),
     path('visual1', views.visual1, name='visual1'),
     path('visual2', views.visual2, name='visual2'),
     path('gis', views.gis, name='gis'),
     path('gender_analysis', views.genderanalysis, name='gender_analysis')
+    path('NER', views.NER, name="NER"),
 ]
 
