@@ -40,6 +40,7 @@ urlpatterns = [
     path('visual1', views.visual1, name='visual1'),
     path('visual2', views.visual2, name='visual2'),
     path('gis', views.gis, name='gis'),
+    path('gender_analysis', views.genderanalysis, name='gender_analysis')
     path('NER', views.NER, name="NER"),
 ]
 
