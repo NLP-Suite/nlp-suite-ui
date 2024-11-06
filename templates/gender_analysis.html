@@ -67,9 +67,10 @@
         </form>
     </div>
     <div class="form-row">
-        <input type="checkbox" id="generate_ss_file" name="generate_ss_file" style="margin-right: 10px;"/>  
+        <input type="checkbox" id="ss_files" name="ss_files" style="margin-right: 10px;"/>  
         <label>Generate new US Social Security files (by US State, Year of birth, US State & Year of birth)</label>
-        <input type="file" id="ss_file" name="ss_file" style="margin-right: 10px;" disabled/>
+        <input type="file" id="ss_file" name="ss_file" style="margin-right: 10px;" multiple/>
+        <button type="button" onclick="upload_ss_file()">Upload Files</button>
     </div>  
 
     <div class="form-row">
@@ -138,7 +139,6 @@
                 <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20smoothing%20data%20series.pdf">Excel smoothing data series</option>
                 <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
                 <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
-
             </select>
     </div>
 
@@ -146,6 +146,41 @@
         <button type="reset" class="reset-button">Reset</button>
         <button type="submit" class="run-button">Run</button>
     </div> 
+
+    <script> 
+        function upload_ss_file() {
+            const files = document.getElementById('ss_file').files; // as files list 
+
+            if(files.length !== 2) {
+                alert("Please select 2 files.");
+                return;
+            } 
+
+            const formData = new FormData();
+    
+            for (let i = 0; i < files.length; i++) {
+                formData.append('new_SS_folders', files[i]); 
+            } 
+            
+            fetch('/undefined_endpoint/', {
+                method: 'POST',
+                body: formData
+            }) 
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Network Response Error');
+            }
+            return response.json(); // or text
+            })
+            .then(data => {
+                alert("Files uploaded successfully!");
+            })
+            .catch(error => {
+                console.error("There was a problem with the file upload:", error);
+                alert("Failed to upload files. Please try again.");
+            });
+        }
+    </script>
 </div>
 
 {% endblock %}
