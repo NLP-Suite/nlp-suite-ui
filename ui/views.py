@@ -128,3 +128,7 @@ def visual2(_: HttpRequest):
 def gis(_: HttpRequest):
     template = loader.get_template("../templates/gis.html")
     return HttpResponse(template.render())
+
+def genderanalysis(_: HttpRequest): 
+    template = loader.get_template("../templates/gender_analysis.html")
+    return HttpResponse(template.render())
