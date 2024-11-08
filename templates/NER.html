@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="sentiment-analysis-container">
-<h1>Name Entity Recognition</h1>
+<h1>NER (Name Entity Recognition) Annotator</h1>
 <form method="post" class="topic-modeling-form">
     {% csrf_token %}
     
@@ -14,14 +14,68 @@
         <label for="outputDirectory">Output Directory:</label>
         <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
     </div>
-   ]    
 
    <div class= "form-row">
         <button> Pre-processing tools (file checking & cleaning GUI)</button>
    </div>
 
-    <div class = "form-row">
-        <button onclick="alert('Button clicked!')">Click Me</button>
+    <div class="form-row">
+        <label for="ner_algorithm">NER packages</label>
+        <select id="ner_algorithm" name="ner_algorithm">
+            <optgroup label="ner_packages_approaches">
+                <option value="*">*</option>
+                <option value="BERT English">BERT (English model)</option>
+                <option value="ibm">IBM</option>
+                <option value="spacy">spaCy</option>
+                <option value="Stanford CoreNLP">Stanford CoreNLP</option>
+                <option value="Stanza">Stanza</option>
+                
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="ner_tags">NER tags</label>
+        <select id="ner_tags" name="ner_tags">
+            <optgroup label="ner_tags">
+                <option value="all_ner_tags">All NER tags</option>
+                <option value="all_quant_expressions">--- All quantitative expresisons</option>
+                <option value="number">NUMBER</option>
+                <option value="ordinal">ORDINAL</option>
+                <option value="percent">PERCENT</option>
+                <option value="all_social_actors">--- All social actors</option>
+                <option value="person">PERSON</option>
+                <option value="organization">ORGANIZATION</option>
+                <option value="all_spatial_expressions">--- All spatial expressions</option>
+                <option value="city">CITY</option>
+                <option value="state_or_province">STATE_OR_PROVINCE</option>
+                <option value="country">COUNTRY</option>
+                <option value="location">LOCATION</option>
+                <option value="all_temporal_expressions">--- All temporal expressions</option>
+                <option value="date">DATE</option>
+                <option value="time">TIME</option>
+                <option value="duration">DURATION</option>
+                <option value="set">SET</option>
+                <option value="all_other_expressions">--- All other expressions</option>
+                <option value="cause_of_death">CAUSE_OF_DEATH</option>
+                <option value="criminaL_charge">CRIMINAL_CHARGE</option>
+                <option value="email">EMAIL</option>
+                <option value="ideology">IDEOLOGY</option>
+                <option value="misc">MISC</option>
+                <option value="money">MONEY</option>
+                <option value="nationality">NATIONALITY</option>
+                <option value="religion">RELIGION</option>s
+                <option value="title">TITLE</option>
+                <option value="url">URL</option>
+            </optgroup>
+        </select>
+
+        <button type="button">+</button>
+        <button type="button">Reset</button>
+        &nbsp;&nbsp;&nbsp; 
+        
+        <label for="ner_list">NER list</label>
+        <input type="words" id="ner_list" name="ner_list" disabled>
     </div>
 
     

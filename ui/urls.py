@@ -35,9 +35,12 @@ urlpatterns = [
     path('parsers_annotators', views.parsers_annotators, name='parsers_annotators'),
     path('wordclouds', views.wordclouds, name='wordclouds'),
     path('word2vec', views.word2vec, name='word2vec'),
+    path('wordnet', views.wordnet, name='wordnet'),
     path('filesearchword', views.filesearchword, name='filesearchword'),
     path('visual1', views.visual1, name='visual1'),
     path('visual2', views.visual2, name='visual2'),
     path('gis', views.gis, name='gis'),
+    path('gender_analysis', views.genderanalysis, name='gender_analysis'),
+    path('NER', views.NER, name="NER")
 ]
 

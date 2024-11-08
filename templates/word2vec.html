@@ -27,8 +27,15 @@
     </div>
     <div class="form-row">
         <label for="visualizationOption">Select visualization option</label>
-        <input type="button" id="plotWordVectorsButton" value="Plot word vectors">
-        <input type="button" id="dimensionButton" value="2D">
+        <select id="visualizationOption" name="plotWordVectors"  style="margin-right: 30px;">
+            <option value="2D">2D</option>
+            <option value="3D">3D</option>
+            </select>
+            
+        <select id="visualizationOption" name="dimension"  style="margin-right: 30px;">
+        <option value="Plot word vectors">Plot word vectors</option>
+         <option value="Do not plot word vectors">Do not plot word vectors</option>
+            </select>
     </div>
     <div class="form-row">
         <label>
@@ -44,22 +51,22 @@
     
     <div class="form-row" style="display: flex; align-items: center;">
         <label for="range4" style="margin-right: 10px;">K Means Minimum Value</label>
-        <input type="range" id="range4" name="range4" min="2" max="9" value="4" oninput="document.getElementById('range4Value').innerHTML = this.value" style="margin-right: 10px;">
+        <input type="range" id="range4" name="kMeansMin" min="2" max="9" value="4" oninput="document.getElementById('range4Value').innerHTML = this.value" style="margin-right: 10px;">
         <span id="range4Value" style="margin-right: 20px;">4</span>
     
         <label for="range6" style = "margin-right: 10px;">K Means Maximum Value</label>
-        <input type="range" id="range6" name="range6" min="3" max="15" value="6" oninput="document.getElementById('range6Value').innerHTML = this.value" style="margin-right: 10px;">
+        <input type="range" id="range6" name="kMeansMax" min="3" max="15" value="6" oninput="document.getElementById('range6Value').innerHTML = this.value" style="margin-right: 10px;">
         <span id="range6Value" style="margin-right: 30px;">6</span> <!-- Increased margin -->
     
         <label for="ngrams" style="margin-right: 10px;">N-grams</label>
-        <select id="ngramsDropDown"  style="margin-right: 30px;">
+        <select id="ngramsDropDown" name="ngrams"  style="margin-right: 30px;">
         <option value="1">1-grams</option>
         <option value="2">2-grams</option>
         <option value="3">3-grams</option>
         <option value="4">4-grams</option>
-
+        </select>
     
-        <label for="range20"></label>
+        <label for="range20" style="margin-right: 10px;">Top Keywords</label>
         <input type="range" id="range20" name="range20" min="5" max="20" value="10" oninput="document.getElementById('range10Value').innerHTML = this.value" style="margin-right: 10px;">
         <span id="range10Value">10</span>
     </div>
@@ -104,7 +111,7 @@
     </div>
     <div class="form-row">
         <label for="keywords" style="margin-right: 10px;">Keywords</label>
-        <input type="text" id="keywords" name="keywords" style="width: 100%;">
+        <input type="text" id="keywords" name="keyWords" style="width: 100%;">
     </div>
     
     <div class = "form-row">

@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+<div class="sentiment-analysis-container">
+    <h1>Gender Analysis</h1>
+    {% csrf_token %} 
+
+    <form method="post" class="gender_analysis"></form>  
+    <div class="form-row"> 
+        <label for="inputDirectory">Input Directory:</label>
+        <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+    </div> 
+
+    <div class="form-row">
+        <label for="outputDirectory">Output Directory:</label>
+        <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+    </div> 
+
+    <div class = "form-row">
+        <label for="input_csv_file" style="margin-right: 10px;">Select INPUT CSV file</label>
+        <input type="file" id="input_csv_file" name="input_csv_file" style="margin-right: 10px;">
+    </div> 
+
+    <div class="form-row">
+        <input type="checkbox" id="CoreNLP_gender_annotator_var" name="CoreNLP_gender_annotator_var" style="margin-right: 10px;"/>  
+        <label>Annotate nouns & pronouns gender (via CoreNLP Gender annotator - Neural Network)</label>
+    </div>  
+
+    <div class="form-row">
+        <input type="checkbox" id="CoreNLP_download_gender_file_var" name="CoreNLP_download_gender_file_var" style="margin-right: 10px;"/>  
+        <label>Download CoreNLP gender file</label>
+        <input type="checkbox" id="CoreNLP_upload_gender_file_var" name="CoreNLP_upload_gender_file_var" style="margin-right: 10px;"/>  
+        <label>Upload CoreNLP gender file</label>
+    </div>  
+
+    <div class="form-row">
+        <input type="checkbox" id="annotator_dictionary_var" name="annotator_dictionary_var" style="margin-right: 10px;"/>  
+        <label>Annotate first names by gender (via selected dictionary file)</label>
+    </div>  
+
+    <div class="form-row">
+        <label>Select dictionary file</label>
+        <input type="file" id="select-dic-file" name="select-dic-file" style="margin-right: 10px;"/>
+        <label>Select csv file</label>  
+        <input type="file" id="select-csv-file" name="select-csv-file" style="margin-right: 10px;"/>  
+    </div>  
+
+    <div class="form-row">
+        <input type="checkbox" id="plot_var" name="plot_var" style="margin-right: 10px;"/>  
+        <label>Process names via US SS</label>
+
+        <label style="margin-left: 20px;">By US/State/Year</label>
+        <select id="year_state_var" name="year_state_var">  
+            <option value="state"> State </option>
+            <option value="year_of_birth"> Year Of Birth</option>
+            <option value="state&year_of_birth"> State and Year Of Birth</option>
+        </select>
+
+        <label style="margin-left: 20px;">Enter Name</label>
+        <input type="text" id="firstName_entry_var" name="firstName_entry_var" style="margin-right: 10px;"/>  
+    </div>  
+
+    <div class="form-row">
+        <form action="https://www.ssa.gov/oact/babynames/limits.html">
+            <input type="submit" value="Go to USS website" />
+        </form>
+    </div>
+    <div class="form-row">
+        <input type="checkbox" id="generate_ss_file" name="generate_ss_file" style="margin-right: 10px;"/>  
+        <label>Generate new US Social Security files (by US State, Year of birth, US State & Year of birth)</label>
+        <input type="file" id="ss_file" name="ss_file" style="margin-right: 10px;" disabled/>
+    </div>  
+
+    <div class="form-row">
+        <label>
+            <input type="checkbox" id="open-output-files" name="open-output-files"> 
+            Do NOT open output files 
+        </label> 
+
+        <select id="excel" name="excel"> 
+            <option value="no-charts">No Charts</option>
+            <option value="excel">Excel</option>
+            <option value="python-plotly-dynamic">Python Plotly Dynamic</option>
+            <option value="python-plotly-static">Python Plotly Static</option>
+        </select> 
+
+        <label> 
+            <input type="checkbox" id="python-opengui-barchart" name="python-opengui-barchart">
+            Python & Excel / Open GUI Bar chart
+        </label> 
+
+        <select id="bar-chart-python-gui" name="bar-chart-python-gui">
+            <option value="excel">No Charts</option>
+            <option value="excel">Excel</option>
+            <option value="python-plotly-dynamic">Python Plotly Dynamic</option>
+            <option value="python-plotly-static">Python Plotly Static</option>
+            <option value="bubble-radar-scatterplot"> Bubble, Radar, Scatter Plots </option>
+            <option value="boxplot">Box Plot</option>
+            <option value="colormap"> Colormap </option>
+            <option value="compartive-bar-chart"> Comparative Bar Chart </option>
+            <option value="geographic-map"> Geographic Map </option>
+            <option value="gephi"> Gephi </option>
+            <option value="sanky-flowchart"> Sanky Flowchart </option>
+            <option value="sunburst-chart"> Sunburst Chart </option>
+            <option value="time-mapper"> Time Mapper </option>
+            <option value="tree-map-chart"> Tree Map Chart </option>
+            <option value="wordcloud"> Wordcloud </option>
+        </select> 
+    </div>
+
+    <div class="form-row">
+        <label for="transformation">Transformation:</label>
+        <select id="transformation" name="transformation">
+            <option value="no_transformation">No transformation</option>
+            <option value="Ln">Ln</option>
+            <option value="Log">Log</option>
+            <option value="Square">Square root</option>
+            <option value="Z score">Z score</option>
+        </select>
+        <label for="dataTools">Data Tools:</label>
+        <select id="dataTools" name="dataTools">
+            <option value="data_sampling">Data/corpus sampling</option>
+            <option value="data_manipulation">Data manipulation</option>
+            <option value="data_statistics">Data statistics</option>
+            <option value="data_visualization_1">Data visualization 1</option>
+            <option value="data_visualization_2">Data visualization 2</option>
+        </select>
+        <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
+            <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
+                <option value="" disabled selected>Select an option</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20(word%20%26%20character).pdf">N-Grams (word & character)</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20Google%20Ngram%20Viewer.pdf">Google Ngram Viewer</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20and%20Word%20Co-Occurrence%20VIEWER.pdf">NLP Ngram and Word Co-Occurrence VIEWER</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Style%20analysis.pdf" >Style analysis</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_English%20Language%20Benchmarks.pdf" >English Language Benchmarks</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Overall%20view.pdf" >Things to do with words: Overall view</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20smoothing%20data%20series.pdf">Excel smoothing data series</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
+
+            </select>
+    </div>
+
+    <div class="buttons-section">
+        <button type="reset" class="reset-button">Reset</button>
+        <button type="submit" class="run-button">Run</button>
+    </div> 
+</div>
+
+{% endblock %}

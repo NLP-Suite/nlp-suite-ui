@@ -1,0 +1,295 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<div class="sentiment-analysis-container"> 
+    <h1>Wordnet</h1> 
+    {% csrf_token %} 
+
+    <form method="post" class="wordnet"></form>  
+        <div class="form-row"> 
+            <label for="inputDirectory">Input Directory:</label>
+            <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+        </div> 
+
+        <div class="form-row">
+            <label for="outputDirectory">Output Directory:</label>
+            <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+        </div> 
+
+        <div class = "form-row">
+            <label for="input_csv_file" style="margin-right: 10px;">Select INPUT CSV file</label>
+            <input type="file" id="input_csv_file" name="input_csv_file" style="margin-right: 10px;">
+        </div> 
+
+        <div class="form-row"> 
+            <input type="checkbox" id="zoom-in-related-words" name="zomm-in-related-words" style="margin-right: 10px;"/> 
+            <label >Zoom IN/DOWN to find related words</label>
+
+            <label style="margin-left: 30px">Top-Level Synset</Label> 
+            <select id="top-level-synset" name="top-level-synset" disabled> 
+                <option> act</option>
+                <option> animal</option>
+                <option> artifact</option>
+            </select> 
+
+            <label style="margin-left: 30px"> Your synsets </label>
+            <input type="text" id="your-synset" name="your-synset" disabled/>
+        </div>  
+
+        <div class="form-row">
+            <input type="checkbox" id="annotate-corpus-checkbox" name="annotate-corpus-checkbox" style="margin-right: 10px;"/>  
+            <label>Annotate corpus (using Wordnet csv output file from Zoom IN/DOWN) </label>
+            <input type="file" id="annotate-corpus-file" name="annotate-corpus-file" disabled/> 
+        </div>  
+
+        <div class="form-row"> 
+            <input type="checkbox" id="extract-proper-noun-checkbox" name="extract-proper-noun-checkbox" style="margin-right: 10px;"/>  
+            <label>Extract PROPER nouns (using Wordnet csv output file from Zoom IN/DOWN) </label>
+            <input type="file" id="extract-proper-noun-from-csv" name="extract-proper-noun-from-csv" disabled/> 
+        </div>  
+
+        <div class="form-row">
+            <input type="checkbox" id="extract-improper-noun-checkbox" name="extract-improper-noun-checkbox" style="margin-right: 10px;"/> 
+            <label>Extract IMPROPER nouns (using Wordnet csv output file from Zoom IN/DOWN) </label> 
+            <input type="file" id="extract-improper-noun-from-csv" name="extract-improper-noun-from-csv" disabled/> 
+        </div>
+
+        <div class="form-row">
+            <input type="checkbox" id="zoom-out-up" name="zoom-out-up" style="margin-right: 10px;"/>  
+            <label>Zoom OUT/UP (classify/aggregate lemmatized words in csv file) </label> 
+            <input type="file" id="classify-aggregate-lemmatized-csv" name="classify-aggregate-lemmatized-csv" disabled/> 
+        </div>  
+
+        <div class="form-row"> 
+            <input type="checkbox" id="extract-noun-verb-conll" name="extract-noun-verb-conll" style="margin-right: 10px;"/>  
+            <label>Extract nouns & verbs from CoNLL table (for Zoom OUT/UP) </label>
+            <input type="file" id="extract-noun-verb-conll-csv" name="extract-noun-verb-conll-csv" disabled/> 
+        </div>  
+
+        <div class="form-row"> 
+            <input type="checkbox" id="zoom-out-classify-aggregate-input" name="zoom-out-classify-aggregate-input" style="margin-right: 10px;" /> 
+            <label>Zoom OUT/UP (classify/aggregate input text documents by CoreNLP NOUN & VERB POS) tags and WordNet NOUN & VERB synsets </label>
+        </div>  
+
+        <div class="form-row"> 
+            <input type="checkbox" id="zoom-out-sentenceID" name="zoom-out-sentenceID" style="margin-right: 10px;" /> 
+            <label> Zoom OUT/UP by Sentence ID </label> 
+            <input type="file" id="zoom-out-sentenceID-csv" name="zoom-out-sentenceID-csv" disabled/> 
+
+            <label>csv file of WordNet classified/aggregated words </label>
+            <input type="file" id="wordnet-classified-aggregated-csv" name="wordnet-classified-aggregated-csv" disabled/> <!-- Activated when zoom out sentenceID checkbox's chekced-->
+        </div>   
+
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="open-output-files" name="open-output-files"> 
+                Do NOT open output files 
+            </label> 
+
+            <select id="excel" name="excel"> 
+                <option value="no-charts">No Charts</option>
+                <option value="excel">Excel</option>
+                <option value="python-plotly-dynamic">Python Plotly Dynamic</option>
+                <option value="python-plotly-static">Python Plotly Static</option>
+            </select> 
+
+            <label> 
+                <input type="checkbox" id="python-opengui-barchart" name="python-opengui-barchart">
+                Python & Excel / Open GUI Bar chart
+            </label> 
+
+            <select id="bar-chart-python-gui" name="bar-chart-python-gui">
+                <option value="excel">No Charts</option>
+                <option value="excel">Excel</option>
+                <option value="python-plotly-dynamic">Python Plotly Dynamic</option>
+                <option value="python-plotly-static">Python Plotly Static</option>
+                <option value="bubble-radar-scatterplot"> Bubble, Radar, Scatter Plots </option>
+                <option value="boxplot">Box Plot</option>
+                <option value="colormap"> Colormap </option>
+                <option value="compartive-bar-chart"> Comparative Bar Chart </option>
+                <option value="geographic-map"> Geographic Map </option>
+                <option value="gephi"> Gephi </option>
+                <option value="sanky-flowchart"> Sanky Flowchart </option>
+                <option value="sunburst-chart"> Sunburst Chart </option>
+                <option value="time-mapper"> Time Mapper </option>
+                <option value="tree-map-chart"> Tree Map Chart </option>
+                <option value="wordcloud"> Wordcloud </option>
+            </select> 
+        </div>
+
+        <div class="form-row">
+            <label for="transformation">Transformation:</label>
+            <select id="transformation" name="transformation">
+                <option value="no_transformation">No transformation</option>
+                <option value="Ln">Ln</option>
+                <option value="Log">Log</option>
+                <option value="Square">Square root</option>
+                <option value="Z score">Z score</option>
+            </select>
+            <label for="dataTools">Data Tools:</label>
+            <select id="dataTools" name="dataTools">
+                <option value="data_sampling">Data/corpus sampling</option>
+                <option value="data_manipulation">Data manipulation</option>
+                <option value="data_statistics">Data statistics</option>
+                <option value="data_visualization_1">Data visualization 1</option>
+                <option value="data_visualization_2">Data visualization 2</option>
+            </select>
+            <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
+                <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20(word%20%26%20character).pdf">N-Grams (word & character)</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20Google%20Ngram%20Viewer.pdf">Google Ngram Viewer</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20and%20Word%20Co-Occurrence%20VIEWER.pdf">NLP Ngram and Word Co-Occurrence VIEWER</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Style%20analysis.pdf" >Style analysis</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_English%20Language%20Benchmarks.pdf" >English Language Benchmarks</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Overall%20view.pdf" >Things to do with words: Overall view</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20smoothing%20data%20series.pdf">Excel smoothing data series</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
+
+                </select>
+        </div>
+
+        <div class="buttons-section">
+            <button type="reset" class="reset-button">Reset</button>
+            <button type="submit" class="run-button">Run</button>
+        </div> 
+
+    <script>
+        function zoomInDownCheckbox() {
+            var zoomInDownCheckbox = document.getElementById("zoom-in-related-words");
+            var topLevelSynsetDropdown = document.getElementById("top-level-synset");
+            var yourSynsetDropdown = document.getElementById("your-synset");
+
+            var annotateCorpusCheckbox = document.getElementById("annotate-corpus-checkbox");
+            var extractProperNounCheckbox = document.getElementById("extract-proper-noun-checkbox");
+            var extractImproperNounCheckbox = document.getElementById("extract-improper-noun-checkbox");
+            var zoomOutUpCheckbox = document.getElementById("zoom-out-up");
+            var extractNounVerbCheckbox = document.getElementById("extract-noun-verb-conll");
+            var classifyAggregateInputCheckbox = document.getElementById("zoom-out-classify-aggregate-input");
+            var zoomOutSentenceIdCheckbox = document.getElementById("zoom-out-sentenceID"); 
+
+            if(zoomInDownCheckbox.checked) {
+                topLevelSynsetDropdown.disabled = false;
+                yourSynsetDropdown.disabled = false;
+
+                annotateCorpusCheckbox.disabled = true;
+                extractProperNounCheckbox.disabled = true;
+                extractImproperNounCheckbox.disabled = true;
+                zoomOutUpCheckbox.disabled = true;
+                extractNounVerbCheckbox.disabled = true;
+                classifyAggregateInputCheckbox.disabled = true;
+                zoomOutSentenceIdCheckbox.disabled = true;
+            } else {
+                topLevelSynsetDropdown.disabled = true;
+                yourSynsetDropdown.disabled = true;
+
+                annotateCorpusCheckbox.disabled = false;
+                extractProperNounCheckbox.disabled = false;
+                extractImproperNounCheckbox.disabled = false;
+                zoomOutUpCheckbox.disabled = false;
+                extractNounVerbCheckbox.disabled = false;
+                classifyAggregateInputCheckbox.disabled = false;
+                zoomOutSentenceIdCheckbox.disabled = false;
+            }
+        }  
+
+        function annotateCorpusCheckbox() {
+            var annotateCorpusCheckbox = document.getElementById("annotate-corpus-checkbox");
+
+            var zoomInDownCheckbox = document.getElementById("zoom-in-related-words");
+            var extractProperNounCheckbox = document.getElementById("extract-proper-noun-checkbox");
+            var extractImproperNounCheckbox = document.getElementById("extract-improper-noun-checkbox");
+            var zoomOutUpCheckbox = document.getElementById("zoom-out-up");
+            var extractNounVerbCheckbox = document.getElementById("extract-noun-verb-conll");
+            var classifyAggregateInputCheckbox = document.getElementById("zoom-out-classify-aggregate-input");
+            var zoomOutSentenceIdCheckbox = document.getElementById("zoom-out-sentenceID"); 
+
+            if(annotateCorpusCheckbox.checked) {
+                zoomInDownCheckbox.disabled = true;
+                extractProperNounCheckbox.disabled = true;
+                extractImproperNounCheckbox.disabled = true;
+                zoomOutUpCheckbox.disabled = true;
+                extractNounVerbCheckbox.disabled = true;
+                classifyAggregateInputCheckbox.disabled = true;
+                zoomOutSentenceIdCheckbox.disabled = true;
+            } else {
+                zoomInDownCheckbox.disabled = false;
+                extractProperNounCheckbox.disabled = false;
+                extractImproperNounCheckbox.disabled = false;
+                zoomOutUpCheckbox.disabled = false;
+                extractNounVerbCheckbox.disabled = false;
+                classifyAggregateInputCheckbox.disabled = false;
+                zoomOutSentenceIdCheckbox.disabled = false;
+            }
+        }  
+
+        function extractProperNounCheckbox() {
+            var extractProperNounCheckbox = document.getElementById("extract-proper-noun-checkbox");
+            
+            var zoomInDownCheckbox = document.getElementById("zoom-in-related-words");
+            var annotateCorpusCheckbox = document.getElementById("annotate-corpus-checkbox");
+            var extractImproperNounCheckbox = document.getElementById("extract-improper-noun-checkbox");
+            var zoomOutUpCheckbox = document.getElementById("zoom-out-up");
+            var extractNounVerbCheckbox = document.getElementById("extract-noun-verb-conll");
+            var classifyAggregateInputCheckbox = document.getElementById("zoom-out-classify-aggregate-input");
+            var zoomOutSentenceIdCheckbox = document.getElementById("zoom-out-sentenceID"); 
+
+            if(extractProperNounCheckbox.checked) {
+                zoomInDownCheckbox.disabled = true;
+                extractImproperNounCheckbox.disabled = true;
+                annotateCorpusCheckbox.disabled = true;
+                zoomOutUpCheckbox.disabled = true;
+                extractNounVerbCheckbox.disabled = true;
+                classifyAggregateInputCheckbox.disabled = true;
+                zoomOutSentenceIdCheckbox.disabled = true;
+            } else {
+                zoomInDownCheckbox.disabled = false;
+                extractImproperNounCheckbox.disabled = false;
+                annotateCorpusCheckbox.disabled = false;
+                zoomOutUpCheckbox.disabled = false;
+                extractNounVerbCheckbox.disabled = false;
+                classifyAggregateInputCheckbox.disabled = false;
+                zoomOutSentenceIdCheckbox.disabled = false;
+            }
+        }  
+
+        function extractImproperNounCheckbox() {
+            var extractImproperNounCheckbox = document.getElementById("extract-improper-noun-checkbox");
+
+            var extractProperNounCheckbox = document.getElementById("extract-proper-noun-checkbox");
+            var zoomInDownCheckbox = document.getElementById("zoom-in-related-words");
+            var annotateCorpusCheckbox = document.getElementById("annotate-corpus-checkbox");
+            var zoomOutUpCheckbox = document.getElementById("zoom-out-up");
+            var extractNounVerbCheckbox = document.getElementById("extract-noun-verb-conll");
+            var classifyAggregateInputCheckbox = document.getElementById("zoom-out-classify-aggregate-input");
+            var zoomOutSentenceIdCheckbox = document.getElementById("zoom-out-sentenceID"); 
+
+            if(extractImproperNounCheckbox.checked) {
+                zoomInDownCheckbox.disabled = true;
+                extractProperNounCheckbox.disabled = true;
+                annotateCorpusCheckbox.disabled = true;
+                extractNounVerbCheckbox.disabled = true;
+                zoomOutUpCheckbox.disabled = true;
+                classifyAggregateInputCheckbox.disabled = true;
+                zoomOutSentenceIdCheckbox.disabled = true;
+            } else {
+                zoomInDownCheckbox.disabled = false;
+                extractProperNounCheckbox.disabled = false;
+                annotateCorpusCheckbox.disabled = false;
+                zoomOutUpCheckbox.disabled = false;
+                extractNounVerbCheckbox.disabled = false;
+                classifyAggregateInputCheckbox.disabled = false;
+                zoomOutSentenceIdCheckbox.disabled = false;
+            }
+        }  
+        
+
+        document.getElementById("zoom-in-related-words").addEventListener("change", zoomInDownCheckbox);
+        document.getElementById("annotate-corpus-checkbox").addEventListener("change", annotateCorpusCheckbox);
+        document.getElementById("extract-proper-noun-checkbox").addEventListener("change", extractProperNounCheckbox);
+        document.getElementById("extract-improper-noun-checkbox").addEventListener("change", extractImproperNounCheckbox);
+        
+    </script>
+</div>
+{% endblock %}
