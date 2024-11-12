@@ -72,10 +72,18 @@ def shape_of_stories(_: HttpRequest):
     template = loader.get_template("../templates/shape_of_stories.html")
     return HttpResponse(template.render())
 
-
-def style_analysis(_: HttpRequest):
-    template = loader.get_template("../templates/style_analysis.html")
-    return HttpResponse(template.render())
+def style_analysis(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/style_analysis",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "style_analysis.html")
 
 def topic_modeling(request: HttpRequest):
     if request.method == "POST":
