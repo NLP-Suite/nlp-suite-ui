@@ -24,13 +24,13 @@
             <script src = "{%static 'css/tips_files.js' %}"></script>
             <script>
                 function openPDFPopup() {
-                    const base64PDF = sentiment_analysis_tips();
+                    const pdfUrl = "{% static 'css/TIPS_NLP_Sentiment analysis.pdf' %}"
                     const pdfWindow = window.open('', 'pdfPopup', 'width=800,height=600');
                     pdfWindow.document.write(`
                         <html>
                         <head><title>PDF Viewer</title></head>
                         <body style="margin: 0; overflow: hidden;">
-                            <embed src="${base64PDF}" type="application/pdf" width="100%" height="100%">
+                            <embed src="${pdfUrl}" type="application/pdf" width="100%" height="100%">
                         </body>
                         </html>
                     `);
