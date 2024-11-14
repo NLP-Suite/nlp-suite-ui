@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{%load static %}
+{% load static %}
 <div class="sentiment-analysis-container">
-    <h1>Style analysis(ALL options GUI)</h1>
+    <h1>Style analysis (ALL options GUI)</h1>
     {% csrf_token %}
-    <div class = "form-row">
-        <label for="inputDirectory" class = "numberInput">Input Directory:</label>
+    <div class="form-row">
+        <label for="inputDirectory" class="numberInput">Input Directory:</label>
         <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
     </div>
-    <div class = "form-row">
+    <div class="form-row">
         <label for="outputDirectory">Output Directory:</label>
         <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
     </div>
     <div class="form-row">
         <button onclick="openPDFPopup()">Tips File</button>
         
-        <script src = "{%static 'css/tips_files.js' %}"></script>
+        <script src="{% static 'css/tips_files.js' %}"></script>
         <script>
             function openPDFPopup() {
                 const base64PDF = style_analysis_tips();
@@ -32,164 +32,181 @@
             }
         </script>
     </div>
-        <div class="button-container">
-            <div class = "form-row">
-                <div>
-                    <div class = "form-row">
-                <label>
-                    <input type="checkbox" id="style-analysis" name="style-analysis" checked>
-                    GUIs available for style analysis
-                </label>
-                
-                    <select id="tools" name="tools">
-                      <option value="spell-check">Spelling/grammar checker</option>
-                      <option value="corpus-stats">Corpus statistics</option>
-                      <option value="ngrams">N-grams & Co-Occurrences</option>
-                      <option value="nominalization">Nominalization</option>
-                      <option value="conll">CoNLL table analyzer</option>
-                      <option value="wordnet">WordNet</option>
-                    </select>
-                </div>
-                  
-                <div>
 
-                <div>
-                    <div class = "form-row">
-                <label>
-                   <input type="checkbox" id="complexity-analysis" name="complexity-analysis">
-                    Complexity/readability analysis
-                </label>
-                <select id="analysis-dropdown" name="analysis-dropdown">
-                    <option value="*">*</option>
-                    <option value="sentence-complexity">Sentence complexity</option>
-                    <option value="text-readability">Text readability</option>
-                  </select>
-                </div>
-                <div>
-                <div>
-                    <div class = "form-row">
-                <label>    
-                    <input type="checkbox" id="vocabulary-analysis" name="vocabulary-analysis" checked>
-                    Vocabulary analysis
-                </label>
-                <select id="voc-options" name="voc-options">
-                    <option value="*">*</option>
-                    <option value="unigrams">Vocabulary (via unigrams) - List of all words/tokens in input document(s)</option>
-                    <option value="hapax-legomena-once">Vocabulary (via Hapax legomena, once-occurring words)</option>
-                    <option value="hapax-legomena-unigrams">Vocabulary (via Hapax legomena, once-occurring unigrams)</option>
-                    <option value="multilanguage-lemmatizer">Vocabulary (via Stanza multilanguage lemmatizer) - List of all words/tokens in input document(s)</option>
-                    <option value="nltk-unusual-words">Vocabulary (via NLTK unusual words)</option>
-                    <option value="vocabulary-richness">Vocabulary richness (word type/token ratio or Yule’s K)</option>
-                    <option value="abstract-concrete">Abstract/concrete vocabulary</option>
-                    <option value="objectivity-subjectivity">Objectivity/subjectivity (via spaCy)</option>
-                    <option value="punctuation-as-figures-of-pathos">Punctuation as figures of pathos(?!)</option>
-                    <option value="word-length">Word length</option>
-                    <option value="vowel-words">Vowel words</option>
-                    <option value="words-with-capital-initial">Words with capital initial (proper nouns)</option>
-                    <option value="language-detection">Language detection</option>
-                    <option value="repetition-words-in-first-k-and-last-k">Repetition: Words in first K and last K sentences</option>
-                    <option value="repetition-last-k-words">Repetition: Last K words of a sentence/First K words of next sentence</option>
-                    <option value="repetition-accross-sentences">Repetition across sentences (special ngrams)</option>
-                    
-                  </select>
-                </div>
+    <div class="button-container">
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="style-analysis" name="style-analysis" checked>
+                GUIs available for style analysis
+            </label>
+            <select id="tools" name="tools">
+                <option value="spell-check">Spelling/grammar checker</option>
+                <option value="corpus-stats">Corpus statistics</option>
+                <option value="ngrams">N-grams & Co-Occurrences</option>
+                <option value="nominalization">Nominalization</option>
+                <option value="conll">CoNLL table analyzer</option>
+                <option value="wordnet">WordNet</option>
+            </select>
+        </div>
+    
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="complexity_analysis" name="complexity_analysis">
+                Complexity/readability analysis
+            </label>
+            <select id="analysis_dropdown" name="analysis_dropdown">
+                <option value="*">*</option>
+                <option value="sentence-complexity">Sentence complexity</option>
+                <option value="text-readability">Text readability</option>
+            </select>
+        </div>
 
-                </div>    
-                <div class = "form-row">
-                    <label>
-                        <input type="checkbox" id="gender-guesser" name="gender-guesser">
-                        Who wrote the text - Gender guesser
-                    </label>
-                </div>  
-                <div class = "form-row">
-                    <label>
-                      <input type="checkbox" id="open-output-files" name="open-output-files" checked>
-                      Open output files
-                    </label>
-                  </div>  
-            </div>
-            
+        <div class="form-row">
+            <label>    
+                <input type="checkbox" id="vocabulary_analysis" name="vocabulary_analysis" checked>
+                Vocabulary analysis
+            </label>
+            <select id="voc_options" name="voc_options" onchange="toggleRatingSliders()">
+                <option value="*">*</option>
+                <option value="unigrams">Vocabulary (via unigrams) - List of all words/tokens in input document(s)</option>
+                <option value="hapax-legomena-once">Vocabulary (via Hapax legomena, once-occurring words)</option>
+                <option value="hapax-legomena-unigrams">Vocabulary (via Hapax legomena, once-occurring unigrams)</option>
+                <option value="multilanguage-lemmatizer">Vocabulary (via Stanza multilanguage lemmatizer) - List of all words/tokens in input document(s)</option>
+                <option value="nltk-unusual-words">Vocabulary (via NLTK unusual words)</option>
+                <option value="vocabulary-richness">Vocabulary richness (word type/token ratio or Yule’s K)</option>
+                <option value="abstract-concrete">Abstract/concrete vocabulary</option>
+                <option value="objectivity-subjectivity">Objectivity/subjectivity (via spaCy)</option>
+                <option value="punctuation-as-figures-of-pathos">Punctuation as figures of pathos(?!)</option>
+                <option value="word-length">Word length</option>
+                <option value="vowel-words">Vowel words</option>
+                <option value="words-with-capital-initial">Words with capital initial (proper nouns)</option>
+                <option value="language-detection">Language detection</option>
+                <option value="repetition-words-in-first-k-and-last-k">Repetition: Words in first K and last K sentences</option>
+                <option value="repetition-last-k-words">Repetition: Last K words of a sentence/First K words of next sentence</option>
+                <option value="repetition-accross-sentences">Repetition across sentences (special ngrams)</option>
+            </select>
+        </div>
 
-            <div class="form-row">
-                <label for="transformation">Transformation:</label>
-                <select id="transformation" name="transformation">
-                    <option value="no_transformation">No transformation</option>
-                    <option value="ln">Ln</option>
-                    <option value="log">Log</option>
-                    <option value="square_root">Square root</option>
-                    <option value="z_score">Z score</option>
-                </select>
-                <label for="dataTools">Data Tools:</label>
-                <select id="dataTools" name="dataTools">
-                    <option value="data_sampling">Data/corpus sampling</option>
-                    <option value="data_manipulation">Data manipulation</option>
-                    <option value="data_statistics">Data statistics</option>
-                    <option value="data_visualization_1">Data visualization 1</option>
-                    <option value="data_visualization_2">Data visualization 2</option>
-                </select>
-                <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
-                <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Style%20analysis.pdf" >Style analysis</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_English%20Language%20Benchmarks.pdf" >English Language Benchmarks</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Overall%20view.pdf" >Things to do with words: Overall view</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Clause%20analysis.pdf" >Clause analysis</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Text%20readability.pdf">Text readability</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Sentence%20complexity.pdf">Sentence complexity</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Yule%20-%20Measures%20of%20vocabulary%20richness.pdf" >Yule measures of vocabulary richness</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Language%20concreteness%20analysis.pdf" >Abstract/concrete language</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Iconic%20language.pdf" >Iconic language</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Objectivity_subjectivity%20(via%20spaCy%20and%20TextBlob).pdf" >Objective/subjective language</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Nominalization.pdf" >Nominalization</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20CoNLL%20table.pdf" >CoNLL table</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_POSTAG%20(Part%20of%20Speech%20Tags)%20Stanford%20CoreNLP.pdf" >POSTAG (Part of Speech Tags)</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_DEPREL%20(Dependency%20Relations)%20Stanford%20CoreNLP.pdf" >DEPREL (Stanford Dependency Relations)</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_NLP%20searches.pdf">NLP Searches</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20(word%20%26%20character).pdf">N-Grams (word & character)</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20Google%20Ngram%20Viewer.pdf">Google Ngram Viewer</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_The%20world%20of%20emotions%20and%20sentiments.pdf" >The world of emotions and sentiments</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20and%20Word%20Co-Occurrence%20VIEWER.pdf" >NLP Ngram and Word Co-Occurrence VIEWER</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20smoothing%20data%20series.pdf">Excel smoothing data series</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
-                </select>
+        <div class="form-row">
+            <div style="margin-right: 40px;">
+                <label for="min_rating">Min Rating:</label>
+                <input type="range" id="min_rating" name="min_rating" min="1" max="7" value="5" 
+                    oninput="document.getElementById('minRatingValue').innerHTML = this.value" disabled>
+                <span id="minRatingValue">5</span>
+                <span class="tooltip">❓
+                    <span class="tooltiptext">
+                        Please, select the minimum value of the iconicity rating. The suggested value is 5, range: 1 to 7.
+                    </span>
+                </span>
             </div>
-            
-            <div class="buttons-section">
-                <button type="reset" class="reset-button">Reset</button>
-                <button type="submit" class="run-button">Run</button>
-            </div>
-        </form>
-    </form>
+            <div style="margin-right: 20px;">
+                <label for="max_rating_sd">Max Rating SD:</label>
+                <input type="range" id="max_rating_sd" name="max_rating_sd" min="0" max="3" value="2" 
+                    oninput="document.getElementById('maxRatingSDValue').innerHTML = this.value" disabled>
+                <span id="maxRatingSDValue">2</span>
+                <span class="tooltip">❓
+                    <span class="tooltiptext">
+                        Please, select the maximum value of the iconicity rating standard deviation. The suggested value is 2, range: 0 to 3.
+                    </span>
+                </span>
+            </div>       
+        </div>    
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="gender_guesser" name="gender_guesser" onclick="showGenderGuesserWarning()">
+                Who wrote the text - Gender guesser
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label for="transformation">Transformation:</label>
+            <select id="transformation" name="transformation">
+                <option value="no_transformation">No transformation</option>
+                <option value="ln">Ln</option>
+                <option value="log">Log</option>
+                <option value="square_root">Square root</option>
+                <option value="z_score">Z score</option>
+            </select>
+        </div>
+
+
+        <div class="form-row">
+            <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
+            <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
+                <option value="" disabled selected>Select an option</option>
+                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Style%20analysis.pdf">Style analysis</option>
+                <!-- Add other options here as needed -->
+            </select>
+        </div>
+
+        <div class="buttons-section form-row">
+            <button type="reset" class="reset-button">Reset</button>
+            <button type="submit" class="run-button">Run</button>
+        </div>
+    </div>
 </div>
 
 <script>
-    
-    function toggleToolDropdown() {
-      var checkbox = document.getElementById('style-analysis');
-      var dropdown = document.getElementById('tools');
-      dropdown.disabled = !checkbox.checked;
-    }
     function toggleAnalysisDropdown() {
-        var checkbox = document.getElementById('complexity-analysis');
-        var dropdown = document.getElementById('analysis-dropdown');
+        const checkbox = document.getElementById('complexity_analysis');
+        const dropdown = document.getElementById('analysis_dropdown');
         dropdown.disabled = !checkbox.checked;
-      }
-    function toggleVocDropdown() {
-        var checkbox = document.getElementById('vocabulary-analysis');
-        var dropdown = document.getElementById('voc-options');
-        dropdown.disabled = !checkbox.checked;
-      }
-      
+    }
 
       
-    document.getElementById('complexity-analysis').addEventListener('change', toggleAnalysisDropdown);  
-    document.getElementById('style-analysis').addEventListener('change', toggleToolDropdown);
-    document.getElementById('vocabulary-analysis').addEventListener('change', toggleVocDropdown);
-  
-    toggleToolDropdown();
+    function toggleRatingSliders() {
+        const vocOptions = document.getElementById('voc_options').value;
+        const isEnabled = vocOptions === '*' || vocOptions === 'Iconic';
+
+        document.getElementById('min_rating').disabled = !isEnabled;
+        document.getElementById('max_rating_sd').disabled = !isEnabled;
+    }
+
+    function showGenderGuesserWarning() {
+        const message = "Warning:\n\nWhen the Gender Guesser (Hacker Factor) webpage opens, make sure to read carefully the page content in order to understand:\n" +
+                        "1. how this sophisticated neural network Java tool can guess the gender identity of a text writer (male or female);\n" +
+                        "2. the difference between formal and informal text genre;\n" +
+                        "3. the meaning of the gender estimate as 'Weak emphasis could indicate European';\n" +
+                        "4. the limits of the algorithms (about 60-70% accuracy).\n\n" +
+                        "You can also read Argamon, Shlomo, Moshe Koppel, Jonathan Fine, and Anat Rachel Shimoni. 2003. 'Gender, Genre, and Writing Style in Formal Written Texts,' Text, Vol. 23, No. 3, pp. 321–346.";
+        const isConfirmed = confirm(message + "\n\nDo you want to keep the Gender Guesser option checked?");
+        document.getElementById("gender_guesser").checked = isConfirmed;
+    }
+
+    toggleRatingSliders();
+    document.getElementById('complexity_analysis').addEventListener('change', toggleAnalysisDropdown);
     toggleAnalysisDropdown();
-    toggleVocDropdown();
-  </script>
+</script>
+
+<style>
+    /* Tooltip styling */
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 300px;
+        background-color: #555;
+        color: #fff;
+        text-align: left;
+        border-radius: 5px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -150px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
 
 {% endblock %}
