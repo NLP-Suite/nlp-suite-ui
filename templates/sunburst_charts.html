@@ -5,7 +5,7 @@
 <div class="sentiment-analysis-container">
     <h1>Sunburst Charts</h1>
     <form method="post" class="sentiment-analysis-form">
-        {% csrf_token %}
+    {% csrf_token %}
     
     <div class="form-row">
         <label for="inputDirectory">Input Directory:</label>
@@ -94,10 +94,9 @@
     <div class="form-row">
         <label>
             Search Values
-            &nbsp;&nbsp;
             <span class="tooltip">
                 <span class="tooltiptext">
-                    Enter in a comma separated list for specific words or values. (ex: the, three, little, pigs)
+                    Enter in a comma separated list for specific words or values (minimum of 3). (ex: the, three, little, pigs)
                 </span>
             </span>
 
@@ -119,6 +118,11 @@
             Tree map chart
         </label>
      </div>
+
+     <div class="buttons-section">
+        <button type="reset" class="reset-button">Reset</button>
+        <button type="submit" class="run-button">Run</button>
+    </div>
 </form>
 </div>
 
