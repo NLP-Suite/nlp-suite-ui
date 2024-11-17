@@ -164,6 +164,15 @@ def NER(_: HttpRequest):
     template = loader.get_template("../templates/NER.html")
     return HttpResponse(template.render())
 
-def sunburst_charts(_: HttpRequest):
-    template = loader.get_template("../templates/sunburst_charts.html")
-    return HttpResponse(template.render())
+def sunburst_charts(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/sunburst_charts",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "sunburst_charts.html")
