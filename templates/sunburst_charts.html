@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% block content %}
+{%load static %}
+
+<div class="sentiment-analysis-container">
+    <h1>Sunburst Charts</h1>
+    <form method="post" class="sentiment-analysis-form">
+        {% csrf_token %}
+    
+    <div class="form-row">
+        <label for="inputDirectory">Input Directory:</label>
+        <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+    </div>
+
+    <div class="form-row">
+        <label for="outputDirectory">Output Directory:</label>
+        <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+    </div>
+
+    <div class="form-row">
+        <label for="search_field">Search field </label>
+        <input type="file" id="sunburst_file_input" accept=".csv">
+        <select id="search_field" name="search_field">
+            <option value="" disabled selected>Select a field</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="filter_options">Filter Options</label>
+        <select name="filter_options">
+            <option value = "no_filtering">No filtering</option>
+            <option value = "fixed_parameter">Fixed parameter</option>
+            <option value = "propagating_parameter">Propagating Parameter</option>
+        </select> 
+    </div>
+    
+    <script>
+        let selectedFieldValues = []; 
+    
+        document.getElementById("sunburst_file_input").addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function () {
+                const csvContent = reader.result;
+                processCSV(csvContent);
+            };
+            
+            reader.readAsText(file); // Start reading the file
+        });
+    
+        function processCSV(csvContent) {
+            const rows = csvContent.split("\n").map(row => row.split(","));
+            if (rows.length < 2) return; // Ensure there's data
+    
+            const headers = rows[0];
+            const data = rows.slice(1);
+    
+            populateDropdown(headers, data);
+        }
+    
+        function populateDropdown(headers, data) {
+            const dropdown = document.getElementById("search_field");
+            dropdown.innerHTML = '<option value="" disabled selected>Select a field</option>';
+    
+            headers.forEach((header, index) => {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = header.trim();
+                dropdown.appendChild(option);
+            });
+    
+            dropdown.addEventListener("change", function () {
+                const selectedIndex = this.value;
+                selectedFieldValues = getFieldData(selectedIndex, data); // Update the global array
+                //console.log(selectedFieldValues); // Values can be logged for debugging (if necessary)
+            });
+        }
+    
+        function getFieldData(fieldIndex, data) {
+            return data.map(row => {
+                let cell = row[fieldIndex]; // Get the cell value at the specified column (fieldIndex)
+            
+                if (cell) {
+                    cell = cell.replace(/"/g, ""); // Remove all double quotes from the cell
+                    cell = cell.trim(); // Remove any leading or trailing whitespace
+                }
+            
+                return cell || "(empty)"; // If the cell is empty or undefined, return empty. 
+            });
+        }
+    </script>   
+     
+    <div class="form-row">
+        <label>
+            Search Values
+            &nbsp;&nbsp;
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Enter in a comma separated list for specific words or values. (ex: the, three, little, pigs)
+                </span>
+            </span>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="keywordInput" name="keywordInput">
+        </label>
+    </div>
+    
+    <div class = "form-row">
+        <label>
+            <input type="checkbox" name="piechart_var" checked>
+            Pie chart
+        </label>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        <label>
+            <input type="checkbox" name = "treemap_var" >
+            Tree map chart
+        </label>
+     </div>
+</form>
+</div>
+
+<style>
+    /* Tooltip styling */
+.tooltip {
+    position: relative;
+    display: inline-flex; /* Change to flex for better alignment */
+    align-items: center; /* Center vertically */
+    cursor: pointer;
+    margin-left: 10px; /* Add space between label and tooltip */
+}
+
+.tooltip::before {
+    content: "?";  /* Question mark inside the circle */
+    display: inline-block;
+    width: 25px;  /* Increase the width of the circle */
+    height: 25px;  /* Increase the height of the circle */
+    background-color: white;
+    color: #4caf50;  /* Text color */
+    border: 2px solid #9ee4a0;
+    border-radius: 50%;  /* Make it circular */
+    text-align: center;
+    line-height: 25px;  /* Adjust the line height for proper centering */
+    font-size: 16px;  /* Increase font size */
+    font-weight: bold;  /* Make the ? bold for better visibility */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: #555;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -150px; /* Center the tooltip text */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Tooltip visibility on hover */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+
+{% endblock %}

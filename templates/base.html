@@ -67,13 +67,74 @@
                     style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Gender Analysis</a>
                 <a href="{% url 'NER' %}" title="Goes to NER"
                     style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">NER (Named Entity Recognition) annotator</a>
+                    <details>
+                        <summary style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">
+                            Data Visualization
+                        </summary>
+                        <details>
+                            <summary style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px; text-indent: 20px;">
+                                Categorical
+                            </summary>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                HTML Annotator
+                            </p>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Wordclouds
+                            </p>
+                            <a href="{% url 'sunburst_charts' %}" title="Goes to sunburst charts"
+                            style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Sunburst charts</a>
+                            
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Treemap
+                            </p>
+                        </details>
+                        <details>
+                            <summary style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px; text-indent: 20px;">
+                                Numerical
+                            </summary>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Boxplot
+                            </p>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Colormap Chart
+                            </p>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Animated time-dependent bar plot
+                            </p>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Multiple Bar Charts
+                            </p>
+                        </details>
+                        <details>
+                            <summary style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px; text-indent: 20px;">
+                                Relational
+                            </summary>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Geographic Maps
+                            </p>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Network Graphs
+                            </p>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Sankey Flowchart
+                            </p>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Sentence Visualization
+                            </p>
+                        </details>
+                    </details>                                  
             </div>
         </div>
-
+        
         <div style="flex-grow: 1;">
             {% block content %}
             {% endblock %}
         </div>
+        <style>
+            details summary::marker {
+                color: #9ee4a0;
+            }
+        </style>
 
     </div>
 

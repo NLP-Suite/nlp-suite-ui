@@ -163,3 +163,7 @@ def genderanalysis(_: HttpRequest):
 def NER(_: HttpRequest):
     template = loader.get_template("../templates/NER.html")
     return HttpResponse(template.render())
+
+def sunburst_charts(_: HttpRequest):
+    template = loader.get_template("../templates/sunburst_charts.html")
+    return HttpResponse(template.render())

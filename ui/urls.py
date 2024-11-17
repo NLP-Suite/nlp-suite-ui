@@ -41,6 +41,7 @@ urlpatterns = [
     path('visual2', views.visual2, name='visual2'),
     path('gis', views.gis, name='gis'),
     path('gender_analysis', views.genderanalysis, name='gender_analysis'),
-    path('NER', views.NER, name="NER")
+    path('NER', views.NER, name="NER"),
+    path('sunburst_charts', views.sunburst_charts, name="sunburst_charts"),
 ]
 
