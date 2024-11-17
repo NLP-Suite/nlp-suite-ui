@@ -24,7 +24,6 @@ urlpatterns = [
     path('install', views.install, name='install'),
     path('contact', views.contact, name='contact'),
     path('status', views.status, name="status"),
-
     path('sentiment_analysis', views.sentiment_analysis, name='sentiment_analysis'),
     path('SOV', views.SOV, name='SOV'),
     path('shape_of_stories', views.shape_of_stories, name='shape_of_stories'),
