@@ -43,6 +43,7 @@
             Word sense induction (via BERT (English language model))
         </label>
     </div>
+    
     <div class="form-row">
         <label for="keywordsWSI">Keywords (WSI)</label>
         <input type="button" id="selectDictionaryFile" value="Select dictionary file">
@@ -131,6 +132,15 @@
             <option value="data_visualization_1">Data visualization 1</option>
             <option value="data_visualization_2">Data visualization 2</option>
         </select>
+        <label for="chartPackage">Chart Package:</label>
+        <select id="chartPackage" name="chartPackage" style="width: 100%; max-width: 420px; padding: 10px;">
+            <option value="no-charts">No Charts</option>
+            <option value="excel">Excel</option>
+            <option value="python-plotly-dynamic">Python Plotly (Dynamic)</option>
+            <option value="python-plotly-static">Python Plotly (Static)</option>
+        </select>
+    </div>
+    <div class="form-row" style="margin-bottom: 20px;">
         <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
                 <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
                     <option value="" disabled selected>Select an option</option>
@@ -141,8 +151,7 @@
                     <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
                     <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
        
-                </select>
-
+         </select>
     </div>
     
     <div class="buttons-section">

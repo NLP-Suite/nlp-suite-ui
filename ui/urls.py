@@ -24,7 +24,6 @@ urlpatterns = [
     path('install', views.install, name='install'),
     path('contact', views.contact, name='contact'),
     path('status', views.status, name="status"),
-
     path('sentiment_analysis', views.sentiment_analysis, name='sentiment_analysis'),
     path('SOV', views.SOV, name='SOV'),
     path('shape_of_stories', views.shape_of_stories, name='shape_of_stories'),
@@ -41,6 +40,7 @@ urlpatterns = [
     path('visual2', views.visual2, name='visual2'),
     path('gis', views.gis, name='gis'),
     path('gender_analysis', views.genderanalysis, name='gender_analysis'),
-    path('NER', views.NER, name="NER")
+    path('NER', views.NER, name="NER"),
+    path('sunburst_charts', views.sunburst_charts, name="sunburst_charts"),
 ]
 

@@ -15,17 +15,17 @@
             <input type="text" name="outputDir" value="~/nlp-suite/output" style="width: 100%; max-width: 400px; padding: 10px;" />
         </div>
 
-        <!-- Pre-processing options -->
+        {% comment %} <!-- Pre-processing options -->
         <div class="form-row" style="margin-bottom: 20px;">
             <label>
                 <input type="checkbox" id="pre-processing" name="openOutputFiles">
                 GUIs available for pre-processing
             </label>
-            <select id="text-processing-tools" name="chartPackage" style="width: 100%; max-width: 420px; padding: 10px;">
+            <select id="text_processing_tools" name="text_processing_tools" style="width: 100%; max-width: 420px; padding: 10px;">
                 <option value="file-checking-cleaning">File checking & cleaning</option>
                 <option value="coreference-resolution">Coreference resolution</option>
             </select>
-        </div>
+        </div> {% endcomment %}
 
         <!-- Parsers and annotators options -->
         <div class="form-row" style="margin-bottom: 20px;">
@@ -78,6 +78,15 @@
                 <option value="log">Log</option>
                 <option value="square_root">Square root</option>
                 <option value="z_score">Z score</option>
+            </select> 
+        </div>
+        <div class="form-row" style="margin-bottom: 20px;">
+            <label for="chartPackage">Chart Package:</label>
+            <select id="chartPackage" name="chartPackage" style="width: 100%; max-width: 420px; padding: 10px;">
+                <option value="no-charts">No Charts</option>
+                <option value="excel">Excel</option>
+                <option value="python-plotly-dynamic">Python Plotly (Dynamic)</option>
+                <option value="python-plotly-static">Python Plotly (Static)</option>
             </select>
         </div>
 
@@ -138,4 +147,23 @@
         </div>
     </form>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const parserCheckbox = document.getElementById("parsers");
+        const annotatorCheckbox = document.getElementById("annotator");
+        const parserDropdown = document.getElementById("parsers-tool");
+        const annotatorDropdown = document.getElementById("nlp-tools");
+
+        function updateDropdowns() {
+            parserDropdown.disabled = !parserCheckbox.checked;
+            annotatorDropdown.disabled = !annotatorCheckbox.checked;
+        }
+
+        updateDropdowns();
+        parserCheckbox.addEventListener("change", updateDropdowns);
+        annotatorCheckbox.addEventListener("change", updateDropdowns);
+    });
+</script>
+
 {% endblock %}
