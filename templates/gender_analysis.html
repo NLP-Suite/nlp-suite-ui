@@ -28,9 +28,9 @@
     </div>  
 
     <div class="form-row">
-        <input type="checkbox" id="CoreNLP_download_gender_file_var" name="CoreNLP_download_gender_file_var" style="margin-right: 10px;"/>  
+        <input type="checkbox" id="CoreNLP_download_gender_file_var" name="CoreNLP_download_gender_file_var" style="margin-right: 10px;" disabled/>  
         <label>Download CoreNLP gender file</label>
-        <input type="checkbox" id="CoreNLP_upload_gender_file_var" name="CoreNLP_upload_gender_file_var" style="margin-right: 10px;"/>  
+        <input type="checkbox" id="CoreNLP_upload_gender_file_var" name="CoreNLP_upload_gender_file_var" style="margin-right: 10px;" disabled/>  
         <label>Upload CoreNLP gender file</label>
     </div>  
 
@@ -41,24 +41,24 @@
 
     <div class="form-row">
         <label>Select dictionary file</label>
-        <input type="file" id="select-dic-file" name="select-dic-file" style="margin-right: 10px;"/>
+        <input type="file" id="select-dic-file" name="select-dic-file" style="margin-right: 10px;" disabled />
         <label>Select csv file</label>  
-        <input type="file" id="select-csv-file" name="select-csv-file" style="margin-right: 10px;"/>  
+        <input type="file" id="select-csv-file" name="select-csv-file" style="margin-right: 10px;" disabled />  
     </div>  
 
     <div class="form-row">
-        <input type="checkbox" id="plot_var" name="plot_var" style="margin-right: 10px;"/>  
-        <label>Process names via US SS</label>
+        <input type="checkbox" id="plot_var" name="plot_var" style="margin-right: 10px;" />  
+        <label>Process names via US SS</label> 
 
         <label style="margin-left: 20px;">By US/State/Year</label>
-        <select id="year_state_var" name="year_state_var">  
+        <select id="year_state_var" name="year_state_var" disabled>  
             <option value="state"> State </option>
             <option value="year_of_birth"> Year Of Birth</option>
             <option value="state&year_of_birth"> State and Year Of Birth</option>
         </select>
 
         <label style="margin-left: 20px;">Enter Name</label>
-        <input type="text" id="firstName_entry_var" name="firstName_entry_var" style="margin-right: 10px;"/>  
+        <input type="text" id="firstName_entry_var" name="firstName_entry_var" style="margin-right: 10px;" disabled/>  
     </div>  
 
     <div class="form-row">
@@ -146,6 +146,68 @@
         <button type="reset" class="reset-button">Reset</button>
         <button type="submit" class="run-button">Run</button>
     </div> 
+
+    <script> 
+        function coreNlpGenAnnotateCheckbox() {
+            var coreNlpGenAnnotateCheckbox = document.getElementById("CoreNLP_gender_annotator_var");
+            var annotatorDictCheckbox = document.getElementById("annotator_dictionary_var");
+            var processNameUSCheckbox = document.getElementById("plot_var");
+
+            if(coreNlpGenAnnotateCheckbox.checked) {
+                annotatorDictCheckbox.disabled = true;
+                processNameUSCheckbox.disabled = true;
+            } else {
+                annotatorDictCheckbox.disabled = false;
+                processNameUSCheckbox.disabled = false;
+            }
+        } 
+
+        function annotateGenderCheckbox() {
+            var coreNlpGenAnnotateCheckbox = document.getElementById("CoreNLP_gender_annotator_var");
+            var annotatorDictCheckbox = document.getElementById("annotator_dictionary_var");
+            var processNameUSCheckbox = document.getElementById("plot_var");
+            var selectDicFile = document.getElementById("select-dic-file");
+            var selectCsvFile = document.getElementById("select-csv-file");
+
+            if(annotatorDictCheckbox.checked) {
+                coreNlpGenAnnotateCheckbox.disabled = true;
+                byUsStateDropdown.disabled = true;
+                enterNameTextbox.disabled = true;
+                selectDicFile.disabled = false;
+                selectCsvFile.disabled = false;
+            } else {
+                coreNlpGenAnnotateCheckbox.disabled = false;
+                byUsStateDropdown.disabled = false;
+                enterNameTextbox.disabled = false;
+                selectDicFile.disabled = true;
+                selectCsvFile.disabled = true;
+            }
+        } 
+
+        function processNamesUsCheckbox() {
+            var coreNlpGenAnnotateCheckbox = document.getElementById("CoreNLP_gender_annotator_var");
+            var annotatorDictCheckbox = document.getElementById("annotator_dictionary_var");
+            var processNameUSCheckbox = document.getElementById("plot_var");
+            var byUsStateDropdown = document.getElementById("year_state_var");
+            var enterNameTextbox = document.getElementById("firstName_entry_var");
+
+            if(plot_var.checked) {
+                coreNlpGenAnnotateCheckbox.disabled = true;
+                annotatorDictCheckbox.disabled = true;
+                byUsStateDropdown.disabled = false;
+                enterNameTextbox.disabled = false;
+            } else {
+                coreNlpGenAnnotateCheckbox.disabled = false;
+                annotatorDictCheckbox.disabled = false;
+                byUsStateDropdown.disabled = true;
+                enterNameTextbox.disabled = true;
+            }
+        } 
+
+        document.getElementById("CoreNLP_gender_annotator_var").addEventListener("change", coreNlpGenAnnotateCheckbox);
+        document.getElementById("annotator_dictionary_var").addEventListener("change", annotateGenderCheckbox);
+        document.getElementById("plot_var").addEventListener("change", processNamesUsCheckbox);
+    </script>
 </div>
 
 {% endblock %}
