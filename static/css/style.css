@@ -75,6 +75,64 @@ label {
   position: relative;
 }
 
+/* Form-specific tooltip styling */
+.form-row .tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.form-row .tooltip::before {
+  content: "?";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  color: #4caf50;
+  border: 2px solid #9ee4a0;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 25px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.form-row .tooltip .tooltiptext {
+  visibility: hidden;
+  width: 300px;
+  background-color: #555;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -150px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.form-row .tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Other form styling */
+.form-row {
+  margin-bottom: 15px;
+}
+
+.buttons-section {
+  margin-top: 20px;
+}
+
+.reset-button, .run-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+}
 /* Style for checkboxes */
 input[type="checkbox"] {
   -webkit-appearance: none;

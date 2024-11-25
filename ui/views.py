@@ -176,3 +176,11 @@ def sunburst_charts(request: HttpRequest):
         else:
             messages.add_message(request, messages.ERROR, response.content.decode())
     return render(request, "sunburst_charts.html")
+
+def sankey_flowchart(_: HttpRequest):
+    template = loader.get_template("../templates/sankey_flowchart.html")
+    return HttpResponse(template.render())
+
+def boxplot(_: HttpRequest):
+    template = loader.get_template("../templates/boxplot.html")
+    return HttpResponse(template.render())

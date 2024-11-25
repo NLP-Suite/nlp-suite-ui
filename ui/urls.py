@@ -42,5 +42,8 @@ urlpatterns = [
     path('gender_analysis', views.genderanalysis, name='gender_analysis'),
     path('NER', views.NER, name="NER"),
     path('sunburst_charts', views.sunburst_charts, name="sunburst_charts"),
+    path('sankey_flowchart', views.sankey_flowchart, name="sankey_flowchart"),
+    path('boxplot', views.boxplot, name="boxplot"),
+
 ]
 
