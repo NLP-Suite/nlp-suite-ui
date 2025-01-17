@@ -2,10 +2,9 @@
 
 {% block content %}
 
-
 <div class="sentiment-analysis-container">
     <h1>N-Grams and Word Co-Occurrences</h1>
-    <form method="post" class="ngram-CoOcc-form">
+    <form method="POST" action="{% url 'NGrams_CoOccurrences' %}">
         {% csrf_token %}
         
         <div class="form-row">

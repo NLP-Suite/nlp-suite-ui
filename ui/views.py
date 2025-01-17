@@ -98,9 +98,18 @@ def topic_modeling(request: HttpRequest):
             messages.add_message(request, messages.ERROR, response.content.decode())
     return render(request, "topic_modeling.html")
 
-def nGram_CoOccurrences(_: HttpRequest):
-    template = loader.get_template("../templates/N-Grams_CoOccurrences.html")
-    return HttpResponse(template.render())
+def NGrams_CoOccurences(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/NGrams_CoOccurrences",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, 'NGrams_CoOccurrences.html')
 
 def coNLL_table_analyzer_main(_: HttpRequest):
     template = loader.get_template("../templates/CoNLL_table_analyzer_main.html")
@@ -119,9 +128,18 @@ def parsers_annotators(request: HttpRequest):
             messages.add_message(request, messages.ERROR, response.content.decode())
     return render(request, "parsers_annotators.html")
 
-def wordclouds(_: HttpRequest):
-    template = loader.get_template("../templates/wordclouds.html")
-    return HttpResponse(template.render())
+def wordclouds(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/wordclouds",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "wordclouds.html")
 
 def word2vec(request: HttpRequest):
     if request.method == "POST":

@@ -3,7 +3,7 @@
 {% block content %}
 <div class="sentiment-analysis-container">
 <h1>Wordclouds</h1>
-<form method="post" class="wordclouds-form">
+<form method="post" class="worldclouds-form">
     {% csrf_token %}
     
     <div class = "form-row">
@@ -15,8 +15,8 @@
         <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
     </div>
     <div class = "form-row">
-        <label for="wordcloud-service">Select the wordcloud service you wish to use (txt file(s)/CoNLL table)</label>
-        <select id="wordcloud-service" name="wordcloud-service">
+        <label for="wordcloud_service">Select the wordcloud service you wish to use (txt file(s)/CoNLL table)</label>
+        <select id="wordcloud_service" name="wordcloudservice">
             <option value="python-wordcloud">Python WordCloud</option>
             <option value="tagcrowd">TagCrowd</option>
             <option value="tagul">Tagul</option>
@@ -31,10 +31,10 @@
             Horizontal (visualize words horizontally)
         </label>
         &nbsp;&nbsp;&nbsp;
-        <label for="font"> Font:</label>
-        <select id="font" name="font">
-            <option value="default">Default</option>
-            <option value="arial-unicode">Arial Unicode</option>
+        <label for="font_name"> Font:</label>
+        <select id="font_name" name="font_name">
+            <option value ="default"> Default </option>
+            <option value="arial-unicode">Arial</option>
         </select>
     </div>
     <div class = "form-row">
@@ -55,7 +55,7 @@
             Punctuation
         </label>
         <label>
-            <input type="checkbox" id="lowercase" name="lowercase" checked>
+            <input type="checkbox" id="lowercase_checkbox" name="lowercase_checkbox" checked>
             Lowercase
         </label>
         <label>

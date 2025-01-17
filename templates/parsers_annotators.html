@@ -3,8 +3,8 @@
 {% block content %}
 <div style="max-width: 80%; margin: 20px auto; padding: 20px;">
     <h1 style="text-align: left; font-size: 30px; margin-bottom: 20px;">Parsers & Annotators (BERT, CoreNLP, spaCy, Stanza)</h1>
-
     <form method="POST" action="{% url 'parsers_annotators' %}">
+        
         {% csrf_token %}
         <div class="form-row" style="margin-bottom: 20px;">
             <label for="inputDirectory" class="numberInput">Input Directory:</label>
