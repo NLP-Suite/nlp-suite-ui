@@ -98,7 +98,7 @@ def topic_modeling(request: HttpRequest):
             messages.add_message(request, messages.ERROR, response.content.decode())
     return render(request, "topic_modeling.html")
 
-def NGrams_CoOccurences(request: HttpRequest):
+def NGrams_CoOccurrences(request: HttpRequest):
     if request.method == "POST":
         response = requests.post(
             f"{AGENT_SERVER_URL}/NGrams_CoOccurrences",
@@ -202,3 +202,16 @@ def sankey_flowchart(_: HttpRequest):
 def boxplot(_: HttpRequest):
     template = loader.get_template("../templates/boxplot.html")
     return HttpResponse(template.render())
+
+def colormap_chart(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/colormap_chart",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "colormap_chart.html")

@@ -44,6 +44,7 @@ urlpatterns = [
     path('sunburst_charts', views.sunburst_charts, name="sunburst_charts"),
     path('sankey_flowchart', views.sankey_flowchart, name="sankey_flowchart"),
     path('boxplot', views.boxplot, name="boxplot"),
+    path('colormap_chart', views.colormap_chart, name="colormap_chart")
 
 ]
 
