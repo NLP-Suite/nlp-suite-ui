@@ -90,36 +90,36 @@
             reader.onload = function () {
                 const csvContent = reader.result;
                 console.log("CSV File: ", csvContent);
-    
+                
                 const csvArray = csvContent.trim().split("\n").map(row => row.split(",").map(cell => cell.trim()));
-    
                 if (csvArray.length < 2) {
                     alert("CSV file must have at least one row of data.");
                     return;
                 }
-    
+
                 const headers = csvArray[0];
                 const data = csvArray.slice(1).map(row => {
                     let obj = {};
                     headers.forEach((header, index) => {
-                        obj[header] = row[index] ? row[index] : "Empty" // Ensure missing values are handled
+                        obj[header] = row[index] ? row[index] : "" // Ensure missing values are handled
                     });
                     return obj;
-                });
-    
-                document.getElementById('file_data').value = JSON.stringify(data); // Store JSON
-                console.log("Formatted JSON: ", data);
-    
+                }); 
+            
+                document.getElementById('file_data').value = JSON.stringify(data);
                 populateSearchFields(headers);
             };
             reader.readAsText(file);
+                        
+
         } else {
             alert('Please select a CSV file.');
             event.target.value = '';
         }
 
-        console.log("File data " + file_data)
+        console.log("File data " + file_data.value)
     });
+
     
     function populateSearchFields(headers) {
         const dropdown = document.getElementById("search_field");

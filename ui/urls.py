@@ -25,7 +25,7 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('status', views.status, name="status"),
     path('sentiment_analysis', views.sentiment_analysis, name='sentiment_analysis'),
-    path('SOV', views.SOV, name='SOV'),
+    path('SVO', views.SVO, name='SVO'),
     path('shape_of_stories', views.shape_of_stories, name='shape_of_stories'),
     path('style_analysis', views.style_analysis, name='style_analysis'),
     path('topic_modeling', views.topic_modeling, name='topic_modeling'),
@@ -44,7 +44,8 @@ urlpatterns = [
     path('sunburst_charts', views.sunburst_charts, name="sunburst_charts"),
     path('sankey_flowchart', views.sankey_flowchart, name="sankey_flowchart"),
     path('boxplot', views.boxplot, name="boxplot"),
-    path('colormap_chart', views.colormap_chart, name="colormap_chart")
+    path('colormap_chart', views.colormap_chart, name="colormap_chart"),
+    path('excel_plotly_charts', views.excel_plotly_chars, name="excel_plotly_charts")
 
 ]
 

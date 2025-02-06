@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{%load static %}
+<div class="sentiment-analysis-container">
+    <h1>SVO(Subject-Verb-Object) extractor & visualization</h1>
+    <form method="post" class ="sentiment-analysis-form" action = "{% url 'SVO' %}">
+    {% csrf_token %}
+
+    <div class = "form-row">
+        <label for="inputDirectory" class = "numberInput">Input Directory:</label>
+        <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+    </div>
+    <div class = "form-row">
+        <label for="outputDirectory">Output Directory:</label>
+        <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+    </div>
+
+    <div class="form-row">
+        <button type="button" onclick="openPDFPopup()">Tips File</button>
+        
+        <script src = "{%static 'css/tips_files.js' %}"></script>
+        <script>
+            function openPDFPopup() {
+                const pdfUrl = "{% static 'css/TIPS_NLP_SVO extraction and visualization.pdf' %}"
+                const pdfWindow = window.open('', 'pdfPopup', 'width=800,height=600');
+                pdfWindow.document.write(`
+                    <html>
+                    <head><title>PDF Viewer</title></head>
+                    <body style="margin: 0; overflow: hidden;">
+                        <embed src="${pdfUrl}" type="application/pdf" width="100%" height="100%">
+                    </body>
+                    </html>
+                `);
+            }
+        </script>
+    </div>
+
+        <div class = "form-row">
+            <label>
+                <input type="checkbox" id="coreferenceResolution" name="coreferenceResolution" disabled>
+                Coreference Resolution, PRONMINAL (via Stanford CoreNLP - Neural Network)
+            </label>
+        </div>
+        <div class = "form-row">
+            <label>
+                <input type="checkbox" id="manualCoreference" name="manualCoreference" disabled>
+                Manually edit coreferenced document
+            </label>
+        </div>
+        <div class = "form-row">
+            <label for="algorithm">SVO package:</label>
+            <select id="package" name="package">
+                <option value="spaCy">spaCy</option>
+                <option value="Stanford CoreNLP" selected>Stanford CoreNLP</option>
+                <option value="stanza">Stanza</option>
+                <option value="openIE">OpenIE (via Stanford CoreNLP)</option>
+            </select>
+        </div>
+        <div class = "form-row">
+             Upload csv file containing SUBJECT filters:
+            <input type="text" value="~/nlp-suite/input" disabled readonly>
+         </div>
+        <div class = "form-row">
+            <label><input type="checkbox" id="lemmatize_subjects" name="lemmatize_subjects" disabled>Lemmatize</label>
+            <label><input type="checkbox" id="filter_subjects" name="filter_subjects" disabled>Filter</label>
+        </div>
+
+         <div class = "form-row">
+            Upload csv file containing VERB filters:
+            <input type="text" value="~/nlp-suite/input" disabled readonly>
+            </div>
+        <div class = "form-row">
+            <label><input type="checkbox" id="lemmatize_verbs" name="lemmatize_verbs" disabled>Lemmatize</label>
+            <label><input type="checkbox" id="filter_verbs" name="filter_verbs" disabled>Filter</label>
+        </div>
+
+        <div class = 'form-row'>
+            Upload csv file containing OBJECT filters:
+            <input type="text" value="~/nlp-suite/input" disabled readonly>
+        </div>
+                
+        <div class = "form-row">
+            <label><input type="checkbox" id="lemmatize_objects" name="lemmatize_objects" disabled>Lemmatize</label>
+            <label><input type="checkbox" id="filter_objects" name="filter_objects"  disabled>Filter</label>
+        </div>
+
+        <div class = "form-row">
+            <label><input type="checkbox" id="so_gender" name="so_gender" disabled>S & O gender</label>
+            <label><input type="checkbox" id="so_quote" name="so_quote" disabled>S & O quote/speaker</label>
+        </div>
+    
+        <div class="form-row">
+            <label for="transformation">Transformation:</label>
+            <select id="transformation" name="transformation">
+                <option value="no_transformation">No transformation</option>
+                <option value="Ln">Ln</option>
+                <option value="Log">Log</option>
+                <option value="Square">Square root</option>
+                <option value="Z score">Z score</option>
+            </select>
+            
+        <!-- Form Buttons -->
+        <div class="buttons-section">
+            <button type="reset" class="reset-button">Reset</button>
+            <button type="submit" class="run-button">Run</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

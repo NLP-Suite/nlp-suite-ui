@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{%load static %}
+
+<div class="sentiment-analysis-container">
+    <h1>Excel/Plotly Charts</h1>
+    <form method="post" class="sentiment-analysis-form">
+        {% csrf_token %}
+        
+        <div class="form-row">
+            <label for="inputDirectory">Input Directory:</label>
+            <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+        </div>
+
+        <div class="form-row">
+            <label for="outputDirectory">Output Directory:</label>
+            <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+        </div>
+
+        <div class="form-row">
+            <button type="button" onclick="openPDFPopup()">Tips File</button>
+            
+            <script src = "{%static 'css/tips_files.js' %}"></script>
+            <script>
+                function openPDFPopup() {
+                    const pdfUrl = "{% static 'css/TIPS_NLP_Sentiment analysis.pdf' %}"
+                    const pdfWindow = window.open('', 'pdfPopup', 'width=800,height=600');
+                    pdfWindow.document.write(`
+                        <html>
+                        <head><title>PDF Viewer</title></head>
+                        <body style="margin: 0; overflow: hidden;">
+                            <embed src="${pdfUrl}" type="application/pdf" width="100%" height="100%">
+                        </body>
+                        </html>
+                    `);
+                }
+            </script>
+        </div>
+
+        <div class="form-row">
+            <label for="x-axis">X-axis</label>
+                <select id="x-axis" name="x-axis" onchange="window.location.href=this.value;">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Term">Term</option>
+                    <option value="WordNetCategory">WordNet Category</option>
+                    <option value="SynsetDefinition">Synset Definition</option>
+                    <option value="Frequency">Frequency</option>
+                    <option value="SynsetExample">Synset Example</option>
+                </select>
+            <label for="y-axis">Additional Y-axis</label>
+                <select id="addY-axis" name="addY-axis" onchange="window.location.href=this.value;">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Term">Term</option>
+                    <option value="WordNetCategory">WordNet Category</option>
+                    <option value="SynsetDefinition">Synset Definition</option>
+                    <option value="Frequency">Frequency</option>
+                    <option value="SynsetExample">Synset Example</option> 
+                </select>
+                
+            <button type="button" class="addvar-button">+</button>
+            <button type="button" class="clear-button">Reset</button>
+            <button type="button" class="show-button">Show</button>
+        </div>
+
+   
+        <div class="form-row">
+            <label for="transformation">Transformation:</label>
+            <select id="transformation" name="transformation">
+                <option value="no_transformation">No transformation</option>
+                <option value="Ln">Ln</option>
+                <option value="Log">Log</option>
+                <option value="Square">Square root</option>
+                <option value="Z score">Z score</option>
+            </select>
+            <label for="dataTools">Data Tools:</label>
+            <select id="dataTools" name="dataTools">
+                <option value="data_sampling">Data/corpus sampling</option>
+                <option value="data_manipulation">Data manipulation</option>
+                <option value="data_statistics">Data statistics</option>
+                <option value="data_visualization_1">Data visualization 1</option>
+                <option value="data_visualization_2">Data visualization 2</option>
+            </select>
+  
+            <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
+                <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Clause%20analysis.pdf">Clause analysis.pdf</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Sentence%20complexity.pdf">Sentence complexity</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Text%20readability.pdf">Text readability</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20CoNLL%20table.pdf">CoNLL Table</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_POSTAG%20(Part%20of%20Speech%20Tags)%20Stanford%20CoreNLP.pdf">POSTAG</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_DEPREL%20(Dependency%20Relations)%20Stanford%20CoreNLP.pdf">DEPREL (Stanford Dependency Relations)</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_NLP%20searches.pdf">NLP Searches</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20(word%20%26%20character).pdf">N-Grams (word & character)</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20and%20Word%20Co-Occurrence%20VIEWER.pdf">NLP Ngram and Word Co-Occurrence VIEWER</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20Google%20Ngram%20Viewer.pdf">Google Ngram Viewer</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20smoothing%20data%20series.pdf">Excel smoothing data series</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
+                    </select>
+                </div>
+        
+        <div class="buttons-section">
+            <button type="reset" class="reset-button">Reset</button>
+            <button type="submit" class="run-button">Run</button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}
