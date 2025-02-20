@@ -39,7 +39,7 @@
     </div>
     <div class="form-row">
         <label>
-            <input type="checkbox" id="wordSenseInduction" name="wordSenseInduction">
+            <input type="checkbox" id="wordSenseInduction" name="wordSenseInduction" unchecked>
             Word sense induction (via BERT (English language model))
         </label>
     </div>
@@ -60,11 +60,11 @@
         <span id="range6Value" style="margin-right: 30px;">6</span> <!-- Increased margin -->
     
         <label for="ngrams" style="margin-right: 10px;">N-grams</label>
-        <select id="ngramsDropDown" name="ngrams"  style="margin-right: 30px;">
-        <option value="1">1-grams</option>
-        <option value="2">2-grams</option>
-        <option value="3">3-grams</option>
-        <option value="4">4-grams</option>
+        <select id="ngrams" name="ngrams"  style="margin-right: 30px;">
+        <option value="1-grams (unigrams)">1-grams</option>
+        <option value="2-grams (bigrams)">2-grams</option>
+        <option value="3-grams (trigrams)">3-grams</option>
+        <option value="4-grams (quadgrams)">4-grams</option>
         </select>
     
         <label for="range20" style="margin-right: 10px;">Top Keywords</label>
@@ -75,12 +75,12 @@
     
     <div class="form-row">
         <label>
-            <input type="checkbox" id="wordEmbeddingsBERT" name="wordEmbeddingsBERT">
+            <input type="checkbox" id="wordEmbeddingsBERT" name="wordEmbeddingsBERT" checked>
             Word embeddings (via BERT (English language model))
         </label>
 
         <label>
-            <input type="checkbox" id="word2VecGensim" name="word2VecGensim">
+            <input type="checkbox" id="word2VecGensim" name="word2VecGensim" unchecked>
             Word2Vec (via Gensim)
         </label>
     </div>

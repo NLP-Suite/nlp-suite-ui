@@ -226,6 +226,44 @@ def sankey_flowchart(request: HttpRequest):
             messages.add_message(request, messages.ERROR, response.content.decode())
     return render(request, "sankey_flowchart.html")
 
+# from django.core.files.uploadhandler import TemporaryFileUploadHandler
+# from django.views.decorators.http import require_http_methods
+
+# @require_http_methods(["GET", "POST"])
+# def sankey_flowchart(request):
+#     if request.method == "POST":
+#         try:
+#             # Get the uploaded file from request.FILES
+#             csv_file = request.FILES['csv_file']
+            
+#             # Prepare multipart form data for forwarding
+#             files = {'csv_file': (csv_file.name, csv_file, 'text/csv')}
+            
+#             # Forward request with proper file handling
+#             response = requests.post(
+#                 f"{AGENT_SERVER_URL}/sankey_flowchart",
+#                 files=files,
+#                 headers={
+#                     'Authorization': request.headers.get('Authorization', ''),
+#                     # Add other required headers
+#                 },
+#                 # Optional: Set timeout and streaming for large files
+#                 timeout=30,
+#                 stream=True
+#             )
+
+#             if response.ok:
+#                 return HttpResponseRedirect("/status")
+#             else:
+#                 messages.error(request, f"Agent Error: {response.text}")
+                
+#         except KeyError:
+#             messages.error(request, "No CSV file uploaded")
+#         except requests.exceptions.RequestException as e:
+#             messages.error(request, f"Connection Error: {str(e)}")
+            
+#     return render(request, "sankey_flowchart.html")
+
 def boxplot(_: HttpRequest):
     template = loader.get_template("../templates/boxplot.html")
     return HttpResponse(template.render())

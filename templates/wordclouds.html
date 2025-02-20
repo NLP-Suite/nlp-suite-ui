@@ -17,7 +17,7 @@
     <div class = "form-row">
         <label for="wordcloud_service">Select the wordcloud service you wish to use (txt file(s)/CoNLL table)</label>
         <select id="wordcloud_service" name="wordcloudservice">
-            <option value="python-wordcloud">Python WordCloud</option>
+            <option value="Python WordCloud">Python WordCloud</option>
             <option value="tagcrowd">TagCrowd</option>
             <option value="tagul">Tagul</option>
             <option value="Tagxedo">Tagxedo</option>
@@ -33,8 +33,8 @@
         &nbsp;&nbsp;&nbsp;
         <label for="font_name"> Font:</label>
         <select id="font_name" name="font_name">
-            <option value ="default"> Default </option>
-            <option value="arial-unicode">Arial</option>
+            <option value ="Default"> Default </option>
+            <option value="Arial Unicode">Arial</option>
         </select>
     </div>
     <div class = "form-row">
@@ -59,7 +59,7 @@
             Lowercase
         </label>
         <label>
-            <input type="checkbox" id="collocation" name="collocation" checked>
+            <input type="checkbox" id="collocation" name="collocation" unchecked>
             Collocation
         </label>
         <label>
@@ -69,32 +69,32 @@
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="prepareImage" name="prepareImage">
+            <input type="checkbox" id="prepareImage" name="prepareImage" disabled>
             Prepare image
         </label>
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="usePNGFile" name="usePNGFile">
+            <input type="checkbox" id="usePNGFile" name="prepareImage" disabled>
             Use PNG file
         </label>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <label for="PNGinput">Input PNG file</label>
         <input type="text" name="PNGinput" id="PNGinput" value="~/nlp-suite/foofoo.png"/>
         <label>
-            <input type="checkbox" id="imageContour" name="imageContour">
+            <input type="checkbox" id="imageContour" name="imageContour" disabled>
             Use image contour only
         </label>
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="useColorsForCsvColumns" name="useColorsForCsvColumns">
+            <input type="checkbox" id="useColorsForCsvColumns" name="useColorsForCsvColumns" disabled>
             Use different colors for difference cvs columns (csv file)
         </label>
     </div>
     <div class = "form-row">
         <label for="csvField">Choose csv Field</label>
-        <input type="text" name="csvField" value=""/>
+        <input type="text" name="csvField" value=""/ disabled>
             <div class = "color-picker-container">
                 <label for="colorPicker">Choose Color</label>
                 <input type = "color" id = "colorPicker" name = "colorPicker" class = "color-picker" value = "#000000">
@@ -115,22 +115,6 @@
         </label>
     </div>
     <div class = "form-row">
-        <label for="transformation">Transformation:</label>
-        <select id="transformation" name="transformation">
-            <option value="no_transformation">No transformation</option>
-            <option value="Ln">Ln</option>
-            <option value="Log">Log</option>
-            <option value="Square">Square root</option>
-            <option value="Z score">Z score</option>
-        </select>
-        <label for="dataTools">Data Tools:</label>
-        <select id="dataTools" name="dataTools">
-            <option value="data_sampling">Data/corpus sampling</option>
-            <option value="data_manipulation">Data manipulation</option>
-            <option value="data_statistics">Data statistics</option>
-            <option value="data_visualization_1">Data visualization 1</option>
-            <option value="data_visualization_2">Data visualization 2</option>
-        </select>
         <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
                 <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
                     <option value="" disabled selected>Select an option</option>
