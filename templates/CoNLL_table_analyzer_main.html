@@ -16,7 +16,7 @@
             <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
         </div> 
 
-        <!-- CSV File Input and Search Field Selection -->
+        {% comment %} <!-- CSV File Input and Search Field Selection -->
         <div class="form-row">
             <label for="search_field">Search field</label>
             <input type="file" id="sunburst_file_input" name="sunburst_file_input" accept=".csv" required>
@@ -26,22 +26,7 @@
         </div>
 
         <!-- Hidden input to store file data -->
-        <input type="hidden" name="file_data" id="file_data">
-
-        <div class="form-row">
-            <label> 
-                <input type="checkbox" id="guis_avail" name="guis_available">
-                Guis available for more analyses 
-            </label>
-            <select id="gui-options" name="gui-options" disabled>
-                <option value="ngrams-searches-viewers">Ngrams searches & Viewers</option>
-                <option value="word-searches">Word Searches</option>
-                <option value="wordnet-searches">Wordnet Searches</option>
-                <option value="data-manipulation-gui">Data manipultation GUI for more options on querying the CoNLL table</option>
-                <option value="corpus-statistics">Corpus statistics</option>
-                <option value="style-analysis">Style Analysis</option>
-            </select>
-        </div>
+        <input type="hidden" name="file_data" id="file_data"> {% endcomment %}
 
         <div class="form-row">
             <label>

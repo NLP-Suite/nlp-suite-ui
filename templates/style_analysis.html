@@ -4,48 +4,46 @@
 {% load static %}
 <div class="sentiment-analysis-container">
     <h1>Style analysis (ALL options GUI)</h1>
-    {% csrf_token %}
-    <div class="form-row">
-        <label for="inputDirectory" class="numberInput">Input Directory:</label>
-        <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
-    </div>
-    <div class="form-row">
-        <label for="outputDirectory">Output Directory:</label>
-        <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
-    </div>
-    <div class="form-row">
-        <button onclick="openPDFPopup()">Tips File</button>
-        
-        <script src="{% static 'css/tips_files.js' %}"></script>
-        <script>
-            function openPDFPopup() {
-                const base64PDF = style_analysis_tips();
-                const pdfWindow = window.open('', 'pdfPopup', 'width=800,height=600');
-                pdfWindow.document.write(`
-                    <html>
-                    <head><title>PDF Viewer</title></head>
-                    <body style="margin: 0; overflow: hidden;">
-                        <embed src="${base64PDF}" type="application/pdf" width="100%" height="100%">
-                    </body>
-                    </html>
-                `);
-            }
-        </script>
-    </div>
+    <form method ="post" class='style-analysis-form'>
+        {% csrf_token %}
+        <div class="form-row">
+            <label for="inputDirectory" class="numberInput">Input Directory:</label>
+            <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+        </div>
+        <div class="form-row">
+            <label for="outputDirectory">Output Directory:</label>
+            <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+        </div>
+        <div class="form-row">
+            <button onclick="openPDFPopup()">Tips File</button>
+            <script src="{% static 'css/tips_files.js' %}"></script>
+            <script>
+                function openPDFPopup() {
+                    const base64PDF = style_analysis_tips();
+                    const pdfWindow = window.open('', 'pdfPopup', 'width=800,height=600');
+                    pdfWindow.document.write(`
+                        <html>
+                        <head><title>PDF Viewer</title></head>
+                        <body style="margin: 0; overflow: hidden;">
+                            <embed src="${base64PDF}" type="application/pdf" width="100%" height="100%">
+                        </body>
+                        </html>
+                    `);
+                }
+            </script>
+        </div>
 
-    <div class="button-container">
         <div class="form-row">
             <label>
-                <input type="checkbox" id="style-analysis" name="style-analysis" checked>
-                GUIs available for style analysis
+                <input type="checkbox" id="style-analysis" name="style-analysis" unchecked>
             </label>
             <select id="tools" name="tools">
-                <option value="spell-check">Spelling/grammar checker</option>
-                <option value="corpus-stats">Corpus statistics</option>
-                <option value="ngrams">N-grams & Co-Occurrences</option>
-                <option value="nominalization">Nominalization</option>
-                <option value="conll">CoNLL table analyzer</option>
-                <option value="wordnet">WordNet</option>
+                <option value="spell-check"></option>
+                <option value="corpus-stats"></option>
+                <option value="ngrams"></option>
+                <option value="nominalization"></option>
+                <option value="conll"></option>
+                <option value="wordnet"></option>
             </select>
         </div>
     
@@ -56,8 +54,8 @@
             </label>
             <select id="analysis_dropdown" name="analysis_dropdown">
                 <option value="*">*</option>
-                <option value="sentence-complexity">Sentence complexity</option>
-                <option value="text-readability">Text readability</option>
+                <option value="Sentence">Sentence complexity</option>
+                <option value="Text">Text readability</option>
             </select>
         </div>
 
@@ -66,24 +64,24 @@
                 <input type="checkbox" id="vocabulary_analysis" name="vocabulary_analysis" checked>
                 Vocabulary analysis
             </label>
-            <select id="voc_options" name="voc_options" onchange="toggleRatingSliders()">
+            <select id="voc_options" name="voc_options">
                 <option value="*">*</option>
                 <option value="Iconic">Iconicity Analysis</option>
-                <option value="unigrams">Vocabulary (via unigrams) - List of all words/tokens in input document(s)</option>
-                <option value="hapax-legomena-once">Vocabulary (via Hapax legomena, once-occurring words)</option>
+                <option value="Vocabulary (via unigrams)">Vocabulary (via unigrams) - List of all words/tokens in input document(s)</option>
+                <option value="Hapax legomena">Vocabulary (via Hapax legomena, once-occurring words)</option>
                 <option value="hapax-legomena-unigrams">Vocabulary (via Hapax legomena, once-occurring unigrams)</option>
-                <option value="multilanguage-lemmatizer">Vocabulary (via Stanza multilanguage lemmatizer) - List of all words/tokens in input document(s)</option>
-                <option value="nltk-unusual-words">Vocabulary (via NLTK unusual words)</option>
-                <option value="vocabulary-richness">Vocabulary richness (word type/token ratio or Yule’s K)</option>
-                <option value="abstract-concrete">Abstract/concrete vocabulary</option>
-                <option value="objectivity-subjectivity">Objectivity/subjectivity (via spaCy)</option>
-                <option value="punctuation-as-figures-of-pathos">Punctuation as figures of pathos(?!)</option>
-                <option value="word-length">Word length</option>
-                <option value="vowel-words">Vowel words</option>
-                <option value="words-with-capital-initial">Words with capital initial (proper nouns)</option>
-                <option value="language-detection">Language detection</option>
-                <option value="repetition-words-in-first-k-and-last-k">Repetition: Words in first K and last K sentences</option>
-                <option value="repetition-last-k-words">Repetition: Last K words of a sentence/First K words of next sentence</option>
+                <option value="Stanza">Vocabulary (via Stanza multilanguage lemmatizer) - List of all words/tokens in input document(s)</option>
+                <option value="NLTK">Vocabulary (via NLTK unusual words)</option>
+                <option value="Yule">Vocabulary richness (word type/token ratio or Yule’s K)</option>
+                <option value="Abstract">Abstract/concrete vocabulary</option>
+                <option value="Objectivity/subjectivity (via spaCy)">Objectivity/subjectivity (via spaCy)</option>
+                <option value="pathos">Punctuation as figures of pathos(?!)</option>
+                <option value="Word length">Word length</option>
+                <option value="Vowel">Vowel words</option>
+                <option value="capital">Words with capital initial (proper nouns)</option>
+                <option value="detection">Language detection</option>
+                <option value="Repetition: Words">Repetition: Words in first K and last K sentences</option>
+                <option value="Repetition: Last">Repetition: Last K words of a sentence/First K words of next sentence</option>
                 <option value="repetition-accross-sentences">Repetition across sentences (special ngrams)</option>
             </select>
         </div>
@@ -91,10 +89,9 @@
         <div class="form-row">
             <div style="margin-right: 40px;">
                 <label for="min_rating">Min Rating:</label>
-                <input type="range" id="min_rating" name="min_rating" min="1" max="7" value="5" 
-                    oninput="document.getElementById('minRatingValue').innerHTML = this.value" disabled>
+                <input type="range" id="min_rating" name="min_rating" min="1" max="7" value="5">
                 <span id="minRatingValue">5</span>
-                <span class="tooltip">❓
+                <span class="tooltip">
                     <span class="tooltiptext">
                         Please, select the minimum value of the iconicity rating. The suggested value is 5, range: 1 to 7.
                     </span>
@@ -102,57 +99,59 @@
             </div>
             <div style="margin-right: 20px;">
                 <label for="max_rating_sd">Max Rating SD:</label>
-                <input type="range" id="max_rating_sd" name="max_rating_sd" min="0" max="3" value="2" 
-                    oninput="document.getElementById('maxRatingSDValue').innerHTML = this.value" disabled>
+                <input type="range" id="max_rating_sd" name="max_rating_sd" min="0" max="3" value="2">
                 <span id="maxRatingSDValue">2</span>
-                <span class="tooltip">❓
+                <span class="tooltip">
                     <span class="tooltiptext">
                         Please, select the maximum value of the iconicity rating standard deviation. The suggested value is 2, range: 0 to 3.
                     </span>
                 </span>
             </div>       
-        </div>    
+        </div> 
+
         <div class="form-row">
             <label>
                 <input type="checkbox" id="gender_guesser" name="gender_guesser" onclick="showGenderGuesserWarning()">
                 Who wrote the text - Gender guesser
             </label>
+            <script>
+                var checkbox = document.getElementById("gender_guesser").addEventListener("click", function() {
+                    if (this.checked) {
+                        window.open("https://www.hackerfactor.com/GenderGuesser.php#About");
+                        if(window.open) {
+                            let checkbox = document.getElementById("gender_guesser");
+                        }
+                    }
+                });
+            </script>
         </div>
 
         <div class="form-row">
-            <label for="transformation">Transformation:</label>
+            <label for="transformation"></label>
             <select id="transformation" name="transformation">
-                <option value="no_transformation">No transformation</option>
-                <option value="ln">Ln</option>
-                <option value="log">Log</option>
-                <option value="square_root">Square root</option>
-                <option value="z_score">Z score</option>
+                <option value="no_transformation"></option>
+                <option value="ln"></option>
+                <option value="log"></option>
+                <option value="square_root"></option>
+                <option value="z_score"></option>
             </select>
         </div>
+
         <div class="form-row">
-            <label for="chartPackage">Chart Package:</label>
+            <label for="chartPackage"></label>
             <select id="chartPackage" name="chartPackage">
-                <option value="no-charts">No Charts</option>
-                <option value="excel">Excel</option>
-                <option value="python-plotly-dynamic">Python Plotly (Dynamic)</option>
-                <option value="python-plotly-static">Python Plotly (Static)</option>
+                <option value="no-charts"></option>
+                <option value="excel"></option>
+                <option value="python-plotly-dynamic"></option>
+                <option value="python-plotly-static"></option>
             </select>
         </div>
 
-        <div class="form-row">
-            <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
-            <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
-                <option value="" disabled selected>Select an option</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Style%20analysis.pdf">Style analysis</option>
-                <!-- Add other options here as needed -->
-            </select>
-        </div>
-
-        <div class="buttons-section form-row">
+        <div class="buttons-section">
             <button type="reset" class="reset-button">Reset</button>
             <button type="submit" class="run-button">Run</button>
         </div>
-    </div>
+    </form>
 </div>
 
 <script>
@@ -163,13 +162,13 @@
     }
 
       
-    function toggleRatingSliders() {
+    {% comment %} function toggleRatingSliders() {
         const vocOptions = document.getElementById('voc_options').value;
         const isEnabled = vocOptions === '*' || vocOptions === 'Iconic';
 
         document.getElementById('min_rating').disabled = !isEnabled;
         document.getElementById('max_rating_sd').disabled = !isEnabled;
-    }
+    } {% endcomment %}
 
     function showGenderGuesserWarning() {
         const message = "Warning:\n\nWhen the Gender Guesser (Hacker Factor) webpage opens, make sure to read carefully the page content in order to understand:\n" +
@@ -182,9 +181,9 @@
         document.getElementById("gender_guesser").checked = isConfirmed;
     }
 
-    toggleRatingSliders();
+    {% comment %} toggleRatingSliders();
     document.getElementById('complexity_analysis').addEventListener('change', toggleAnalysisDropdown);
-    toggleAnalysisDropdown();
+    toggleAnalysisDropdown(); {% endcomment %}
 </script>
 
 <style>

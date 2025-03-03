@@ -30,10 +30,10 @@
         <!-- Parsers and annotators options -->
         <div class="form-row" style="margin-bottom: 20px;">
             <label>
-                <input type="checkbox" id="parsers" name="parser_var">
+                <input type="checkbox" id="parsers_var" name="parser_var">
                 Parsers for Standard CoreNLP
             </label>
-            <select id="parsers-tool" name="parser_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
+            <select id="parser_menu_var" name="parser_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
                 <option value="Neural Network">Neural Network</option>
                 <option value="PCFG (Probabilistic Context Free Grammar)">PCFG (Probabilistic Context Free Grammar)</option>
             </select>
@@ -50,10 +50,10 @@
         <!-- Annotators section -->
         <div class="form-row" style="margin-bottom: 20px;">
             <label>
-                <input type="checkbox" id="annotator" name="annotators_var">
+                <input type="checkbox" id="annotators_var" name="annotators_var">
                 Annotators
             </label>
-            <select id="nlp-tools" name="annotators_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
+            <select id="annotators_menu_var" name="annotators_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
                 <optgroup label="Fundamental NLP tools">
                     <option value="Sentence splitter">Sentence splitter</option>
                     <option value="Lemma annotator">Lemma annotator</option>
@@ -93,7 +93,7 @@
         <!-- Manual coreference resolution option -->
         <div class="form-row" style="margin-bottom: 20px;">
             <label for="manual-coref">
-                <input type="checkbox" id="manual-coref" name="manual_Coref">
+                <input type="checkbox" id="manual_Coref" name="manual_Coref">
                 Enable Manual Coreference Resolution
             </label>
         </div>
