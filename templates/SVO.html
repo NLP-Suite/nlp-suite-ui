@@ -38,7 +38,7 @@
 
         <div class = "form-row">
             <label>
-                <input type="checkbox" id="coreferenceResolution" name="coreferenceResolution" disabled>
+                <input type="checkbox" id="coreferenceResolution" name="coreferenceResolution" unchecked>
                 Coreference Resolution, PRONMINAL (via Stanford CoreNLP - Neural Network)
             </label>
         </div>
@@ -62,8 +62,8 @@
             <input type="text" value="~/nlp-suite/input" disabled readonly>
          </div>
         <div class = "form-row">
-            <label><input type="checkbox" id="lemmatize_subjects" name="lemmatize_subjects" disabled>Lemmatize</label>
-            <label><input type="checkbox" id="filter_subjects" name="filter_subjects" disabled>Filter</label>
+            <label><input type="checkbox" id="lemmatize_subjects" name="lemmatize_subjects" checked>Lemmatize</label>
+            <label><input type="checkbox" id="filter_subjects" name="filter_subjects" checked>Filter</label>
         </div>
 
          <div class = "form-row">
@@ -71,8 +71,8 @@
             <input type="text" value="~/nlp-suite/input" disabled readonly>
             </div>
         <div class = "form-row">
-            <label><input type="checkbox" id="lemmatize_verbs" name="lemmatize_verbs" disabled>Lemmatize</label>
-            <label><input type="checkbox" id="filter_verbs" name="filter_verbs" disabled>Filter</label>
+            <label><input type="checkbox" id="lemmatize_verbs" name="lemmatize_verbs" checked>Lemmatize</label>
+            <label><input type="checkbox" id="filter_verbs" name="filter_verbs" checked>Filter</label>
         </div>
 
         <div class = 'form-row'>
@@ -81,13 +81,13 @@
         </div>
                 
         <div class = "form-row">
-            <label><input type="checkbox" id="lemmatize_objects" name="lemmatize_objects" disabled>Lemmatize</label>
-            <label><input type="checkbox" id="filter_objects" name="filter_objects"  disabled>Filter</label>
+            <label><input type="checkbox" id="lemmatize_objects" name="lemmatize_objects" checked>Lemmatize</label>
+            <label><input type="checkbox" id="filter_objects" name="filter_objects"  unchecked>Filter</label>
         </div>
 
         <div class = "form-row">
-            <label><input type="checkbox" id="so_gender" name="so_gender" disabled>S & O gender</label>
-            <label><input type="checkbox" id="so_quote" name="so_quote" disabled>S & O quote/speaker</label>
+            <label><input type="checkbox" id="so_gender" name="so_gender" unchecked>S & O gender</label>
+            <label><input type="checkbox" id="so_quote" name="so_quote" unchecked>S & O quote/speaker</label>
         </div>
     
         <div class="form-row">
@@ -107,5 +107,59 @@
         </div>
     </form>
 </div>
+    <script>
+        var coreferenceCheckbox = document.getElementById("coreferenceResolution");
+        var manualCoreference = document.getElementById("manualCoreference");
+        var svoPackage = document.getElementById("package");
+        var lemmatizeSubjects = document.getElementById("lemmatize_subjects");
+        var filterSubjects = document.getElementById("filter_subjects");
+        var lemmatizeVerbs = document.getElementById("lemmatize_verbs");
+        var filterVerbs = document.getElementById("filter_verbs");
+        var lemmatizeObjects = document.getElementById("lemmatize_objects");
+        var filterObjects = document.getElementById("filter_objects");
+        var soGender = document.getElementById("so_gender");
+        var soQuote = document.getElementById("so_quote");
+
+        coreferenceCheckbox.addEventListener('change',function() {
+            manualCoreference.disabled = !this.checked;
+            if(!this.checked){
+                manualCoreference.checked = false;
+            }
+        });
+
+        lemmatizeSubjects.addEventListener('change',function() {
+            filterSubjects.disabled = !this.checked;
+            if(!this.checked){
+                filterSubjects.checked = false;
+            }
+        });
+
+        lemmatizeVerbs.addEventListener('change',function() {
+            filterVerbs.disabled = !this.checked;
+            if(!this.checked){
+                filterVerbs.checked = false;
+            }
+        });
+
+        lemmatizeObjects.addEventListener('change',function() {
+            filterObjects.disabled = !this.checked;
+            if(!this.checked){
+                filterObjects.checked = false;
+            }
+        });
+
+        svoPackage.addEventListener('change',function(){
+            const selected = this.value;
+
+            if(selected != "Stanford CoreNLP"){
+                soGender.disabled = true;
+                soQuote.disabled = true;
+            } else {
+                soGender.disabled = false;
+                soQuote.disabled = false;
+            }
+        });
+        
+    </script>
 
 {% endblock %}
