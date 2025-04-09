@@ -59,7 +59,7 @@
         </div>
         <div class = "form-row">
              Upload csv file containing SUBJECT filters:
-            <input type="text" value="~/nlp-suite/input" disabled readonly>
+            <input type="text" value="~/nlp-suite/input"  readonly>
          </div>
         <div class = "form-row">
             <label><input type="checkbox" id="lemmatize_subjects" name="lemmatize_subjects" checked>Lemmatize</label>
@@ -68,7 +68,7 @@
 
          <div class = "form-row">
             Upload csv file containing VERB filters:
-            <input type="text" value="~/nlp-suite/input" disabled readonly>
+            <input type="text" value="~/nlp-suite/input"  readonly>
             </div>
         <div class = "form-row">
             <label><input type="checkbox" id="lemmatize_verbs" name="lemmatize_verbs" checked>Lemmatize</label>
@@ -77,7 +77,7 @@
 
         <div class = 'form-row'>
             Upload csv file containing OBJECT filters:
-            <input type="text" value="~/nlp-suite/input" disabled readonly>
+            <input type="text" value="~/nlp-suite/input"  readonly>
         </div>
                 
         <div class = "form-row">
@@ -126,7 +126,6 @@
                 manualCoreference.checked = false;
             }
         });
-
         lemmatizeSubjects.addEventListener('change',function() {
             filterSubjects.disabled = !this.checked;
             if(!this.checked){
