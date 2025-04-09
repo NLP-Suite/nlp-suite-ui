@@ -1,92 +1,185 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{%load static %}
+
 <div class="sentiment-analysis-container">
-<h1>Geographic Information System</h1>
-<form method="post" class="gis-form">
-    {% csrf_token %}
-    
-    <div class = "form-row">
-        <label for="inputDirectory" class = "numberInput">Input Directory:</label>
-        <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
-    </div>
-    <div class = "form-row">
-        <label for="outputDirectory">Output Directory:</label>
-        <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
-    </div>
-    <div class = "form-row">
-        <label for="input_csv_file" style="margin-right: 10px;">Select INPUT CSV file</label>
-        <input type="file" id="input_csv_file" name="input_csv_file" style="margin-right: 10px;">
-
-
-    </div>
-    <div class="form-row">
-        <label>
-            <input type="checkbox" id="extract_locations" name="extract_locations" checked>
-            EXTRACT locations (via Stanford CoreNLP NER) - Default parameters
-        </label>
-
+    <h1>Geographic Information System</h1>
+    <form method="post" class="sentiment-analysis-form">
+        {% csrf_token %}
         
-    </div>
-    <div class="form-row">
-        <label for="location_column" style="margin-right: 10px;">Select the column containing location names</label>
-        <button type="button" id="button" disabled> </button>
-    </div>
-    <div class="form-row">
-        <label>
-            <input type="checkbox" id="geocode_locations" name="geocode_locations" checked>
-            GEOCODE locations
-        </label>
-        
-    </div>
-    
-    <div class="form-row" style="display: flex; align-items: center;">
-        <label for="geocoder" style="margin-right: 10px;">Geocoder</label>
-        <button type="button" id="geocoder_button" style="margin-right: 10px;">Nominatim</button>
-        <label for="country_bias" style="margin-right: 10px;">Country bias</label>
-        <select id="country_bias" name="country_bias" style="margin-right: 20px;">
-            <option value="">Select a country</option>
-            <!-- Add other country options here -->
-        </select>
-        <br>
-        <label for="area" style="margin-right: 10px;">Area</label>
-        <input type="text" id="area" name="area" placeholder="e.g., (34.98527, -85.59790), (30.77044, -81.52174)" style="width: 300px; margin-right: 20px;">
-        <br>
-        <label>
-            <input type="checkbox" id="restrict" name="restrict" style="margin-right: 10px;">
-            Restrict
-        </label>
+        <div class="form-row">
+            <label for="inputDirectory">Input Directory:</label>
+            <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+        </div>
 
-    </div>
-    
-    
-    <div class="form-row">
-        <label>
-            <input type="checkbox" id="map_locations" name="map_locations" checked>
-            MAP locations
-        </label>
-        <br>
-        <label for="software" style="margin-right: 10px;">Software</label>
-        <button type="button" id="software_button" style="margin-right: 20px;">Python folium pin map & heatmap</button>
-        <br>
-        <label>
-            <input type="checkbox" id="gis_package" name="gis_package" style="margin-right: 10px;" disabled>
-            GIS package - Open GUI
-        </label>
-        
+        <div class="form-row">
+            <label for="outputDirectory">Output Directory:</label>
+            <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
+        </div>
 
-    </div>
-    <div class="form-row">
-        <label for="google_api_key" style="margin-right: 10px;">View Google API key</label>
-        <button type="button" id="google_maps_button" style="margin-right: 20px;">Google Maps</button>
-        <input type="checkbox" id="checkbox" name="checkbox">
+        <div class="form-row">
+            <button type="button" onclick="openPDFPopup()">Tips File</button>
+            
+            <script src = "{%static 'css/tips_files.js' %}"></script>
+            <script>
+                function openPDFPopup() {
+                    const pdfUrl = "{% static 'css/TIPS_NLP_Sentiment analysis.pdf' %}"
+                    const pdfWindow = window.open('', 'pdfPopup', 'width=800,height=600');
+                    pdfWindow.document.write(`
+                        <html>
+                        <head><title>PDF Viewer</title></head>
+                        <body style="margin: 0; overflow: hidden;">
+                            <embed src="${pdfUrl}" type="application/pdf" width="100%" height="100%">
+                        </body>
+                        </html>
+                    `);
+                }
+            </script>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="extractLocations" name="extractLocations" checked>
+                Extract Locations (via Stanford CoreNLP NER) - Default Parameters
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label for="algorithm">Select the column containing location names:</label>
+            <select id="columnLocationName" name="algorithm">
+                <option value="fillerColumn">Filler</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="geocodeLocations" name="geocodeLocations" checked>
+                Geocode Locations
+            </label>
+            <label for="geocoderSelect">Geocoder:</label>
+            <select id="geocoderSelect" name="geocoderSelect">
+                <option value="nominatim">Nominatim</option>
+                <option value="Google">Google</option>
+            </select>
+            <label for="countryBias">Country bias</label>
+            <select id="countryBias" name="countryBias">
+                <option value="nominatim">Afghanistan - af </option>
+                <option value="Google">Albania - al</option>
+                <!-- Add the rest of the countries-->
+            </select>
+            <label for="area">Area: </label>
+            <input type="text" id="area" name="area"><br><br>
+            <label>
+                <input type="checkbox" id="restrict" name="restrict" unchecked>
+                Restrict
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="mapLocations" name="mapLocations" checked>
+                Map Locations
+            </label>
+            <label for="mapLocationsSoftware">Software</label>
+            <select id="mapLocationsSoftware" name="mapLocationsSoftware">
+                <option value="pythonFoil">Python folium pin map & heatmap</option>
+                <option value="googleEarthProplusMaps">Google Earth Pro & Google Maps</option>
+                <option value="googleEarthPro">Google Earth Pro</option>
+                <option value="googleMaps">Google Maps</option>
+                <option value="QGIS">QGIS</option>
+                <option value="tableau">Tableau</option>
+                <option value="timeMapper">timeMapper</option>
+            </select>
+            <label>
+                <input type="checkbox" id="mapLocations" name="mapLocations" unchecked>
+                GIS Package - Open GUI
+            </label>
+        </div>
+        <div class="form-row">
+            <label for="viewGoogleApi">View Google Api Key:</label>
+            <select id="viewGoogleApi" name="viewGoogleApi">
+                <option value="viewGoogleMapsApi">Google Maps</option>
+                <option value="viewGoogleGeocoding">Google Geocoding</option>
+                <!--Could use a text box to display/change key-->
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label for="transformation">Transformation:</label>
+            <select id="transformation" name="transformation">
+                <option value="no_transformation">No transformation</option>
+                <option value="Ln">Ln</option>
+                <option value="Log">Log</option>
+                <option value="Square">Square root</option>
+                <option value="Z score">Z score</option>
+            </select>
+            <label for="dataTools">Data Tools:</label>
+            <select id="dataTools" name="dataTools">
+                <option value="data_sampling">Data/corpus sampling</option>
+                <option value="data_manipulation">Data manipulation</option>
+                <option value="data_statistics">Data statistics</option>
+                <option value="data_visualization_1">Data visualization 1</option>
+                <option value="data_visualization_2">Data visualization 2</option>
+            </select>
+  
+            <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
+                <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Clause%20analysis.pdf">Clause analysis.pdf</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Sentence%20complexity.pdf">Sentence complexity</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Text%20readability.pdf">Text readability</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20CoNLL%20table.pdf">CoNLL Table</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_POSTAG%20(Part%20of%20Speech%20Tags)%20Stanford%20CoreNLP.pdf">POSTAG</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_DEPREL%20(Dependency%20Relations)%20Stanford%20CoreNLP.pdf">DEPREL (Stanford Dependency Relations)</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_NLP%20searches.pdf">NLP Searches</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20(word%20%26%20character).pdf">N-Grams (word & character)</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20and%20Word%20Co-Occurrence%20VIEWER.pdf">NLP Ngram and Word Co-Occurrence VIEWER</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Ngram%20Google%20Ngram%20Viewer.pdf">Google Ngram Viewer</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20smoothing%20data%20series.pdf">Excel smoothing data series</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
+                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
+                    </select>
+                </div>
         
-    </div>
-    
-    <div class="buttons-section">
-        <button type="reset" class="reset-button">Reset</button>
-        <button type="submit" class="run-button">Run</button>
-    </div>
-</form>
+        <div class="buttons-section">
+            <button type="reset" class="reset-button">Reset</button>
+            <button type="submit" class="run-button">Run</button>
+        </div>
+
+    </form>
 </div>
+    <script>
+        var extractLocations = document.getElementById("extractLocations");
+        var columnLocationName = document.getElementById("columnLocationName");
+        var geocodeLocations = document.getElementById("geocodeLocations");
+        var geocoderSelect = document.getElementById("geocoderSelect");
+        var area = document.getElementById("area");
+        var restrict = document.getElementById("restrict");
+        var mapLocations = document.getElementById("mapLocations");
+        var mapLocationsSoftware = document.getElementById("mapLocationsSoftware");
+        var viewGoogleApi = document.getElementById("viewGoogleApi");
+
+        geocodeLocations.addEventListener('change',function() {
+            mapLocations.disabled = !this.checked;
+            if(!this.checked){
+                mapLocations.checked = false;
+            }
+        });
+
+
+        geocoderSelect.addEventListener('change',function(){
+            const selected = this.value;
+
+            if(selected != "nominatim"){
+                area.disabled = true;
+                restrict.disabled = true;
+            } else {
+                area.disabled = false;
+                restrict.disabled = false;
+            }
+        });
+        
+
+    </script>
 {% endblock %}
