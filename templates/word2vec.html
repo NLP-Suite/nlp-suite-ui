@@ -27,12 +27,13 @@
     </div>
     <div class="form-row">
         <label for="visualizationOption">Select visualization option</label>
-        <select id="visualizationOption" name="plotWordVectors"  style="margin-right: 30px;">
+        <select id="visualizationOptionDimension" name="plotWordVectors"  style="margin-right: 30px;">
             <option value="2D">2D</option>
             <option value="3D">3D</option>
+            <option value="noVisuals">-----------</option>
             </select>
             
-        <select id="visualizationOption" name="dimension"  style="margin-right: 30px;">
+        <select id="visualizationOptionVector" name="dimension"  style="margin-right: 30px;">
         <option value="Plot word vectors">Plot word vectors</option>
          <option value="Do not plot word vectors">Do not plot word vectors</option>
             </select>
@@ -75,7 +76,7 @@
     
     <div class="form-row">
         <label>
-            <input type="checkbox" id="wordEmbeddingsBERT" name="wordEmbeddingsBERT" checked>
+            <input type="checkbox" id="wordEmbeddingsBERT" name="wordEmbeddingsBERT" unchecked>
             Word embeddings (via BERT (English language model))
         </label>
 
@@ -86,7 +87,10 @@
     </div>
     <div class="form-row">
         <label for="trainingModelArchitecture">Training model architecture</label>
-        <input type="button" id="trainingModelButton" value="Skip-Gram">
+        <select id="trainingModelArchitecture" style="width: 25px;">
+            <option value="Skip-Gram">Skip-Gram</option>
+            <option value="CBOW">CBOW</option>
+        </select>
     </div>
 
     <div class="form-row" style="display: flex; align-items: center;">
@@ -160,4 +164,84 @@
     </div>
 </form>
 </div>
+
+<script>
+    var removeStopwords = document.getElementById("removeStopwords");
+    var lemmatize = document.getElementById("lemmatize");
+    var visualizationOptionDimension = document.getElementById("visualizationOptionDimension");
+    var visualizationOptionVector = document.getElementById("visualizationOptionVector");
+    var wordSenseInduction = document.getElementById("wordSenseInduction");
+    var selectDictionaryFile = document.getElementById("selectDictionaryFile");
+    var keywordInput = document.getElementById("keywordInput");
+    var range4 = document.getElementById("range4");
+    var range6 = document.getElementById("range6");
+    var ngrams = document.getElementById("ngrams");
+    var range20 = document.getElementById("range20");
+    var wordEmbeddingsBERT = document.getElementById("wordEmbeddingsBERT");
+    var word2VecGensim = document.getElementById("word2VecGensim");
+    var trainingModelArchitecture = document.getElementById("trainingModelArchitecture");
+    var vectorSize = document.getElementById("vectorSize");
+    var windowSize = document.getElementById("windowSize");
+    var minCount = document.getElementById("minCount");
+    var computeWordDistances = document.getElementById("computeWordDistances");
+    var topWords = document.getElementById("topWords");
+    var keywords = document.getElementById("keywords");
+
+    wordSenseInduction.addEventListener('change',function() {
+        wordEmbeddingsBERT.disabled = this.checked;
+        word2VecGensim.disabled = this.checked;
+        trainingModelArchitecture.disabled = this.checked;
+        vectorSize.disabled = this.checked;
+        windowSize.disabled = this.checked;
+        minCount.disabled = this.checked;
+        
+        if(this.checked){
+            wordEmbeddingsBERT.checked = false;
+            word2VecGensim.checked = false;
+            
+            
+        }
+    });
+
+    wordEmbeddingsBERT.addEventListener('change',function() {
+        wordSenseInduction.disabled = this.checked;
+        word2VecGensim.disabled = this.checked;
+        trainingModelArchitecture.disabled = this.checked;
+        vectorSize.disabled = this.checked;
+        windowSize.disabled = this.checked;
+        minCount.disabled = this.checked;
+        
+        if(this.checked){
+            wordSenseInduction.checked = false;
+            word2VecGensim.checked = false;
+            
+            
+        }
+    });
+
+    word2VecGensim.addEventListener('change',function() {
+        wordEmbeddingsBERT.disabled = this.checked;
+        wordSenseInduction.disabled = this.checked;
+        
+        
+        if(this.checked){
+            wordEmbeddingsBERT.checked = false;
+            wordSenseInduction.checked = false;
+            
+            
+        }
+    });
+
+    visualizationOptionVector.addEventListener('change',function() {
+        if(this.value == "Do not plot word vectors"){
+            visualizationOptionDimension.value = "noVisuals";
+            visualizationOptionDimension.disabled = true;            
+        } else {
+            visualizationOptionDimension.value = "2D";
+            visualizationOptionDimension.disabled = false;
+        }
+    });
+
+</script>
+
 {% endblock %}

@@ -30,7 +30,7 @@
         <!-- Parsers and annotators options -->
         <div class="form-row" style="margin-bottom: 20px;">
             <label>
-                <input type="checkbox" id="parsers_var" name="parser_var">
+                <input type="checkbox" id="parsers_var" name="parser_var" checked>
                 Parsers for Standard CoreNLP
             </label>
             <select id="parser_menu_var" name="parser_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
@@ -65,6 +65,11 @@
                     <option value="Sentiment analysis">Sentiment analysis</option>
                     <option value="OpenIE - Relation triples extractor">OpenIE - Relation triples extractor</option>
                     <option value="SVO extraction">SVO extraction</option>
+                </optgroup>
+                <optgroup label="More special annotators (CoreNLP only)">
+                    <option value="Gender annotator">Gender annotator</option>
+                    <option value="Normalized NER date annotator">Normalized NER date annotator</option>
+                    <option value="Quote/dialogue annotator">Quote/dialouge annotator</option>
                 </optgroup>
             </select>
         </div>
@@ -164,6 +169,31 @@
         parserCheckbox.addEventListener("change", updateDropdowns);
         annotatorCheckbox.addEventListener("change", updateDropdowns);
     });
+
+    var parsers_var = document.getElementById("parsers_var");
+    var parser_menu_var = document.getElementById("parser_menu_var");
+    var annotators_var = document.getElementById("annotators_var");
+    var annotators_menu_var = document.getElementById("annotators_menu_var");
+
+    parsers_var.addEventListener('change',function() {
+        annotators_var.disabled = this.checked;
+        annotators_menu_var.disabled = this.checked;
+        if(this.checked){
+            annotators_var.checked = false;            
+        }
+    });
+
+
+    annotators_var.addEventListener('change',function() {
+        parsers_var.disabled = this.checked;
+        parser_menu_var.disabled = this.checked;
+        if(this.checked){
+            parsers_var.checked = false;
+        }
+    });
+
+    
+    
 </script>
 
 {% endblock %}

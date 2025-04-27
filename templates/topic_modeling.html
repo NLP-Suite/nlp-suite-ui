@@ -20,13 +20,13 @@
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="topicModelingBERT" name="topicModelingBERT" checked>
+            <input type="checkbox" id="topicModelingBERT" name="topicModelingBERT" unchecked>
             Topic Modeling (via BERTopic)
         </label>
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="splitToSentence" name="splitToSentence" checked>
+            <input type="checkbox" id="splitToSentence" name="splitToSentence" unchecked style="margin-left: 25px;">
             Split documents into sentence (recommended for datasets consisting of a small number of long documents)
         </label>
     </div>
@@ -38,7 +38,7 @@
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="optimizeTopicIntervals" name="optimizeTopicIntervals" >
+            <input type="checkbox" id="optimizeTopicIntervals" name="optimizeTopicIntervals" style="margin-left: 25px;">
             Optimize Topic Intervals
         </label>
     </div>
@@ -50,14 +50,26 @@
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="removeStopwords" name="removeStopwords" >
+            <input type="checkbox" id="removeStopwords" name="removeStopwords" style="margin-left: 25px;">
             Remove Stopwords
         </label>
     </div>
     <div class = "form-row">
         <label>
-            <input type="checkbox" id="lemmatizeWords" name="lemmatizeWords" >
+            <input type="checkbox" id="lemmatizeWords" name="lemmatizeWords" style="margin-left: 25px;">
             Lemmatize Words (Nouns, verbs, adverbs, adjectives)
+        </label>
+    </div>
+    <div class = "form-row">
+        <label>
+            <input type="checkbox" id="nounsOnly" name="lemmatizeWords" style="margin-left: 50px;">
+            Use Nouns only (lemmatized)
+        </label>
+    </div>
+    <div class = "form-row">
+        <label>
+            <input type="checkbox" id="topicCoherenceMALLET" name="lemmatizeWords" style="margin-left: 25px;">
+            Run MALLET (Topic coherence values and plot visualization)
         </label>
     </div>
     <div class = "form-row">
@@ -106,4 +118,69 @@
     </div>
 </form>
 </div>
+
+<script>
+    var topicModelingBERT = document.getElementById("topicModelingBERT");
+    var splitToSentence = document.getElementById("splitToSentence");
+    var topicModelingMALLET = document.getElementById("topicModelingMALLET");
+    var optimizeTopicIntervals = document.getElementById("optimizeTopicIntervals");
+    var topicModelingGensim = document.getElementById("topicModelingGensim");
+    var removeStopwords = document.getElementById("removeStopwords");
+    var lemmatizeWords = document.getElementById("lemmatizeWords");
+    var nounsOnly = document.getElementById("nounsOnly");
+    var topicCoherenceMALLET = document.getElementById("topicCoherenceMALLET");
+
+    topicModelingBERT.addEventListener('change',function() {
+        topicModelingMALLET.disabled = this.checked;
+        optimizeTopicIntervals.disabled = this.checked;
+        topicModelingGensim.disabled = this.checked;
+        removeStopwords.disabled = this.checked;
+        lemmatizeWords.disabled = this.checked;
+        nounsOnly.disabled = this.checked;
+        topicCoherenceMALLET.disabled = this.checked;
+
+        if(this.checked){
+            topicModelingMALLET.checked = false;
+            optimizeTopicIntervals.checked = false;
+            topicModelingGensim.checked = false;
+            removeStopwords.checked = false;
+            lemmatizeWords.checked = false;
+            nounsOnly.checked = false;
+            topicCoherenceMALLET.checked = false;
+        }
+    });
+
+    topicModelingMALLET.addEventListener('change',function() {
+        topicModelingBERT.disabled = this.checked;
+        topicModelingGensim.disabled = this.checked;
+        removeStopwords.disabled = this.checked;
+        lemmatizeWords.disabled = this.checked;
+        nounsOnly.disabled = this.checked;
+        topicCoherenceMALLET.disabled = this.checked;
+
+        if(this.checked){
+            topicModelingGensim.checked = false;
+            topicModelingGensim.checked = false;
+            removeStopwords.checked = false;
+            lemmatizeWords.checked = false;
+            nounsOnly.checked = false;
+            topicCoherenceMALLET.checked = false;
+        }
+    });
+
+    topicModelingGensim.addEventListener('change',function() {
+        topicModelingBERT.disabled = this.checked;
+        topicModelingMALLET.disabled = this.checked;
+        optimizeTopicIntervals.disabled = this.checked;
+        
+        if(this.checked){
+            topicModelingBERT.checked = false;
+            topicModelingMALLET.checked = false;
+            optimizeTopicIntervals.checked = false;
+            
+        }
+    });
+
+
+</script>
 {% endblock %}
