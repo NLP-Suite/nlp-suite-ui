@@ -30,10 +30,10 @@
 
         <div class="form-row">
             <label>
-                <input type="checkbox" id="clause-noun-verb-function" name="clause-noun-verb-function" >
+                <input type="checkbox" id="clause_noun_verb_function" name="clause_noun_verb_function" >
                 Clause, noun, verb, function word 
             </label>
-            <select id="clause-noun-verb-function_options" name="clause-noun-verb-function_options" disabled>
+            <select id="clause_noun_verb_function_options" name="clause_noun_verb_function_options">
                 <option value="*">*</option>
                 <option value="clause-analysis">Clause Analysis</option> 
                 <option value="noun-analysis">Noun Analysis</option> 
@@ -51,10 +51,10 @@
 
         <div class="form-row"> 
             <label> 
-                <input type="checkbox" id="search-token-word-checkbox" name="search-token-word-checkbox" >
+                <input type="checkbox" id="search_token_word_checkbox" name="search_token_word_checkbox" >
                 Search Token/Word(s) 
                 &nbsp;
-                <input type="text" id="search_kw" name="search_kw" = size="50" disabled>
+                <input type="text" id="search_kw" name="search_kw" = size="50" >
             </label> 
         </div> 
         
@@ -62,7 +62,7 @@
             <label>
                 CoNLL search field 
                 &nbsp;
-                <select id="conll_search_field" name="conll_search_field" disabled>
+                <select id="conll_search_field" name="conll_search_field" >
                     <option value="form">FORM</option>
                     <option value="lemma">LEMMA</option> 
                 </select>
@@ -136,7 +136,7 @@
 
         <div class="form-row">
             <label> 
-                <input type="checkbox" id="repetition-finder" name="repetition-finder">
+                <input type="checkbox" id="repetition_finder" name="repetition_finder">
                 Begin-End K sentences analyzer(repetition finder) 
             </label> 
             <label> 
@@ -153,7 +153,7 @@
 
         <div class="form-row">
             <label> 
-                <input type="checkbox" id="compute-sentence-table" name="compute-sentence-table" >
+                <input type="checkbox" id="compute_sentence_table" name="compute_sentence_table" >
                 Compute sentence Table
             </label>
         </div>
@@ -238,11 +238,11 @@
             var guiCheckBox = document.getElementById("guis_avail");
 
             var guiOptions = document.getElementById("gui-options"); 
-            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var functionWordCheckBox = document.getElementById("clause_noun_verb_function");
             var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
-            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
-            var repfinderCheckBox = document.getElementById("repetition-finder"); 
-            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+            var searchWordCheckBox = document.getElementById("search_token_word_checkbox");
+            var repfinderCheckBox = document.getElementById("repetition_finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute_sentence_table"); 
             
             if(guiCheckBox.checked) {
                 guiOptions.disabled = false;
@@ -262,14 +262,14 @@
         }
 
         function functionWordCheckBox() {
-            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var functionWordCheckBox = document.getElementById("clause_noun_verb_function");
             
-            var functionWordOptions = document.getElementById("clause-noun-verb-function_options");
+            var functionWordOptions = document.getElementById("clause_noun_verb_function_options");
             var guiCheckBox = document.getElementById("guis_avail");
             var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
-            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
-            var repfinderCheckBox = document.getElementById("repetition-finder"); 
-            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+            var searchWordCheckBox = document.getElementById("search_token_word_checkbox");
+            var repfinderCheckBox = document.getElementById("repetition_finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute_sentence_table"); 
 
             if(functionWordCheckBox.checked) {
                 functionWordOptions.disabled = false;
@@ -292,10 +292,10 @@
             var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
 
             var guiCheckBox = document.getElementById("guis_avail");
-            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
-            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
-            var repfinderCheckBox = document.getElementById("repetition-finder"); 
-            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+            var functionWordCheckBox = document.getElementById("clause_noun_verb_function");
+            var searchWordCheckBox = document.getElementById("search_token_word_checkbox");
+            var repfinderCheckBox = document.getElementById("repetition_finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute_sentence_table"); 
 
             if(wordnetCheckBox.checked) {
                 guiCheckBox.disabled = true;
@@ -313,15 +313,15 @@
         }
 
         function searchWordCheckBox() {
-            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
+            var searchWordCheckBox = document.getElementById("search_token_word_checkbox");
 
             var searchWordText = document.getElementById("search-token-word-text");
             var guiCheckBox = document.getElementById("guis_avail");
             var conllSearchField = document.getElementById("conll_search_field");
             var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
-            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
-            var repfinderCheckBox = document.getElementById("repetition-finder"); 
-            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+            var functionWordCheckBox = document.getElementById("clause_noun_verb_function");
+            var repfinderCheckBox = document.getElementById("repetition_finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute_sentence_table"); 
             var postagOptions = document.getElementById("postag");
             var deprelOptions = document.getElementById("deprel");
             var postagBOptions = document.getElementById("postag_b");
@@ -355,15 +355,15 @@
         } 
 
         function beginEndKSentenceCheckBox() {
-            var repfinderCheckBox = document.getElementById("repetition-finder"); 
+            var repfinderCheckBox = document.getElementById("repetition_finder"); 
             var beginKsentencesNum = document.getElementById("begin-k-sentences");
             var endKsentencesNum = document.getElementById("end-k-sentences");
 
             var guiCheckBox = document.getElementById("guis_avail");
-            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var functionWordCheckBox = document.getElementById("clause_noun_verb_function");
             var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
-            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
-            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+            var searchWordCheckBox = document.getElementById("search_token_word_checkbox");
+            var sentComputeTabCheckBox = document.getElementById("compute_sentence_table"); 
 
             if(repfinderCheckBox.checked) {
                 beginKsentencesNum.disabled = false;
@@ -387,15 +387,15 @@
         } 
 
         function sentComputeTabCheckBox() {
-            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table");
+            var sentComputeTabCheckBox = document.getElementById("compute_sentence_table");
             
             var guiCheckBox = document.getElementById("guis_avail");
-            var repfinderCheckBox = document.getElementById("repetition-finder"); 
-            var functionWordCheckBox = document.getElementById("clause-noun-verb-function");
+            var repfinderCheckBox = document.getElementById("repetition_finder"); 
+            var functionWordCheckBox = document.getElementById("clause_noun_verb_function");
             var wordnetCheckBox = document.getElementById("wordnet-classification-noun-verb"); 
-            var searchWordCheckBox = document.getElementById("search-token-word-checkbox");
-            var repfinderCheckBox = document.getElementById("repetition-finder"); 
-            var sentComputeTabCheckBox = document.getElementById("compute-sentence-table"); 
+            var searchWordCheckBox = document.getElementById("search_token_word_checkbox");
+            var repfinderCheckBox = document.getElementById("repetition_finder"); 
+            var sentComputeTabCheckBox = document.getElementById("compute_sentence_table"); 
             
             if(sentComputeTabCheckBox.checked) {
                 guiCheckBox.disabled = true;
@@ -414,11 +414,11 @@
         }
 
         document.getElementById("guis_avail").addEventListener("change", guiCheckBox);
-        document.getElementById("clause-noun-verb-function").addEventListener("change", functionWordCheckBox);
+        document.getElementById("clause_noun_verb_function").addEventListener("change", functionWordCheckBox);
         document.getElementById("wordnet-classification-noun-verb").addEventListener("change", wordnetCheckBox);
-        document.getElementById("search-token-word-checkbox").addEventListener("change", searchWordCheckBox);
-        document.getElementById("repetition-finder").addEventListener("change", beginEndKSentenceCheckBox);
-        document.getElementById("compute-sentence-table").addEventListener("change", sentComputeTabCheckBox);
+        document.getElementById("search_token_word_checkbox").addEventListener("change", searchWordCheckBox);
+        document.getElementById("repetition_finder").addEventListener("change", beginEndKSentenceCheckBox);
+        document.getElementById("compute_sentence_table").addEventListener("change", sentComputeTabCheckBox);
     </script>
         
     <!-- JavaScript for CSV Functionality -->

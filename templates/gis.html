@@ -5,7 +5,7 @@
 
 <div class="sentiment-analysis-container">
     <h1>Geographic Information System</h1>
-    <form method="post" class="sentiment-analysis-form">
+    <form method="POST" class="sentiment-analysis-form" action="{% url 'gis' %}">
         {% csrf_token %}
         
         <div class="form-row">

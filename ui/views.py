@@ -46,6 +46,7 @@ def sentiment_analysis(request: HttpRequest):
             f"{AGENT_SERVER_URL}/sentiment_analysis",
             data=request.body,
             headers=request.headers,
+            timeout=30
         )
         if response.ok:
             return HttpResponseRedirect("/status")
@@ -188,9 +189,19 @@ def visual2(_: HttpRequest):
     template = loader.get_template("../templates/visual2.html")
     return HttpResponse(template.render())
 
-def gis(_: HttpRequest):
-    template = loader.get_template("../templates/gis.html")
-    return HttpResponse(template.render())
+
+def gis(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/gis",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "gis.html")
 
 def genderanalysis(_: HttpRequest): 
     template = loader.get_template("../templates/gender_analysis.html")
