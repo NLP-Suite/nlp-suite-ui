@@ -19,7 +19,7 @@
 
         <div class="form-row">
             <label> 
-                <input type="checkbox" id="guis_avail" name="guis_available">
+                <input type="checkbox" id="guis_avail" name="guis_available" disabled>
                 Guis available for more analyses 
             </label>
             <select id="gui-options" name="gui-options">
@@ -31,19 +31,19 @@
         </div>
         <div class="form-row">
             <label>
-                <input type="checkbox" id="compute-ngrams" name="compute-ngrams">
+                <input type="checkbox" id="Ngrams_compute_var" name="Ngrams_compute_var">
                 Compute N-Grams 
             </label>
-            <select id="compute_n-gram_options" name="compute_n-gram_options" disabled>
-                <option value="character">Character</option>
-                <option value="word">Word</option> 
+            <select id="ngrams_menu_var" name="ngrams_menu_var" disabled>
+                <option value="Character">Character</option>
+                <option value="Word">Word</option> 
             </select>
         </div>
         <div class="form-row">
             <label>
                 N-grams
             </label>
-            <select id="ngram-number" name="ngram-number" disabled>
+            <select id="ngrams_size" name="ngrams_size" disabled>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -54,18 +54,20 @@
             <label>
                 Options
             </label>
-            <select id="ngram-options" name="ngram-options" disabled>
-                <option value=""></option>
-                <option value="hapax-legomena-1">Hapax legomena (once-occurring words)</option>
-                <option value="hapax-legomena-uni">Hapax legomena (once-occurring unigrams)</option>
-                <option value="lemmatize">Lemmatize</option>
-                <option value="normalize-ngram">Normalize N-grams</option>
-                <option value="exclude-punct">Exclude punctuation (word N-grams only)</option>
-                <option value="exclude-articles">Exclude articles (word N-grams only)</option>
-                <option value="exclude-determiners">Exclude determiners (word N-grams only)</option>
-                <option value="exclude-all">Exclude ALL stopwords (word N-grams only)</option>
-                <option value="repetition-of-words">Repetition of words (last K words of a sentence/first N words of next sentence)</option>
-                <option value="repition-across-sentences">Repetition of words across sentences (special ngrams)</option>
+            <select id="ngrams_options_menu_var" name="ngrams_options_menu_var" disabled>
+                <option value="Case sensitive (default)">Case sensitive (default)</option>
+                <option value="Case insensitive">Case insensitive</option> 
+                <option value="Hapax legomena (once-occurring words)">Hapax legomena (once-occurring words)</option>
+                <option value="Hapax legomena (once-occurring unigrams)">Hapax legomena (once-occurring unigrams)</option>
+                <option value="Lemmatize">Lemmatize</option>
+                <option value="Normalize N-grams">Normalize N-grams</option>
+                <option value="Exclude punctuation (word N-grams only)">Exclude punctuation (word N-grams only)</option>
+                <option value="Exclude articles (word N-grams only)">Exclude articles (word N-grams only)</option>
+                <option value="Exclude determiners (word N-grams only)">Exclude determiners (word N-grams only)</option>
+                <option value="Exclude ALL stopwords (word N-grams only)">Exclude ALL stopwords (word N-grams only)</option>
+                <option value="By sentence index">By sentence index"</option>
+                <option value="Repetition of words (last K words of a sentence/first N words of next sentence)">Repetition of words (last K words of a sentence/first N words of next sentence)</option>
+                <option value="Repetition of words across sentences (special ngrams)">Repetition of words across sentences (special ngrams)</option>
             </select>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="button" name="options-+" value="+">
@@ -77,29 +79,29 @@
             <label>
                 Search word(s)
                 &nbsp;
-                <input type="text" id="search-words" size="50">
+                <input type="text" id="search_words" size="50">
             </label>
             <label>
                 -K
-                <input type="text" id="search-words--K" size="3">
+                <input type="text" id="minus_K_words_var" size="3">
             </label>
             <label>
                 +K
-                <input type="text" id="search-words-+K" size="3">
+                <input type="text" id="plus_K_words_var" size="3">
             </label>
         </div>
         <div class="form-row">
             <label>
                 Search options
             </label>
-            <select id="search-options-dropdown" name="search-options-dropdown" disabled>
-                <option value="case-sensitive">Case sensitive (default)</option>
-                <option value="case-insensitive">Case insensitive</option> 
-                <option value="exact-match">Exact match</option>
-                <option value="partial-match">Partial Match</option>
-                <option value="normalize-results">Normalize results</option>
-                <option value="scale-results">Scale results</option>
-                <option value="lemmatize-words">Lemmatize words</option>
+            <select id="Ngrams_search_var" name="Ngrams_search_var" disabled>
+                <option value="Case sensitive (default)">Case sensitive (default)</option>
+                <option value="Case insensitive'">Case insensitive</option> 
+                <option value="Exact match (default)">Exact match</option>
+                <option value="Partial match">Partial Match</option>
+                <option value="Normalize results">Normalize results</option>
+                <option value="Scale results">Scale results</option>
+                <option value="Lemmatize words">Lemmatize words</option>
             </select>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="button" name="search-options-+" value="+">
@@ -108,7 +110,7 @@
         </div>
         <div>
             <label>
-                <input type="checkbox" id="search-ngram-csv" name="search-ngram-csv">
+                <input type="checkbox" id="csv_file_var" name="csv_file_var">
                 Search N-grams csv file
             </label>
             &nbsp;&nbsp;
@@ -117,11 +119,11 @@
         
         <div class="form-row">
             <label>
-                <input type="checkbox" id="n-grams-viewer" name="n-grams-viewer">
+                <input type="checkbox" id="ngrams_viewer_var" name="ngrams_viewer_var">
                 N-Grams VIEWER
             </label>
             <label>
-                <input type="checkbox" id="co-occurrences-viewer" name="co-occurrences-viewer">
+                <input type="checkbox" id="CoOcc_Viewer_var" name="CoOcc_Viewer_var">
                 Co-Occurrences VIEWER
             </label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -133,7 +135,7 @@
 
         <div class="form-row">
             <label>
-                <input type="checkbox" id="date-options" name="date-options" disabled>
+                <input type="checkbox" id="date_options" name="date_options" disabled>
                 Date options
             </label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -144,7 +146,7 @@
             <label>
                 Aggregate by
             </label>
-            <select id="aggregate-dropdown" name="aggregate-dropdown">
+            <select id="temporal_aggregation_var" name="temporal_aggregation_var">
                 <option value="year"> year</option>
                 <option value="group-of-years">group of years</option>
                 <option value="quarter"> quarter</option>
