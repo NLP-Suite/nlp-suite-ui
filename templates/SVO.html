@@ -7,10 +7,14 @@
     <form method="post" class ="sentiment-analysis-form" action = "{% url 'SVO' %}">
     {% csrf_token %}
 
-    <div class = "form-row">
-        <label for="inputDirectory" class = "numberInput">Input Directory:</label>
-        <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+    <div class="form-row">
+            <label for="inputDirectory">Input Directory:</label>
+            <select name="inputDirectory" id="inputDirectory">
+                <option value="~/nlp-suite/input" selected>~/nlp-suite/input</option>
+                <option value="~/nlp-suite/csvInput">~/nlp-suite/csvInput</option>
+            </select>
     </div>
+    
     <div class = "form-row">
         <label for="outputDirectory">Output Directory:</label>
         <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>

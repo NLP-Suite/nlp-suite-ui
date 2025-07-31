@@ -6,10 +6,14 @@
     <form method="POST" action="{% url 'parsers_annotators' %}">
         
         {% csrf_token %}
-        <div class="form-row" style="margin-bottom: 20px;">
-            <label for="inputDirectory" class="numberInput">Input Directory:</label>
-            <input type="text" name="inputDir" value="~/nlp-suite/input" style="width: 100%; max-width: 400px; padding: 10px;" />
+        <div class="form-row">
+            <label for="inputDirectory">Input Directory:</label>
+            <select name="inputDirectory" id="inputDirectory">
+                <option value="~/nlp-suite/input" selected>~/nlp-suite/input</option>
+                <option value="~/nlp-suite/csvInput">~/nlp-suite/csvInput</option>
+            </select>
         </div>
+        
         <div class="form-row" style="margin-bottom: 20px;">
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDir" value="~/nlp-suite/output" style="width: 100%; max-width: 400px; padding: 10px;" />

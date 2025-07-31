@@ -6,11 +6,13 @@
     <h1>Gender Analysis</h1>
     {% csrf_token %} 
 
-    <form method="post" class="gender_analysis"></form>  
-    <div class="form-row"> 
-        <label for="inputDirectory">Input Directory:</label>
-        <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
-    </div> 
+    <div class="form-row">
+            <label for="inputDirectory">Input Directory:</label>
+            <select name="inputDirectory" id="inputDirectory">
+                <option value="~/nlp-suite/input" selected>~/nlp-suite/input</option>
+                <option value="~/nlp-suite/csvInput">~/nlp-suite/csvInput</option>
+            </select>
+        </div>
 
     <div class="form-row">
         <label for="outputDirectory">Output Directory:</label>

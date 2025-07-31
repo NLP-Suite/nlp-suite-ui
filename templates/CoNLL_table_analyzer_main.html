@@ -6,10 +6,13 @@
     {% csrf_token %}
     
     <form method="post" class="CoNLL-table-analyzer-form"></form>
-        <div class="form-row"> 
+        
+        <div class="form-row">
             <label for="inputDirectory">Input Directory:</label>
-            <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
-        </div> 
+            <select name="inputDirectory" id="inputDirectory">
+                <option value="~/nlp-suite/csvInput">~/nlp-suite/csvInput</option>
+            </select>
+        </div>
 
         <div class="form-row">
             <label for="outputDirectory">Output Directory:</label>

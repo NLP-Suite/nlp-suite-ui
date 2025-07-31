@@ -10,8 +10,11 @@
         <!-- Input and Output Directories -->
         <div class="form-row">
             <label for="inputDirectory">Input Directory:</label>
-            <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
+            <select name="inputDirectory" id="inputDirectory">
+                <option value="~/nlp-suite/csvInput">~/nlp-suite/csvInput</option>
+            </select>
         </div>
+        
         <div class="form-row">
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDirectory" value="~/nlp-suite/output" />
