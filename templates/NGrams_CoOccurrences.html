@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{%load static%}
+
 
 <div class="sentiment-analysis-container">
     <h1>N-Grams and Word Co-Occurrences</h1>
@@ -37,7 +39,7 @@
                 <input type="checkbox" id="Ngrams_compute_var" name="Ngrams_compute_var">
                 Compute N-Grams 
             </label>
-            <select id="ngrams_menu_var" name="ngrams_menu_var" disabled>
+            <select id="ngrams_menu_var" name="ngrams_menu_var">
                 <option value="Character">Character</option>
                 <option value="Word">Word</option> 
             </select>
@@ -46,7 +48,7 @@
             <label>
                 N-grams
             </label>
-            <select id="ngrams_size" name="ngrams_size" disabled>
+            <select id="ngrams_size" name="ngrams_size">
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -57,7 +59,7 @@
             <label>
                 Options
             </label>
-            <select id="ngrams_options_menu_var" name="ngrams_options_menu_var" disabled>
+            <select id="ngrams_options_menu_var" name="ngrams_options_menu_var">
                 <option value="Case sensitive (default)">Case sensitive (default)</option>
                 <option value="Case insensitive">Case insensitive</option> 
                 <option value="Hapax legomena (once-occurring words)">Hapax legomena (once-occurring words)</option>
@@ -97,7 +99,7 @@
             <label>
                 Search options
             </label>
-            <select id="Ngrams_search_var" name="Ngrams_search_var" disabled>
+            <select id="Ngrams_search_var" name="Ngrams_search_var">
                 <option value="Case sensitive (default)">Case sensitive (default)</option>
                 <option value="Case insensitive'">Case insensitive</option> 
                 <option value="Exact match (default)">Exact match</option>
@@ -131,14 +133,14 @@
             </label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <label>
-                <input type="checkbox" id="co-occurrence-within-sen" name="co-occurrence-within-sen" disabled>
+                <input type="checkbox" id="co-occurrence-within-sen" name="co-occurrence-within-sen" >
                 Co-Occurrence within sentence (Default: within document)
             </label>
         </div>
 
         <div class="form-row">
             <label>
-                <input type="checkbox" id="date_options" name="date_options" disabled>
+                <input type="checkbox" id="date_options" name="date_options">
                 Date options
             </label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -193,6 +195,18 @@
         
         <div class="buttons-section">
             <button type="reset" class="reset-button">Reset</button>
+            
+            
+            <link rel="stylesheet" href="{% static "css/tipsfile.css" %}">
+
+            <a href="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Sentiment%20analysis.pdf" target ="_blank" rel="noopener noreferrer"
+            class = "tipsfile-button">
+                <div class = "tipsfile-mask">
+                    <div class = "tipsfile-glow"></div>
+                </div>
+                Tips File
+            </a>
+
             <button type="submit" class="run-button">Run</button>
         </div>
 

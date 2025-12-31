@@ -121,18 +121,6 @@ def NGrams_CoOccurrences(request: HttpRequest):
             messages.add_message(request, messages.ERROR, response.content.decode())
     return render(request, 'NGrams_CoOccurrences.html')
 
-def coNLL_table_analyzer_main(request: HttpRequest):
-    if request.method == "POST":
-        response = requests.post(
-            f"{AGENT_SERVER_URL}/CoNLL_table_analyzer_main",
-            data=request.body,
-            headers=request.headers,
-        )
-        if response.ok:
-            return HttpResponseRedirect("/status")
-        else:
-            messages.add_message(request, messages.ERROR, response.content.decode())
-    return render(request, 'CoNLL_table_analyzer_main.html')
 
 def parsers_annotators(request: HttpRequest):
     if request.method == "POST":
@@ -295,3 +283,17 @@ def colormap_chart(request: HttpRequest):
 def excel_plotly_chars(_: HttpRequest):
     template = loader.get_template("../templates/excel_plotly_charts.html")
     return HttpResponse(template.render())
+
+
+def conll_table_analyzer_main(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/CoNLL_table_analyzer_main",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "CoNLL_table_analyzer_main.html")

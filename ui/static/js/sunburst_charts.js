@@ -1,121 +1,11 @@
-{% extends 'base.html' %}
-{% block content %}
-{% load static %}
 
-<div class="sentiment-analysis-container">
-    <h1>Color and Heat Map Charts</h1>
-    <form method="post" class="sentiment-analysis-form" action="{% url 'colormap_chart' %}">
-        {% csrf_token %}
+document.addEventListener("DOMContentLoaded", function () {
 
-        <!-- Input and Output Directories -->
-        <div class="form-row">
-            <label for="inputDirectory">Input Directory:</label>
-            <input type="text" name="inputDirectory" value="~/nlp-suite/input" />
-        </div>
-        <div class="form-row">
-            <label for="outputDirectory">Output Directory:</label>
-            <input type="text" name="outputDirectory" value="~/nlp-suite/output" />
-        </div>
-
-        <!-- CSV File Input and Search Field Selection -->
-        <div class="form-row">
-            <label for="search_field">Search field</label>
-            <input type="file" id="colormap_file_input" name="colormap_file_input" accept=".csv" required>
-            <select id="search_field" name="search_field">
-                <option value="" disabled selected>Select a field</option>
-            </select>
-            <button type"button" id="add_search_field" class="action-button">+</button>
-            <button type="button" id="reset_search_field" class="action-button">Reset</button>
-
-            <div id="selected_fields_container" style="margin-top: 10px;">
-                <label>Selected Fields:</label>
-                <div id="selected_fields_list"></div>
-            </div>
-
-        </div>
-
-        <!-- Hidden input to store file data -->
-        <input type="hidden" name="file_data" id="file_data">
-
-        <!-- Chart Options -->
-        <div class="form-row">
-          <label for="max_number_of_rows">Max no. of rows</label>
-            <input type="number" id="max_number_of_rows" name="max_number_of_rows">
-        </div>
-
-        <div class="form-row">
-            <div class = "color-picker-container">
-                <label for="colorPicker">Choose less frequent occurrence(s) color</label>
-                <input type = "color" id = "less_freq_color_picker" name = "less_freq_color_picker" class = "color-picker" value = "#000000">
-                <input type = "hidden" id = "colorIndex" name = "colorIndex" value = "0">
-            </div>
-        <script>
-            document.getElementById('colorPicker').addEventListener('input', function(event) {
-                const color = event.target.value;
-                const colorIndex = parseInt(color.substring(1), 16);
-                document.getElementById('colorIndex').value = colorIndex;
-              });
-        </script>
-
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-            <div class = "color-picker-container">
-                <label for="colorPicker">Choose more frequent occurrence(s) color</label>
-                <input type = "color" id = "more_freq_color_picker" name = "more_freq_color_picker" class = "color-picker" value = "#000000">
-                <input type = "hidden" id = "colorIndex" name = "colorIndex" value = "0">
-            </div>
-        <script>
-            document.getElementById('colorPicker').addEventListener('input', function(event) {
-                const color = event.target.value;
-                const colorIndex = parseInt(color.substring(1), 16);
-                document.getElementById('colorIndex').value = colorIndex;
-              });
-        </script>
-        </div>
-
-        <div class="form-row">
-            <label for="normalize">
-                Normalize
-            </label>
-            <select id="normalize" name="normalize">
-                <option value="no_transform">No transform</option>
-                <option value="min-max">Min-Max</option>
-                <option value="z-score">Z-score</option>
-                <option value="square_root">Square root</option>
-                <option value="log">Log</option>
-                <option value="ln">Ln</option>
-            </select>
-        </div>
-    
-
-        <!-- Form Buttons -->
-        <div class="buttons-section">
-            <button type="reset" class="reset-button">Reset</button>
-
-            <link rel="stylesheet" href="{% static "css/tipsfile.css" %}">
-
-            <a href="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Sentiment%20analysis.pdf" target ="_blank" rel="noopener noreferrer"
-            class = "tipsfile-button">
-                <div class = "tipsfile-mask">
-                    <div class = "tipsfile-glow"></div>
-                </div>
-                Tips File
-            </a>
-            
-            <button type="submit" class="run-button">Run</button>
-        </div>
-
-    </form>
-</div>
-
-
-<!-- JavaScript for Dynamic Functionality -->
-<script>
     let selectedFieldValues = []; 
     let savedPairs = [];
 
     // Existing functionality: Populate dropdown based on uploaded CSV file
-    document.getElementById("colormap_file_input").addEventListener("change", function (event) {
+    document.getElementById("sunburst_file_input").addEventListener("change", function (event) {
         const file = event.target.files[0];
         
         // Check if the file is a CSV
@@ -131,8 +21,6 @@
                 processCSV(csvContent);
                 console.log("CSV File: ", csvContent)
 
-                // Store CSV content in hidden input
-                document.getElementById('file_data').value = csvContent;
             };
             
             reader.readAsText(file); // Start reading the file
@@ -171,6 +59,21 @@
         });
     }
 
+    function populate_search_value_dropdown(uniqueValues) {
+        
+        const element  = document.getElementById("search_value_dropdown");
+        element.options.length=0; 
+
+        for(const value of uniqueValues) {
+            const option = document.createElement("option");
+
+            option.textContent = value;
+            option.value = value; 
+
+            element.appendChild(option);
+        }
+    }
+
     function getFieldData(fieldIndex, data) {
         const values = data.map(row => {
             let cell = row[fieldIndex]; // Get the cell value at the specified column (fieldIndex)
@@ -184,10 +87,11 @@
         
             return cell; // Return the cleaned cell value
         });
-    
+
         // Filter out empty strings and get unique values
         const uniqueValues = [...new Set(values.filter(value => value !== ""))];
-    
+        
+        populate_search_value_dropdown(uniqueValues);
         return uniqueValues;
     }    
 
@@ -198,13 +102,13 @@
         const value = keywordInput.value;
         const lastChar = value[value.length - 1];
         let userInput = value.split(',').pop().trim().toLowerCase(); // Get the last value
-    
+
         suggestionDropdown.innerHTML = ""; // Clear previous suggestions
-    
+
         // Determine whether to show suggestions
         if (userInput || lastChar === ',') {
             let filteredValues;
-    
+
             if (userInput) {
                 filteredValues = selectedFieldValues.filter(val =>
                     val.toLowerCase().startsWith(userInput)
@@ -213,7 +117,7 @@
                 // If userInput is empty and lastChar is a comma, show all suggestions
                 filteredValues = selectedFieldValues;
             }
-    
+
             if (filteredValues.length === 0) {
                 // Show "no match" if no results are found
                 const noMatch = document.createElement("div");
@@ -233,7 +137,7 @@
                     suggestionDropdown.appendChild(suggestion);
                 });
             }
-    
+
             suggestionDropdown.style.display = "block"; // Show dropdown
         } else {
             suggestionDropdown.style.display = "none"; // Hide dropdown
@@ -251,15 +155,15 @@
         if (value.toLowerCase() === "no match") return; // Prevent adding "No match"
         let currentValues = keywordInput.value.split(',');
         currentValues = currentValues.map(val => val.trim()); // Clean up spaces
-    
+
         currentValues[currentValues.length - 1] = value;
-    
+
         keywordInput.value = currentValues.filter(val => val).join(", ") + ", ";
         keywordInput.focus(); // Bring focus back to the input
-    
+
         suggestionDropdown.style.display = "none"; // Hide dropdown
     }
-    
+
     // New functionality: Add Filter Option and CSV Field List Pair
     document.getElementById('add_pair_button').addEventListener('click', function() {
         const searchFieldDropdown = document.getElementById('search_field');
@@ -344,6 +248,5 @@
         console.log("Selected Pairs: ", selectedPairsData)
         this.appendChild(hiddenInput);
     });
-</script>
 
-{% endblock %}
+});
