@@ -42,7 +42,7 @@
 
     <div class="form-row">
         <label for="ner_tags">NER tags</label>
-        <select id="ner_tags" name="ner_tags">
+        <select id="ner_tags" name="ner_tags" disabled>
             <optgroup label="ner_tags">
                 <option value="all_ner_tags">All NER tags</option>
                 <option value="all_quant_expressions">--- All quantitative expresisons</option>
@@ -76,8 +76,8 @@
             </optgroup>
         </select>
 
-        <button type="button">+</button>
-        <button type="button">Reset</button>
+        <button type="button" id="button_id">+</button>
+        <button type="button" id="reset_id">Reset</button>
         &nbsp;&nbsp;&nbsp; 
         
         <label for="ner_list">NER list</label>
@@ -129,7 +129,7 @@
 
             <link rel="stylesheet" href="{% static "css/tipsfile.css" %}">
 
-            <a href="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Sentiment%20analysis.pdf" target ="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_NER%20(Named%20Entity%20Recognition).pdf" target ="_blank" rel="noopener noreferrer"
             class = "tipsfile-button">
                 <div class = "tipsfile-mask">
                     <div class = "tipsfile-glow"></div>
@@ -141,4 +141,7 @@
     </div>
 </form>
 </div>
+
+
+<script src="{% static 'js/NER.js' %}"></script>
 {% endblock %}
