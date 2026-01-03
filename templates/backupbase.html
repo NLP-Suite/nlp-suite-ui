@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <title>NLP Suite</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'toastr/toastr.min.css' %}" />
+    <script type=text/javascript src="{% static 'toastr/toastr.min.js' %}"> </script>
+</head>
+
+<body class="dashboard-body">
+    
+    <div class="app-container">
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img class="logo" src="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/lib/images/logo.jpg?raw=True" />
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3 class="nav-title">Overview</h3>
+                    <a href="{% url 'home' %}" class="nav-item">Home</a>
+                    <a href="{% url 'install' %}" class="nav-item">Install</a>
+                    <a href="{% url 'contact' %}" class="nav-item">Contact</a>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-title">Tools</h3>
+                    
+                    <a href="{% url 'NGrams_CoOccurrences'%}" class="nav-item">N-Grams and Co-Occurrences</a>
+                    <a href="{% url 'filesearchword' %}" class="nav-item">File Search: Words</a>
+                    <a href="{% url 'wordnet' %}" class="nav-item">Wordnet</a>
+                    <a href="{% url 'topic_modeling' %}" class="nav-item">Topic Modeling</a>
+                    <a href="{% url 'word2vec' %}" class="nav-item">Word2Vec & Embeddings</a>
+                    <a href="{% url 'word2vec' %}" class="nav-item">Word Sense Induction (WSI)</a>
+                    <a href="{% url 'style_analysis' %}" class="nav-item">Style Analysis</a>
+                    <a href="{% url 'gender_analysis' %}" class="nav-item">Gender Analysis</a>
+                    <a href="{% url 'parsers_annotators' %}" class="nav-item">Parsers & Annotators</a>
+                    <a href="{% url 'CoNLL_table_analyzer_main'%}" class="nav-item">CoNLL Table Analyzer</a>
+                    <a href="{% url 'SVO' %}" class="nav-item">SVO</a>
+                    <a href="{% url 'NER' %}" class="nav-item">NER (Named Entity Recognition)</a>
+                    <a href="{% url 'gis' %}" class="nav-item">Geographic Information System</a>
+                    <a href="{% url 'sentiment_analysis' %}" class="nav-item">Sentiment Analysis</a>
+                    <a href="{% url 'shape_of_stories' %}" class="nav-item">Shape of Stories</a>
+
+                    <details class="nav-details">
+                        <summary class="nav-item nav-summary">Data Visualization </summary>
+                        
+                        <div class="submenu">
+                            <a href="{% url 'wordclouds' %}" class="nav-item sub-item">Wordclouds</a>
+                            
+                            <details class="nav-details">
+                                <summary class="nav-item nav-summary sub-summary">Categorical</summary>
+                                <div class="submenu">
+                                    <span class="nav-label">HTML Annotator</span>
+                                    <a href="{% url 'sunburst_charts' %}" class="nav-item sub-item">Sunburst charts</a>
+                                    <span class="nav-label">Treemap</span>
+                                </div>
+                            </details>
+
+                            <details class="nav-details">
+                                <summary class="nav-item nav-summary sub-summary">Numerical</summary>
+                                <div class="submenu">
+                                    <a href="{% url 'boxplot' %}" class="nav-item sub-item">Boxplot</a>
+                                    <a href="{% url 'colormap_chart' %}" class="nav-item sub-item">Color / Heat Map</a>
+                                    <a href="{% url 'colormap_chart' %}" class="nav-item sub-item">Animated Bar Plot</a>
+                                    <span class="nav-label">Multiple Bar Charts</span>
+                                </div>
+                            </details>
+
+                            <details class="nav-details">
+                                <summary class="nav-item nav-summary sub-summary">Relational</summary>
+                                <div class="submenu">
+                                    <span class="nav-label">Geographic Maps</span>
+                                    <span class="nav-label">Network Graphs</span>
+                                    <a href="{% url 'sankey_flowchart' %}" class="nav-item sub-item">Sankey flowchart</a>
+                                    <span class="nav-label">Sentence Visualization</span>
+                                </div>
+                            </details>
+                            
+                            <a href="{% url 'excel_plotly_charts' %}" class="nav-item sub-item">Excel/Plotly Charts</a>
+                        </div>
+                    </details>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+    </div>
+
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == 'success'%}
+    <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+    {% elif message.tags == 'info' %}
+    <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+    {% elif message.tags == 'warning' %}
+    <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+    {% elif message.tags == 'error' %}
+    <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+</body>
+</html>

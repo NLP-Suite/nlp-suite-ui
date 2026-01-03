@@ -1,0 +1,1 @@
+//old function for pdf use in html file

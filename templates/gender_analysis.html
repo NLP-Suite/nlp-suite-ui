@@ -151,7 +151,7 @@
         
         <link rel="stylesheet" href="{% static "css/tipsfile.css" %}">
 
-            <a href="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Sentiment%20analysis.pdf" target ="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20gender%20annotator.pdf" target ="_blank" rel="noopener noreferrer"
             class = "tipsfile-button">
                 <div class = "tipsfile-mask">
                     <div class = "tipsfile-glow"></div>
@@ -162,67 +162,7 @@
         <button type="submit" class="run-button">Run</button>
     </div> 
 
-    <script> 
-        function coreNlpGenAnnotateCheckbox() {
-            var coreNlpGenAnnotateCheckbox = document.getElementById("CoreNLP_gender_annotator_var");
-            var annotatorDictCheckbox = document.getElementById("annotator_dictionary_var");
-            var processNameUSCheckbox = document.getElementById("plot_var");
-
-            if(coreNlpGenAnnotateCheckbox.checked) {
-                annotatorDictCheckbox.disabled = true;
-                processNameUSCheckbox.disabled = true;
-            } else {
-                annotatorDictCheckbox.disabled = false;
-                processNameUSCheckbox.disabled = false;
-            }
-        } 
-
-        function annotateGenderCheckbox() {
-            var coreNlpGenAnnotateCheckbox = document.getElementById("CoreNLP_gender_annotator_var");
-            var annotatorDictCheckbox = document.getElementById("annotator_dictionary_var");
-            var processNameUSCheckbox = document.getElementById("plot_var");
-            var selectDicFile = document.getElementById("select-dic-file");
-            var selectCsvFile = document.getElementById("select-csv-file");
-
-            if(annotatorDictCheckbox.checked) {
-                coreNlpGenAnnotateCheckbox.disabled = true;
-                byUsStateDropdown.disabled = true;
-                enterNameTextbox.disabled = true;
-                selectDicFile.disabled = false;
-                selectCsvFile.disabled = false;
-            } else {
-                coreNlpGenAnnotateCheckbox.disabled = false;
-                byUsStateDropdown.disabled = false;
-                enterNameTextbox.disabled = false;
-                selectDicFile.disabled = true;
-                selectCsvFile.disabled = true;
-            }
-        } 
-
-        function processNamesUsCheckbox() {
-            var coreNlpGenAnnotateCheckbox = document.getElementById("CoreNLP_gender_annotator_var");
-            var annotatorDictCheckbox = document.getElementById("annotator_dictionary_var");
-            var processNameUSCheckbox = document.getElementById("plot_var");
-            var byUsStateDropdown = document.getElementById("year_state_var");
-            var enterNameTextbox = document.getElementById("firstName_entry_var");
-
-            if(plot_var.checked) {
-                coreNlpGenAnnotateCheckbox.disabled = true;
-                annotatorDictCheckbox.disabled = true;
-                byUsStateDropdown.disabled = false;
-                enterNameTextbox.disabled = false;
-            } else {
-                coreNlpGenAnnotateCheckbox.disabled = false;
-                annotatorDictCheckbox.disabled = false;
-                byUsStateDropdown.disabled = true;
-                enterNameTextbox.disabled = true;
-            }
-        } 
-
-        document.getElementById("CoreNLP_gender_annotator_var").addEventListener("change", coreNlpGenAnnotateCheckbox);
-        document.getElementById("annotator_dictionary_var").addEventListener("change", annotateGenderCheckbox);
-        document.getElementById("plot_var").addEventListener("change", processNamesUsCheckbox);
-    </script>
+    <script src="{% static 'js/gender_analysis.js' %}"></script>
 </div>
 
 {% endblock %}
