@@ -165,9 +165,18 @@ def wordnet(_: HttpRequest):
     template = loader.get_template("../templates/wordnet.html")
     return HttpResponse(template.render())
 
-def filesearchword(_: HttpRequest):
-    template = loader.get_template("../templates/filesearchword.html")
-    return HttpResponse(template.render())
+def filesearchword(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/filesearchword",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "filesearchword.html")
 
 def visual1(_: HttpRequest):
     template = loader.get_template("../templates/visual1.html")
