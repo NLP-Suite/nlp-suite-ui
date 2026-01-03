@@ -1,0 +1,106 @@
+:root { 
+    --slate-50: #f8fafc;
+    --slate-600: #475569;
+    --slate-900: #0f172a;
+    --blue-600: #2563eb;
+    --blue-700: #1d4ed8;
+    --emerald-600: #059669;
+    --purple-600: #9333ea;
+}
+
+.dashboard-container {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--slate-50);
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.max-width-wrapper {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.header-section {
+    margin-bottom: 2rem;
+}
+
+.header-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    margin-bottom: 0.5rem;
+}
+
+.hero-card {
+    background: linear-gradient(to bottom right, var(--blue-600), var(--blue-700));
+    border-radius: 1rem;
+    padding: 2rem;
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-decoration: none;
+}
+
+.hero-card:hover {
+    transform: scale(1.02);
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.tool-card {
+    text-decoration: none;
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border: none;
+    text-align: left;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.tool-icon {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    color: white;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+}
