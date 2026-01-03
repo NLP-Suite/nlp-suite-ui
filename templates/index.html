@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-    <div style="padding: 20px;">
+
+
+    {% comment %} <link rel="stylesheet" href="{% static 'css/landing.css' %}"> {% endcomment %}
+
+    <div style="padding: 20px;" class="graident-vertical">
         <h1 style="font-size: 48px;">Welcome to the NLP Suite</h1> 
     </div>
 {% endblock %}
