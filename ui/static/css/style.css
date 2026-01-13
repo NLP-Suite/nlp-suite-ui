@@ -72,7 +72,7 @@ body {
 }
 
 .run-button {
-  background-color: #4caf50;
+  background-color: #3c67cb;
   color: white;
 }
 
@@ -101,8 +101,8 @@ label {
   width: 25px;
   height: 25px;
   background-color: white;
-  color: #4caf50;
-  border: 2px solid #9ee4a0;
+  color: #4d6aad;
+  border: 2px solid #4d6aad;
   border-radius: 50%;
   text-align: center;
   line-height: 25px;
@@ -159,7 +159,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-  background-color: #9ee4a0;
+  background-color: #4d6aad;
   border-color: #4caf50;
 }
 

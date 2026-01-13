@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <title>NLP Suite</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'toastr/toastr.min.css' %}" />
+    <script type=text/javascript src="{% static 'toastr/toastr.min.js' %}"> </script>
+</head>
+
+<body style="width: 100vw; height: 100vh;">
+    <div style="width: 100%; height: 100%; display: flex; flex-direction: row;">
+        <div
+            style="width: 337px; height: 100%; display: flex; flex-direction: column; gap: 15px; padding: 19px 30px 19px 30px;">
+            <img style="width: 150px; margin-bottom: 33px; "
+                src="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/lib/images/logo.jpg?raw=True" />
+            <div
+                style="display: flex; flex-direction: column; width: 328px; height: auto; padding: 0px 30px; gap: 2px;">
+                <h1
+                    style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; line-height: 21.78px; color:rgb(255, 0, 0); margin-bottom: 2px;">
+                    Overview</h1>
+                <a href="{% url 'home' %}" title="Goes to home"
+                    style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Home</a>
+                <a href="{% url 'install' %}" title="Goes to install"
+                    style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Install</a>
+                <a href="{% url 'contact' %}" title="Goes to contact"
+                    style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Contact</a>
+
+                <h1
+                    style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; line-height: 21.78px; color:rgb(255, 0, 0); margin-bottom: 2px;">
+                  Tools
+                </h1>
+                <a href="{% url 'NGrams_CoOccurrences'%} " title = "Goes to N-Gram and Co-Occurences"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">N-Grams and Co-Occurences</a>
+
+                <a href="{% url 'filesearchword' %}" title="Goes to file search word and collections"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">File Search: Words</a>
+
+                <a href="{% url 'wordnet' %}" title="Goes to wordnet"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Wordnet</a>
+            
+                <a href="{% url 'topic_modeling' %}" title="Goes to topic modeling"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Topic Modeling</a>
+
+                <a href="{% url 'word2vec' %}" title="Goes to word2vec"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Word2Vec & Word Embeddings</a>
+
+
+                <a href="{% url 'word2vec' %}" title="Goes to word sense induction"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Word Sense Induction (WSI)</a>
+
+                <a href="{% url 'style_analysis' %}" title="Goes to style analysis"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Style Analysis</a>
+
+                <a href="{% url 'gender_analysis' %}" title="Goes to gender analysis"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Gender Analysis</a>
+
+                <a href="{% url 'parsers_annotators' %}" title="Goes to parsers annotators"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Parsers & Annotators</a>
+
+                <a href="{% url 'CoNLL_table_analyzer_main'%} " title = "Goes to CoNLL table analyzer"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">CoNLL Table Analyzer</a>
+
+                <a href="{% url 'SVO' %}" title="Goes to SVO"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">SVO</a>
+
+                <a href="{% url 'NER' %}" title="Goes to NER"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">NER (Named Entity Recognition)</a>
+
+                <a href="{% url 'gis' %}" title="Goes to gis"
+                style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Geographic Information System</a>
+                
+                <a href="{% url 'sentiment_analysis' %}" title="Goes to Sentiment Analysis"
+                    style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Sentiment
+                    Analysis</a>
+                <a href="{% url 'shape_of_stories' %}" title="Goes to shape_of_stories"
+                    style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Shape of Stories</a>
+
+                    <details>
+                        <summary style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">
+                            Data Visualization
+                        </summary>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'wordclouds' %}" title="Goes to wordclouds"
+                        style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Wordclouds</a>
+                        <details>
+                            <summary style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px; text-indent: 20px;">
+                                Categorical
+                            </summary>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                HTML Annotator
+                            </p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="{% url 'sunburst_charts' %}" title="Goes to sunburst charts"
+                            style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Sunburst charts</a>
+                            
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Treemap
+                            </p>
+                        </details>
+                        <details>
+                            <summary style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px; text-indent: 20px;">
+                                Numerical
+                            </summary>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="{% url 'boxplot' %}" title="Goes to boxplot"
+                            style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Boxplot</a>
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="{% url 'colormap_chart' %}" title="Goes to color and heat map charts"
+                            style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Color and Heat Map</a>
+                            </a>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Animated time-dependent bar plot
+                            </p>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Multiple Bar Charts
+                            </p>
+                        </details>
+                        <details>
+                            <summary style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px; text-indent: 20px;">
+                                Relational
+                            </summary>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Geographic Maps
+                            </p>
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Network Graphs
+                            </p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="{% url 'sankey_flowchart' %}" title = "Goes to sankey flowchart"
+                            style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Sankey flowchart</a>
+                            </a>   
+                            <p style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-left: 40px;">
+                                Sentence Visualization
+                            </p>
+                        </details>
+                    </details>       
+                    <a href="{% url 'excel_plotly_charts' %}" title="Goes to excel / plotly charts"
+                    style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #656974; margin-bottom: 2px;">Excel/Plotly Charts</a>
+            </div>
+
+        </div>
+        
+        <div style="flex-grow: 1;">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <style>
+            details summary::marker {
+                color: #9ee4a0;
+            }
+        </style>
+
+    </div>
+
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == 'success'%}
+    <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+    {% elif message.tags == 'info' %}
+    <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+    {% elif message.tags == 'warning' %}
+    <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+    {% elif message.tags == 'error' %}
+    <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+</body>
+
+</html>
