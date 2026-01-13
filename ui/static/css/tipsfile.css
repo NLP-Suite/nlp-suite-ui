@@ -1,9 +1,9 @@
 .tipsfile-button{ 
-    border: 3px solid #9ee4a0;
+    border: 3px solid #3c67cb;
     position: relative;
     padding: 10px 100px;
     border-radius: 14px;
-    color: #4caf50;
+    color: #416cd3;
     font-weight: bold;
     background-color: white;
     font-size: 18px;
@@ -14,7 +14,7 @@
 
 .tipsfile-button:hover {
     transform: scale(1.1); 
-    box-shadow: 0 2px 2px #4caf50
+    box-shadow: 0 2px 2px #4d6aad
 }
 
 .tipsfile-button:hover .tipsfile-glow {  
@@ -31,7 +31,7 @@
     height: 100%;
     padding: 1.1px; 
 
-    mask: linear-gradient(#9ee4a0 0 0) content-box, linear-gradient(#9ee4a0 0 0) border-box;
+    mask: linear-gradient(#4d6aad 0 0) content-box, linear-gradient(#4d6aad 0 0) border-box;
     mask-composite: exclude;
     
 }
@@ -39,8 +39,8 @@
 .tipsfile-glow {
     background: conic-gradient(from 0deg, 
     transparent 0%,
-    #9ee4a0 10%,
-    #4caf50 15%,
+    #4d6aad 10%,
+    #2a4584 15%,
     transparent 20%
     );
     position: absolute;

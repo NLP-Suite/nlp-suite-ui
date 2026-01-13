@@ -1,56 +1,130 @@
-{% extends 'base.html' %}
 {% load static %}
-{% block content %}
-<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}NLP Suite{% endblock %}</title>
 
-<div class="dashboard-container">
-    <div class="max-width-wrapper">
-        
-        <div class="header-section">
-            <h1 class="header-title">Welcome to the NLP Suite</h1>
-        </div>
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
 
-        <a href="/tips-manager" class="hero-card">
-            <div style="flex: 1;">
-                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                </div>
-                <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">could be any thing</h2>
-                </p>
-            </div>
+
+  <link rel="stylesheet" href="{% static 'toastr/toastr.min.css' %}">
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="{% static 'toastr/toastr.min.js' %}"></script>
+
+  {% block extra_head %}
+  {% endblock %}
+</head>
+
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="logo">
+        <img src="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/lib/images/logo.jpg?raw=True" style = "height: 36px";>
+        <span>NLP Suite</span>
+        <a class="nav-link"
+          href = "{% url 'home' %}">Home</a> 
         </a>
+      </a>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-            <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--slate-900);">Popular Tools</h2>
-            <div style="color: var(--slate-600); font-size: 0.875rem;">
+      <nav class="nav" aria-label="Primary">
+        <div class="nav-group" id="navGroup">
+          <div class="nav-item">
+            <a class="nav-link">
+              Corpus <span class="navChevron"></span>
+            </a>
+            <div class="navDropdown" role="menu">
+              <div class="navDropdownGrid">
+                <div>
+                  <h4>CORPUS</h4>
+                  <div class="navPrimaryLinks">
+                    
+                    <a href="{% url 'NGrams_CoOccurrences'%} ">N-Grams and Word Co-Occurrences</a>
+                    <a href="{% url 'topic_modeling' %}">Topic Modeling</a>
+                    <a href="{% url 'shape_of_stories' %}">Shape of Stories</a>
+                  </div>
+                </div>
+                <div>
+                  <h4> CORPUS / DOCUMENT</h4>
+                  <div class="navSecondaryLinks">
+                    <a href="{% url 'filesearchword' %}">File Search: Words</a>
+                    <a href="{% url 'wordnet'%} ">Wordnet</a>
+                    <a href="{% url 'word2vec'%} ">Word2Vec and Word Embeddings / WSI</a>
+                    <a href="{% url 'style_analysis'%} ">Style analysis (ALL options GUI)</a>
+                    <a href="{% url 'gender_analysis'%} ">Gender Analysis</a>
+                    <a href="{% url 'parsers_annotators'%} ">Parsers & Annotators (BERT, CoreNLP, spaCy, Stanza)</a>
+                    <a href="{% url 'CoNLL_table_analyzer_main'%} "> CoNLL Table Analyzer</a>
+                    <a href="{% url 'SVO'%} ">SVO</a>
+                    <a href="{% url 'NER'%} ">NER</a>
+                    <a href="{% url 'sentiment_analysis'%} "> Sentiment Analysis</a>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
 
-        <div class="tools-grid">
-
-            <a href="{% url 'sentiment_analysis' %}" class="tool-card">
-                <div class="tool-icon" style="background: linear-gradient(to br, #3b82f6, #2563eb);">
-                    <i class="fa-solid fa-chart-bar"></i>
-                </div>
-                <h3 style="font-weight: 700; margin-bottom: 0.5rem;">Sentiment Analysis</h3>
-                <div style="margin-top: 1rem; color: var(--blue-600); font-weight: 600;">Get Started <i class="fa-solid fa-arrow-right fa-xs"></i></div>
+          <div class="nav-item">
+            <a class="nav-link" >
+              Sentence Analysis <span class="navChevron"></span>
             </a>
-
-            <a href="{% url 'NGrams_CoOccurrences' %}" class="tool-card">
-                <div class="tool-icon" style="background: linear-gradient(to br, #a855f7, #9333ea);">
+            <div class="navDropdown navDropdownNarrow" role="menu">
+              <div class="navDropdownGrid">
+                <div>
+                  <h4>Sentence</h4>
+                  <div class="navPrimaryLinks">
+                    <a>wip</a>
+                  </div>
                 </div>
-                <h3 style="font-weight: 700; margin-bottom: 0.5rem;">N-Grams</h3>
-                <div style="margin-top: 1rem; color: var(--blue-600); font-weight: 600;">Get Started <i class="fa-solid fa-arrow-right fa-xs"></i></div>
-            </a>
+              </div>
+            </div>
+          </div>
+            
 
-            <a href="{% url 'NER' %}" class="tool-card">
-                <div class="tool-icon" style="background: linear-gradient(to br, #10b981, #059669);">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <div class="nav-item">
+            <a class="nav-link" >
+              Visualization Analysis  <span class="navChevron"></span>
+            </a>
+            <div class="navDropdown navDropdownNarrow" role="menu">
+              <div class="navDropdownGrid">
+                <div>
+                  <h4>Visualization</h4>
+                  <div class="navPrimaryLinks">
+                    <a href="{% url 'wordclouds'%} ">Wordclouds</a>
+                    <a href="{% url 'sunburst_charts'%} ">Sunburst Charts</a>
+                    <a href="{% url 'boxplot'%} ">Boxplot</a>
+                    <a href="{% url 'colormap_chart'%} ">Color and Heat Map</a>
+                    <a href="{% url 'sankey_flowchart'%} ">Sankey Flowchart</a>
+                    <a href="{% url 'excel_plotly_charts'%} ">Excel/Plotly Charts</a>
+                  </div>
                 </div>
-                <h3 style="font-weight: 700; margin-bottom: 0.5rem;">Named Entity Recognition</h3>
-                <div style="margin-top: 1rem; color: var(--blue-600); font-weight: 600;">Get Started <i class="fa-solid fa-arrow-right fa-xs"></i></div>
-            </a>
-        </div>
+              </div>
+            </div>
+          </div>
+  </header>
 
-    </div>
-</div>
-{% endblock %}
+  <main>
+    {% block content %}
+    {% include "homepage.html" %}
+    {% endblock %}
+  </main>
+
+  {% if messages %}
+    {% for message in messages %}
+      {% if message.tags == 'success' %}
+        <script type="text/javascript">toastr.success('{{ message }}')</script>
+      {% elif message.tags == 'info' %}
+        <script type="text/javascript">toastr.info('{{ message }}')</script>
+      {% elif message.tags == 'warning' %}
+        <script type="text/javascript">toastr.warning('{{ message }}')</script>
+      {% elif message.tags == 'error' %}
+        <script type="text/javascript">toastr.error('{{ message }}')</script>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,266 +1,202 @@
-  /* Base styles for consistency */
+/* Base styles for consistency */
 
-  /* NOTE: To make edits to the styles, use this file */
+/* NOTE: To make edits to the styles, use this file */
 
-  * {
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
-  body {
-    overflow: scroll;
-  }
+body {
+  overflow: scroll;
+}
 
-  .dropdown-group {
-    margin-bottom: 10px;
-  }
+.dropdown-group {
+  margin-bottom: 10px;
+}
 
-  .sentiment-analysis-container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    /* color: #989797 */
-  }
+.sentiment-analysis-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
 
+.form-row {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-row label {
+  margin-right: 10px;
+}
+
+.form-row input[type="text"],
+.form-row select {
+  flex-grow: 1;
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+
+.form-row label input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.color-picker-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.color-display {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+}
+.buttons-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.reset-button,
+.run-button {
+  padding: 10px 20px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.run-button {
+  background-color: #3c67cb;
+  color: white;
+}
+
+.run-button:hover,
+.reset-button:hover {
+  background-color: #cccccc;
+  color: black;
+}
+
+label {
+  position: relative;
+}
+
+/* Tooltip styling */
+.tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.tooltip::before {
+  content: "?";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  color: #4d6aad;
+  border: 2px solid #4d6aad;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 25px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 300px;
+  background-color: #555;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -150px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.form-row {
+  margin-bottom: 15px;
+}
+
+.buttons-section {
+  margin-top: 20px;
+}
+
+.reset-button, .run-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+
+/* Style for checkboxes */
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  vertical-align: middle;
+  position: relative;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #4d6aad;
+  border-color: #4caf50;
+}
+
+input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: white;
+  position: absolute;
+  left: 3px;
+  font-size: 10px;
+} 
+
+input[type="checkbox"]:disabled {
+  background-color: #c6c6c6;
+  border-color: #767676;
+}
+
+/* Adjustments for responsiveness */
+@media (max-width: 768px) {
   .form-row {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    margin-bottom: 20px;
-    /* color: #989797 */
-  }
-
-  .form-row label {
-    margin-right: 10px;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .form-row input[type="text"],
   .form-row select {
-    flex-grow: 1;
-    padding: 8px;
-    margin-right: 10px;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-  }
-
-  .form-row label input[type="checkbox"] {
-    margin-right: 5px;
-  }
-
-  .color-picker-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .color-display {
-    width: 100px;
-    height: 100px;
-    border: 1px solid #000;
-  }
-  .buttons-section {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-  }
-
-  .reset-button,
-  .run-button {
-    padding: 10px 20px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .run-button {
-    background-color: #4caf50;
-    color: white;
-  }
-
-  .run-button:hover,
-  .reset-button:hover {
-    background-color: #cccccc;
-    color: black;
-  }
-
-  label {
-    position: relative;
-  }
-
-  /* Tooltip styling */
-  .tooltip {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-
-  .tooltip::before {
-    content: "?";
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    background-color: white;
-    color: #4caf50;
-    border: 2px solid #9ee4a0;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 25px;
-    font-size: 16px;
-    font-weight: bold;
-  }
-
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 300px;
-    background-color: #555;
-    color: #fff;
-    border-radius: 5px;
-    padding: 10px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -150px;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .form-row {
-    margin-bottom: 15px;
-  }
-
-  .buttons-section {
-    margin-top: 20px;
-  }
-
-  .reset-button, .run-button {
-    padding: 10px 20px;
-    margin-right: 10px;
-  }
-
-  /* Style for checkboxes */
-  input[type="checkbox"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: 1px solid #cccccc;
-    border-radius: 3px;
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    vertical-align: middle;
-    position: relative;
-  }
-
-  input[type="checkbox"]:checked {
-    background-color: #9ee4a0;
-    border-color: #4caf50;
-  }
-
-  input[type="checkbox"]:checked::after {
-    content: "✔";
-    color: white;
-    position: absolute;
-    left: 3px;
-    font-size: 10px;
-  } 
-
-  input[type="checkbox"]:disabled {
-    background-color: #c6c6c6;
-    border-color: #767676;
-  }
-
-  /* Adjustments for responsiveness */
-  @media (max-width: 768px) {
-    .form-row {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .form-row input[type="text"],
-    .form-row select {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-
-    .buttons-section {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .run-button,
-    .reset-button {
-      width: 100%;
-      margin-top: 10px;
-    }
-  }
-
-  /* ui looks nicer with this trust */
-  .change-word {
-    transition: all 0.3s ease;
-    padding: 0px 0px;
-    border-radius: 0px;
-    
-    display: block; 
     width: 100%;
-    
-    border: 1px solid transparent;
+    margin-bottom: 10px;
   }
 
-  .change-word:hover {
-    background-color: rgba(113, 235, 235, 0.1); 
-    border-color: rgba(71, 212, 230, 0.3);
-    box-shadow: 0 0 15px rgba(98, 222, 234, 0.4);
-    color: #006eff8c !important;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.053);
-
-    transform: scale(1.03);
-    transform-origin: left;
+  .buttons-section {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .background-new{
-    position: fixed;
-    top:0;
-    left:0;
-    width:25.2%;
-    height:100%;
-    z-index:-1;
-
-    background: linear-gradient(-45deg, #303032, #303032, #303032, #303032);
-    background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
+  .run-button,
+  .reset-button {
+    width: 100%;
+    margin-top: 10px;
   }
-
-  .background-right{
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:-1;
-
-    background: linear-gradient(-45deg, #000000, #000000, #000000, #000000);
-    background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
-  }
-
-  @keyframes gradient-shift{
-    0%{
-      background-position: 0% 50%;
-    }
-    50%{
-      background-position: 100% 50%;
-    }
-    100%{
-      background-position: 0% 50%;
-    }
-  }
-
+}
