@@ -41,15 +41,17 @@
 
         <div class="form-row">
             <label>
-                <input type="checkbox" id="style-analysis" name="style-analysis" unchecked>
+                <input type="checkbox" id="style-analysis" name="style-analysis">
+                GUIs available for style analysis
             </label>
-            <select id="tools" name="tools">
-                <option value="spell-check"></option>
-                <option value="corpus-stats"></option>
-                <option value="ngrams"></option>
-                <option value="nominalization"></option>
-                <option value="conll"></option>
-                <option value="wordnet"></option>
+            <select id="tools" name="tools" disabled>
+                <option value="*">*</option>
+                <option value="spell-check">Spelling/grammar checker</option>
+                <option value="corpus-stats">Corpus statistics</option>
+                <option value="ngrams">N-grams & Co-Occurrences</option>
+                <option value="nominalization">Nominalization</option>
+                <option value="conll">CoNLL table analyzer</option>
+                <option value="wordnet">WordNet</option>
             </select>
         </div>
     
@@ -58,7 +60,7 @@
                 <input type="checkbox" id="complexity_analysis" name="complexity_analysis">
                 Complexity/readability analysis
             </label>
-            <select id="analysis_dropdown" name="analysis_dropdown">
+            <select id="analysis_dropdown" name="analysis_dropdown" disabled>
                 <option value="*">*</option>
                 <option value="Sentence">Sentence complexity</option>
                 <option value="Text">Text readability</option>
@@ -67,10 +69,10 @@
 
         <div class="form-row">
             <label>    
-                <input type="checkbox" id="vocabulary_analysis" name="vocabulary_analysis" checked>
+                <input type="checkbox" id="vocabulary_analysis" name="vocabulary_analysis">
                 Vocabulary analysis
             </label>
-            <select id="voc_options" name="voc_options">
+            <select id="voc_options" name="voc_options" disabled>
                 <option value="*">*</option>
                 <option value="Iconic">Iconicity Analysis</option>
                 <option value="Vocabulary (via unigrams)">Vocabulary (via unigrams) - List of all words/tokens in input document(s)</option>
@@ -158,7 +160,7 @@
 
             <link rel="stylesheet" href="{% static "css/tipsfile.css" %}">
 
-            <a href="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Sentiment%20analysis.pdf" target ="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Style%20analysis.pdf" target ="_blank" rel="noopener noreferrer"
             class = "tipsfile-button">
                 <div class = "tipsfile-mask">
                     <div class = "tipsfile-glow"></div>
@@ -171,37 +173,7 @@
     </form>
 </div>
 
-<script>
-    function toggleAnalysisDropdown() {
-        const checkbox = document.getElementById('complexity_analysis');
-        const dropdown = document.getElementById('analysis_dropdown');
-        dropdown.disabled = !checkbox.checked;
-    }
-
-      
-    {% comment %} function toggleRatingSliders() {
-        const vocOptions = document.getElementById('voc_options').value;
-        const isEnabled = vocOptions === '*' || vocOptions === 'Iconic';
-
-        document.getElementById('min_rating').disabled = !isEnabled;
-        document.getElementById('max_rating_sd').disabled = !isEnabled;
-    } {% endcomment %}
-
-    function showGenderGuesserWarning() {
-        const message = "Warning:\n\nWhen the Gender Guesser (Hacker Factor) webpage opens, make sure to read carefully the page content in order to understand:\n" +
-                        "1. how this sophisticated neural network Java tool can guess the gender identity of a text writer (male or female);\n" +
-                        "2. the difference between formal and informal text genre;\n" +
-                        "3. the meaning of the gender estimate as 'Weak emphasis could indicate European';\n" +
-                        "4. the limits of the algorithms (about 60-70% accuracy).\n\n" +
-                        "You can also read Argamon, Shlomo, Moshe Koppel, Jonathan Fine, and Anat Rachel Shimoni. 2003. 'Gender, Genre, and Writing Style in Formal Written Texts,' Text, Vol. 23, No. 3, pp. 321–346.";
-        const isConfirmed = confirm(message + "\n\nDo you want to keep the Gender Guesser option checked?");
-        document.getElementById("gender_guesser").checked = isConfirmed;
-    }
-
-    {% comment %} toggleRatingSliders();
-    document.getElementById('complexity_analysis').addEventListener('change', toggleAnalysisDropdown);
-    toggleAnalysisDropdown(); {% endcomment %}
-</script>
+<script src="{% static 'js/style_analysis.js' %}"></script>
 
 <style>
     /* Tooltip styling */

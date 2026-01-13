@@ -95,7 +95,7 @@
                 <option value="timeMapper">timeMapper</option>
             </select>
             <label>
-                <input type="checkbox" id="mapLocations" name="mapLocations" unchecked>
+                <input type="checkbox" id="earthPro" name="earthPro" unchecked>
                 GIS Package - Open GUI
             </label>
         </div>
@@ -150,7 +150,7 @@
 
             <link rel="stylesheet" href="{% static "css/tipsfile.css" %}">
 
-            <a href="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Sentiment%20analysis.pdf" target ="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_GIS%20(Geographic%20Information%20System).pdf" target ="_blank" rel="noopener noreferrer"
             class = "tipsfile-button">
                 <div class = "tipsfile-mask">
                     <div class = "tipsfile-glow"></div>
@@ -163,37 +163,5 @@
 
     </form>
 </div>
-    <script>
-        var extractLocations = document.getElementById("extractLocations");
-        var columnLocationName = document.getElementById("columnLocationName");
-        var geocodeLocations = document.getElementById("geocodeLocations");
-        var geocoderSelect = document.getElementById("geocoderSelect");
-        var area = document.getElementById("area");
-        var restrict = document.getElementById("restrict");
-        var mapLocations = document.getElementById("mapLocations");
-        var mapLocationsSoftware = document.getElementById("mapLocationsSoftware");
-        var viewGoogleApi = document.getElementById("viewGoogleApi");
-
-        geocodeLocations.addEventListener('change',function() {
-            mapLocations.disabled = !this.checked;
-            if(!this.checked){
-                mapLocations.checked = false;
-            }
-        });
-
-
-        geocoderSelect.addEventListener('change',function(){
-            const selected = this.value;
-
-            if(selected != "nominatim"){
-                area.disabled = true;
-                restrict.disabled = true;
-            } else {
-                area.disabled = false;
-                restrict.disabled = false;
-            }
-        });
-        
-
-    </script>
+<script src="{% static 'js/gis.js' %}"></script>
 {% endblock %}

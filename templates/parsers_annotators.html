@@ -36,7 +36,7 @@
         <!-- Parsers and annotators options -->
         <div class="form-row" style="margin-bottom: 20px;">
             <label>
-                <input type="checkbox" id="parsers_var" name="parser_var" checked>
+                <input type="checkbox" id="parsers_var" name="parser_var">
                 Parsers for Standard CoreNLP
             </label>
             <select id="parser_menu_var" name="parser_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
@@ -170,47 +170,6 @@
     </form>
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const parserCheckbox = document.getElementById("parsers");
-        const annotatorCheckbox = document.getElementById("annotator");
-        const parserDropdown = document.getElementById("parsers-tool");
-        const annotatorDropdown = document.getElementById("nlp-tools");
-
-        function updateDropdowns() {
-            parserDropdown.disabled = !parserCheckbox.checked;
-            annotatorDropdown.disabled = !annotatorCheckbox.checked;
-        }
-
-        updateDropdowns();
-        parserCheckbox.addEventListener("change", updateDropdowns);
-        annotatorCheckbox.addEventListener("change", updateDropdowns);
-    });
-
-    var parsers_var = document.getElementById("parsers_var");
-    var parser_menu_var = document.getElementById("parser_menu_var");
-    var annotators_var = document.getElementById("annotators_var");
-    var annotators_menu_var = document.getElementById("annotators_menu_var");
-
-    parsers_var.addEventListener('change',function() {
-        annotators_var.disabled = this.checked;
-        annotators_menu_var.disabled = this.checked;
-        if(this.checked){
-            annotators_var.checked = false;            
-        }
-    });
-
-
-    annotators_var.addEventListener('change',function() {
-        parsers_var.disabled = this.checked;
-        parser_menu_var.disabled = this.checked;
-        if(this.checked){
-            parsers_var.checked = false;
-        }
-    });
-
-    
-    
-</script>
+<script src="{% static 'js/parsers_annotators.js' %}"></script>
 
 {% endblock %}
