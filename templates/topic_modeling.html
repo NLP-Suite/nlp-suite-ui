@@ -80,46 +80,18 @@
             Run MALLET (Topic coherence values and plot visualization)
         </label>
     </div>
-    <div class = "form-row">
-        <label for="transformation">Transformation:</label>
-        <select id="transformation" name="transformation">
-            <option value="no_transformation">No transformation</option>
-            <option value="Ln">Ln</option>
-            <option value="Log">Log</option>
-            <option value="Square">Square root</option>
-            <option value="Z score">Z score</option>
-        </select>
-        <label for="dataTools">Data Tools:</label>
-        <select id="dataTools" name="dataTools">
-            <option value="data_sampling">Data/corpus sampling</option>
-            <option value="data_manipulation">Data manipulation</option>
-            <option value="data_statistics">Data statistics</option>
-            <option value="data_visualization_1">Data visualization 1</option>
-            <option value="data_visualization_2">Data visualization 2</option>
-        </select>
-        <label for="chartPackage">Chart Package:</label>
-        <select id="chartPackage" name="chartPackage"> 
-            <option value="no-charts">No Charts</option>
-            <option value="excel">Excel</option>
-            <option value="python-plotly-dynamic">Python Plotly (Dynamic)</option>
-            <option value="python-plotly-static">Python Plotly (Static)</option>
-        </select> 
+    
+    <div class="form-row">
+            <label for="transformation">Transformation:</label>
+            <select id="transformation" name="transformation">
+                <option value="No transformation">No transformation</option>
+                <option value="Ln">Ln</option>
+                <option value="Log">Log</option>
+                <option value="Square">Square root</option>
+                <option value="Z score">Z score</option>
+            </select>
+    </div>
 
-    </div>
-    <div class = "form-row">
-        <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
-        <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
-            <option value="" disabled selected>Select an option</option>
-            <option value="" >Topic modeling</option>
-            <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Topic%20modeling%20Gensim.pdf" >Topic modeling in Gensim</option>
-            <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Topic%20modeling%20Mallet.pdf" >Topic modeling in Mallet</option>
-            <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Topic%20modeling%20and%20corpus%20size.pdf" >Topic modeling and corpus size</option>
-            <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_NLP%20Basic%20language.pdf" >Lemmas & stopwords</option>
-            <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
-            <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
-            
-        </select>
-    </div>
     <div class="buttons-section">
         <button type="reset" class="reset-button"onclick="window.location.reload();">Reset</button>
 

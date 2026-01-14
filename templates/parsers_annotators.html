@@ -80,26 +80,7 @@
             </select>
         </div>
 
-        <!-- Transformation options -->
-        <div class="form-row" style="margin-bottom: 20px;">
-            <label for="transformation">Transformation:</label>
-            <select id="transformation" name="dataTransformation" style="width: 100%; max-width: 420px; padding: 10px;">
-                <option value="no_transformation">No transformation</option>
-                <option value="ln">Ln</option>
-                <option value="log">Log</option>
-                <option value="square_root">Square root</option>
-                <option value="z_score">Z score</option>
-            </select> 
-        </div>
-        <div class="form-row" style="margin-bottom: 20px;">
-            <label for="chartPackage">Chart Package:</label>
-            <select id="chartPackage" name="chartPackage" style="width: 100%; max-width: 420px; padding: 10px;">
-                <option value="no-charts">No Charts</option>
-                <option value="excel">Excel</option>
-                <option value="python-plotly-dynamic">Python Plotly (Dynamic)</option>
-                <option value="python-plotly-static">Python Plotly (Static)</option>
-            </select>
-        </div>
+        
 
         <!-- Manual coreference resolution option -->
         <div class="form-row" style="margin-bottom: 20px;">
@@ -117,39 +98,19 @@
             </label>
         </div>
 
-        <!-- TIPS Files Section -->
-        <div class="form-row" style="margin-bottom: 20px;">
-            <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
-            <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
-                <option value="" disabled selected>Select an option</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20memory%20issues.pdf" >Stanford CoreNLP memory issues</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20OpenIE.pdf" >Stanford CoreNLP OpenIE</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20parser.pdf" >Stanford CoreNLP parser</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20download%20install%20run.pdf" >Stanford CoreNLP download</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20performance%20and%20accuracy.pdf" >Stanford CoreNLP performance & accuracy</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20coreference%20resolution.pdf" >Stanford CoreNLP coreference resolution</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Text%20encoding.pdf" >utf-8 encoding</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20Enabling%20macros.pdf" >Excel - Enabling Macros</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Excel%20smoothing%20data%20series.pdf">Excel smoothing data series</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_English%20Language%20Benchmarks.pdf" >English Language Benchmarks</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Things%20to%20do%20with%20words%20Overall%20view.pdf" >Things to do with words: Overall view</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20supported%20languages.pdf" >Stanford CoreNLP supported languages</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20CoNLL%20table.pdf" >CoNLL table</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_CoreNLP_NER%20(Named%20Entity%20Recognition).pdf" >CoreNLP NER (Named Entity Recognition)</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_NER%20tags%20across%20packages.pdf" >NER tags across packages</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_POSTAG%20(Part%20of%20Speech%20Tags)%20Stanford%20CoreNLP.pdf" >POSTAG (Part of Speech Tags)</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_DEPREL%20(Dependency%20Relations)%20Stanford%20CoreNLP.pdf" >DEPREL (Stanford Dependency Relations)</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20gender%20annotator.pdf" >Stanford CoreNLP gender annotator</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Stanford%20CoreNLP%20date%20extractor.pdf" >Stanford CoreNLP date extractor</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Sentiment%20analysis.pdf" >Sentiment analysis</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Noun%20analysis.pdf" >Noun Analysis</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Verb%20analysis.pdf" >Verb Analysis</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Function%20Words%20Analysis.pdf" >Function Words Analysis</option>
-                <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Clause%20analysis.pdf" >Clause analysis</option>
+        <!-- Transformation options -->
+        <div class="form-row">
+            <label for="transformation">Transformation:</label>
+            <select id="transformation" name="transformation">
+                <option value="No transformation">No transformation</option>
+                <option value="Ln">Ln</option>
+                <option value="Log">Log</option>
+                <option value="Square">Square root</option>
+                <option value="Z score">Z score</option>
             </select>
         </div>
+
+
 
         <!-- Form submission buttons -->
         <div class="buttons-section" style="margin-top: 20px; text-align: center;">

@@ -20,7 +20,7 @@
         <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
     </div>
 
-    <div class="form-row">
+    {% comment %} <div class="form-row">
         <button type="button" onclick="openPDFPopup()">Tips File</button>
         
         <script src = "{%static 'css/tips_files.js' %}"></script>
@@ -38,7 +38,7 @@
                 `);
             }
         </script>
-    </div>
+    </div> {% endcomment %}
 
         <div class = "form-row">
             <label>
@@ -97,7 +97,7 @@
         <div class="form-row">
             <label for="transformation">Transformation:</label>
             <select id="transformation" name="transformation">
-                <option value="no_transformation">No transformation</option>
+                <option value="No transformation">No transformation</option>
                 <option value="Ln">Ln</option>
                 <option value="Log">Log</option>
                 <option value="Square">Square root</option>

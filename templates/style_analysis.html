@@ -135,25 +135,16 @@
         </div>
 
         <div class="form-row">
-            <label for="transformation"></label>
+            <label for="transformation">Transformation:</label>
             <select id="transformation" name="transformation">
-                <option value="no_transformation"></option>
-                <option value="ln"></option>
-                <option value="log"></option>
-                <option value="square_root"></option>
-                <option value="z_score"></option>
+                <option value="No transformation">No transformation</option>
+                <option value="Ln">Ln</option>
+                <option value="Log">Log</option>
+                <option value="Square">Square root</option>
+                <option value="Z score">Z score</option>
             </select>
         </div>
 
-        <div class="form-row">
-            <label for="chartPackage"></label>
-            <select id="chartPackage" name="chartPackage">
-                <option value="no-charts"></option>
-                <option value="excel"></option>
-                <option value="python-plotly-dynamic"></option>
-                <option value="python-plotly-static"></option>
-            </select>
-        </div>
 
         <div class="buttons-section">
             <button type="reset" class="reset-button"onclick="window.location.reload();">Reset</button>

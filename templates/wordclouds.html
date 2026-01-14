@@ -98,7 +98,7 @@
             Use different colors for difference cvs columns (csv file)
         </label>
     </div>
-    <div class = "form-row">
+    {% comment %} <div class = "form-row">
         <label for="csvField">Choose csv Field</label>
         <input type="text" name="csvField" value=""/ disabled>
             <div class = "color-picker-container">
@@ -113,26 +113,13 @@
                 document.getElementById('colorIndex').value = colorIndex;
               });
         </script>
-    </div>
+    </div> {% endcomment %}
+
     <div class = "form-row">
         <label>
             <input type="checkbox" id="intermediateWordcloudFiles" name="intermediateWordcloudFiles" checked>
             Do NOT produce intermediate word cloud files when processing all txt files in a directory
         </label>
-    </div>
-    <div class = "form-row">
-        <label for="tipsFilesDropdown" style="margin-right: 10px;">Open TIPS files</label>
-                <select id="tipsFilesDropdown" name="tipsFilesDropdown" style="width: 300px;" onchange="window.location.href=this.value;">
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_NLP%20Basic%20language.pdf" >Lemmas & stopwords</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Wordclouds%20Visualizing%20word%20clouds.pdf" >Word clouds</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Wordclouds%20Wordle.pdf" >Wordle</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Wordclouds%20Tagxedo.pdf" >Tagxedo</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Wordclouds%20Tagcrowd.pdf" >Tagcrowd</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Statistical%20measures.pdf">Statistical measures</option>
-                    <option value="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_csv%20files%20-%20Problems%20%26%20solutions.pdf">csv files - Problems & solutions</option>
-                    
-                </select>
     </div>
     
     <div class="buttons-section">
