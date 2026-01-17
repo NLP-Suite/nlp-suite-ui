@@ -104,10 +104,13 @@ function guiCheckBox() {
 
     document.getElementById("Ngrams_compute_var").addEventListener("change", guiCheckBox);
     guiCheckBox(); // prolly unnecessary ?
-    document.getElementById("guis_avail").addEventListener("change", toggleGuiDropdown);
-    toggleGuiDropdown();
-    document.getElementById("compute-ngrams").addEventListener("change", toggleNGramDropdown);
-    toggleNGramDropdown();
-    document.getElementById("co-occurrences-viewer").addEventListener("change", toggleCoOccurrenceOptions);
-    toggleCoOccurrenceOptions();
-    document.getElementById("date-options").addEventListener("change", toggleCoOccurrenceOptions);
+
+    // document.getElementById("guis_avail").addEventListener("change", toggleGuiDropdown);
+    // toggleGuiDropdown();
+    
+    // document.getElementById("compute-ngrams").addEventListener("change", toggleNGramDropdown);
+    // toggleNGramDropdown();
+
+    // document.getElementById("co-occurrences-viewer").addEventListener("change", toggleCoOccurrenceOptions);
+    // toggleCoOccurrenceOptions();
+    // document.getElementById("date-options").addEventListener("change", toggleCoOccurrenceOptions);

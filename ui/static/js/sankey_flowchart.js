@@ -23,7 +23,7 @@ let savedFields = "";
                     return obj;
                 }); 
             
-                document.getElementById('file_data').value = JSON.stringify(data);
+                // document.getElementById('file_data').value = JSON.stringify(data);
                 populateSearchFields(headers);
             };
             reader.readAsText(file);
@@ -33,8 +33,6 @@ let savedFields = "";
             alert('Please select a CSV file.');
             event.target.value = '';
         }
-
-        console.log("File data " + file_data.value)
     });
 
     
