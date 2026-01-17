@@ -306,3 +306,18 @@ def conll_table_analyzer_main(request: HttpRequest):
         else:
             messages.add_message(request, messages.ERROR, response.content.decode())
     return render(request, "CoNLL_table_analyzer_main.html")
+
+
+def document_statistics(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/document_statistics.py",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "document_statistics.html")
+

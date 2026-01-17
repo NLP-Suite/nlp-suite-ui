@@ -1,0 +1,86 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<div class="sentiment-analysis-container">
+    
+    <h1>Document and Corpus Statistics</h1>
+    <form method="post" class="sentiment-analysis-form" action="{% url 'sunburst_charts' %}">
+        {% csrf_token %}
+
+        <!-- Input and Output Directories -->
+        <div class="form-row">
+            <label for="inputDirectory">Input Directory:</label>
+            <select name="inputDirectory" id="inputDirectory">
+                <option value="~/nlp-suite/csvInput">~/nlp-suite/csvInput</option>
+            </select>
+        </div>
+        
+        <div class="form-row">
+            <label for="outputDirectory">Output Directory:</label>
+            <input type="text" name="outputDirectory" value="~/nlp-suite/output" />
+        </div>
+
+        <!--corpus_text_options_menu_var lemmatize-->
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="corpus_statistics_var" name="corpus_statistics_var">
+                Compute document(s) statistics
+            </label>
+            <select id="corpus_text_options_menu_var" name="corpus_text_options_menu_var">
+                <option value="*">*</option>
+                <option value="Lemmatize">Lemmatize Words</option>
+                <option value="stopwords">Exclude Stopwords & Puncutation</option>
+    
+            </select>
+
+            <select id="corpus_statistics_options_menu_var" name="corpus_statistics_options_menu_var">
+                <option value= "*">*</option>
+                <option value= "frequencies" >Compute frequencies of sentences, words, syllables, and top-20 words</option>
+                <option value= "Compute sentence length" >Compute sentence length</option>
+                <option value= "Compute line length">Compute line length</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id="corpus_statistics_byPOS_var" name="corpus_statistics_byPOS_var">
+                Compute document(s) statistics by POS (Part of Speech) tag value
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label for="transformation">Transformation:</label>
+            <select id="transformation" name="transformation">
+                <option value="No transformation">No transformation</option>
+                <option value="Ln">Ln</option>
+                <option value="Log">Log</option>
+                <option value="Square">Square root</option>
+                <option value="Z score">Z score</option>
+            </select>
+        </div>
+
+
+        <!-- Form Buttons -->
+        <div class="buttons-section">
+            <button type="reset" class="reset-button"onclick="window.location.reload();">Reset</button>
+
+            <link rel="stylesheet" href="{% static "css/tipsfile.css" %}">
+
+            <a href="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Charts%20-%20Sunburst%20pie%20chart.pdf" target ="_blank" rel="noopener noreferrer"
+            class = "tipsfile-button">
+                <div class = "tipsfile-mask">
+                    <div class = "tipsfile-glow"></div>
+                </div>
+                Tips File
+            </a>
+
+            <button type="submit" class="run-button">Run</button>
+        </div>
+    </form>
+</div>
+
+<script src="{% static 'js/sunburst_charts.js' %}"></script>
+
+
+{% endblock %}
