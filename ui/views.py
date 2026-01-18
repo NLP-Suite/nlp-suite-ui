@@ -311,7 +311,7 @@ def conll_table_analyzer_main(request: HttpRequest):
 def document_statistics(request: HttpRequest):
     if request.method == "POST":
         response = requests.post(
-            f"{AGENT_SERVER_URL}/document_statistics.py",
+            f"{AGENT_SERVER_URL}/document_statistics",
             data=request.body,
             headers=request.headers,
         )

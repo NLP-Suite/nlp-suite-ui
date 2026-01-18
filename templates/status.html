@@ -62,21 +62,10 @@
       loading.style.display = "none";
       done.style.display = "flex";
       clearInterval(update);
-    } else {
+      } else {
       loading.style.display = "flex";
       done.style.display = "none";
     } 
   }, 5000);
 </script>
 {% endblock %}
-
-{% comment %} else if (response.status === 500) {
-      // Job failed with an error
-      const errorText = await response.text();
-      loading.style.display = "none";
-      // Show error message instead of success
-      done.innerHTML = `<div style="color: red;">Error: ${errorText}</div>`;
-      done.style.display = "flex";
-      clearInterval(update);
-    }  {% endcomment %}
-

@@ -5,20 +5,21 @@
 <div class="sentiment-analysis-container">
     
     <h1>Document and Corpus Statistics</h1>
-    <form method="post" class="sentiment-analysis-form" action="{% url 'sunburst_charts' %}">
+    <form method="post" class="sentiment-analysis-form" action="{% url 'document_statistics' %}">
         {% csrf_token %}
 
         <!-- Input and Output Directories -->
         <div class="form-row">
             <label for="inputDirectory">Input Directory:</label>
             <select name="inputDirectory" id="inputDirectory">
+                <option value="~/nlp-suite/input" selected>~/nlp-suite/input</option>
                 <option value="~/nlp-suite/csvInput">~/nlp-suite/csvInput</option>
             </select>
         </div>
         
-        <div class="form-row">
+         <div class="form-row">
             <label for="outputDirectory">Output Directory:</label>
-            <input type="text" name="outputDirectory" value="~/nlp-suite/output" />
+            <input type="text" name="outputDirectory" id= "outputDirectory" value="~/nlp-suite/output"/>
         </div>
 
         <!--corpus_text_options_menu_var lemmatize-->
@@ -35,10 +36,10 @@
             </select>
 
             <select id="corpus_statistics_options_menu_var" name="corpus_statistics_options_menu_var">
-                <option value= "*">*</option>
-                <option value= "frequencies" >Compute frequencies of sentences, words, syllables, and top-20 words</option>
-                <option value= "Compute sentence length" >Compute sentence length</option>
-                <option value= "Compute line length">Compute line length</option>
+                <option value="*">*</option>
+                <option value="frequencies" >Compute frequencies of sentences, words, syllables, and top-20 words</option>
+                <option value="Compute sentence length" >Compute sentence length</option>
+                <option value="Compute line length">Compute line length</option>
             </select>
         </div>
 
@@ -50,8 +51,8 @@
         </div>
 
         <div class="form-row">
-            <label for="transformation">Transformation:</label>
-            <select id="transformation" name="transformation">
+            <label for="dataTransformation">Transformation:</label>
+            <select id="dataTransformation" name="dataTransformation">
                 <option value="No transformation">No transformation</option>
                 <option value="Ln">Ln</option>
                 <option value="Log">Log</option>
@@ -79,8 +80,5 @@
         </div>
     </form>
 </div>
-
-<script src="{% static 'js/sunburst_charts.js' %}"></script>
-
 
 {% endblock %}
