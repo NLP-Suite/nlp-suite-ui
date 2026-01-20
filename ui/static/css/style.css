@@ -200,3 +200,18 @@ input[type="checkbox"]:disabled {
     margin-top: 10px;
   }
 }
+.options {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+
+.options select {
+  flex-grow: 0.3;
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}

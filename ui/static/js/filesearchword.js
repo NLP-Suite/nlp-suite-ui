@@ -1,3 +1,34 @@
+function listofitems() {
+  var optionsSelect = document.getElementById("search_options");
+  var pickedSelect = document.getElementById("optionss");
+  var plusbutton = document.getElementsByName("search-options-+")[0];
+  var resetbutton = document.getElementsByName("search-options-reset")[0];
+  var minusbutton = document.getElementsByName("search-options-show")[0];
+
+  if (optionsSelect && pickedSelect && plusbutton && resetbutton && minusbutton) {
+    plusbutton.onclick = function () {
+      var temp = optionsSelect.options[optionsSelect.selectedIndex];
+      var opt = document.createElement("option");
+      opt.value = temp.value;
+      opt.text = temp.text;
+      pickedSelect.add(opt);
+    };
+
+    minusbutton.onclick = function () {
+      if (pickedSelect.selectedIndex >= 0) {
+        pickedSelect.remove(pickedSelect.selectedIndex);
+      }
+    };
+
+    resetbutton.onclick = function () {
+      pickedSelect.length = 0;
+    };
+  }
+}
+
+listofitems();
+
+
 var availableGUIs = document.getElementById("availableGUIs");
     var searchCorpusByDictionary = document.getElementById("searchCorpusByDictionary");
     var searchCorpusByWords = document.getElementById("searchCorpusByWords");
@@ -71,3 +102,8 @@ var availableGUIs = document.getElementById("availableGUIs");
             extractKSentences.checked = false;
         }
     });
+
+
+
+
+

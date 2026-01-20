@@ -34,12 +34,22 @@
             <option value="searchDocument">Search within document</option>
         </select>
     
-        <button id="plus"style="margin-right: 10px; padding: 5px 10px;">+</button>
-    
+        <!-- <button id="plus"style="margin-right: 10px; padding: 5px 10px;">+</button>
         <button id="reset" style="margin-right: 10px; padding: 5px 10px;">Reset</button>
-    
-        <button id="show" style="padding: 5px 10px;">Show</button>
+        <button id="show" style="padding: 5px 10px;">Show</button> -->
+
+        <input type="button" name="search-options-+" value="+">&nbsp;
+        <input type="button" name="search-options-show" value="-">&nbsp;
+        <input type="button" name="search-options-reset" value="Reset">
     </div>    
+
+
+    <div id="optionPicked" class="options">
+        <label for="options">Selected </label>&nbsp;
+        <select id="optionss" name="options"></select>
+    </div>
+
+
     <div class="form-row">
         <label>
             <input type="checkbox" id="search_by_dictionary" name="search_by_dictionary">

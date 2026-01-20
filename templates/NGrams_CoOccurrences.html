@@ -74,11 +74,19 @@
                 <option value="Repetition of words (last K words of a sentence/first N words of next sentence)">Repetition of words (last K words of a sentence/first N words of next sentence)</option>
                 <option value="Repetition of words across sentences (special ngrams)">Repetition of words across sentences (special ngrams)</option>
             </select>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="button" name="options-+" value="+">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" name="options-+" value="+">&nbsp;
+            <input type="button" name="options-show" value="-">&nbsp;
             <input type="button" name="options-reset" value="Reset">
-            <input type="button" name="options-show" value="Show">
         </div>
+
+
+        <div id="optionPicked" class="options">
+            <label for="options">Selected </label>&nbsp;
+            <select id="options" name="options"></select>
+        </div>
+
+        
 
         <div class="form-row">
             <label>
@@ -109,10 +117,16 @@
                 <option value="Lemmatize words">Lemmatize words</option>
             </select>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="button" name="search-options-+" value="+">
+            <input type="button" name="search-options-+" value="+">&nbsp;
+            <input type="button" name="search-options-show" value="-">&nbsp;
             <input type="button" name="search-options-reset" value="Reset">
-            <input type="button" name="search-options-show" value="Show">
         </div>
+
+        <div id="optionPicked" class="options">
+                <label for="options">Selected </label>&nbsp;
+                <select id="optionss" name="options"></select>
+            </div>
+
         <div>
             <label>
                 <input type="checkbox" id="csv_file_var" name="csv_file_var">
@@ -187,4 +201,5 @@
             <button type="submit" class="run-button">Run</button>
         </div>
     <script src="{% static 'js/NGrams_CoOccurrences.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
 {% endblock %}
