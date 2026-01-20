@@ -84,21 +84,23 @@
             <select id="options" name="options"></select>
         </div>
 
+        <input type="hidden" id="ngrams_options_list_hidden" name="ngrams_options_list" value="">
+
         
 
         <div class="form-row">
             <label>
                 Search word(s)
                 &nbsp;
-                <input type="text" id="search_words" size="50">
+                <input type="text" id="search_words"name="search_words" size="50">
             </label>
             <label>
                 -K
-                <input type="text" id="minus_K_words_var" size="3">
+                <input type="text" id="minus_K_words_var"name="minus_K_words_var" size="3">
             </label>
             <label>
                 +K
-                <input type="text" id="plus_K_words_var" size="3">
+                <input type="text" id="plus_K_words_var"name="plus_K_words_var" size="3">
             </label>
         </div>
         <div class="form-row">
@@ -121,10 +123,11 @@
             <input type="button" name="search-options-reset" value="Reset">
         </div>
 
-        <div id="optionPicked" class="options">
+        <div id="optionPicked2" class="options">
                 <label for="options">Selected </label>&nbsp;
-                <select id="optionss" name="options"></select>
-            </div>
+                <select id="optionss" name="optionss"></select>
+        </div>
+        <input type="hidden" id="viewer_options_list_hidden" name="viewer_options_list" value="">
 
         <div>
             <label>
@@ -197,7 +200,7 @@
                 Tips File
             </a>
 
-            <button type="submit" class="run-button">Run</button>
+            <button type="submit" class="run-button" onclick="return submitbutton();">Run</button>
         </div>
     <script src="{% static 'js/NGrams_CoOccurrences.js' %}"></script>
     <script src="{% static 'js/common.js' %}"></script>

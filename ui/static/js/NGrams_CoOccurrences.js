@@ -2,14 +2,14 @@ function guiCheckBox() {
     var computeNgrams = document.getElementById("Ngrams_compute_var");
     var ngramType = document.getElementById("ngrams_menu_var");
     var ngramSize = document.getElementById("ngrams_size");
-    var ngramOptions = document.getElementById("ngrams_options_menu_var");
+    var ngramOptions = document.getElementById("ngrams_options_list");
     var optionPlusBox = document.getElementsByName("options-+")[0];
     var optionResetBox = document.getElementsByName("options-reset")[0];
     var optionShowBox = document.getElementsByName("options-show")[0];
     var searchWordsBox = document.getElementById("search_words");
     var searchWordsMinusK = document.getElementById("minus_K_words_var");
     var searchWordsPlusK = document.getElementById("plus_K_words_var");
-    var searchOptions = document.getElementById("Ngrams_search_var");
+    var searchOptions = document.getElementById("viewer_options_list");
     var searchOptionsButtons = document.getElementsByName("search-options-+")[0];
     var searchOptionsResetButton = document.getElementsByName("search-options-reset")[0];
     var searchOptionsShowButton = document.getElementsByName("search-options-show")[0];
@@ -115,8 +115,8 @@ function guiCheckBox() {
     // toggleCoOccurrenceOptions();
     // document.getElementById("date-options").addEventListener("change", toggleCoOccurrenceOptions);
 
-function listofitems() {
-  var optionsSelect = document.getElementById("Ngrams_search_var");
+function listofitems1() {
+  var optionsSelect = document.getElementById("viewer_options_list");
   var pickedSelect = document.getElementById("optionss");
   var plusbutton = document.getElementsByName("search-options-+")[0];
   var resetbutton = document.getElementsByName("search-options-reset")[0];
@@ -143,5 +143,5 @@ function listofitems() {
   }
 }
 
-listofitems();
+listofitems1();
 
