@@ -40,8 +40,8 @@
                 Compute N-Grams 
             </label>
             <select id="ngrams_menu_var" name="ngrams_menu_var">
-                <option value="Character">Character</option>
                 <option value="Word">Word</option> 
+                <option value="Character">Character</option>
             </select>
         </div>
         <div class="form-row">
@@ -59,20 +59,18 @@
             <label>
                 Options
             </label>
-            <select id="ngrams_options_menu_var" name="ngrams_options_menu_var">
-                <option value="Case sensitive (default)">Case sensitive (default)</option>
-                <option value="Case insensitive">Case insensitive</option> 
-                <option value="Hapax legomena (once-occurring words)">Hapax legomena (once-occurring words)</option>
-                <option value="Hapax legomena (once-occurring unigrams)">Hapax legomena (once-occurring unigrams)</option>
+            <select id="ngrams_options_list" name="ngrams_options_list">
+                <option value="sensitive">Case sensitive (default)</option>
+                <option value="insensitive">Case insensitive</option> 
+                <option value="Hapax">Hapax legomena (once-occurring words)</option>
+                <option value="Hapax">Hapax legomena (once-occurring unigrams)</option>
                 <option value="Lemmatize">Lemmatize</option>
                 <option value="Normalize N-grams">Normalize N-grams</option>
-                <option value="Exclude punctuation (word N-grams only)">Exclude punctuation (word N-grams only)</option>
-                <option value="Exclude articles (word N-grams only)">Exclude articles (word N-grams only)</option>
-                <option value="Exclude determiners (word N-grams only)">Exclude determiners (word N-grams only)</option>
-                <option value="Exclude ALL stopwords (word N-grams only)">Exclude ALL stopwords (word N-grams only)</option>
-                <option value="By sentence index">By sentence index"</option>
-                <option value="Repetition of words (last K words of a sentence/first N words of next sentence)">Repetition of words (last K words of a sentence/first N words of next sentence)</option>
-                <option value="Repetition of words across sentences (special ngrams)">Repetition of words across sentences (special ngrams)</option>
+                <option value="punctuation">Exclude punctuation (word N-grams only)</option>
+                <option value="articles">Exclude articles (word N-grams only)</option>
+                <option value="determiners">Exclude determiners (word N-grams only)</option>
+                <option value="stopwords">Exclude ALL stopwords (word N-grams only)</option>
+                <option value="sentence index">By sentence index</option>
             </select>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <input type="button" name="options-+" value="+">&nbsp;
@@ -105,16 +103,17 @@
         </div>
         <div class="form-row">
             <label>
+                <input type="checkbox" name="Ngrams_search_var" id ="Ngrams_search_var">
                 Search options
             </label>
-            <select id="Ngrams_search_var" name="Ngrams_search_var">
-                <option value="Case sensitive (default)">Case sensitive (default)</option>
-                <option value="Case insensitive'">Case insensitive</option> 
+            <select id="viewer_options_list" name="viewer_options_list">
+                <option value="sensitive">Case sensitive (default)</option>
+                <option value="insensitive">Case insensitive</option> 
                 <option value="Exact match (default)">Exact match</option>
-                <option value="Partial match">Partial Match</option>
-                <option value="Normalize results">Normalize results</option>
-                <option value="Scale results">Scale results</option>
-                <option value="Lemmatize words">Lemmatize words</option>
+                <option value="Partial">Partial Match</option>
+                <option value="Normalize">Normalize results</option>
+                <option value="Scale">Scale results</option>
+                <option value="Lemmatize">Lemmatize words</option>
             </select>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="button" name="search-options-+" value="+">&nbsp;
@@ -129,11 +128,11 @@
 
         <div>
             <label>
-                <input type="checkbox" id="csv_file_var" name="csv_file_var">
+                <input type="checkbox" id="csv_file_var" name="csv_file_var" disabled>
                 Search N-grams csv file
             </label>
             &nbsp;&nbsp;
-            <input type="button" id = "search-ngram-csv-file"  name="search-ngram-csv-file">
+            <input type="button" id = "search-ngram-csv-file"  name="search-ngram-csv-file" disabled>
         </div>
         
         <div class="form-row">
@@ -174,8 +173,8 @@
         </div>
         
         <div class="form-row">
-            <label for="transformation">Transformation:</label>
-            <select id="transformation" name="transformation">
+            <label for="dataTransformation">Transformation:</label>
+            <select id="dataTransformation" name="dataTransformation">
                 <option value="No transformation">No transformation</option>
                 <option value="Ln">Ln</option>
                 <option value="Log">Log</option>
