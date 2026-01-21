@@ -1,4 +1,4 @@
-function listofitems() {
+function listofitems3() {
   var optionsSelect = document.getElementById("search_options");
   var pickedSelect = document.getElementById("optionss");
   var plusbutton = document.getElementsByName("search-options-+")[0];
@@ -26,7 +26,7 @@ function listofitems() {
   }
 }
 
-listofitems();
+listofitems3();
 
 
 var availableGUIs = document.getElementById("availableGUIs");
@@ -104,6 +104,24 @@ var availableGUIs = document.getElementById("availableGUIs");
     });
 
 
+
+
+
+
+function submitbutton2() {
+  var sel1 = document.getElementById("optionss");
+
+  var out1 = "[";
+  for (var i = 0; i < sel1.options.length; i++) {
+    out1 = out1 + '"' + sel1.options[i].value + '"';
+    if (i < sel1.options.length - 1) out1 = out1 + ",";
+  }
+  out1 = out1 + "]";
+
+  document.getElementById("search_options_hidden_list").value = out1;
+
+  return true;
+}
 
 
 
