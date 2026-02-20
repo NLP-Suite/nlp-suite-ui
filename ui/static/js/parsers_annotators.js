@@ -46,6 +46,10 @@ function loadHelper(){
         parser_menu_var.disabled = true;
     }
 }
+
+//write a function here 
+
+
 loadHelper();
 
 

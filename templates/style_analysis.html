@@ -20,7 +20,8 @@
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
         </div>
-        <div class="form-row">
+        
+        {% comment %} <div class="form-row">
             <button onclick="openPDFPopup()">Tips File</button>
             <script src="{% static 'css/tips_files.js' %}"></script>
             <script>
@@ -37,9 +38,9 @@
                     `);
                 }
             </script>
-        </div>
+        </div> {% endcomment %}
 
-        <div class="form-row">
+        {% comment %} <div class="form-row">
             <label>
                 <input type="checkbox" id="style-analysis" name="style-analysis">
                 GUIs available for style analysis
@@ -53,14 +54,14 @@
                 <option value="conll">CoNLL table analyzer</option>
                 <option value="wordnet">WordNet</option>
             </select>
-        </div>
+        </div> {% endcomment %}
     
         <div class="form-row">
             <label>
                 <input type="checkbox" id="complexity_analysis" name="complexity_analysis">
                 Complexity/readability analysis
             </label>
-            <select id="analysis_dropdown" name="analysis_dropdown" disabled>
+            <select id="analysis_dropdown" name="analysis_dropdown">
                 <option value="*">*</option>
                 <option value="Sentence">Sentence complexity</option>
                 <option value="Text">Text readability</option>
@@ -72,7 +73,7 @@
                 <input type="checkbox" id="vocabulary_analysis" name="vocabulary_analysis">
                 Vocabulary analysis
             </label>
-            <select id="voc_options" name="voc_options" disabled>
+            <select id="voc_options" name="voc_options">
                 <option value="*">*</option>
                 <option value="Iconic">Iconicity Analysis</option>
                 <option value="Vocabulary (via unigrams)">Vocabulary (via unigrams) - List of all words/tokens in input document(s)</option>

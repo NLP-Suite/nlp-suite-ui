@@ -58,6 +58,7 @@
 
   let update = setInterval(async () => {
     const response = await fetch("http://0.0.0.0:3000/status");
+
     if (response.status === 200) {
       loading.style.display = "none";
       done.style.display = "flex";
