@@ -39,10 +39,19 @@
                 <input type="checkbox" id="parsers_var" name="parser_var">
                 Parsers for Standard CoreNLP
             </label>
-            <select id="parser_menu_var" name="parser_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
-                <option value="Neural Network">Neural Network</option>
-                <option value="PCFG (Probabilistic Context Free Grammar)">PCFG (Probabilistic Context Free Grammar)</option>
-            </select>
+
+            <span class="dropdown">
+                <select id="parser_menu_var" name="parser_menu_var">
+                    <option value="Neural Network">Neural Network</option>
+                    <option value="PCFG (Probabilistic Context Free Grammar)">PCFG (Probabilistic Context Free Grammar)</option>
+                </select>
+
+                 <span class="dropdowntext">
+                    For Stanford CoreNLP you have a choice between two types of parsers:
+                </span>
+            </span>
+
+
         </div>
 
         <!-- CoNLL Table Analyzer -->
