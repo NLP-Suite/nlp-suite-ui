@@ -10,6 +10,11 @@
 
         <!-- Input and Output Directories -->
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    In inputDirectory the script expects a single txt file or a directory containing a set of txt files.
+                </span>
+            </span>
             <label for="inputDirectory">Input Directory:</label>
             <select name="inputDirectory" id="inputDirectory">
                 <option value="~/nlp-suite/input" selected>~/nlp-suite/input</option>
@@ -18,12 +23,24 @@
         </div>
         
          <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    In outputDirectory, the script generates a set of csv files each containing word n-grams between 1 and 3.<br>
+                    When n-grams are computed by sentence index, the sentence displayed in output is always the first occurring sentence.<br>
+                </span>
+            </span>
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDirectory" id= "outputDirectory" value="~/nlp-suite/output"/>
         </div>
 
         <!--corpus_text_options_menu_var lemmatize-->
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to compute basic statistics on your corpus.<br>
+                    Use the dropdown menus to lemmatize words or exclude stopwords/punctuation and select the desired option.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="corpus_statistics_var" name="corpus_statistics_var">
                 Compute document(s) statistics
@@ -44,6 +61,13 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to compute statistics on your corpus by POS (Part of Speech) tag (e.g., nouns, verbs, adjectives). <br>
+                    The scripts relies on the Stanza POS annotator to export all tokens in the corpus with their POS value.<br>
+                    In outputDirectory, the script generates a set of csv files each containing the words in our corpus by POS value and their frequencies. Charts will also be visualized. 
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="corpus_statistics_byPOS_var" name="corpus_statistics_byPOS_var">
                 Compute document(s) statistics by POS (Part of Speech) tag value
@@ -51,6 +75,11 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Select the type of data transformation you wish to apply in plotting charts. All charts involving multiple documents are automatically normalized by document size.
+                </span>
+            </span>
             <label for="dataTransformation">Transformation:</label>
             <select id="dataTransformation" name="dataTransformation">
                 <option value="No transformation">No transformation</option>

@@ -9,6 +9,11 @@
         
         {% csrf_token %}
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    In inputDirectory the script expects a single txt file or a directory containing a set of txt files.
+                </span>
+            </span>
             <label for="inputDirectory">Input Directory:</label>
             <select name="inputDirectory" id="inputDirectory">
                 <option value="~/nlp-suite/input" selected>~/nlp-suite/input</option>
@@ -17,6 +22,11 @@
         </div>
         
         <div class="form-row" style="margin-bottom: 20px;">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    In outputDirectory the algorithms will produce different file types: txt-format copies of the same input txt files for co-reference, csv files (HTML for gender annotator), and different types of visuals, from Bar charts to utey flowcharts.
+                </span>
+            </span>
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDir" value="~/nlp-suite/output" style="width: 100%; max-width: 400px; padding: 10px;" />
         </div>
@@ -35,11 +45,25 @@
 
         <!-- Parsers and annotators options -->
         <div class="form-row" style="margin-bottom: 20px;">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to use Stanford CoreNLP parser. The parser will produce a CoNLL table (CoNLL U format).<br>
+                    The Stanford CoreNLP CoNLL table is the basis of many of the NLP analyses: noun & verb analysis, function words, clause analysis, query CoNLL.<br>
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="parsers_var" name="parser_var">
                 Parsers for Standard CoreNLP
             </label>
             <select id="parser_menu_var" name="parser_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
+                <span class="dropdown">
+                <span class="dropdowntext">
+                    For Stanford CoreNLP you have a choice between two types of parsers:<br>
+                    1. the recommended default Probabilistic Context Free Grammar (PCFG) parser;<br>
+                    2. a Neural-network dependency parser.<br>
+                    The neural network approach is more accurate but much slower.<br>
+                </span>
+                </span>
                 <option value="Neural Network">Neural Network</option>
                 <option value="PCFG (Probabilistic Context Free Grammar)">PCFG (Probabilistic Context Free Grammar)</option>
             </select>
@@ -47,6 +71,11 @@
 
         <!-- CoNLL Table Analyzer -->
         <div class="form-row" style="margin-bottom: 20px;">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you want to open the CoNLL table analyzer to analyze the Stanford CoreNLP parser results contained in the CoNLL table.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="conll-table-analyzer" name="CoNLL_table_analyzer_var">
                 CoNLL Table Analyzer
@@ -55,6 +84,11 @@
 
         <!-- Annotators section -->
         <div class="form-row" style="margin-bottom: 20px;">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, using the dropdown menu, select one of the many other annotators available. Click the Tips File for more information.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="annotators_var" name="annotators_var">
                 Annotators
@@ -84,6 +118,11 @@
 
         <!-- Manual coreference resolution option -->
         <div class="form-row" style="margin-bottom: 20px;">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to resolve manually cases of unresolved or wrongly resolved coreferences. MANUAL EDITING REQUIRES A LOT OF MEMORY SINCE BOTH ORIGINAL AND CO-REFERENCED FILE ARE BROUGHT IN MEMORY. DEPENDING UPON FILE SIZES, YOU MAY NOT HAVE ENOUGH MEMORY FOR THIS STEP.
+                </span>
+            </span>
             <label for="manual-coref">
                 <input type="checkbox" id="manual_Coref" name="manual_Coref">
                 Enable Manual Coreference Resolution
@@ -92,6 +131,11 @@
 
         <!-- Single Quote Handling -->
         <div class="form-row" style="margin-bottom: 20px;">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    The CoreNLP QUOTE annotator extracts quotes from text and attributes the quote to the speaker. The default CoreNLP parameter is DOUBLE quotes. If you want to process both DOUBLE and SINGLE quotes, please tick the checkbox.
+                </span>
+            </span>
             <label for="single-quote">
                 <input type="checkbox" id="single-quote" name="single_quote">
                 Single Quote Handling
@@ -100,6 +144,11 @@
 
         <!-- Transformation options -->
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Select the type of data transformation you wish to apply in plotting charts. All charts involving multiple documents are automatically normalized by document size.
+                </span>
+            </span>
             <label for="dataTransformation">Transformation:</label>
             <select id="dataTransformation" name="dataTransformation">
                 <option value="No transformation">No transformation</option>
