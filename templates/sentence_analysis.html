@@ -25,31 +25,36 @@
 
         <div class ="form-row">
             <label>
-                <input type="checkbox" name="" id="">
+                <input type="checkbox" name="compute_sentence_length_var" id="compute_sentence_length_var">
                 Compute Sentence Length
             </label>
         </div>
 
         <div class ="form-row">
             <label>
-                <input type="checkbox" name="" id="">
+                <input type="checkbox" name="sentence_complexity_var" id="sentence_complexity_var">
                 Sentence complexity
             </label>
         </div>
 
         <div class ="form-row">
             <label>
-                <input type="checkbox" name="" id="">
+                <input type="checkbox" name="text_readability_var" id="text_readability_var">
                 Sentence/text readability (via textstat)
             </label>
         </div>
 
         <div class ="form-row">
             <label>
-                <input type="checkbox" name="" id="">
+                <input type="checkbox" name="visualize_sentence_structure_var" id="visualize_sentence_structure_var">
                 Visualize sentence structure (via dependency tree)
             </label>
+
+            <label for="sentences_to_be_visualized">Number of Sentences to be Visualized</label>
+            <input type="number" id="num_sentences" name="num_sentences" min="1" max="10" default="1">
+                
         </div>
+
 
 
         <div class="form-row">
