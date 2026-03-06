@@ -177,9 +177,63 @@ function sentComputeTabCheckBox() {
 
 }
 
-document.getElementById("guis_avail").addEventListener("change", guiCheckBox);
-document.getElementById("clause_noun_verb_function").addEventListener("change", functionWordCheckBox);
-document.getElementById("wordnet-classification-noun-verb").addEventListener("change", wordnetCheckBox);
-document.getElementById("search_token_word_checkbox").addEventListener("change", searchWordCheckBox);
-document.getElementById("repetition_finder").addEventListener("change", beginEndKSentenceCheckBox);
-document.getElementById("compute_sentence_table").addEventListener("change", sentComputeTabCheckBox);
+// document.getElementById("guis_avail").addEventListener("change", guiCheckBox);
+// document.getElementById("clause_noun_verb_function").addEventListener("change", functionWordCheckBox);
+// document.getElementById("wordnet-classification-noun-verb").addEventListener("change", wordnetCheckBox);
+// document.getElementById("search_token_word_checkbox").addEventListener("change", searchWordCheckBox);
+// document.getElementById("repetition_finder").addEventListener("change", beginEndKSentenceCheckBox);
+// document.getElementById("compute_sentence_table").addEventListener("change", sentComputeTabCheckBox);
+
+// commented out as there were errors in above code
+
+
+//if none of the checkboxes are checked, alert the user when they click the run button and prevent the form from being submitted
+document.getElementById("run-button")
+    .addEventListener("click", function(event){
+        const ids = [
+            "clause_noun_verb_function",
+            "wordnet-classification-noun-verb",
+            "search_token_word_checkbox",
+            "repetition_finder",
+            "compute_sentence_table"
+        ]
+        let isChecked = false;
+
+        for(let id of ids){
+            const checkbox = document.getElementById(id);
+            // console.log(`Checkbox with id ${id} is checked: ${checkbox.checked}`);
+            if(checkbox.checked){
+                isChecked = true;
+                break;
+            }
+        }
+
+        if(!isChecked){
+            event.preventDefault();
+            alert("Please select at least one option before running the analysis.");
+        }
+    })
+
+    // Check fill in formats.
+document.getElementById("run-button")
+    .addEventListener("click", function(event){
+        const functionWordCheckBox = document.getElementById("clause_noun_verb_function");
+        const functionWordOptions = document.getElementById("clause_noun_verb_function_options");
+        if(functionWordCheckBox.checked && functionWordOptions.value.trim() === "*"){
+            event.preventDefault();
+            alert("Please fill in the function word options field with the correct format.");
+        }
+
+
+        const searchWordCheckBox = document.getElementById("search_token_word_checkbox");
+        const searchWordText = document.getElementById("search_kw");
+        if(searchWordCheckBox.checked && searchWordText.value.trim() === ""){
+            event.preventDefault();
+            alert("Please fill in the search Token/Word text field.");
+        }
+
+    })
+
+
+
+    // 1. 
