@@ -55,18 +55,18 @@
                 <input type="checkbox" id="parsers_var" name="parser_var">
                 Parsers for Standard CoreNLP
             </label>
-            <select id="parser_menu_var" name="parser_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
-                <span class="dropdown">
+            <span class="dropdown">
+                <select id="parser_menu_var" name="parser_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
+                    <option value="PCFG (Probabilistic Context Free Grammar)">PCFG (Probabilistic Context Free Grammar)</option>
+                    <option value="Neural Network">Neural Network</option>
+                </select>
                 <span class="dropdowntext">
                     For Stanford CoreNLP you have a choice between two types of parsers:<br>
                     1. the recommended default Probabilistic Context Free Grammar (PCFG) parser;<br>
                     2. a Neural-network dependency parser.<br>
                     The neural network approach is more accurate but much slower.<br>
                 </span>
-                </span>
-                <option value="Neural Network">Neural Network</option>
-                <option value="PCFG (Probabilistic Context Free Grammar)">PCFG (Probabilistic Context Free Grammar)</option>
-            </select>
+            </span>
         </div>
 
         <!-- CoNLL Table Analyzer -->
@@ -86,32 +86,37 @@
         <div class="form-row" style="margin-bottom: 20px;">
             <span class="tooltip">
                 <span class="tooltiptext">
-                    Please, using the dropdown menu, select one of the many other annotators available. Click the Tips File for more information.
+                    Please, using the dropdown menu, select one of the many annotators available. 
                 </span>
             </span>
             <label>
                 <input type="checkbox" id="annotators_var" name="annotators_var">
                 Annotators
             </label>
-            <select id="annotators_menu_var" name="annotators_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
-                <optgroup label="Fundamental NLP tools">
-                    <option value="Sentence splitter">Sentence splitter</option>
-                    <option value="Lemma annotator">Lemma annotator</option>
-                    <option value="POS annotator">POS annotator</option>
-                    <option value="NER">NER</option>
-                </optgroup>
-                <optgroup label="Special annotators">
-                    <option value="Coreference PRONOMINAL resolution">Coreference PRONOMINAL resolution</option>
-                    <option value="Sentiment analysis">Sentiment analysis</option>
-                    <option value="OpenIE - Relation triples extractor">OpenIE - Relation triples extractor</option>
-                    <option value="SVO extraction">SVO extraction</option>
-                </optgroup>
-                <optgroup label="More special annotators (CoreNLP only)">
-                    <option value="Gender annotator">Gender annotator</option>
-                    <option value="Normalized NER date annotator">Normalized NER date annotator</option>
-                    <option value="Quote/dialogue annotator">Quote/dialouge annotator</option>
-                </optgroup>
-            </select>
+            <span class="dropdown">
+                <select id="annotators_menu_var" name="annotators_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
+                    <optgroup label="Fundamental NLP tools">
+                        <option value="Sentence splitter">Sentence splitter</option>
+                        <option value="Lemma annotator">Lemma annotator</option>
+                        <option value="POS annotator">POS annotator</option>
+                        <option value="NER">NER</option>
+                    </optgroup>
+                    <optgroup label="Special annotators">
+                        <option value="Coreference PRONOMINAL resolution">Coreference PRONOMINAL resolution</option>
+                        <option value="Sentiment analysis">Sentiment analysis</option>
+                        <option value="OpenIE - Relation triples extractor">OpenIE - Relation triples extractor</option>
+                        <option value="SVO extraction">SVO extraction</option>
+                    </optgroup>
+                    <optgroup label="More special annotators (CoreNLP only)">
+                        <option value="Gender annotator">Gender annotator</option>
+                        <option value="Normalized NER date annotator">Normalized NER date annotator</option>
+                        <option value="Quote/dialogue annotator">Quote/dialouge annotator</option>
+                    </optgroup>
+                </select>
+                <span class="dropdowntext">
+                    Click the Tips File for more information on the different annotators.
+                </span>
+            </span>
         </div>
 
         
@@ -120,7 +125,7 @@
         <div class="form-row" style="margin-bottom: 20px;">
             <span class="tooltip">
                 <span class="tooltiptext">
-                    Please, tick the checkbox if you wish to resolve manually cases of unresolved or wrongly resolved coreferences. MANUAL EDITING REQUIRES A LOT OF MEMORY SINCE BOTH ORIGINAL AND CO-REFERENCED FILE ARE BROUGHT IN MEMORY. DEPENDING UPON FILE SIZES, YOU MAY NOT HAVE ENOUGH MEMORY FOR THIS STEP.
+                    Please, tick the checkbox if you wish to resolve manually cases of unresolved or wrongly resolved coreferences. Manual editing requires a lot of memory since both original and co-referenced file are brought in memory. Depending upon file sizes, you may not have enough memory for this step.
                 </span>
             </span>
             <label for="manual-coref">
@@ -133,7 +138,7 @@
         <div class="form-row" style="margin-bottom: 20px;">
             <span class="tooltip">
                 <span class="tooltiptext">
-                    The CoreNLP QUOTE annotator extracts quotes from text and attributes the quote to the speaker. The default CoreNLP parameter is DOUBLE quotes. If you want to process both DOUBLE and SINGLE quotes, please tick the checkbox.
+                    The CoreNLP Quote annotator extracts quotes from text and attributes the quote to the speaker. The default CoreNLP parameter is double quotes. If you want to process both double and single quotes, please tick the checkbox.
                 </span>
             </span>
             <label for="single-quote">

@@ -38,26 +38,33 @@
             <span class="tooltip">
                 <span class="tooltiptext">
                     Please, tick the checkbox if you wish to compute basic statistics on your corpus.<br>
-                    Use the dropdown menus to lemmatize words or exclude stopwords/punctuation and select the desired option.
                 </span>
             </span>
             <label>
                 <input type="checkbox" id="corpus_statistics_var" name="corpus_statistics_var">
                 Compute document(s) statistics
             </label>
-            <select id="corpus_text_options_menu_var" name="corpus_text_options_menu_var">
-                <option value="*">*</option>
-                <option value="Lemmatize">Lemmatize Words</option>
-                <option value="stopwords">Exclude Stopwords & Puncutation</option>
-    
-            </select>
+            <span class="dropdown">
+                <select id="corpus_text_options_menu_var" name="corpus_text_options_menu_var">
+                    <option value="*">*</option>
+                    <option value="Lemmatize">Lemmatize Words</option>
+                    <option value="stopwords">Exclude Stopwords & Puncutation</option>
+                </select>
+                <span class="dropdowntext">
+                    Select the text option to lemmatize words or exclude stopwords/punctuation (* for all).
+                </span>
+            </span>
 
-            <select id="corpus_statistics_options_menu_var" name="corpus_statistics_options_menu_var">
-                <option value="*">*</option>
-                <option value="frequencies" >Compute frequencies of sentences, words, syllables, and top-20 words</option>
-                <option value="Compute sentence length" >Compute sentence length</option>
-                <option value="Compute line length">Compute line length</option>
-            </select>
+            <span class="dropdown">
+                <select id="corpus_statistics_options_menu_var" name="corpus_statistics_options_menu_var">
+                    <option value="*">*</option>
+                    <option value="frequencies" >Compute frequencies of sentences, words, syllables, and top-20 words</option>
+                    <option value="Compute sentence length" >Compute sentence length</option>
+                    <option value="Compute line length">Compute line length</option>
+                </select>
+                <span class="dropdowntext">
+                    Select the computation option (* for all).
+                </span>
         </div>
 
         <div class="form-row">

@@ -215,3 +215,31 @@ input[type="checkbox"]:disabled {
   border: 1px solid #cccccc;
   border-radius: 4px;
 }
+
+.dropdown {
+  width: 100%; 
+  max-width: 420px; 
+  padding: 10px;
+  position:relative;
+}
+
+.dropdown .dropdowntext {
+  visibility: hidden;
+  width: 300px;
+  background-color: #555;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -150px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.dropdown:hover .dropdowntext {
+  visibility: visible;
+  opacity: 1;
+}
