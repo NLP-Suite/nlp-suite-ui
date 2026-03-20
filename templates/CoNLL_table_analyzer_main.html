@@ -4,11 +4,11 @@
 {%load static%}
 
 <div class="sentiment-analysis-container">
-    <h1>CoNLL Table Analyzer</h1>
-    {% csrf_token %}
     
-    <form method="post" class="CoNLL-table-analyzer-form"></form>
-        
+    <h1>CoNLL Table Analyzer</h1>    
+    <form method="post"  class="sentiment-analysis-form" action="{% url 'CoNLL_table_analyzer_main' %}">
+        {% csrf_token %}
+
         <div class="form-row">
             <label for="inputDirectory">Input Directory:</label>
             <select name="inputDirectory" id="inputDirectory">
@@ -35,7 +35,7 @@
 
         <div class="form-row">
             <label>
-                <input type="checkbox" id="all_analyses_vars" name="all_analyses_vars" >
+                <input type="checkbox" id="all_analyses_var" name="all_analyses_var" >
                 CoNLL Analyses
             </label>
             <select id="all_analyses" name="all_analyses">
@@ -487,11 +487,8 @@
             <button type="submit" class="run-button">Run</button>
         </div>
 
+    </form>
 
-        
-    <script src="{% static 'js/CoNLL_table_analyzer_main.js' %}"></script>
-    <script src="{% static 'js/onlyone.js' %}"></script>
- 
 
 </div>
 {% endblock %}
