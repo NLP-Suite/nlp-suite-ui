@@ -46,6 +46,24 @@ function loadHelper(){
         parser_menu_var.disabled = true;
     }
 }
+
+function showWarning(){
+    const parserCheckbox = document.getElementById("parsers_var");
+    if(!parserCheckbox.checked){
+        alert("Error");
+        return false;
+        // const message="Warning";
+        // const isConfirmed=confirm(message);
+        // document.getElementById("parsers_var").checked=isConfirmed;
+    }
+    
+    // if(annotators_menu_var==null){
+    //     message="Your annotator selection is invalid. It is only a label to make readability of menu options easier.\nPlease, select a different option and try again.'"
+    // }
+    // const parserCheckbox = document.getElementById("parsers_var");
+    // if(!parserCheckbox.checked){
+    //     alert("Check")
+    // }
+}
+
 loadHelper();
-
-

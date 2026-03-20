@@ -5,7 +5,7 @@
 
 <div style="max-width: 80%; margin: 20px auto; padding: 20px;">
     <h1 style="text-align: left; font-size: 30px; margin-bottom: 20px;">Parsers & Annotators (BERT, CoreNLP, spaCy, Stanza)</h1>
-    <form method="POST" action="{% url 'parsers_annotators' %}">
+    <form method="POST" action="{% url 'parsers_annotators' %}" onsubmit="return showWarning()">
         
         {% csrf_token %}
         <div class="form-row">
@@ -55,6 +55,13 @@
                 <input type="checkbox" id="parsers_var" name="parser_var">
                 Parsers for Standard CoreNLP
             </label>
+            <script>
+                var checkbox=document.getElementById("parser_var").addEventListener("click", function(){
+                    if(this.checked){
+                        let checkbox=document.getElementById("parser_var")
+                    }
+                });
+            </script>
             <span class="dropdown">
                 <select id="parser_menu_var" name="parser_menu_var" style="width: 100%; max-width: 420px; padding: 10px;">
                     <option value="PCFG (Probabilistic Context Free Grammar)">PCFG (Probabilistic Context Free Grammar)</option>
