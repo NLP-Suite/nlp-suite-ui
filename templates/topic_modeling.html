@@ -21,6 +21,11 @@
         <input type="text" name="outputDirectory" value="~/nlp-suite/output" readonly/>
     </div>
     <div class = "form-row">
+        <span class="tooltip">
+            <span class="tooltiptext">
+                Enter the number of topics to be used. Try different number of topics for better results 
+            </span>
+        </span>
         <label for="numberOfTopics"> Number of Topics:</label>
             <input type = "number" id="numberOfTopics" name = "numberOfTopics" value = 20 min = 1>
     </div>
@@ -29,6 +34,11 @@
             <input type="checkbox" id="topicModelingBERT" name="topicModelingBERT" unchecked>
             Topic Modeling (via BERTopic)
         </label>
+        <span class="tooltip">
+                    <span class="tooltiptext">
+                        Tick/untick the checkbox to run the BERtopic LLM topic modeling. BERTopic was developed by Maarten Grootendorst in 2022. BERTopic is based on BERT, released by Google in October 2018.
+                    </span>
+                </span>
     </div>
     <div class = "form-row">
         <label>
@@ -41,6 +51,11 @@
             <input type="checkbox" id="topicModelingMALLET" name="topicModelingMALLET" >
             Topic Modeling (via MALLET)
         </label>
+        <span class="tooltip">
+                    <span class="tooltiptext">
+                        Tick/untick the checkbox to run the java-based MALLET LDA(Latent Dirichlet Allocation) topic modeling algorithm, first released in 2002. MALLET was developed by Andrew McCallum of the University of Massachusetts Amherst. MALLET does not come with any visual displays of its own.
+                    </span>
+                </span>
     </div>
     <div class = "form-row">
         <label>
@@ -55,6 +70,11 @@
             <input type="checkbox" id="topicModelingGensim" name="topicModelingGensim" >
             Topic Modeling (via GENSIM)
         </label>
+        <span class="tooltip">
+                    <span class="tooltiptext">
+                        Tick/untick the checkbox to run the Gensim LDA(Latent Dirichlet Allocation) topic modeling algorithm. Gensim uses the MALLET algorithm and displays the results in beautiful interactive visuals.
+                    </span>
+                </span>
     </div>
     <div class = "form-row">
         <label>
@@ -90,6 +110,11 @@
                 <option value="Square">Square root</option>
                 <option value="Z score">Z score</option>
             </select>
+            <span class="tooltip">
+                    <span class="tooltiptext">
+                        Charts can be visualized automatically as bar, line, or pie charts. Select your preferred option. Many more chart types are available in the specialized GUIs data_visualization_1_main.py and data_visualization_2_main.py. Open those GUIs and select the csv file and variable you wish to chart.
+                    </span>
+                </span>
     </div>
 
     <div class="buttons-section">

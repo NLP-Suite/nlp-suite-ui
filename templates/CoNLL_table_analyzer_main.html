@@ -34,20 +34,22 @@
         <input type="hidden" name="file_data" id="file_data"> {% endcomment %}
 
         <div class="form-row">
-            <label>
-                <input type="checkbox" id="all_analyses_var" name="all_analyses_var" >
-                CoNLL Analyses
-            </label>
-            <select id="all_analyses" name="all_analyses">
-                <option value="*">*</option>
-                <option value="Adjective analysis">Adjective analysis</option>
-                <option value="Clause analysis">Clause Analysis</option> 
-                <option value="Noun analysis">Noun Analysis</option> 
-                <option value="Verb analysis">Verb Analysis</option> 
-                <option value ="Content/Function ratio analysis">Content/Function ratio analysis</option>
-                <option value="Adverb analysis">Adverb Analysis</option>
-                <option value="Function (junk/stop) words analysis">Function(junk/stop) Words Analysis</option> 
-            </select>
+                <label>
+                    <input type="checkbox" id="clause_noun_verb_function" name="clause_noun_verb_function" >
+                    Clause, noun, verb, function word 
+                </label>
+                <span class = "dropdown">
+                    <select classid="clause_noun_verb_function_options" name="clause_noun_verb_function_options">
+                        <option value="*">*</option>
+                        <option value="clause-analysis">Clause Analysis</option> 
+                        <option value="noun-analysis">Noun Analysis</option> 
+                        <option value="verb-analysis">Verb Analysis</option> 
+                        <option value="function-words-jump/stop-analysis">Function(junk/stop) Words Analysis</option> 
+                    </select>
+                    <span class="dropdowntext">
+                        Please, tick the checkbox to analyze the CoNLL table for different types of clauses (e.g., noun-phrase, NP, verb phrase, VP), nouns (singular, plural, proper nouns, subject and object), verbs (modality, tense, voice), functions words (or junk/stop words) (e.g., articles/determinants, auxiliaries, conjunctions, prepositions, pronouns), adjectives, adverbs, and ratios of word classes (e.g., content words vs. juunk words).
+                    </span>
+                </span>
         </div>
 
         <div class="form-row">
@@ -484,7 +486,8 @@
                 Tips File
             </a>
 
-            <button type="submit" class="run-button">Run</button>
+            <button type="submit" id = "run-button" class="run-button">Run</button> 
+            <!-- added id for run button might have to take out later -->
         </div>
 
     </form>

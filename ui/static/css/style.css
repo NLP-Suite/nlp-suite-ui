@@ -98,15 +98,15 @@ label {
 .tooltip::before {
   content: "?";
   display: inline-block;
-  width: 25px;
-  height: 25px;
+  width: 19px;
+  height: 19px;
   background-color: white;
   color: #4d6aad;
   border: 2px solid #4d6aad;
   border-radius: 50%;
   text-align: center;
   line-height: 25px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -227,7 +227,7 @@ input[type="checkbox"]:disabled {
 
 .dropdown .dropdowntext {
   visibility: hidden;
-  width: 300px;
+  width: 500px;
   background-color: #555;
   color: #fff;
   border-radius: 5px;

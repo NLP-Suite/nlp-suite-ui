@@ -59,3 +59,10 @@ var topicModelingBERT = document.getElementById("topicModelingBERT");
         }
     });
 
+    
+
+
+    // 
+    // 1. Check if directory is empty(data in directory)  
+    // 2. Group !Bert  || !Mallet || !Gensim && Directory is empty or not) 
+    // 3. Alert message and then 
