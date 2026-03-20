@@ -321,3 +321,20 @@ def document_statistics(request: HttpRequest):
             messages.add_message(request, messages.ERROR, response.content.decode())
     return render(request, "document_statistics.html")
 
+def sentence_analysis(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/sentence_analysis",
+            data = request.body,
+            headers=request.headers
+        )
+        
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+
+            
+    return render(request, "sentence_analysis.html")
+            
+

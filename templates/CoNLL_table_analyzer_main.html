@@ -34,17 +34,22 @@
         <input type="hidden" name="file_data" id="file_data"> {% endcomment %}
 
         <div class="form-row">
-            <label>
-                <input type="checkbox" id="clause_noun_verb_function" name="clause_noun_verb_function" >
-                Clause, noun, verb, function word 
-            </label>
-            <select id="clause_noun_verb_function_options" name="clause_noun_verb_function_options">
-                <option value="*">*</option>
-                <option value="clause-analysis">Clause Analysis</option> 
-                <option value="noun-analysis">Noun Analysis</option> 
-                <option value="verb-analysis">Verb Analysis</option> 
-                <option value="function-words-jump/stop-analysis">Function(junk/stop) Words Analysis</option> 
-            </select>
+                <label>
+                    <input type="checkbox" id="clause_noun_verb_function" name="clause_noun_verb_function" >
+                    Clause, noun, verb, function word 
+                </label>
+                <span class = "dropdown">
+                    <select classid="clause_noun_verb_function_options" name="clause_noun_verb_function_options">
+                        <option value="*">*</option>
+                        <option value="clause-analysis">Clause Analysis</option> 
+                        <option value="noun-analysis">Noun Analysis</option> 
+                        <option value="verb-analysis">Verb Analysis</option> 
+                        <option value="function-words-jump/stop-analysis">Function(junk/stop) Words Analysis</option> 
+                    </select>
+                    <span class="dropdowntext">
+                        Please, tick the checkbox to analyze the CoNLL table for different types of clauses (e.g., noun-phrase, NP, verb phrase, VP), nouns (singular, plural, proper nouns, subject and object), verbs (modality, tense, voice), functions words (or junk/stop words) (e.g., articles/determinants, auxiliaries, conjunctions, prepositions, pronouns), adjectives, adverbs, and ratios of word classes (e.g., content words vs. juunk words).
+                    </span>
+                </span>
         </div>
 
         <div class="form-row">
@@ -99,9 +104,60 @@
                 &nbsp;&nbsp;&nbsp; 
                 POSTAG 
                 &nbsp;
-                <select id="postag" name="postag" disabled>
-                    <option value="testing1">Testing 1</option>
-                    <option value="testing2">Testing 2</option> 
+                <select id="postag" name="postag">
+                    <option value="*">*</option>
+                    {% comment %} <option value="testing2">JJ* - Any adjective</option>
+                    <option value="testing2">NN* - Any noun</option> 
+                    <option value="testing2">VB* - Any verb</option> 
+                    <option value="testing2">"-"</option> 
+                    <option value="testing2">#-#</option> 
+                    <option value="testing2">'-'</option> 
+                    <option value="testing2">(-(</option> 
+                    <option value="testing2">)-)</option> 
+                    <option value="testing2">,-.</option> 
+                    <option value="testing2">-LRB- - Left round bracket</option> 
+                    <option value="testing2">-RRB- - Right round bracket</option> 
+                    <option value="testing2">.-.</option>
+                    <option value="testing2">:-:</option>  
+                    <option value="testing2">AFX - Affix</option> 
+                    <option value="testing2">CC - Coordinating conjunction</option> 
+                    <option value="testing2">CD - Cardinal Number</option> 
+                    <option value="testing2">DT - Determinant</option> 
+                    <option value="testing2">EX - Existential there</option> 
+                    <option value="testing2">FW - Foreign word</option> 
+                    <option value="testing2">HYPH - Punctuation Mark, hyphen</option>
+                    <option value="testing2">IN - Preposition or subordinating conjunction</option> 
+                    <option value="testing2">JJ - Adjective</option> 
+                    <option value="testing2">JJR - Adjective, comparative</option> 
+                    <option value="testing2">JJS - Adjective, superlative</option> 
+                    <option value="testing2">LS - List marker</option> 
+                    <option value="testing2">MD - Modal Verb</option> 
+                    <option value="testing2">NFP - Superfluous punctuation</option>
+                    <option value="testing2">NN. - Noun, singular or mass</option>
+                    <option value="testing2">NNP - Proper noun, singular</option>
+                    <option value="testing2">NNPS - Proper noun, plural</option>
+                    <option value="testing2">NNS - Noun, plural</option>
+                    <option value="testing2">PDT - Predeterminer</option>
+                    <option value="testing2">POS - Possessive ending</option>
+                    <option value="testing2">PRP - Personal Pronoun</option>
+                    <option value="testing2">PRP$ - Possessive pronoun</option>
+                    <option value="testing2">RB - Adverb</option>
+                    <option value="testing2">RBR - Adverb, comparative</option>
+                    <option value="testing2">RBS - Adverb, superlative</option>
+                    <option value="testing2">RP - Particle</option>
+                    <option value="testing2">SYM - Symbol</option>
+                    <option value="testing2">TO - to</option>
+                    <option value="testing2">UH - Interjection</option>
+                    <option value="testing2">VB - Verb, base form</option>
+                    <option value="testing2">VBD - Verb, past tense</option>
+                    <option value="testing2">VBG - Verb, gerund or present participle</option>
+                    <option value="testing2">VBN - Verb, past participle</option>
+                    <option value="testing2">VBP - Verb, 3rd person singular present</option>
+                    <option value="testing2">WDT - Wh-determiner (what, which, whose)</option>
+                    <option value="testing2">WP - Wh-pronoun (how, what, which, wherw, when who, whom)</option>
+                    <option value="testing2">WP$ - Possessive wh-pronoun</option>
+                    <option value="testing2">WRB - Wh-adverb (when, where, how and why)</option>
+                    <option value="testing2">``_``</option> {% endcomment %}
                 </select>
             </label>
 
@@ -109,8 +165,8 @@
                 &nbsp;&nbsp;&nbsp; 
                 DEPREL
                 &nbsp;
-                <select id="deprel" name="deprel" disabled>
-                    <option value="testing1">Testing 1</option>
+                <select id="deprel" name="deprel">
+                    <option value="*">*</option>
                     <option value="testing2">Testing 2</option> 
                 </select>
             </label>
@@ -122,9 +178,9 @@
                 &nbsp;&nbsp;&nbsp; 
                 POSTAG 
                 &nbsp;
-                <select id="postag_b" name="postag_b" disabled>
-                    <option value="testing1">Testing 1</option>
-                    <option value="testing2">Testing 2</option> 
+                <select id="postag_b" name="postag_b">
+                    <option value="*">*</option>
+        
                 </select>
             </label> 
 
@@ -132,8 +188,8 @@
                 &nbsp;&nbsp;&nbsp; 
                 DEPREL
                 &nbsp;
-                <select id="deprel_b" name="deprel_b" disabled>
-                    <option value="testing1">Testing 1</option>
+                <select id="deprel_b" name="deprel_b">
+                    <option value="*">*</option>
                     <option value="testin2">Testing 2</option> 
                 </select>
             </label>
@@ -146,12 +202,12 @@
             </label> 
             <label> 
                 Begin K-sentences
-                <input type="number" id="begin-k-sentences" size="50" disabled>
+                <input type="number" id="begin-k-sentences" size="50">
                 &nbsp;
             </label> 
             <label> 
                 End K-sentences
-                <input type="number" id="end-k-sentences" size="50" disabled>
+                <input type="number" id="end-k-sentences" size="50">
                 &nbsp;
             </label>
         </div>
@@ -220,6 +276,7 @@
 
         
     <script src="{% static 'js/CoNLL_table_analyzer_main.js' %}"></script>
+    <script src="{% static 'js/onlyone.js' %}"></script>
  
 
 </div>
