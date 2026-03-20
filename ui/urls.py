@@ -46,7 +46,8 @@ urlpatterns = [
     path('boxplot', views.boxplot, name="boxplot"),
     path('colormap_chart', views.colormap_chart, name="colormap_chart"),
     path('excel_plotly_charts', views.excel_plotly_chars, name="excel_plotly_charts"),
-    path("document_statistics", views.document_statistics, name="document_statistics")
+    path("document_statistics", views.document_statistics, name="document_statistics"),
+    path('sentence_analysis', views.sentence_analysis, name="sentence_analysis")
 
 ]
 
