@@ -41,7 +41,7 @@ toggleAnalysisDropdown();
 
 // functions for dropdowns
 function resetAll(){
-    document.getElementById("style-analysis").disabled = false;
+    // document.getElementById("style-analysis").disabled = false;
     document.getElementById("complexity_analysis").disabled = false;
     document.getElementById("vocabulary_analysis").disabled = false;
 
@@ -51,31 +51,31 @@ function resetAll(){
 
 }
 
-function toggleStyle(){
+// function toggleStyle(){
 
-    const style = document.getElementById("style-analysis");
-    const complexity = document.getElementById("complexity_analysis");
-    const vocabulary = document.getElementById("vocabulary_analysis");
-    const tools = document.getElementById("tools");
+//     // const style = document.getElementById("style-analysis");
+//     const complexity = document.getElementById("complexity_analysis");
+//     const vocabulary = document.getElementById("vocabulary_analysis");
+//     const tools = document.getElementById("tools");
 
-    if(style.checked){
-        complexity.disabled=true;
-        vocabulary.disabled=true;
+//     if(style.checked){
+//         complexity.disabled=true;
+//         vocabulary.disabled=true;
         
-        tools.disabled=false;
-    }else{
-        resetAll();
-    }
-}
+//         tools.disabled=false;
+//     }else{
+//         resetAll();
+//     }
+// }
 function toggleComplexity(){
-    const style = document.getElementById("style-analysis");
+    // const style = document.getElementById("style-analysis");
     const complexity = document.getElementById("complexity_analysis");
     const vocabulary = document.getElementById("vocabulary_analysis");
 
     const analysis = document.getElementById("analysis_dropdown");
 
     if(complexity.checked){
-        style.disabled=true;
+        // style.disabled=true;
         vocabulary.disabled=true;
         
         analysis.disabled=false;
@@ -84,7 +84,7 @@ function toggleComplexity(){
     }
 }
 function toggleVocabulary(){
-    const style = document.getElementById("style-analysis");
+    // const style = document.getElementById("style-analysis");
     const complexity = document.getElementById("complexity_analysis");
     const vocabulary = document.getElementById("vocabulary_analysis");
 
@@ -92,13 +92,13 @@ function toggleVocabulary(){
 
     if(vocabulary.checked){
         complexity.disabled=true;
-        style.disabled=true;
+        // style.disabled=true;
         
         voc.disabled=false;
     }else{
         resetAll();
     }
 }
-document.getElementById("style-analysis").addEventListener("change", toggleStyle);
+// document.getElementById("style-analysis").addEventListener("change", toggleStyle);
 document.getElementById("complexity_analysis").addEventListener("change", toggleComplexity);
 document.getElementById("vocabulary_analysis").addEventListener("change", toggleVocabulary);

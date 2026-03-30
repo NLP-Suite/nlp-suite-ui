@@ -47,6 +47,7 @@ function loadHelper(){
     }
 }
 
+/*/
 function showWarning(){
     const parserCheckbox = document.getElementById("parsers_var");
     if(!parserCheckbox.checked){
@@ -56,7 +57,7 @@ function showWarning(){
         // const isConfirmed=confirm(message);
         // document.getElementById("parsers_var").checked=isConfirmed;
     }
-    
+
     // if(annotators_menu_var==null){
     //     message="Your annotator selection is invalid. It is only a label to make readability of menu options easier.\nPlease, select a different option and try again.'"
     // }
@@ -65,5 +66,7 @@ function showWarning(){
     //     alert("Check")
     // }
 }
-
+/*/
 loadHelper();
+
+

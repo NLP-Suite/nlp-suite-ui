@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{%load static %}
+
+<div class="sentiment-analysis-container">
+    <h1>Sentence Analysis</h1>
+    <form method="post" class="sentiment-analysis-form">
+        {% csrf_token %}
+        
+        <div class="form-row">
+            <label for="inputDirectory">Input Directory:</label>
+            <select name="inputDirectory" id="inputDirectory">
+                <option value="~/nlp-suite/input" selected>~/nlp-suite/input</option>
+                <option value="~/nlp-suite/csvInput">~/nlp-suite/csvInput</option>
+            </select>
+        </div>
+
+
+        <div class="form-row">
+            <label for="outputDirectory">Output Directory:</label>
+            <input type="text" name="outputDirectory" id= "outputDirectory" value="~/nlp-suite/output"/>
+        </div>
+        
+
+        <div class ="form-row">
+            <label>
+                <input type="checkbox" name="compute_sentence_length_var" id="compute_sentence_length_var">
+                Compute Sentence Length
+            </label>
+        </div>
+
+        <div class ="form-row">
+            <label>
+                <input type="checkbox" name="sentence_complexity_var" id="sentence_complexity_var">
+                Sentence complexity
+            </label>
+        </div>
+
+        <div class ="form-row">
+            <label>
+                <input type="checkbox" name="text_readability_var" id="text_readability_var">
+                Sentence/text readability (via textstat)
+            </label>
+        </div>
+
+        <div class ="form-row">
+            <label>
+                <input type="checkbox" name="visualize_sentence_structure_var" id="visualize_sentence_structure_var">
+                Visualize sentence structure (via dependency tree)
+            </label>
+
+            <label for="sentences_to_be_visualized">Number of Sentences to be Visualized</label>
+            <input type="number" id="num_sentences" name="num_sentences" min="1" max="10" default="1">
+                
+        </div>
+
+
+
+        <div class="form-row">
+            <label for="dataTransformation">Transformation:</label>
+            <select id="dataTransformation" name="dataTransformation">
+                <option value="No transformation">No transformation</option>
+                <option value="Ln">Ln</option>
+                <option value="Log">Log</option>
+                <option value="Square">Square root</option>
+                <option value="Z score">Z score</option>
+            </select>
+        </div>
+        
+        <div class="buttons-section">
+            <button type="reset" class="reset-button"onclick="window.location.reload();">Reset</button>
+
+            <link rel="stylesheet" href="{% static "css/tipsfile.css" %}">
+
+            <a href="https://github.com/NLP-Suite/NLP-Suite/blob/current-stable/TIPS/TIPS_NLP_Sentiment%20analysis.pdf" target ="_blank" rel="noopener noreferrer"
+            class = "tipsfile-button">
+                <div class = "tipsfile-mask">
+                    <div class = "tipsfile-glow"></div>
+                </div>
+                Tips File
+            </a>
+            
+            <button type="submit" class="run-button">Run</button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

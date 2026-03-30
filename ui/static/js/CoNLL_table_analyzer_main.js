@@ -77,7 +77,7 @@ function wordnetCheckBox() {
 }
 
 function searchWordCheckBox() {
-    var searchWordCheckBox = document.getElementById("search_token_word_checkbox");
+    var searchWordCheckBox = document.getElementById("search_token_var");
 
     var searchWordText = document.getElementById("search-token-word-text");
     var guiCheckBox = document.getElementById("guis_avail");
