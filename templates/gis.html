@@ -22,82 +22,108 @@
         </div>
 
         <div class="form-row">
-            <button type="button" onclick="openPDFPopup()">Tips File</button>
-            
-            <script src = "{%static 'css/tips_files.js' %}"></script>
-            <script>
-                function openPDFPopup() {
-                    const pdfUrl = "{% static 'css/TIPS_NLP_Sentiment analysis.pdf' %}"
-                    const pdfWindow = window.open('', 'pdfPopup', 'width=800,height=600');
-                    pdfWindow.document.write(`
-                        <html>
-                        <head><title>PDF Viewer</title></head>
-                        <body style="margin: 0; overflow: hidden;">
-                            <embed src="${pdfUrl}" type="application/pdf" width="100%" height="100%">
-                        </body>
-                        </html>
-                    `);
-                }
-            </script>
-        </div>
-
-        <div class="form-row">
             <label>
-                <input type="checkbox" id="extractLocations" name="extractLocations" checked>
+                <input type="checkbox" id="NER_extractor" name="NER_extractor" checked>
                 Extract Locations (via Stanford CoreNLP NER) - Default Parameters
             </label>
         </div>
 
         <div class="form-row">
-            <label for="algorithm">Select the column containing location names:</label>
-            <select id="columnLocationName" name="algorithm">
-                <option value="fillerColumn">Filler</option>
+            <label for="location_menu">Select the column containing location names:</label>
+            <select id="location_menu" name="location_menu" disabled>
+                <option value="">Filler</option>
             </select>
         </div>
 
         <div class="form-row">
-            <label>
+            {% comment %} <label>
                 <input type="checkbox" id="geocodeLocations" name="geocodeLocations" checked>
                 Geocode Locations
-            </label>
-            <label for="geocoderSelect">Geocoder:</label>
-            <select id="geocoderSelect" name="geocoderSelect">
+            </label> {% endcomment %}
+            <label for="geocoder">Geocoder:</label>
+            <select id="geocoder" name="geocoder">
                 <option value="nominatim">Nominatim</option>
                 <option value="Google">Google</option>
             </select>
-            <label for="countryBias">Country bias</label>
-            <select id="countryBias" name="countryBias">
-                <option value="nominatim">Afghanistan - af </option>
-                <option value="Google">Albania - al</option>
-                <!-- Add the rest of the countries-->
+            <label for="country_bias_var">Country bias</label>
+            <select id="country_bias_var" name="country_bias_var">
+                <option value="">Select a country</option>
+                <option value="af">Afghanistan</option>
+                <option value="al">Albania</option>
+                <option value="dz">Algeria</option>
+                <option value="ar">Argentina</option>
+                <option value="au">Australia</option>
+                <option value="at">Austria</option>
+                <option value="bd">Bangladesh</option>
+                <option value="be">Belgium</option>
+                <option value="br">Brazil</option>
+                <option value="ca">Canada</option>
+                <option value="cn">China</option>
+                <option value="co">Colombia</option>
+                <option value="dk">Denmark</option>
+                <option value="eg">Egypt</option>
+                <option value="fi">Finland</option>
+                <option value="fr">France</option>
+                <option value="de">Germany</option>
+                <option value="gr">Greece</option>
+                <option value="in">India</option>
+                <option value="id">Indonesia</option>
+                <option value="ie">Ireland</option>
+                <option value="il">Israel</option>
+                <option value="it">Italy</option>
+                <option value="jp">Japan</option>
+                <option value="mx">Mexico</option>
+                <option value="nl">Netherlands</option>
+                <option value="nz">New Zealand</option>
+                <option value="ng">Nigeria</option>
+                <option value="no">Norway</option>
+                <option value="pk">Pakistan</option>
+                <option value="ph">Philippines</option>
+                <option value="pl">Poland</option>
+                <option value="pt">Portugal</option>
+                <option value="ru">Russia</option>
+                <option value="sa">Saudi Arabia</option>
+                <option value="sg">Singapore</option>
+                <option value="za">South Africa</option>
+                <option value="kr">South Korea</option>
+                <option value="es">Spain</option>
+                <option value="se">Sweden</option>
+                <option value="ch">Switzerland</option>
+                <option value="th">Thailand</option>
+                <option value="tr">Turkey</option>
+                <option value="ae">United Arab Emirates</option>
+                <option value="gb">United Kingdom</option>
+                <option value="us">United States</option>
+                <option value="vn">Vietnam</option>
             </select>
-            <label for="area">Area: </label>
-            <input type="text" id="area" name="area"><br><br>
+            <label for="area_var">Area: </label>
+            <input type="text" id="area_var" name="area_var" placeholder="e.g., (34.98527, -85.59790), (30.770444, -81.521974)"></input>
+
             <label>
-                <input type="checkbox" id="restrict" name="restrict" unchecked>
+                <input type="checkbox" id="restrict_var" name="restrict_var">
                 Restrict
             </label>
         </div>
 
         <div class="form-row">
-            <label>
+            {% comment %} <label>
                 <input type="checkbox" id="mapLocations" name="mapLocations" checked>
                 Map Locations
-            </label>
-            <label for="mapLocationsSoftware">Software</label>
-            <select id="mapLocationsSoftware" name="mapLocationsSoftware">
-                <option value="pythonFoil">Python folium pin map & heatmap</option>
-                <option value="googleEarthProplusMaps">Google Earth Pro & Google Maps</option>
-                <option value="googleEarthPro">Google Earth Pro</option>
-                <option value="googleMaps">Google Maps</option>
-                <option value="QGIS">QGIS</option>
+            </label> {% endcomment %}
+            <label for="GIS_package_var">Software</label>
+            <select id="GIS_package_var" name="GIS_package_var">
+                <option value="folium">Python folium pin map & heatmap</option>
+                <option value="Google Earth Pro & Google Maps">Google Earth Pro & Google Maps</option>
+                <option value="Google Earth Pro">Google Earth Pro</option>
+                <option value="Google Maps">Google Maps</option>
+                {% comment %} <option value="QGIS">QGIS</option>
                 <option value="tableau">Tableau</option>
-                <option value="timeMapper">timeMapper</option>
+                <option value="timeMapper">timeMapper</option> {% endcomment %}
             </select>
-            <label>
+            {% comment %} <label>
                 <input type="checkbox" id="earthPro" name="earthPro" unchecked>
                 GIS Package - Open GUI
-            </label>
+            </label> {% endcomment %}
         </div>
         <div class="form-row">
             <label for="viewGoogleApi">View Google Api Key:</label>
@@ -137,5 +163,5 @@
 
     </form>
 </div>
-<script src="{% static 'js/gis.js' %}"></script>
+{% comment %} <script src="{% static 'js/gis.js' %}"></script> {% endcomment %}
 {% endblock %}

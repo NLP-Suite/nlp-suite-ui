@@ -61,9 +61,10 @@
                 <option value="openIE">OpenIE (via Stanford CoreNLP)</option>
             </select>
         </div>
+
         <div class = "form-row">
-             Upload csv file containing SUBJECT filters:
-            <input type="text" value="~/nlp-suite/input"  readonly>
+            csv file containing SUBJECT filters:
+            <input type="text" value="social-actor-list.csv"  readonly>
          </div>
         <div class = "form-row">
             <label><input type="checkbox" id="lemmatize_subjects" name="lemmatize_subjects" checked>Lemmatize</label>
@@ -71,8 +72,9 @@
         </div>
 
          <div class = "form-row">
-            Upload csv file containing VERB filters:
-            <input type="text" value="~/nlp-suite/input"  readonly>
+            csv file containing VERB filters:
+            <input type="text" value="social-action-list.csv"  readonly>
+
             </div>
         <div class = "form-row">
             <label><input type="checkbox" id="lemmatize_verbs" name="lemmatize_verbs" checked>Lemmatize</label>
@@ -80,8 +82,8 @@
         </div>
 
         <div class = 'form-row'>
-            Upload csv file containing OBJECT filters:
-            <input type="text" value="~/nlp-suite/input"  readonly>
+            csv file containing OBJECT filters:
+            <input type="text" value="" readonly>
         </div>
                 
         <div class = "form-row">
@@ -91,9 +93,28 @@
 
         <div class = "form-row">
             <label><input type="checkbox" id="so_gender" name="so_gender" unchecked>S & O gender</label>
-            <label><input type="checkbox" id="so_quote" name="so_quote" unchecked>S & O quote/speaker</label>
+            <label><input type="checkbox" id="so_quote" name="so_quote" unchecked>S & O quote/speaker</label>   
         </div>
-    
+        
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id ="gephi_var" name ="gephi_var" disabled></input>
+                Visualize SVO relations         
+            </label>
+
+            <label>
+                <input type="checkbox" id ="wordcloud_var" name="wordcloud_var"> </input>
+                Visualize SVO relations in wordcloud       
+            </label>
+            
+            <label>
+                <input type="checkbox" id ="google_earth_var" name="google_earth_var"></input>
+                Visualize Where (via Google Earth Pro & Google Maps)
+            </label>
+
+        </div>
+
+
         <div class="form-row">
             <label for="dataTransformation">Transformation:</label>
             <select id="dataTransformation" name="dataTransformation">
@@ -104,6 +125,7 @@
                 <option value="Z score">Z score</option>
             </select>
         </div>
+
         <!-- Form Buttons -->
         <div class="buttons-section">
             <button type="reset" class="reset-button"onclick="window.location.reload();">Reset</button>

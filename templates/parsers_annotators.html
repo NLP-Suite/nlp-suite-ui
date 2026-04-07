@@ -34,6 +34,22 @@
         </div> {% endcomment %}
 
         <!-- Parsers and annotators options -->
+
+
+        <div class="form-row">
+            <label>
+                Package
+            </label>
+
+            <select id="package" name="package">
+                <option value="Stanford CoreNLP">Stanford CoreNLP</option>
+                <option value="spaCy">spaCy</option>
+                <option value="Stanza">Stanza</option>
+
+            </select>
+        </div>
+
+
         <div class="form-row" style="margin-bottom: 20px;">
             <label>
                 <input type="checkbox" id="parsers_var" name="parser_var">
@@ -54,13 +70,6 @@
 
         </div>
 
-        <!-- CoNLL Table Analyzer -->
-        <div class="form-row" style="margin-bottom: 20px;">
-            <label>
-                <input type="checkbox" id="conll-table-analyzer" name="CoNLL_table_analyzer_var">
-                CoNLL Table Analyzer
-            </label>
-        </div>
 
         <!-- Annotators section -->
         <div class="form-row" style="margin-bottom: 20px;">
