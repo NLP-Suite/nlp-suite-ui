@@ -338,3 +338,15 @@ def sentence_analysis(request: HttpRequest):
     return render(request, "sentence_analysis.html")
             
 
+def file_manager(request: HttpRequest):
+    if request.method == "POST":
+        response = requests.post(
+            f"{AGENT_SERVER_URL}/file_manager",
+            data=request.body,
+            headers=request.headers,
+        )
+        if response.ok:
+            return HttpResponseRedirect("/status")
+        else:
+            messages.add_message(request, messages.ERROR, response.content.decode())
+    return render(request, "file_manager.html")
