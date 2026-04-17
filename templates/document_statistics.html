@@ -84,10 +84,11 @@
         <div class="form-row">
             <span class="tooltip">
                 <span class="tooltiptext">
-                    Select the type of data transformation you wish to apply in plotting charts. All charts involving multiple documents are automatically normalized by document size.
+                    Use the next dropdown menu widget to select the type of data transformation to be used for plotting ('No transformation' is the default option'). All charts involving multiple documents are automatically normalized by document size.
                 </span>
             </span>
             <label for="dataTransformation">Transformation:</label>
+            <span class="dropdown">
             <select id="dataTransformation" name="dataTransformation">
                 <option value="No transformation">No transformation</option>
                 <option value="Ln">Ln</option>
@@ -95,6 +96,10 @@
                 <option value="Square">Square root</option>
                 <option value="Z score">Z score</option>
             </select>
+            <span class="dropdowntext">
+                Select the type of data transformation you wish to apply in plotting charts. All charts involving multiple documents are automatically normalized by document size.
+            </span>
+            </span>
         </div>
 
 

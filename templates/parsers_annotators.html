@@ -3,9 +3,11 @@
 {% block content %}
 {%load static%}
 
-<div style="max-width: 80%; margin: 20px auto; padding: 20px;">
+<div class="sentiment-analysis-container">
+
+<!-- <div style="max-width: 80%; margin: 20px auto; padding: 20px;"> -->
     <h1 style="text-align: left; font-size: 30px; margin-bottom: 20px;">Parsers & Annotators (BERT, CoreNLP, spaCy, Stanza)</h1>
-    <form method="POST" action="{% url 'parsers_annotators' %}">
+    <form method="POST" class="sentiment-analysis-form" action="{% url 'parsers_annotators' %}">
         
         {% csrf_token %}
         <div class="form-row">
@@ -152,10 +154,11 @@
         <div class="form-row">
             <span class="tooltip">
                 <span class="tooltiptext">
-                    Select the type of data transformation you wish to apply in plotting charts. All charts involving multiple documents are automatically normalized by document size.
+                    Use the next dropdown menu widget to select the type of data transformation to be used for plotting ('No transformation' is the default option'). All charts involving multiple documents are automatically normalized by document size.
                 </span>
             </span>
             <label for="dataTransformation">Transformation:</label>
+            <span class="dropdown">
             <select id="dataTransformation" name="dataTransformation">
                 <option value="No transformation">No transformation</option>
                 <option value="Ln">Ln</option>
@@ -163,6 +166,9 @@
                 <option value="Square">Square root</option>
                 <option value="Z score">Z score</option>
             </select>
+            <span class="dropdowntext">
+                Select the type of data transformation you wish to apply in plotting charts. All charts involving multiple documents are automatically normalized by document size.
+            </span>
         </div>
 
 
@@ -184,6 +190,7 @@
             <button type="submit" class="run-button">Run</button>
         </div>
     </form>
+<!-- </div> -->
 </div>
 
 <script src="{% static 'js/parsers_annotators.js' %}"></script>

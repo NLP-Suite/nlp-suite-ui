@@ -10,6 +10,11 @@
         {% csrf_token %}
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    In inputDirectory the script expects a single csv file or a directory containing a set of csv files.
+                </span>
+            </span>
             <label for="inputDirectory">Input Directory:</label>
             <select name="inputDirectory" id="inputDirectory">
                 <option value="~/nlp-suite/csvInput">~/nlp-suite/csvInput</option>
@@ -17,6 +22,12 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext forupper">
+                    Please, select the directory where the script will save all OUTPUT files of any type (txt, csv, png, html). <br><br>
+                    MOST GUI SCRIPTS WILL ORGANIZE OUTPUT FILES IN SPECIFIC SUBDIRECTORIES INSIDE THE MAIN OUTPUT DIRECTORY SELECTED HERE (e.g., the SVO GUI will create several subdirectories: GIS, SVO, SVO-filtered, SVO-unfiltered, SVO-lemma, WordNet).
+                </span>
+            </span>
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
         </div> 
@@ -34,11 +45,15 @@
         <input type="hidden" name="file_data" id="file_data"> {% endcomment %}
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext forupper">
+                        Please, tick the checkbox to analyze the CoNLL table for different types of clauses (e.g., noun-phrase, NP, verb phrase, VP), nouns (singular, plural, proper nouns, subject and object), verbs (modality, tense, voice), functions words (or junk/stop words) (e.g., articles/determinants, auxiliaries, conjunctions, prepositions, pronouns), adjectives, adverbs, and ratios of word classes (e.g., content words vs. juunk words).
+                </span>
+            </span>
                 <label>
                     <input type="checkbox" id="clause_noun_verb_function" name="clause_noun_verb_function" >
                     Clause, noun, verb, function word 
                 </label>
-                <span class = "dropdown">
                     <select classid="clause_noun_verb_function_options" name="clause_noun_verb_function_options">
                         <option value="*">*</option>
                         <option value="clause-analysis">Clause Analysis</option> 
@@ -46,13 +61,14 @@
                         <option value="verb-analysis">Verb Analysis</option> 
                         <option value="function-words-jump/stop-analysis">Function(junk/stop) Words Analysis</option> 
                     </select>
-                    <span class="dropdowntext">
-                        Please, tick the checkbox to analyze the CoNLL table for different types of clauses (e.g., noun-phrase, NP, verb phrase, VP), nouns (singular, plural, proper nouns, subject and object), verbs (modality, tense, voice), functions words (or junk/stop words) (e.g., articles/determinants, auxiliaries, conjunctions, prepositions, pronouns), adjectives, adverbs, and ratios of word classes (e.g., content words vs. juunk words).
-                    </span>
-                </span>
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to aggregate nouns and verbs in the CoNLL table (POS NN* and POS VB*) via WordNet. CAVEAT: For VERBS, the 'stative' category includes the auxiliary 'be' probably making up the vast majority of stative verbs. Similarly, the category 'possession' include the auxiliary 'have' (and 'get'). You may wish to exclude these auxiliary verbs from frequencies.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="WordNet_var" name="WordNet_var" disabled> <!-- When clicked everything's disabled, do we really need this button? -->
                 Wordnet Classification of Nouns & Verbs
@@ -60,15 +76,36 @@
         </div> 
 
         <div class="form-row"> 
+            <span class="tooltip">
+                <span class="tooltiptext forupper">
+                    Please, tick the checkbox to search the CoNLL table for a specific token/word. Enter the CASE SENSITIVE token (i.e., word) to be searched (enter * for any word).
+                    ENTER * TO SEARCH FOR ANY TOKEN/WORD.
+                    The EXACT word will be searched (e.g., if you enter 'American', any instances of 'America' will not be found).
+                    DO NOT USE QUOTES WHEN ENTERING A SEARCH TOKEN. 
+                    The algorithm will search all the tokens related to this token in the CoNLL table. For example, if the the token wife is entered, the algorithm will search in each dependency tree (i.e., each sentence).
+                    In OUTPUT the algorithm will produce several charts and a Gephi network graphs of the relationship between searched and co-occurring words.
+                </span>
+            </span>
             <label> 
                 <input type="checkbox" id="search_token_var" name="search_token_var" >
                 Search Token/Word(s) 
                 &nbsp;
+                </label> 
+                <span class="dropdown">
                 <input type="text" placeholder="e.g.: father" id="searchField_kw" name="searchField_kw" = size="50" >
-            </label> 
+                <span class="dropdowntext">
+                    Enter the case sensitive word (one word only) that you would like to search (* for any word). All searches are done within each sentence for the exact word.
+                </span>
+            </span>
         </div> 
         
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, select the CoNLL field to be used for the search (FORM or LEMMA).
+                    For example, if brother is entered as the searched token, and FORM is entered as search field, the algorithm will first search all occurrences of the FORM brother. Note that in this case brothers will NOT be considered. Otherwise, if LEMMA is entered as search field, the algorithm will search all occurences of the LEMMA brother. In this case, tokens with form brother and brothers will all be considered.
+                </span>
+            </span>
             <label>
                 CoNLL search field 
                 &nbsp;
@@ -99,6 +136,12 @@
         </div>  {% endcomment %}
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, select POSTAG value for searched token (e.g., NN for noun; RETURN for ANY POSTAG value).
+                    Select DEPREL value for searched token (e.g., nsubjpass for passive nouns that are subjects; RETURN for ANY DEPREL value).
+                </span>
+            </span>
             <label>
                 Searched Token 
             </label>
@@ -257,6 +300,12 @@
 
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, select POSTAG value for token co-occurring in the same sentence (e.g., NN for noun; RETURN for ANY POSTAG value).
+                    Select DEPREL value for token co-occurring in the same sentence (e.g., DEPREL nsubjpass for passive nouns that are subjects; RETURN for ANY DEPREL value).
+                </span>
+            </span>
             <label>
                 Co-occurring tokens
             </label>
@@ -413,23 +462,44 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to run the repetition finder to compute counts and proportions of nouns, verbs, adjectives, and proper nouns across selected K beginning and ending sentences.
+                </span>
+            </span>
             <label> 
                 <input type="checkbox" id="k_sentences_var" name="k_sentences_var">
                 Begin-End K sentences analyzer(repetition finder) 
             </label> 
+            <span class="dropdown">
             <label> 
                 Begin K-sentences
                 <input type="Begin_K_sent_var" id="Begin_K_sent_var" size="50">
                 &nbsp;
+                <span class="dropdowntext">
+                    Enter the beginning number of sentences to be analyzed in the CoNLL table for repeated elements.
+                </span>
             </label> 
+            </span>
+            &nbsp; &nbsp; &nbsp;
+            <span class="dropdown">
             <label> 
                 End K-sentences
                 <input type="number" name="End_K_sent_var" id="End_K_sent_var" size="50">
                 &nbsp;
+                <span class="dropdowntext">
+                    Enter the end number of sentences to be analyzed in the CoNLL table for repeated elements.
+                </span>
             </label>
+            </span>
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to compute a sentence table with various sentence statistics.
+                </span>
+            </span>
             <label> 
                 <input type="checkbox" id="compute_sentence_var" name="compute_sentence_var" >
                 Compute sentence Table
@@ -462,7 +532,13 @@
         </div> {% endcomment %}
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Use the next dropdown menu widget to select the type of data transformation to be used for plotting ('No transformation' is the default option'). All charts involving multiple documents are automatically normalized by document size.
+                </span>
+            </span>
             <label for="dataTransformation">Transformation:</label>
+            <span class="dropdown">
             <select id="dataTransformation" name="dataTransformation">
                 <option value="No transformation">No transformation</option>
                 <option value="Ln">Ln</option>
@@ -470,6 +546,10 @@
                 <option value="Square">Square root</option>
                 <option value="Z score">Z score</option>
             </select>
+            <span class="dropdowntext">
+                    Select the type of data transformation you wish to apply in plotting charts. All charts involving multiple documents are automatically normalized by document size.
+            </span>
+            </span>
         </div>
 
         <div class="buttons-section">

@@ -9,6 +9,11 @@
         {% csrf_token %}
         
         <div class="form-row">
+        <span class="tooltip">
+            <span class="tooltiptext">
+                Please, select the TXT or csv file to be analyzed.
+            </span>
+        </span>
             <label for="inputDirectory">Input Directory:</label>
             <select name="inputDirectory" id="inputDirectory">
                 <option value="~/nlp-suite/input" selected>~/nlp-suite/input</option>
@@ -18,6 +23,12 @@
 
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext forupper">
+                Please, select the directory where the script will save all OUTPUT files of any type (txt, csv, png, html). <br>
+                MOST GUI SCRIPTS WILL ORGANIZE OUTPUT FILES IN SPECIFIC SUBDIRECTORIES INSIDE THE MAIN OUTPUT DIRECTORY SELECTED HERE (e.g., the SVO GUI will create several subdirectories: GIS, SVO, SVO-filtered, SVO-unfiltered, SVO-lemma, WordNet).
+                </span>
+            </span>
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDirectory" id= "outputDirectory" value="~/nlp-suite/output"/>
         </div>
@@ -31,6 +42,14 @@
         </div> {% endcomment %}
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext forupper">
+                    Please, tick the checkboxes for either Mean or Median in output csv files. BY DEFAULT, BOTH VALUES ARE COMPUTED. <br><br>
+                    BERT, spaCy, Stanford CoreNLP, and Stanza Sentiment Analysis algorithms only compute mean values for each sentence, rather than each word. <br><br>
+                    VADER only computes 'compound' values for each sentence. <br><br>
+                    SentiWordNet as well does not provide sentence mean/median values.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="calculateMean" name="calculateMean" checked>
                 Calculate sentence mean
@@ -42,6 +61,35 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext forupper">
+                    Please, using the dropdown menu, select the algorithm to be used for computing sentiment analysis. <br><br>
+                    Select * to run ALL algorithms. <br><br>
+                    spaCy, Stanford CoreNLP, Stanza neural network approach to Sentiment Analysis typically achieves better results than dictionary-based approaches. <br><br>
+                    BERT, spaCy, Stanford CoreNLP, and Stanza compute mean values only for each sentence on a scale 0-4 (minimum-maximum). <br><br>
+                    ANEW (Affective Norms for English Words) computes sentiment/arousal/dominance mean/median values for each sentence using the ANEW ratings for SENTIMENT (VALENCE), AROUSAL, and DOMINANCE (CONTROL) by Bradley, M.M. & Lang, P.J. (2017). Affective Norms for English Words (ANEW): Instruction manual and affective ratings. Technical Report C-3. Gainesville, FL:UF Center for the Study of Emotion and Attention. <br><br>
+                    Contrary to all other approaches, the ANEW script computes three different measures, for SENTIMENT, AROUSAL, and DOMINANCE: <br>
+                    SENTIMENT or VALENCE measures how pleasant/unpleasant a word makes us feel; <br>
+                    AROUSAL measures how calm/excited a word makes us feel; <br>
+                    DOMINANCE or CONTROL measures how dominated/in control a word makes us feel. <br><br>
+                    THE SCRIPT EXPECTS TO FIND THE FILE EnglishShortenedANEW.csv IN A ""lib"" SUBFOLDER OF THE FOLDER WHERE THE Sentiment_Analysis_ANEW.py SCRIPT IS STORED. <br><br>
+                    In OUTPUT, the script creates a csv file containing the calculated mean/median sentiment values for each sentence, where each rating can have a total of maximum 9 points. <br><br>
+                    Values for sentiment, arousal, and dominance are classified on a scale 0-9, grouped in 5 categories: <3, >=3 and < 5, 5 (neutral), >5 and <8, >=8 and <=9. <br><br>
+                    The hedonometer algorithm uses the hedonometer.org rated dictionary to compute sentiment mean/median values for each sentence. <br><br>
+                    The script has been shown to work best with social media texts (e.g., Twitter), New York Times editorials, movie reviews, and product reviews. <br><br>
+                    THE SCRIPT EXPECTS TO FIND THE FILE hedonometer.json IN A ""lib"" SUBFOLDER OF THE FOLDER WHERE THE Sentiment_Analysis_Hedonometer.py SCRIPT IS STORED. <br><br>
+                    In OUTPUT, the script creates a csv file containing the calculated mean/median sentiment values for each sentence. <br><br>
+                    Sentiment values are classified on a scale 0-10, grouped in 3 categories: negative (>=0 and <4), neutral (>=4 and <=6), and positive (>6 and <=10). <br><br>
+                    The NLTK VADER (VADER, Valence Aware Dictionary and sEntiment Reasoner) uses the NLTK rated dictionary to compute sentiment mean/median values for each sentence. <br><br>
+                    The script has been shown to work best with social media texts (e.g., Twitter). <br><br>
+                    In INPUT the script expects either a single text file or a set of text files stored in a directory. THE SCRIPT ALSO EXPECTS TO FIND THE VADER RATED DICTIONARY FILE vader_lexicon.txt IN A ""lib"" SUBFOLDER OF THE FOLDER WHERE THE Sentiment_Analysis_VADER.py SCRIPT IS STORED. <br><br>
+                    In OUTPUT, the script creates a csv file containing the calculated 'compound' sentiment values for each sentence. <br><br>
+                    Mean and Median calculations are not available for VADER; VADER computes 'compound' values for each sentence. <br><br>
+                    Sentiment values are classified on a scale -1 (most negative) to 1 as (most positive) grouped in 3 categories: negative (<-0.05), neutral (>=-0.05 and <=0.05), and positive (>0.05 and <=1). <br><br>
+                    VADER heavily relies on a number of NLTK libraries. If VADER fails to run, make sure that in command line you run <br>
+                    python -m nltk.downloader all"
+                </span>
+            </span>
             <label for="algorithm">Select sentiment analysis algorithm:</label>
             <select id="algorithm" name="algorithm">
                 <optgroup label="Neural network approaches:">
@@ -61,6 +109,11 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox to display a line plot of sentiment scores by sentence index across a specific document.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="fluctuateDocument" name="fluctuateDocument" checked>
                 Do sentiments fluctuate across a document (Sentiment scores by sentence index)
@@ -68,6 +121,12 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox to open the 'Shape of stories' GUI. The 'Shape of stories' algorithms will compute and visualize the \'shape of stories\' of a set of sentiment scores across different documents using different data reduction methods: Hiererchical Clustering, Singular Value Decomposition, Non-Negative Matrix Factorization. <br><br>
+                    The 'Shape of stories' GUI is only available when computing sentiment scores via BERT, spaCy, Stanford CoreNLP, or Stanza on a corpus of txt files in an input directory.
+                </span>
+            </span>
             <label>
                 <input disabled type="checkbox" id="fluctuateDocuments" name="fluctuateDocuments">
                 (Coming soon!) Do sentiments fluctuate across documents (Open 'Shape of stories' GUI)
@@ -75,7 +134,13 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Use the next dropdown menu widget to select the type of data transformation to be used for plotting ('No transformation' is the default option'). All charts involving multiple documents are automatically normalized by document size.
+                </span>
+            </span>
             <label for="dataTransformation">Transformation:</label>
+            <span class="dropdown">
             <select id="dataTransformation" name="dataTransformation">
                 <option value="No transformation">No transformation</option>
                 <option value="Ln">Ln</option>
@@ -83,6 +148,10 @@
                 <option value="Square">Square root</option>
                 <option value="Z score">Z score</option>
             </select>
+            <span class="dropdowntext">
+                Select the type of data transformation you wish to apply in plotting charts. All charts involving multiple documents are automatically normalized by document size.
+            </span>
+            </span>
         </div>
         
         <div class="buttons-section">
