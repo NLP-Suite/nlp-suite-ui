@@ -84,6 +84,7 @@ body {
 
 label {
   position: relative;
+  display: inline-flex;
 }
 
 /* Tooltip styling */
@@ -92,7 +93,8 @@ label {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: 0px;
+  padding-right: 5px;
 }
 
 .tooltip::before {
@@ -105,7 +107,7 @@ label {
   border: 2px solid #4d6aad;
   border-radius: 50%;
   text-align: center;
-  line-height: 25px;
+  line-height: 21px;
   font-size: 14px;
   font-weight: bold;
 }
@@ -127,6 +129,18 @@ label {
 }
 
 .tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip .tooltiptext.forupper{
+  position: absolute; 
+  margin-left: -275px; 
+  bottom: auto; 
+  max-width: 250px;
+}
+
+.tooltip:hover .tooltiptext.forupper {
   visibility: visible;
   opacity: 1;
 }
@@ -216,13 +230,10 @@ input[type="checkbox"]:disabled {
   border-radius: 4px;
 }
 
-
 .dropdown {
-  width: 100%; 
   max-width: 420px; 
-  padding: 10px;
+  padding: 10px 10px 10px 0px;
   position:relative;
-
 }
 
 .dropdown .dropdowntext {
@@ -234,7 +245,7 @@ input[type="checkbox"]:disabled {
   padding: 10px;
   position: absolute;
   z-index: 1;
-  bottom: 125%;
+  bottom: 100%;
   left: 50%;
   margin-left: -150px;
   opacity: 0;

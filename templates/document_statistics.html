@@ -10,6 +10,11 @@
 
         <!-- Input and Output Directories -->
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    In inputDirectory the script expects a single txt file or a directory containing a set of txt files.
+                </span>
+            </span>
             <label for="inputDirectory">Input Directory:</label>
             <select name="inputDirectory" id="inputDirectory">
                 <option value="~/nlp-suite/input" selected>~/nlp-suite/input</option>
@@ -18,32 +23,58 @@
         </div>
         
          <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    In outputDirectory, the script generates a set of csv files each containing word n-grams between 1 and 3.<br>
+                    When n-grams are computed by sentence index, the sentence displayed in output is always the first occurring sentence.<br>
+                </span>
+            </span>
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDirectory" id= "outputDirectory" value="~/nlp-suite/output"/>
         </div>
 
         <!--corpus_text_options_menu_var lemmatize-->
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to compute basic statistics on your corpus.<br>
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="corpus_statistics_var" name="corpus_statistics_var">
                 Compute document(s) statistics
             </label>
-            <select id="corpus_text_options_menu_var" name="corpus_text_options_menu_var">
-                <option value="*">*</option>
-                <option value="Lemmatize">Lemmatize Words</option>
-                <option value="stopwords">Exclude Stopwords & Puncutation</option>
-    
-            </select>
+            <span class="dropdown">
+                <select id="corpus_text_options_menu_var" name="corpus_text_options_menu_var">
+                    <option value="*">*</option>
+                    <option value="Lemmatize">Lemmatize Words</option>
+                    <option value="stopwords">Exclude Stopwords & Puncutation</option>
+                </select>
+                <span class="dropdowntext">
+                    Select the text option to lemmatize words or exclude stopwords/punctuation (* for all).
+                </span>
+            </span>
 
-            <select id="corpus_statistics_options_menu_var" name="corpus_statistics_options_menu_var">
-                <option value="*">*</option>
-                <option value="frequencies" >Compute frequencies of sentences, words, syllables, and top-20 words</option>
-                <option value="Compute sentence length" >Compute sentence length</option>
-                <option value="Compute line length">Compute line length</option>
-            </select>
+            <span class="dropdown">
+                <select id="corpus_statistics_options_menu_var" name="corpus_statistics_options_menu_var">
+                    <option value="*">*</option>
+                    <option value="frequencies" >Compute frequencies of sentences, words, syllables, and top-20 words</option>
+                    <option value="Compute sentence length" >Compute sentence length</option>
+                    <option value="Compute line length">Compute line length</option>
+                </select>
+                <span class="dropdowntext">
+                    Select the computation option (* for all).
+                </span>
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to compute statistics on your corpus by POS (Part of Speech) tag (e.g., nouns, verbs, adjectives). <br>
+                    The scripts relies on the Stanza POS annotator to export all tokens in the corpus with their POS value.<br>
+                    In outputDirectory, the script generates a set of csv files each containing the words in our corpus by POS value and their frequencies. Charts will also be visualized. 
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="corpus_statistics_byPOS_var" name="corpus_statistics_byPOS_var">
                 Compute document(s) statistics by POS (Part of Speech) tag value
@@ -51,7 +82,13 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Use the next dropdown menu widget to select the type of data transformation to be used for plotting ('No transformation' is the default option'). All charts involving multiple documents are automatically normalized by document size.
+                </span>
+            </span>
             <label for="dataTransformation">Transformation:</label>
+            <span class="dropdown">
             <select id="dataTransformation" name="dataTransformation">
                 <option value="No transformation">No transformation</option>
                 <option value="Ln">Ln</option>
@@ -59,6 +96,10 @@
                 <option value="Square">Square root</option>
                 <option value="Z score">Z score</option>
             </select>
+            <span class="dropdowntext">
+                Select the type of data transformation you wish to apply in plotting charts. All charts involving multiple documents are automatically normalized by document size.
+            </span>
+            </span>
         </div>
 
 
