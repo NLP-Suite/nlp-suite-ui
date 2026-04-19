@@ -67,7 +67,7 @@
                 </span>
             </span>
             <label>
-                <input type="checkbox" id="extractLocations" name="extractLocations" checked>
+                <input type="checkbox" id="NER_extractor" name="NER_extractor" checked>
                 Extract Locations (via Stanford CoreNLP NER) - Default Parameters
             </label>
         </div>
@@ -135,8 +135,71 @@
             </span>
             </span>
             <span class="dropdown">
+            {% comment %} <label>
+                <input type="checkbox" id="geocodeLocations" name="geocodeLocations" checked>
+                Geocode Locations
+            </label> {% endcomment %}
+            <label for="geocoder">Geocoder:</label>
+            <select id="geocoder" name="geocoder">
+                <option value="Nominatim">Nominatim</option>
+                <option value="Google">Google</option>
+            </select>
+            <label for="country_bias_var">Country bias</label>
+            <select id="country_bias_var" name="country_bias_var">
+                <option value="">Select a country</option>
+                <option value="af">Afghanistan</option>
+                <option value="al">Albania</option>
+                <option value="dz">Algeria</option>
+                <option value="ar">Argentina</option>
+                <option value="au">Australia</option>
+                <option value="at">Austria</option>
+                <option value="bd">Bangladesh</option>
+                <option value="be">Belgium</option>
+                <option value="br">Brazil</option>
+                <option value="ca">Canada</option>
+                <option value="cn">China</option>
+                <option value="co">Colombia</option>
+                <option value="dk">Denmark</option>
+                <option value="eg">Egypt</option>
+                <option value="fi">Finland</option>
+                <option value="fr">France</option>
+                <option value="de">Germany</option>
+                <option value="gr">Greece</option>
+                <option value="in">India</option>
+                <option value="id">Indonesia</option>
+                <option value="ie">Ireland</option>
+                <option value="il">Israel</option>
+                <option value="it">Italy</option>
+                <option value="jp">Japan</option>
+                <option value="mx">Mexico</option>
+                <option value="nl">Netherlands</option>
+                <option value="nz">New Zealand</option>
+                <option value="ng">Nigeria</option>
+                <option value="no">Norway</option>
+                <option value="pk">Pakistan</option>
+                <option value="ph">Philippines</option>
+                <option value="pl">Poland</option>
+                <option value="pt">Portugal</option>
+                <option value="ru">Russia</option>
+                <option value="sa">Saudi Arabia</option>
+                <option value="sg">Singapore</option>
+                <option value="za">South Africa</option>
+                <option value="kr">South Korea</option>
+                <option value="es">Spain</option>
+                <option value="se">Sweden</option>
+                <option value="ch">Switzerland</option>
+                <option value="th">Thailand</option>
+                <option value="tr">Turkey</option>
+                <option value="ae">United Arab Emirates</option>
+                <option value="gb">United Kingdom</option>
+                <option value="us">United States</option>
+                <option value="vn">Vietnam</option>
+            </select>
+            <label for="area_var">Area: </label>
+            <input type="text" id="area_var" name="area_var" placeholder="e.g., (34.98527, -85.59790), (30.770444, -81.521974)"></input>
+
             <label>
-                <input type="checkbox" id="restrict" name="restrict" unchecked>
+                <input type="checkbox" id="restrict_var" name="restrict_var">
                 Restrict
             </label>
             <span class="dropdowntext">
@@ -171,7 +234,7 @@
                 <option value="googleMaps">Google Maps</option>
                 <option value="QGIS">QGIS</option>
                 <option value="tableau">Tableau</option>
-                <option value="timeMapper">timeMapper</option>
+                <option value="timeMapper">timeMapper</option> {% endcomment %}
             </select>
             <span class="dropdowntext">
                 The visualization of GIS maps is set by default on Python folium pin map & heatmap. <br><br>
@@ -242,5 +305,5 @@
 
     </form>
 </div>
-<script src="{% static 'js/gis.js' %}"></script>
+{% comment %} <script src="{% static 'js/gis.js' %}"></script> {% endcomment %}
 {% endblock %}

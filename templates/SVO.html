@@ -110,6 +110,7 @@
                 </span>
             </span>
         </div>
+
         <div class = "form-row">
             <span class="tooltip">
                 <span class="tooltiptext">
@@ -149,8 +150,9 @@
         </div>
 
          <div class = "form-row">
-            Upload csv file containing VERB filters:
-            <input type="text" value="~/nlp-suite/input"  readonly>
+            csv file containing VERB filters:
+            <input type="text" value="social-action-list.csv"  readonly>
+
             </div>
         <div class = "form-row">
             <span class="tooltip">
@@ -180,8 +182,8 @@
         </div>
 
         <div class = 'form-row'>
-            Upload csv file containing OBJECT filters:
-            <input type="text" value="~/nlp-suite/input"  readonly>
+            csv file containing OBJECT filters:
+            <input type="text" value="" readonly>
         </div>
                 
         <div class = "form-row">
@@ -232,7 +234,26 @@
                 </span>
                 </span>
         </div>
-    
+        
+        <div class="form-row">
+            <label>
+                <input type="checkbox" id ="gephi_var" name ="gephi_var" disabled></input>
+                Visualize SVO relations         
+            </label>
+
+            <label>
+                <input type="checkbox" id ="wordcloud_var" name="wordcloud_var"> </input>
+                Visualize SVO relations in wordcloud       
+            </label>
+            
+            <label>
+                <input type="checkbox" id ="google_earth_var" name="google_earth_var"></input>
+                Visualize Where (via Google Earth Pro & Google Maps)
+            </label>
+
+        </div>
+
+
         <div class="form-row">
             <span class="tooltip">
                 <span class="tooltiptext">
@@ -253,6 +274,7 @@
             </span>
             </span>
         </div>
+
         <!-- Form Buttons -->
         <div class="buttons-section">
             <button type="reset" class="reset-button"onclick="window.location.reload();">Reset</button>
