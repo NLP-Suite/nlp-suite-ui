@@ -2,9 +2,14 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     let selectedFieldValues = []; 
-    let savedPairs = [];
 
-    // Existing functionality: Populate dropdown based on uploaded CSV file
+
+    let savedPairsToSend = [];
+
+
+
+    //<!--------------------------- Handle CSV Functions ---------------------!>
+    //Populate dropdown based on uploaded CSV file
     document.getElementById("sunburst_file_input").addEventListener("change", function (event) {
         const file = event.target.files[0];
         
@@ -14,8 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
             
             reader.onload = function () {
                 const csvContent = reader.result;
-
-                // Console log to display the CSV content
                 
 
                 processCSV(csvContent);
@@ -47,31 +50,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         headers.forEach((header, index) => {
             const option = document.createElement("option");
-            option.value = index;
+            option.value =`${index}|${header}`
+            // option.text = header
+            // option.index = index
+            option.text = header;
             option.textContent = header.trim();
             dropdown.appendChild(option);
         });
 
         dropdown.addEventListener("change", function () {
-            const selectedIndex = this.value;
+            const selectedIndex = this.value.split("|")[0]
             selectedFieldValues = getFieldData(selectedIndex, data); // Update the global array
             console.log('Selected Field Values:', selectedFieldValues); 
         });
-    }
-
-    function populate_search_value_dropdown(uniqueValues) {
-        
-        const element  = document.getElementById("search_value_dropdown");
-        element.options.length=0; 
-
-        for(const value of uniqueValues) {
-            const option = document.createElement("option");
-
-            option.textContent = value;
-            option.value = value; 
-
-            element.appendChild(option);
-        }
     }
 
     function getFieldData(fieldIndex, data) {
@@ -95,6 +86,28 @@ document.addEventListener("DOMContentLoaded", function () {
         return uniqueValues;
     }    
 
+
+    function populate_search_value_dropdown(uniqueValues) {
+        const element  = document.getElementById("search_value_dropdown");
+        element.options.length=0; 
+        
+        // for(let val of uniqueValues) {
+        //     console.log(val);
+        // }
+
+
+        for(const value of uniqueValues) {
+            const option = document.createElement("option");
+
+            option.textContent = value;
+            option.value = value; 
+
+            element.appendChild(option);
+        }
+    }
+
+
+    //<!-------------------- Search Value Functions ---------------------!> 
     const keywordInput = document.getElementById("keywordInput");
     const suggestionDropdown = document.getElementById("suggestion_dropdown");
 
@@ -170,7 +183,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const csvFieldListInput = document.getElementById('keywordInput');
         const savedPairsContainer = document.getElementById('saved_pairs_container');
 
-        const searchField = searchFieldDropdown.options[searchFieldDropdown.selectedIndex].text.trim();
+        // const searchField = searchFieldDropdown.options[searchFieldDropdown.selectedIndex].text.trim();
+        const searchField = document.getElementById("search_field")
+        let field = search_field.value.split('|')[1];
+
+
         let csvFieldList = csvFieldListInput.value.trim();
         if (csvFieldList.endsWith(",")) {
             csvFieldList = csvFieldList.slice(0, -1); // Remove the trailing comma
@@ -184,69 +201,78 @@ document.addEventListener("DOMContentLoaded", function () {
             return; // Stop execution if validation fails
         }
 
-        if (searchField && csvFieldList) {
+        if (field && csvFieldList) {
             // Save the pair
-            const pair = { searchField, csvFieldList };
-            savedPairs.push(pair);
 
-            // Create a checkbox for the pair
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.name = 'selected_pairs';
-            checkbox.value = JSON.stringify(pair);
-            checkbox.checked = true;
+            const pair = [`${field}|`+ csvFieldList]
 
-            const label = document.createElement('label');
-            label.appendChild(checkbox);
-            label.appendChild(document.createTextNode(` ${searchField} - ${csvFieldList}`));
 
-            const div = document.createElement('div');
-            div.appendChild(label);
+            add_to_saved_pairs_ui(field, csvFieldList);
 
-            savedPairsContainer.appendChild(div);
-
-            // Clear the input field for CSV Field List
             csvFieldListInput.value = '';
         } else {
             alert('Please select a Search Field and enter a CSV Field List.');
         }
     });
 
-    // Handle form submission to include saved pairs and validate file selection
-    document.querySelector('form').addEventListener('submit', function(event) {
-        // Validate that a file is selected and it's a CSV
-        const fileInput = document.getElementById('sunburst_file_input');
-        const file = fileInput.files[0];
-        if (!file) {
-            alert('Please select a CSV file before submitting the form.');
-            event.preventDefault(); // Prevent form submission
-            return;
-        } else if (!file.name.toLowerCase().endsWith('.csv')) {
-            alert('The selected file must be a CSV.');
-            event.preventDefault(); // Prevent form submission
-            return;
+
+
+    //<!------------------Full Field Visualization Functions -----------------------!>
+    
+     document.getElementById('visualize_full_field').addEventListener('click', function() {
+        let search_field = document.getElementById("search_field")
+        
+        field = search_field.value.split('|')[1];
+
+        if(field == undefined) {
+            alert("The search field option is empty. Please, select a field.");
+        } else {
+            add_to_saved_pairs_ui(field, [])
         }
 
-        // Gather selected pairs
-        const checkboxes = document.getElementsByName('selected_pairs');
-        const selectedPairs = [];
-        for (const checkbox of checkboxes) {
-            if (checkbox.checked) {
-                selectedPairs.push(JSON.parse(checkbox.value));
-            }
+    })
+
+
+    function add_to_saved_pairs_ui(field, values) {
+        saved_pairs = document.getElementById("saved_pairs_container");
+        
+        let label = document.getElementById("saved_pairs_ui_label")
+        if(!label) {
+            label = document.createElement('div')
+            label.id = "saved_pairs_ui_label";
+            saved_pairs.appendChild(label);
         }
-        const selectedPairsData = JSON.stringify(selectedPairs);
 
-        console.log('Selected Pairs:', selectedPairs);
-        console.log('Selected Pairs Data:', selectedPairsData);
+        let ui_pair = ""
 
-        // Create a hidden input to store the selected pairs
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = 'selected_pairs_data';
-        hiddenInput.value = selectedPairsData;
-        console.log("Selected Pairs: ", selectedPairsData)
-        this.appendChild(hiddenInput);
+        //NOTE: This is NOT how they should be passed in the backend. There should be no space between field|value1, value2, etc, this is simply for UI purposes. 
+        if(values.length > 0){ 
+            ui_pair = field + "| " + values;
+            
+            for_backend = [field + "|" + values];
+            savedPairsToSend.push(for_backend);
+
+            
+        } else {
+            ui_pair = field + "| ALL"
+            for_backend = [field + "|"];
+            savedPairsToSend.push(for_backend);
+        }
+
+        if(label.textContent == "") {
+            label.textContent = ui_pair;
+        } else {
+            label.textContent = label.textContent + `, ${ui_pair}`
+        }
+        // Clear the input field for CSV Field List
+        // csvFieldListInput.value = '';
+    }
+
+
+    //<!------------- Handle Form Submission -----------------!>
+    document.querySelector('.sentiment-analysis-form').addEventListener('submit', function() {
+        document.getElementById('savedPairsToSend').value = JSON.stringify(savedPairsToSend);
+        // console.log("SENDING " + JSON.stringify(savedPairsToSend));
     });
 
 });
