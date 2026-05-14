@@ -12,8 +12,8 @@
         {% csrf_token %}
         <div class="form-row">
             <span class="tooltip">
-                <span class="tooltiptext">
-                    In inputDirectory the script expects a single txt file or a directory containing a set of txt files.
+                <span class="tooltiptext formid">
+                    Please, select the directory where you store your TXT corpus to be analyzed. ALL TXT FILES PRESENT IN THE DIRECTORY WILL BE PARSED. NON TXT FILES WILL BE IGNORED. MOVE ANY TXT FILES YOU DO NOT WISH TO PROCESS TO A DIFFERENT DIRECTORY.
                 </span>
             </span>
             <label for="inputDirectory">Input Directory:</label>
@@ -25,7 +25,9 @@
         
         <div class="form-row" style="margin-bottom: 20px;">
             <span class="tooltip">
-                <span class="tooltiptext">
+                <span class="tooltiptext forupper">
+                    Please, select the directory where the script will save all OUTPUT files of any type (txt, csv, png, html).<br><br>
+                    MOST GUI SCRIPTS WILL ORGANIZE OUTPUT FILES IN SPECIFIC SUBDIRECTORIES INSIDE THE MAIN OUTPUT DIRECTORY SELECTED HERE (e.g., the SVO GUI will create several subdirectories: GIS, SVO, SVO-filtered, SVO-unfiltered, SVO-lemma, WordNet). <br>
                     In outputDirectory the algorithms will produce different file types: txt-format copies of the same input txt files for co-reference, csv files (HTML for gender annotator), and different types of visuals, from Bar charts to utey flowcharts.
                 </span>
             </span>
@@ -64,9 +66,13 @@
 
         <div class="form-row" style="margin-bottom: 20px;">
             <span class="tooltip">
-                <span class="tooltiptext">
+                <span class="tooltiptext forupper">
                     Please, tick the checkbox if you wish to use Stanford CoreNLP parser. The parser will produce a CoNLL table (CoNLL U format).<br>
                     The Stanford CoreNLP CoNLL table is the basis of many of the NLP analyses: noun & verb analysis, function words, clause analysis, query CoNLL.<br>
+                    In output the Stanford CoreNLP script produces a CoNLL table with the following 9 fields: ID, FORM, LEMMA, POSTAG, NER (23 classes), HEAD, DEPREL, DEPS, CLAUSAL TAGS (the neural-network parser does not produce clausal tags). <br>
+                    Stanza will export the 'feats' column with information about verb Mood (e.g., infinitive, imperative) and Verb Tense (e.g., Present ,Past). <br><br>
+                    The following fields will be automatically added to the standard fields of a CoNLL table (CoNLL U format): RECORD NUMBER, DOCUMENT ID, SENTENCE ID, DOCUMENT (INPUT filename), DATE (if the filename embeds a date). <br><br>
+                    If you suspect that CoreNLP may have given faulty results for some sentences, you can test those sentences directly on the Stanford CoreNLP website at https://corenlp.run")
                 </span>
             </span>
             <label>
@@ -104,8 +110,10 @@
         <!-- Annotators section -->
         <div class="form-row" style="margin-bottom: 20px;">
             <span class="tooltip">
-                <span class="tooltiptext">
-                    Please, using the dropdown menu, select one of the many annotators available. 
+                <span class="tooltiptext forupper">
+                    Please, using the dropdown menu, select one of the many annotators available through Stanford CoreNLP. <br>
+                    In INPUT the algorithms expect a single txt file or a directory of txt files. <br>
+                    In OUTPUT the algorithms will produce a number of csv files and Excel charts. The Gender annotator will also produce an html file with male tags displayed in blue and female tags displayed in red. The Coreference annotator will produce txt-format copies of the same input txt files but co-referenced.
                 </span>
             </span>
             <label>
@@ -132,8 +140,18 @@
                         <option value="Quote/dialogue annotator">Quote/dialouge annotator</option>
                     </optgroup>
                 </select>
-                <span class="dropdowntext">
-                    Click the Tips File for more information on the different annotators.
+                <span class="dropdowntext" style="top: 0%; bottom: auto; transform: translate(50%, -50%)">
+                    1.  PRONOMINAL co-reference resolution refers to such cases as 'John said that he would...'; 'he' would be substituted by 'John'. CoreNLP can resolve other cases but the algorithm here is restricted to pronominal resolution. <br>
+                    The co-reference resolution checkbox is disabled when selected an entire directory in input. The co-reference resolution algorithm is a memory hog. You may not have enough memory on your machine. <br>
+                    2.  The CoreNLP NER annotator recognizes the following NER values: <br>
+                    named (PERSON, LOCATION, ORGANIZATION, MISC); <br>
+                    numerical (MONEY, NUMBER, ORDINAL, PERCENT); <br>
+                    temporal (DATE, TIME, DURATION, SET). <br>
+                    In addition, via regexner, the following entity classes are tagged: EMAIL, URL, CITY, STATE_OR_PROVINCE, COUNTRY, NATIONALITY, RELIGION, (job) TITLE, IDEOLOGY, CRIMINAL_CHARGE, CAUSE_OF_DEATH. <br>
+                    3.  The NER NORMALIZED DATE annotator extracts standard dates from text in the yyyy-mm-dd format (e.g., 'the day before Christmas' extracted as 'xxxx-12-24'). <br>
+                    4.  The CoreNLP coref GENDER annotator extracts the gender of both first names and personal pronouns (he, him, his, she, her, hers) using a neural network approach. This annotator requires a great deal of memory. So, please, adjust the memory allowing as much memory as you can afford. <br>
+                    5.  The SENTIMENT ANALYSIS annotator computes the sentiment values (negative, neutral, positive) of each sentence in a text. <br>
+                    6.  The OpenIE (Open Information Extraction) annotator extracts  open-domain relation triples, representing a subject, a relation, and the object of the relation. 
                 </span>
             </span>
         </div>

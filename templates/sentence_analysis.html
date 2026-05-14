@@ -9,6 +9,11 @@
         {% csrf_token %}
         
         <div class="form-row">
+            <span class="tooltip">
+            <span class="tooltiptext formid">
+                Please, select the directory where you store your TXT corpus to be analyzed. ALL TXT FILES PRESENT IN THE DIRECTORY WILL BE PARSED. NON TXT FILES WILL BE IGNORED. MOVE ANY TXT FILES YOU DO NOT WISH TO PROCESS TO A DIFFERENT DIRECTORY.
+            </span>
+        </span>
             <label for="inputDirectory">Input Directory:</label>
             <select name="inputDirectory" id="inputDirectory">
                 <option value="~/nlp-suite/input" selected>~/nlp-suite/input</option>
@@ -18,12 +23,24 @@
 
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext formid">
+                Please, select the directory where the script will save all OUTPUT files of any type (txt, csv, png, html). <br>
+                MOST GUI SCRIPTS WILL ORGANIZE OUTPUT FILES IN SPECIFIC SUBDIRECTORIES INSIDE THE MAIN OUTPUT DIRECTORY SELECTED HERE (e.g., the SVO GUI will create several subdirectories: GIS, SVO, SVO-filtered, SVO-unfiltered, SVO-lemma, WordNet).
+                </span>
+            </span>
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDirectory" id= "outputDirectory" value="~/nlp-suite/output"/>
         </div>
         
 
         <div class ="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to compute the sentence lengths of your document(s). <br><br>
+                    In INPUT, the script expects a single txt file or a directory with a set of txt files.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" name="compute_sentence_length_var" id="compute_sentence_length_var">
                 Compute Sentence Length
@@ -31,6 +48,12 @@
         </div>
 
         <div class ="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext formid">
+                    Please, tick the checkbox if you wish to run the sentence complexity algorithm to provide different measures of sentence complexity: Yngve Depth, Frazer Depth, and Frazer Sum. These measures are closely associated to the sentence clause structure. <br><br>
+                    The Frazier and Yngve scores are very similar, with one key difference: while the Frazier score measures the depth of a syntactic tree, the Yngve score measures the breadth of the tree. 
+                </span>
+            </span>
             <label>
                 <input type="checkbox" name="sentence_complexity_var" id="sentence_complexity_var">
                 Sentence complexity
@@ -38,6 +61,17 @@
         </div>
 
         <div class ="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext formid">
+                    Please, tick the checkbox if you wish to run the Python 3 sentence_text_readability function to compute various measures of text readability, also closely associated to the sentence clause structure. <br><br>
+                    12 readability score requires HIGHSCHOOL education; <br>
+                    16 readability score requires COLLEGE education; <br>
+                    18 readability score requires MASTER education; <br>
+                    24 readability score requires DOCTORAL education; <br>
+                    >24 readability score requires POSTDOC education. <br><br>
+                    In OUTPUT, the script produces a txt file with readability scores for an entire text and a csv file with readability scores for each sentence in a text.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" name="text_readability_var" id="text_readability_var">
                 Sentence/text readability (via textstat)
@@ -45,10 +79,20 @@
         </div>
 
         <div class ="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to visualize the sentence structure as a png image of the dependency tree.
+                </span>
+            </span>
+            <span class="dropdown">
             <label>
                 <input type="checkbox" name="visualize_sentence_structure_var" id="visualize_sentence_structure_var">
                 Visualize sentence structure (via dependency tree)
             </label>
+            <span class="dropdowntext">
+                You will be asked to enter a specific sentence to visualize its dependency tree as a png file.
+            </span>
+            </span>
 
             <label for="sentences_to_be_visualized">Number of Sentences to be Visualized</label>
             <input type="number" id="num_sentences" name="num_sentences" min="1" max="10" default="1">
@@ -58,7 +102,13 @@
 
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Use the next dropdown menu widget to select the type of data transformation to be used for plotting ('No transformation' is the default option'). All charts involving multiple documents are automatically normalized by document size.
+                </span>
+            </span>
             <label for="dataTransformation">Transformation:</label>
+            <span class="dropdown">
             <select id="dataTransformation" name="dataTransformation">
                 <option value="No transformation">No transformation</option>
                 <option value="Ln">Ln</option>
@@ -66,6 +116,10 @@
                 <option value="Square">Square root</option>
                 <option value="Z score">Z score</option>
             </select>
+            <span class="dropdowntext">
+                Select the type of data transformation you wish to apply in plotting charts. All charts involving multiple documents are automatically normalized by document size.
+            </span>
+            </span>
         </div>
         
         <div class="buttons-section">

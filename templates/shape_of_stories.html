@@ -8,6 +8,12 @@
         {% csrf_token %}
         
         <div class="form-row">
+            <span class="tooltip">
+            <span class="tooltiptext formid">
+                Please, select the directory where you store your TXT corpus to be analyzed or the csv files of sentiment scores. <br><br>
+                In INPUT the algorithms expect a LARGE set of TXT files or a LARGE set of csv files of sentiment scores.
+            </span>
+        </span>
             <label for="inputDirectory">Input Directory:</label>
             <select name="inputDirectory" id="inputDirectory">
                 <option value="~/nlp-suite/input" selected>~/nlp-suite/input</option>
@@ -16,6 +22,13 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext forupper">
+                Please, select the directory where the script will save all OUTPUT files of any type (txt, csv, png, html). <br>
+                MOST GUI SCRIPTS WILL ORGANIZE OUTPUT FILES IN SPECIFIC SUBDIRECTORIES INSIDE THE MAIN OUTPUT DIRECTORY SELECTED HERE (e.g., the SVO GUI will create several subdirectories: GIS, SVO, SVO-filtered, SVO-unfiltered, SVO-lemma, WordNet). <br>
+                In OUTPUT all results of the analyses will be saved in a double subdirectory of the output directory - Shape of Stories/Last part of input directory name/<br>sentiment_analysis_results_last part of input directory name.
+                </span>
+            </span>
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
         </div>
@@ -40,6 +53,12 @@
             </script>
         </div>
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                        Please, tick the checkbox 'Sentiment Analysis' if you wish to run the Sentiment Analysis algorithm. <br><br>
+                        If you do want to run the algorithm, using the dropdown menu, please select the type of Sentiment Analysis algorithm you wish to use (Stanford CoreNLP neural network approach recommended).
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="sentiment_analysis" name="sentiment_analysis" checked>
                 Sentiment Analysis
@@ -64,6 +83,11 @@
         </div>
 
         <div class ="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to compute & visualize corpus statistics. This will help you identify any document outlier in terms of number of words and, particularly relevant for the analysis of the shape of stories, number of sentences.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="compute-visualize" name="compute-visualize">
                 Compute & visualize corpus statistics
@@ -71,6 +95,11 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to run the Hierarchical Clustering algorithm of data reduction.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="hierarchical-clustering" name="hierarchical-clustering">
                 Hierarchical Clustering (HC)
@@ -78,6 +107,11 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to run the SVD (Singular Value Decomposition) algorithm of data reduction.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="singular-value-decomp" name="singular-value-decomp">
                 Singular Value Decomposition (SVD)
@@ -85,6 +119,11 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to run the NMF (Non-Negative Matrix Factorization) algorithm of data reduction.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="non-negative-matrix-fact" name="non-negative-matrix-fact">
                 Non-Negative Matrix Factorization (NMF)
@@ -92,6 +131,12 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if you wish to estimate the best number of topics providing graphical visualization. <br><br>
+                    WARNING! This function is very slow and make take an hour or longer. You can follow its progress in command line.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="best-topic-est" name="best-topic-est">
                 Best topic estimation
@@ -99,7 +144,13 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Use the next dropdown menu widget to select the type of data transformation to be used for plotting ('No transformation' is the default option'). All charts involving multiple documents are automatically normalized by document size.
+                </span>
+            </span>
             <label for="dataTransformation">Transformation:</label>
+            <span class="dropdown">
             <select id="dataTransformation" name="dataTransformation">
                 <option value="No transformation">No transformation</option>
                 <option value="Ln">Ln</option>
@@ -107,6 +158,10 @@
                 <option value="Square">Square root</option>
                 <option value="Z score">Z score</option>
             </select>
+            <span class="dropdowntext">
+                Select the type of data transformation you wish to apply in plotting charts. All charts involving multiple documents are automatically normalized by document size.
+            </span>
+            </span>
         </div>
         
         <div class="buttons-section">

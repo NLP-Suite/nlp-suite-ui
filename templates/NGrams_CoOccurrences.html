@@ -10,6 +10,11 @@
         {% csrf_token %}
         
         <div class="form-row">
+            <span class="tooltip">
+            <span class="tooltiptext">
+                In INPUT the script expects a single txt file or a directory containing a set of txt files.
+            </span>
+            </span>
             <label for="inputDirectory">Input Directory:</label>
             <select name="inputDirectory" id="inputDirectory">
                 <option value="~/nlp-suite/input" selected>~/nlp-suite/input</option>
@@ -18,6 +23,12 @@
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext formid">
+                Please, select the directory where the script will save all OUTPUT files of any type (txt, csv, png, html). <br>
+                MOST GUI SCRIPTS WILL ORGANIZE OUTPUT FILES IN SPECIFIC SUBDIRECTORIES INSIDE THE MAIN OUTPUT DIRECTORY SELECTED HERE (e.g., the SVO GUI will create several subdirectories: GIS, SVO, SVO-filtered, SVO-unfiltered, SVO-lemma, WordNet).
+                </span>
+            </span>
             <label for="outputDirectory">Output Directory:</label>
             <input type="text" name="outputDirectory" value="~/nlp-suite/output"/>
         </div>
@@ -35,19 +46,43 @@
             </select>
         </div> -->
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext formid">
+                    Please, tick the checkbox if you wish to compute N-grams. <br><br>
+                    N-grams can be computed for character and word values. Use the dropdown menu to select the desired option. <br><br>
+                    N-grams frequencies are exported by document and by corpus in all case-sensitive variations (e.g., It is necessary, it Is necessary, It is Necessary,...). <br><br>
+                    In OUTPUT, the script generates a set of csv files each containing word N-grams between 1 and 3. <br><br>
+                    When N-grams are computed by sentence index, the sentence displayed in output is always the first occurring sentence.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="Ngrams_compute_var" name="Ngrams_compute_var">
                 Compute N-Grams 
             </label>
+            <span class="dropdown">
             <select id="ngrams_menu_var" name="ngrams_menu_var">
                 <option value="Word">Word</option> 
                 <option value="Character">Character</option>
             </select>
+            <span class="dropdowntext">
+                Select the N-grams type.
+            </span>
+            </span>
         </div>
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext formid">
+                    Please, use the dropdown menu to select different options for N-grams. Click the + button to select more options; the Reset button to start fresh. <br><br>
+                    In OUTPUT, the script generates the following three files: <br>
+                    1. csv file of frequencies of the twenty most frequent words; <br>
+                    2. csv file of the following statistics for each column in the previous csv file and for each document in the corpus: Count, Mean, Mode, Median, Standard deviation, Minimum, Maximum, Skewness, Kurtosis, 25% quantile, 50% quantile; 75% quantile; <br>
+                    3. Excel line chart of the number of sentences and words for each document.
+                </span>
+            </span>
             <label>
                 N-grams
             </label>
+            <span class="dropdown">
             <select id="ngrams_size" name="ngrams_size">
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -55,10 +90,15 @@
                 <option value="5">5</option>
                 <option value="6">6</option>
             </select>
+            <span class="dropdowntext">
+                Select the number of N-grams to be computed. 1-grams and hapax legomena (once-occurring words) are always computed automatically.
+            </span>
+            </span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <label>
                 Options
             </label>
+            <span class="dropdown">
             <select id="ngrams_options_list" name="ngrams_options_list">
                 <option value="sensitive">Case sensitive (default)</option>
                 <option value="insensitive">Case insensitive</option> 
@@ -72,6 +112,11 @@
                 <option value="stopwords">Exclude ALL stopwords (word N-grams only)</option>
                 <option value="sentence index">By sentence index</option>
             </select>
+            <span class="dropdowntext">
+                Select the N-grams option; hit + button to add multiple options; Reset to start fresh. <br>
+                The case-sensitive option will display the sum of all different cases and the individual cases (e.g., It is, it Is, It Is).
+            </span>
+        </span>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <input type="button" name="options-+" value="+">&nbsp;
             <input type="button" name="options-show" value="-">&nbsp;
@@ -80,6 +125,11 @@
 
 
         <div id="optionPicked" class="options">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Visualize the options already selected.
+                </span>
+            </span>
             <label for="options">Selected </label>&nbsp;
             <select id="options" name="options"></select>
         </div>
@@ -89,21 +139,54 @@
         
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, enter the comma-separated list of single words or collocations (multi-word expressions) (i.e., sets of words such as coming out, beautiful sunny day) for which you want to know N-Grams/Co-occurrences statistics (e.g., woman, man, job). Leave blank if you do not want NGrams data. Both NGrams and co-occurrences words can be entered.
+                </span>
+            </span>
+            <span class="dropdown">
             <label>
                 Search word(s)
-                &nbsp;
                 <input type="text" id="search_words"name="search_words" size="50">
+                <span class="dropdowntext">
+                Enter the comma-separated words/collocations (multi-word expressions) to be searched by the options 'Search N-grams csv file' or the VIEWER. <br>
+                In output, one record will be produced HORIZONTALLY with different headers in the output csv file for each search word. <br>
+                Use the File Search by Word GUI to produce records organized VERTICALLY, different records in the output csv file for each search word.
+            </span>
             </label>
+            </span>
+            <span class="dropdown">
             <label>
                 -K
                 <input type="text" id="minus_K_words_var"name="minus_K_words_var" size="3">
             </label>
+            <span class="dropdowntext">
+                Enter the integer number of words (do not enter -) preceding the search word to be extracted, for context, together with the search sentences. <br>
+                The option does not apply to N-grams VIEWER or Co-Occurrences VIEWER.
+            </span>
+            </span>
+            <span class="dropdown">
             <label>
                 +K
                 <input type="text" id="plus_K_words_var"name="plus_K_words_var" size="3">
             </label>
+            <span class="dropdowntext">
+                Enter the integer number of words (do not enter +) following the search word to be extracted, for context, together with the search sentences. <br>
+                The option does not apply to N-grams VIEWER or Co-Occurrences VIEWER.
+            </span>
+            </span>
         </div>
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext formid">
+                    Please, use the dropdown menu to select various options that can be applied to the VIEWER. Multiple criteria can be seleced by clicking on the + button. <br><br>
+                    You can make your searches CASE SENSITIVE. <br><br>
+                    You can NORMALIZE results. Only works for N-Grams. Formula: search word frequency / total number of all words e.g: word "nurse" occurs once in year 1892, and year 1892 has a total of 1000 words. Then the normalized frequency will be 1/1000. <br><br> 
+                    You can SCALE results. Only works for N-Grams. It applies the min-max normalization to frequency of search words. After the min-max normalization is done, each column of data (i.e., each search word) will fall in the same range. <br><br>
+                    You can LEMMATIZE words for your searches (e.g., be instead of being, is, was). The routine relies on Stanza for lemmatizing words. WHEN LEMMATIZING THE INPUT TEXT, SEARCH WORDS WILL ALSO BE LEMMATIZED. <br><br>
+                    Finally, you can select to display minimal information or full information.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" name="Ngrams_search_var" id ="Ngrams_search_var">
                 Search options
@@ -124,37 +207,85 @@
         </div>
 
         <div id="optionPicked2" class="options">
+                <span class="tooltip">
+                    <span class="tooltiptext">
+                        Visualize the criteria already selected.
+                    </span>
+                </span>
                 <label for="options">Selected </label>&nbsp;
                 <select id="optionss" name="optionss"></select>
         </div>
         <input type="hidden" id="viewer_options_list_hidden" name="viewer_options_list" value="">
 
         <div>
+            <span class="dropdown">
             <label>
                 <input type="checkbox" id="csv_file_var" name="csv_file_var" disabled>
                 Search N-grams csv file
             </label>
+            <span class="dropdowntext">
+                Please, tick the checkbox to search for selected words in any output csv file produced by the 'Compute N-grams' algorithm. <br>
+                Upon clicking you will be prompted to select the N-grams csv file to be used.
+            </span>
+            </span>
             &nbsp;&nbsp;
             <input type="button" id = "search-ngram-csv-file"  name="search-ngram-csv-file" disabled>
         </div>
         
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the Ngram VIEWER checkbox if you wish to run the Ngram Viewer script.<br><br>
+                    Tick the Co-Occurrence VIEWER checkbox if you wish to run the Co-Occurrence Viewer script. <br><br>
+                    You can run both Viewers at the same time. <br><br>
+                    The NGrams part of the algorithm requires date metadata, i.e., a date embedded in the filename (e.g., The New York Time_2-18-1872). <br><br>
+                    For both viewers, results will be visualized in Excel line plots. <br><br>
+                    For N-grams the routine will display the FREQUENCY OF NGRAMS (WORDS), NOT the frequency of documents where searched word(s) appear. <br><br>
+                    For Word Co-Occurrences the routine will display the FREQUENCY OF SENTENCES or DOCUMENTS where searched word(s) appear, depending upon the selected search option (within sentence or within document).
+                </span>
+            </span>
+            <span class="dropdown">
             <label>
                 <input type="checkbox" id="ngrams_viewer_var" name="ngrams_viewer_var">
                 N-Grams VIEWER
             </label>
+            <span class="dropdowntext">
+                The N-grams VIEWER option requires in input file(s) with a date embedded in the filename.
+            </span>
+            </span>
+            <span class="dropdown">
             <label>
                 <input type="checkbox" id="CoOcc_Viewer_var" name="CoOcc_Viewer_var">
                 Co-Occurrences VIEWER
             </label>
+            <span class="dropdowntext">
+                Depending upon the selected search options, you can search for co-occurrences within sentences or within documents. <br>
+                The Co_Occurrences VIEWER option does NOT require in input file(s) with a date embedded in the filename, contrary to the N-grams VIEWER.
+            </span>
+            </span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="dropdown">
             <label>
                  <input type="checkbox" id="within_sentence_co_occurrence_search_var" name="within_sentence_co_occurrence_search_var" disabled>
                 Co-Occurrence within sentence (Default: within document)
             </label>
+            <span class="dropdowntext">
+                Tick the checkbox to search co-occurring words within sentence (default: within document only). <br>
+                The option applies to Co-Occurrences VIEWER only.
+            </span>
+            </span>
         </div>
 
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Please, tick the checkbox if the filenames embed a date (e.g., The New York Times_12-19-1899). The DATE OPTIONS are required for N-grams; optional for word co-occurrences. <br><br>
+                    Please, using the dropdown menu, select the level of temporal aggregation you want to apply to your documents: group of years, year, quarter, month. <br><br>
+                    For both viewers, results will be visualized in Excel line plots. <br><br>
+                    For N-grams the routine will display the FREQUENCY OF NGRAMS (WORDS), NOT the frequency of documents where searched word(s) appear. <br><br>
+                    For Word Co-Occurrences the routine will display the FREQUENCY OF DOCUMENTS where searched word(s) appear.
+                </span>
+            </span>
             <label>
                 <input type="checkbox" id="date_options" name="date_options">
                 Date options
@@ -176,7 +307,13 @@
         </div>
         
         <div class="form-row">
+            <span class="tooltip">
+                <span class="tooltiptext">
+                    Use the next dropdown menu widget to select the type of data transformation to be used for plotting ('No transformation' is the default option'). All charts involving multiple documents are automatically normalized by document size.
+                </span>
+            </span>
             <label for="dataTransformation">Transformation:</label>
+            <span class="dropdown">
             <select id="dataTransformation" name="dataTransformation">
                 <option value="No transformation">No transformation</option>
                 <option value="Ln">Ln</option>
@@ -184,6 +321,10 @@
                 <option value="Square">Square root</option>
                 <option value="Z score">Z score</option>
             </select>
+            <span class="dropdowntext">
+                Select the type of data transformation you wish to apply in plotting charts. All charts involving multiple documents are automatically normalized by document size.
+            </span>
+            </span>
         </div>
     
         <div class="buttons-section">

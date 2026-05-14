@@ -133,9 +133,23 @@ label {
   opacity: 1;
 }
 
+.tooltip .tooltiptext.formid{
+  position: absolute; 
+  margin-left: -275px; 
+  bottom: auto; 
+  max-width: 250px;
+}
+
+.tooltip:hover .tooltiptext.formid {
+  visibility: visible;
+  opacity: 1;
+}
+
 .tooltip .tooltiptext.forupper{
   position: absolute; 
   margin-left: -275px; 
+  top: 50%;
+  transform: translateY(-30%);
   bottom: auto; 
   max-width: 250px;
 }
